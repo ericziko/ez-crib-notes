@@ -1,0 +1,23 @@
+Stuff to tell seth
+- [ ] I automate everything
+- [ ] Eli has cock blocked me on squashing requests
+- [ ] He gave me really bad advice on how to approach the SSIS stuff by pointing me at the wrong package to start with first
+- [ ] He is dismissive to everybody
+- [ ] He has been dismissive of CODE that I told him about without actually ever reading it
+- [ ] He does not ever pull PR’s down and examine them locally. He just eyeballs them to approve them.
+- [ ] He’s not a capable technical leader
+- [ ] He refuses to fully extinguish the fires that he fights every night
+- [ ] We’re going to pick up a lot of tile with the memory errors and the sink failures
+- [ ] Ellie was dismissive about scripting the creation of the database - said that I was using non-standard tools
+- [ ] If you let him set the direction of the new developers on the team, he’s going to point them in the wrong direction
+- [ ] He’s wasted tons of time on meetings with India around playwright when we should be talking about how to handle the day-to-day work
+- [ ] He doesn’t listen to advice
+- [ ] Him and Troy understand all the workflow crap I have no idea how that works yet
+- [ ] I haven’t been properly trained on the application and any sort of way
+- [ ] Our documentation is all over the place and out of Date
+- [ ] Don’t know how app dynamics works
+- [ ] I bet I could fix cpu throttling error in a day
+- [ ] Our website is still creating huge logs and tables. It has no business creating logs in.
+- [ ] you asked me what hours I work… I don’t stop. I’m working all the time.
+- [ ] 
+
