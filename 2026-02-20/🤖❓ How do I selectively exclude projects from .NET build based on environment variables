@@ -1,0 +1,104 @@
+# 🤖❓ How do I selectively exclude projects from .NET build based on environment variables
+
+## 🤖💡 
+
+MSBuild gives you two different "levers" here, and which one you need depends on what you mean by "build my solution":
+
+- **Command line build** (dotnet build My.sln / msbuild My.sln): you *can* dynamically skip projects at the **solution** level.
+- **Visual Studio Build Solution**: you generally **can't** make VS dynamically change the set of projects it builds via Directory.Build.props. VS uses solution configurations / .sln/.slnf, and it **does not load** the solution-level customization hooks (Directory.Solution.*). 
+
+Below are the practical patterns.
+
+---
+
+## **1) The "right" way for CLI solution builds:** 
+
+## **Directory.Solution.targets**
+
+For **solution builds**, use Directory.Solution.targets (not Directory.Build.props). This file is imported into the generated solution "metaproj" for command-line builds, so you can remove projects from the solution's @(ProjectReference) list before Build runs. 
+
+Create this next to your .sln (or repo root, same rules as the Directory.* mechanism):
+
+**Directory.Solution.targets**
+
+```xml
+<Project>
+  <!-- Read env var SKIP_PROJECTS=ProjA;ProjB -->
+  <PropertyGroup>
+    <SkipProjects>$(SKIP_PROJECTS)</SkipProjects>
+  </PropertyGroup>
+
+  <!-- Remove projects from the solution build graph -->
+  <ItemGroup Condition="'$(SkipProjects)' != ''">
+    <ProjectReference
+      Remove="@(ProjectReference)"
+      Condition="$([System.Text.RegularExpressions.Regex]::IsMatch(
+                    '$(SkipProjects)',
+                    '(^|;)' + '%(ProjectReference.Filename)' + '(;|$)'))" />
+  </ItemGroup>
+
+  <Target Name="LogSkippedProjects" BeforeTargets="Build" Condition="'$(SkipProjects)' != ''">
+    <Message Importance="High" Text="Skipping projects (by name): $(SkipProjects)" />
+  </Target>
+</Project>
+```
+
+### **How to call it**
+- **macOS/Linux (zsh/bash)** (semicolon must be quoted):
+
+```sh
+SKIP_PROJECTS='ProjA;ProjB' dotnet build MySolution.sln
+```
+
+- **Windows (PowerShell)** 
+
+```powershll
+$env:SKIP_PROJECTS = 'ProjA;ProjB'
+dotnet build .\MySolution.sln
+```
+
+### **Debugging tip (highly useful)**
+
+If you want to *see* the generated solution metaproj and confirm item names like `@(ProjectReference)`, set:
+- `MSBUILDEMITSOLUTION=1` and run the build; MSBuild will emit the `.metaproj` you can inspect.
+- **Reference:** [Modifying the build for every solution in a repository \| Kzu's Today I Learned](https://til.cazzulino.com/msbuild/modifying-the-build-for-every-solution-in-a-repository)
+
+## 2) If you meant "don't build dependency projects": trim  ProjectReference in Directory.Build.props/targets
+
+If your real goal is: *when building a top project, don't build certain referenced projects as dependencies*, then you can conditionally remove ProjectReference items inside projects.
+
+This won't stop a solution build from explicitly building those projects (because the solution invokes them directly), but it *will* stop them being built as dependency edges.
+
+**Directory.Build.targets** (targets is better than props for item surgery timing)
+
+```xml
+<Project>
+  <PropertyGroup>
+    <SkipProjects>$(SKIP_PROJECTS)</SkipProjects>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(SkipProjects)' != ''">
+    <ProjectReference
+      Remove="@(ProjectReference)"
+      Condition="$([System.Text.RegularExpressions.Regex]::IsMatch(
+                    '$(SkipProjects)',
+                    '(^|;)' + '%(ProjectReference.Filename)' + '(;|$)'))" />
+  </ItemGroup>
+</Project>
+```
+
+## 3) Visual Studio builds: use solution configs or `.slnf` (because VS won't honor Directory.Solution.targets)
+
+Visual Studio's supported mechanism is **Configuration Manager** (per-solution configuration) or using a **solution filter** (.slnf) for subsets. 
+
+So the common "best of both worlds" setup is:
+
+- **CLI**: Directory.Solution.targets with SKIP_PROJECTS
+- **VS**: separate solution configuration ("DevLite", "CI", etc.) or a .slnf
+
+### One sharp edge to know about
+
+Your env var name must be a valid MSBuild property name (letters/underscore/etc.). If you try something like MY-VAR it won't map cleanly. 
+
+If you adopt option #1, you've basically built a tiny "solution filter controlled by env vars" for CLI builds—very handy for CI lanes, feature-branch builds, or "don't build the experimental stuff on this machine" modes.
+
