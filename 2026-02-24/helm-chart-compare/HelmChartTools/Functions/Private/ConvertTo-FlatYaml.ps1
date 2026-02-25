@@ -35,7 +35,7 @@ function ConvertTo-FlatYaml {
     $content = Get-Content -Path $Path -Raw
     $lines = $content -split "`n"
     $result = @{}
-    $stack = @()  # Stack of (key, indent) pairs to track hierarchy
+    $stack = [System.Collections.Generic.Stack[object]]::new()  # Stack of (key, indent) pairs to track hierarchy
 
     foreach ($line in $lines) {
         # Skip empty lines and comments
@@ -58,7 +58,7 @@ function ConvertTo-FlatYaml {
         $value = if ($parts.Count -gt 1) { $parts[1].Trim() } else { '' }
 
         # Remove nested keys from stack if indent is less
-        while ($stack.Count -gt 0 -and $stack[-1].Indent -ge $indent) {
+        while ($stack.Count -gt 0 -and $stack.Peek().Indent -ge $indent) {
             $stack.Pop() | Out-Null
         }
 
@@ -66,7 +66,17 @@ function ConvertTo-FlatYaml {
         if ($stack.Count -eq 0) {
             $fullKey = $key
         } else {
-            $fullKey = ($stack | ForEach-Object { $_.Key }) -join '.' + ".$key"
+            $stackKeys = @()
+            $tempStack = [System.Collections.Generic.Stack[object]]::new()
+            # Reverse the stack to build path in order
+            foreach ($item in $stack) {
+                $tempStack.Push($item)
+            }
+            while ($tempStack.Count -gt 0) {
+                $stackKeys += $tempStack.Pop().Key
+            }
+            [System.Array]::Reverse($stackKeys)
+            $fullKey = ($stackKeys -join '.') + ".$key"
         }
 
         # Add to result
@@ -80,7 +90,7 @@ function ConvertTo-FlatYaml {
         }
 
         # Add to stack for future nested keys
-        $stack += @{ Key = $key; Indent = $indent }
+        $stack.Push(@{ Key = $key; Indent = $indent })
     }
 
     return $result
