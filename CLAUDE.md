@@ -2,6 +2,11 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Directory-Specific Rules
+- **DO NOT TRAVERSE OUTSIDE THE CURRENT DIRECTORY** 
+    - You can read ANY files beneath the current directory
+    - You are NOT to leave this current directory
+
 ## Repository Overview
 
 **ez-crib-notes** is a personal knowledge base and technical documentation repository containing notes on .NET development, PowerShell, SQL Server, architecture patterns, and software engineering practices. Notes are organized chronologically by date and tagged with topics for searchability.
@@ -102,3 +107,13 @@ The repository contains deep dives on:
 3. **Committing**: Use clear, descriptive commit messages (see history for examples)
 4. **Searching**: Use grep with `--include="*.md"` to find related notes
 5. **No build/lint/test cycle**: This is a documentation-only repository—no compilation needed
+
+## Environment & Tools
+
+The development environment has the following tools installed and available:
+
+- **ripgrep (rg)**: Fast recursive search tool
+- **fd**: Fast alternative to `find` for file discovery
+- **bat**: Syntax-highlighted cat replacement
+
+Claude Code will prefer dedicated tools (Glob, Grep, Read) when available, but these tools can be used directly in bash commands when needed.
