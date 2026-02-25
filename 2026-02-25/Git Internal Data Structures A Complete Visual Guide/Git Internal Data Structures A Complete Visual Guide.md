@@ -345,13 +345,13 @@ A **ref** is just a file containing a 40-character SHA-1 (or a symbolic ref poin
 
 ```mermaid
 graph TD
-    subgraph "Symbolic Refs (text files with 'ref: path')"
+    subgraph "`Symbolic&nbsp;Refs&nbsp;&nbsp;(text&nbsp;files&nbsp;with&nbsp;'ref:&nbsp;path')`"
         HEAD_SYM["HEAD<br/>→ ref: refs/heads/main"]
         ORIG_HEAD["ORIG_HEAD<br/>→ abc123..."]
         MERGE_HEAD["MERGE_HEAD<br/>→ (during merge)"]
     end
 
-    subgraph "Branch Refs (.git/refs/heads/)"
+    subgraph "Branch&nbsp;Refs&nbsp;(.git/refs/heads/)"
         MAIN_REF["main<br/>→ abc123..."]
         DEV_REF["dev<br/>→ def456..."]
         FEAT_REF["feature/login<br/>→ ghi789..."]
@@ -404,12 +404,12 @@ graph TD
 
 ```mermaid
 graph LR
-    subgraph "Normal: HEAD → branch → commit"
+   subgraph "Normal:&nbsp;HEAD&nbsp;→&nbsp;branch&nbsp;→&nbsp;commit"
         H1["HEAD"] -->|"symbolic ref"| B1["refs/heads/main"]
         B1 --> CM1["📸 Commit abc123"]
     end
 
-    subgraph "Detached: HEAD → commit directly"
+    subgraph "Detached:&nbsp;HEAD&nbsp;→&nbsp;commit&nbsp;directly"
         H2["HEAD"] -->|"direct SHA"| CM2["📸 Commit def456<br/>(no branch points here)"]
     end
 
