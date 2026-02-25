@@ -2,7 +2,7 @@
 uid: 3105f9d1-5c76-483c-993a-828c5c71be14
 title: about-git-data-structures
 created: 2026-02-25T13:14:28
-modified: 2026-02-25T13:32:19
+modified: 2026-02-25T13:44:34
 ---
 
 # Git Internal Data Structures: A Complete Visual Guide
@@ -116,11 +116,11 @@ Tag message here
 
 ```mermaid
 graph TD
-    TAG["🏷️ Tag Object\n<i>type: tag</i>\npoints to a commit"]
-    COMMIT["📸 Commit Object\n<i>type: commit</i>\nauthor, message, tree ptr"]
-    TREE["📁 Tree Object\n<i>type: tree</i>\nlist of mode+name+sha entries"]
-    BLOB["📄 Blob Object\n<i>type: blob</i>\nraw file bytes"]
-    SUBTREE["📁 Sub-Tree Object\n<i>type: tree</i>\n(nested directory)"]
+    TAG["🏷️ Tag Object<br/><i>type: tag</i><br/>points to a commit"]
+    COMMIT["📸 Commit Object<br/><i>type: commit</i><br/>author, message, tree ptr"]
+    TREE["📁 Tree Object<br/><i>type: tree</i><br/>list of mode+name+sha entries"]
+    BLOB["📄 Blob Object<br/><i>type: blob</i><br/>raw file bytes"]
+    SUBTREE["📁 Sub-Tree Object<br/><i>type: tree</i><br/>(nested directory)"]
 
     TAG -->|"object (SHA)"| COMMIT
     COMMIT -->|"tree (SHA)"| TREE
@@ -139,18 +139,18 @@ graph TD
 
 ```mermaid
 graph RL
-    C3["📸 Commit C3\nSHA: a1b2c3\n'Add feature X'"]
-    C2["📸 Commit C2\nSHA: d4e5f6\n'Fix typo'"]
-    C1["📸 Commit C1\nSHA: g7h8i9\n'Initial commit'"]
+    C3["📸 Commit C3<br/>SHA: a1b2c3<br/>'Add feature X'"]
+    C2["📸 Commit C2<br/>SHA: d4e5f6<br/>'Fix typo'"]
+    C1["📸 Commit C1<br/>SHA: g7h8i9<br/>'Initial commit'"]
 
-    T3["📁 Tree 3\nSHA: j0k1l2"]
-    T2["📁 Tree 2\nSHA: m3n4o5"]
-    T1["📁 Tree 1\nSHA: p6q7r8"]
+    T3["📁 Tree 3<br/>SHA: j0k1l2"]
+    T2["📁 Tree 2<br/>SHA: m3n4o5"]
+    T1["📁 Tree 1<br/>SHA: p6q7r8"]
 
-    B_readme["📄 Blob: README.md\nSHA: s9t0u1"]
-    B_main_v1["📄 Blob: main.py v1\nSHA: v2w3x4"]
-    B_main_v2["📄 Blob: main.py v2\nSHA: y5z6a7"]
-    B_main_v3["📄 Blob: main.py v3\nSHA: b8c9d0"]
+    B_readme["📄 Blob: README.md<br/>SHA: s9t0u1"]
+    B_main_v1["📄 Blob: main.py v1<br/>SHA: v2w3x4"]
+    B_main_v2["📄 Blob: main.py v2<br/>SHA: y5z6a7"]
+    B_main_v3["📄 Blob: main.py v3<br/>SHA: b8c9d0"]
 
     C3 -->|parent| C2
     C2 -->|parent| C1
@@ -186,10 +186,10 @@ graph RL
 
 ```mermaid
 graph RL
-    M["📸 Merge Commit\nSHA: merge1\n'Merge feature into main'"]
-    F2["📸 Feature Tip\nSHA: feat2\n'Feature: step 2'"]
-    F1["📸 Feature Start\nSHA: feat1\n'Feature: step 1'"]
-    BASE["📸 Common Ancestor\nSHA: base1\n'Before feature'"]
+    M["📸 Merge Commit<br/>SHA: merge1<br/>'Merge feature into main'"]
+    F2["📸 Feature Tip<br/>SHA: feat2<br/>'Feature: step 2'"]
+    F1["📸 Feature Start<br/>SHA: feat1<br/>'Feature: step 1'"]
+    BASE["📸 Common Ancestor<br/>SHA: base1<br/>'Before feature'"]
 
     M -->|"parent 1"| BASE
     M -->|"parent 2"| F2
@@ -224,21 +224,21 @@ my-project/
 
 ```mermaid
 graph TD
-    HEAD["🔖 HEAD\n→ refs/heads/main"]
-    MAIN["🌿 refs/heads/main\n→ SHA: abc123"]
+    HEAD["🔖 HEAD<br/>→ refs/heads/main"]
+    MAIN["🌿 refs/heads/main<br/>→ SHA: abc123"]
 
-    COMMIT["📸 Commit abc123\nauthor: Eric\n'Initial commit'\ntree: def456"]
+    COMMIT["📸 Commit abc123<br/>author: Eric<br/>'Initial commit'<br/>tree: def456"]
 
-    ROOT_TREE["📁 Root Tree def456\n─────────────────\n040000 tree  src/ → ghi789\n040000 tree  tests/ → jkl012\n100644 blob  README.md → mno345"]
+    ROOT_TREE["📁 Root Tree def456<br/>─────────────────<br/>040000 tree  src/ → ghi789<br/>040000 tree  tests/ → jkl012<br/>100644 blob  README.md → mno345"]
 
-    SRC_TREE["📁 src/ Tree ghi789\n─────────────────\n100644 blob  main.py → pqr678\n100644 blob  utils.py → stu901"]
+    SRC_TREE["📁 src/ Tree ghi789<br/>─────────────────<br/>100644 blob  main.py → pqr678<br/>100644 blob  utils.py → stu901"]
 
-    TESTS_TREE["📁 tests/ Tree jkl012\n─────────────────\n100644 blob  test_main.py → vwx234"]
+    TESTS_TREE["📁 tests/ Tree jkl012<br/>─────────────────<br/>100644 blob  test_main.py → vwx234"]
 
-    BLOB_README["📄 Blob mno345\n'# My Project\n...'"]
-    BLOB_MAIN["📄 Blob pqr678\n'def main():\n    ...'"]
-    BLOB_UTILS["📄 Blob stu901\n'def helper():\n    ...'"]
-    BLOB_TEST["📄 Blob vwx234\n'import main\n...'"]
+    BLOB_README["📄 Blob mno345<br/>'# My Project<br/>...'"]
+    BLOB_MAIN["📄 Blob pqr678<br/>'def main():<br/>    ...'"]
+    BLOB_UTILS["📄 Blob stu901<br/>'def helper():<br/>    ...'"]
+    BLOB_TEST["📄 Blob vwx234<br/>'import main<br/>...'"]
 
     HEAD --> MAIN
     MAIN --> COMMIT
@@ -272,27 +272,27 @@ graph TD
 graph TD
     GIT[".git/"]
 
-    GIT --> HEAD_FILE["HEAD\n'ref: refs/heads/main'"]
-    GIT --> CONFIG["config\n(repo settings)"]
-    GIT --> INDEX["index\n(staging area / index)"]
+    GIT --> HEAD_FILE["HEAD<br/>'ref: refs/heads/main'"]
+    GIT --> CONFIG["config<br/>(repo settings)"]
+    GIT --> INDEX["index<br/>(staging area / index)"]
     GIT --> OBJECTS[".git/objects/"]
     GIT --> REFS[".git/refs/"]
     GIT --> LOGS[".git/logs/"]
-    GIT --> PACKED[".git/packed-refs\n(compressed refs)"]
+    GIT --> PACKED[".git/packed-refs<br/>(compressed refs)"]
 
-    OBJECTS --> OBJ_LOOSE["Loose Objects\nab/cdef1234..."]
-    OBJECTS --> OBJ_PACK["pack/\n*.pack + *.idx"]
+    OBJECTS --> OBJ_LOOSE["Loose Objects<br/>ab/cdef1234..."]
+    OBJECTS --> OBJ_PACK["pack/<br/>*.pack + *.idx"]
     OBJECTS --> OBJ_INFO["info/"]
 
-    REFS --> REFS_HEADS[".git/refs/heads/\n(local branches)"]
-    REFS --> REFS_TAGS[".git/refs/tags/\n(tags)"]
-    REFS --> REFS_REMOTE[".git/refs/remotes/\n(remote tracking)"]
+    REFS --> REFS_HEADS[".git/refs/heads/<br/>(local branches)"]
+    REFS --> REFS_TAGS[".git/refs/tags/<br/>(tags)"]
+    REFS --> REFS_REMOTE[".git/refs/remotes/<br/>(remote tracking)"]
 
-    REFS_HEADS --> MAIN_FILE["main\n'abc123...'"]
-    REFS_HEADS --> DEV_FILE["dev\n'def456...'"]
+    REFS_HEADS --> MAIN_FILE["main<br/>'abc123...'"]
+    REFS_HEADS --> DEV_FILE["dev<br/>'def456...'"]
 
-    LOGS --> LOG_HEAD[".git/logs/HEAD\n(reflog)"]
-    LOGS --> LOG_REFS[".git/logs/refs/\n(branch reflogs)"]
+    LOGS --> LOG_HEAD[".git/logs/HEAD<br/>(reflog)"]
+    LOGS --> LOG_REFS[".git/logs/refs/<br/>(branch reflogs)"]
 
     style GIT fill:#e8e8e8,stroke:#888,color:#333
     style OBJECTS fill:#fff3cd,stroke:#d4a017,color:#333
@@ -305,10 +305,10 @@ graph TD
 
 ```mermaid
 flowchart LR
-    SHA["SHA-1:\nabc123def456..."]
+    SHA["SHA-1:<br/>abc123def456..."]
     DIR[".git/objects/ab/"]
-    FILE["c123def456...\n(38 chars)"]
-    CONTENT["zlib-compressed:\n'commit 200\\0tree...\\n'"]
+    FILE["c123def456...<br/>(38 chars)"]
+    CONTENT["zlib-compressed:<br/>'commit 200\\0tree...\<br/>'"]
 
     SHA -->|"first 2 chars = directory"| DIR
     SHA -->|"remaining 38 chars = filename"| FILE
@@ -327,8 +327,8 @@ flowchart LR
 |-------------|-----------|
 | Blob | `blob <length>\0<raw bytes>` |
 | Tree | `tree <length>\0<mode> <name>\0<20-byte-sha>...` (repeating) |
-| Commit | `commit <length>\0tree <sha>\nparent <sha>\nauthor...\ncommitter...\n\n<message>` |
-| Tag | `tag <length>\0object <sha>\ntype <type>\ntag <name>\ntagger...\n\n<message>` |
+| Commit | `commit <length>\0tree <sha><br/>parent <sha><br/>author...<br/>committer...<br/><br/><message>` |
+| Tag | `tag <length>\0object <sha><br/>type <type><br/>tag <name><br/>tagger...<br/><br/><message>` |
 
 Pack files (`.git/objects/pack/`) are created by `git gc` and bundle many objects together for efficiency. The `.idx` file provides an offset table into the `.pack` file.
 
@@ -343,24 +343,24 @@ A **ref** is just a file containing a 40-character SHA-1 (or a symbolic ref poin
 ```mermaid
 graph TD
     subgraph "Symbolic Refs (text files with 'ref: path')"
-        HEAD_SYM["HEAD\n→ ref: refs/heads/main"]
-        ORIG_HEAD["ORIG_HEAD\n→ abc123..."]
-        MERGE_HEAD["MERGE_HEAD\n→ (during merge)"]
+        HEAD_SYM["HEAD<br/>→ ref: refs/heads/main"]
+        ORIG_HEAD["ORIG_HEAD<br/>→ abc123..."]
+        MERGE_HEAD["MERGE_HEAD<br/>→ (during merge)"]
     end
 
     subgraph "Branch Refs (.git/refs/heads/)"
-        MAIN_REF["main\n→ abc123..."]
-        DEV_REF["dev\n→ def456..."]
-        FEAT_REF["feature/login\n→ ghi789..."]
+        MAIN_REF["main<br/>→ abc123..."]
+        DEV_REF["dev<br/>→ def456..."]
+        FEAT_REF["feature/login<br/>→ ghi789..."]
     end
 
     subgraph "Tag Refs (.git/refs/tags/)"
-        TAG_LIGHT["v1.0\n→ abc123... (lightweight: points to commit)"]
-        TAG_ANN["v2.0\n→ jkl012... (annotated: points to tag object)"]
+        TAG_LIGHT["v1.0<br/>→ abc123... (lightweight: points to commit)"]
+        TAG_ANN["v2.0<br/>→ jkl012... (annotated: points to tag object)"]
     end
 
     subgraph "Remote Refs (.git/refs/remotes/)"
-        ORIGIN_MAIN["origin/main\n→ mno345..."]
+        ORIGIN_MAIN["origin/main<br/>→ mno345..."]
     end
 
     subgraph "Commits"
@@ -371,7 +371,7 @@ graph TD
     end
 
     subgraph "Tag Object"
-        TAG_OBJ["🏷️ Tag Object jkl012\npoints to → abc123"]
+        TAG_OBJ["🏷️ Tag Object jkl012<br/>points to → abc123"]
     end
 
     HEAD_SYM --> MAIN_REF
@@ -407,7 +407,7 @@ graph LR
     end
 
     subgraph "Detached: HEAD → commit directly"
-        H2["HEAD"] -->|"direct SHA"| CM2["📸 Commit def456\n(no branch points here)"]
+        H2["HEAD"] -->|"direct SHA"| CM2["📸 Commit def456<br/>(no branch points here)"]
     end
 
     style H1 fill:#f9d71c,stroke:#c9a800,color:#333
@@ -428,20 +428,20 @@ Git manages three "trees" (not tree objects, but tree-structured data structures
 ```mermaid
 graph LR
     subgraph "1. Working Directory"
-        WD["Your actual files\non disk\n\nEditable freely\nNot tracked by Git\nuntil staged"]
+        WD["Your actual files<br/>on disk<br/><br/>Editable freely<br/>Not tracked by Git<br/>until staged"]
     end
 
     subgraph "2. Index / Staging Area"
-        IDX[".git/index\n\nA binary file:\nmode + sha + stage + name\nfor every tracked file\n\nThe 'next commit'"]
+        IDX[".git/index<br/><br/>A binary file:<br/>mode + sha + stage + name<br/>for every tracked file<br/><br/>The 'next commit'"]
     end
 
     subgraph "3. Repository (HEAD)"
-        REPO["The current commit's\ntree, as read from\nthe object store\n\nThe 'last commit'"]
+        REPO["The current commit's<br/>tree, as read from<br/>the object store<br/><br/>The 'last commit'"]
     end
 
     WD -->|"git add"| IDX
     IDX -->|"git commit"| REPO
-    REPO -->|"git checkout .\ngit restore ."| WD
+    REPO -->|"git checkout .<br/>git restore ."| WD
     REPO -->|"git reset HEAD"| IDX
 
     style WD fill:#ff9d6e,stroke:#d4622a,color:#fff
@@ -453,14 +453,14 @@ graph LR
 
 ```mermaid
 flowchart TD
-    A["git status"] --> B{"Compare\nHEAD tree\nvs Index"}
-    B -->|"Different"| C["Staged changes\n(green)"]
+    A["git status"] --> B{"Compare<br/>HEAD tree<br/>vs Index"}
+    B -->|"Different"| C["Staged changes<br/>(green)"]
     B -->|"Same"| D["Nothing staged"]
-    A --> E{"Compare\nIndex\nvs Working Dir"}
-    E -->|"Different"| F["Unstaged changes\n(red)"]
+    A --> E{"Compare<br/>Index<br/>vs Working Dir"}
+    E -->|"Different"| F["Unstaged changes<br/>(red)"]
     E -->|"Same"| G["Working tree clean"]
-    A --> H{"Files in Working Dir\nnot in Index?"}
-    H -->|"Yes"| I["Untracked files\n(red ??)"]
+    A --> H{"Files in Working Dir<br/>not in Index?"}
+    H -->|"Yes"| I["Untracked files<br/>(red ??)"]
 
     style A fill:#6db5fe,stroke:#3a8fd4,color:#fff
     style C fill:#7dcc7d,stroke:#4a994a,color:#fff
@@ -476,13 +476,13 @@ flowchart TD
 graph TB
     subgraph DISK["💾 Disk: .git/"]
         subgraph OBJECTS_BOX[".git/objects/"]
-            BL1["📄 Blob\nfile contents"]
-            BL2["📄 Blob\nfile contents"]
-            BL3["📄 Blob\nfile contents"]
-            TR1["📁 Tree\ndir listing"]
-            TR2["📁 Tree\ndir listing"]
-            CM1["📸 Commit\nsnapshot ptr"]
-            CM2["📸 Commit\nsnapshot ptr"]
+            BL1["📄 Blob<br/>file contents"]
+            BL2["📄 Blob<br/>file contents"]
+            BL3["📄 Blob<br/>file contents"]
+            TR1["📁 Tree<br/>dir listing"]
+            TR2["📁 Tree<br/>dir listing"]
+            CM1["📸 Commit<br/>snapshot ptr"]
+            CM2["📸 Commit<br/>snapshot ptr"]
             TG1["🏷️ Tag object"]
         end
         subgraph REFS_BOX[".git/refs/"]
@@ -777,28 +777,28 @@ Vim-Fugitive (by tpope) gives you a **Git-aware buffer layer** inside Vim. The k
 
 ```mermaid
 graph TD
-    STATUS[":Git (Fugitive Status)\n:G\n\nYour entry point.\nShows working dir vs index vs HEAD."]
+    STATUS[":Git (Fugitive Status)<br/>:G<br/><br/>Your entry point.<br/>Shows working dir vs index vs HEAD."]
 
-    DIFF[":Gdiffsplit\n:Gvdiffsplit\n\nSide-by-side diff view\nof a file (index vs working)"]
+    DIFF[":Gdiffsplit<br/>:Gvdiffsplit<br/><br/>Side-by-side diff view<br/>of a file (index vs working)"]
 
-    LOG[":Git log\n:Gclog\n\nCommit history in\nthe quickfix list"]
+    LOG[":Git log<br/>:Gclog<br/><br/>Commit history in<br/>the quickfix list"]
 
-    BLAME[":Git blame\n:G blame\n\nAnnotate file with\ncommit info per line"]
+    BLAME[":Git blame<br/>:G blame<br/><br/>Annotate file with<br/>commit info per line"]
 
-    TREE["Tree Browse\n:Gedit HEAD^{tree}\nBrowse any tree object"]
+    TREE["Tree Browse<br/>:Gedit HEAD^{tree}<br/>Browse any tree object"]
 
-    OBJECT["Object Buffer\n:Gedit <sha>\nView raw object content"]
+    OBJECT["Object Buffer<br/>:Gedit <sha><br/>View raw object content"]
 
-    COMMIT_BUF["Commit Buffer\n:Gedit HEAD\nor press Enter on\na commit SHA"]
+    COMMIT_BUF["Commit Buffer<br/>:Gedit HEAD<br/>or press Enter on<br/>a commit SHA"]
 
-    STATUS -->|"- to stage/unstage\n= to inline diff\nEnter to open"| DIFF
-    STATUS -->|"cc to commit\nca to amend"| COMMIT_BUF
+    STATUS -->|"- to stage/unstage<br/>= to inline diff<br/>Enter to open"| DIFF
+    STATUS -->|"cc to commit<br/>ca to amend"| COMMIT_BUF
     STATUS -->|"cL or :Gclog"| LOG
-    LOG -->|"Enter on SHA\nor :Gedit SHA"| COMMIT_BUF
+    LOG -->|"Enter on SHA<br/>or :Gedit SHA"| COMMIT_BUF
     COMMIT_BUF -->|"Enter on tree SHA"| TREE
     COMMIT_BUF -->|"Enter on blob SHA"| OBJECT
     TREE -->|"Enter on entry"| OBJECT
-    OBJECT -->|"press Enter on\nblob SHA in tree"| OBJECT
+    OBJECT -->|"press Enter on<br/>blob SHA in tree"| OBJECT
 
     style STATUS fill:#6db5fe,stroke:#3a8fd4,color:#fff
     style DIFF fill:#7dcc7d,stroke:#4a994a,color:#fff
@@ -934,17 +934,17 @@ Commit → (Enter on tree SHA) → Tree → (Enter on file entry) → Blob
 
 ```mermaid
 flowchart TD
-    START["Start:\n:Gedit HEAD\nor :Git log"]
+    START["Start:<br/>:Gedit HEAD<br/>or :Git log"]
 
-    COMMIT_VIEW["Commit Buffer\nShows: tree, parent(s),\nauthor, message"]
+    COMMIT_VIEW["Commit Buffer<br/>Shows: tree, parent(s),<br/>author, message"]
 
-    TREE_VIEW["Tree Buffer\nShows: mode type sha name\nfor each entry"]
+    TREE_VIEW["Tree Buffer<br/>Shows: mode type sha name<br/>for each entry"]
 
-    BLOB_VIEW["Blob Buffer\n(file contents at\nthat point in history)"]
+    BLOB_VIEW["Blob Buffer<br/>(file contents at<br/>that point in history)"]
 
-    PARENT["Parent Commit Buffer\n(older commit)"]
+    PARENT["Parent Commit Buffer<br/>(older commit)"]
 
-    BACK["Press C-o\n(vim jumplist back)"]
+    BACK["Press C-o<br/>(vim jumplist back)"]
 
     START --> COMMIT_VIEW
     COMMIT_VIEW -->|"Enter on tree SHA"| TREE_VIEW
@@ -1032,7 +1032,7 @@ In diff view, use standard Vim diff navigation:
 
 ```mermaid
 mindmap
-  root(("🔱 Fugitive\nEntry Points"))
+  root(("🔱 Fugitive<br/>Entry Points"))
     (":G / :Git")
       ["Status window"]
       ["Stage: s or -"]
