@@ -1,8 +1,11 @@
 ---
 uid: 3105f9d1-5c76-483c-993a-828c5c71be14
-title: about-git-data-structures
+title: "Git Internal Data Structures: A Complete Visual Guide"
 created: 2026-02-25T13:14:28
-modified: 2026-02-25T13:44:34
+modified: 2026-02-25T13:54:51
+aliases:
+  - "Git Internal Data Structures: A Complete Visual Guide"
+linter-yaml-title-alias: "Git Internal Data Structures: A Complete Visual Guide"
 ---
 
 # Git Internal Data Structures: A Complete Visual Guide
@@ -883,6 +886,7 @@ graph TD
 ```
 
 In the quickfix list (`:copen`):
+
 | Key | Action |
 |-----|--------|
 | `Enter` | Jump to that commit |
@@ -977,6 +981,7 @@ flowchart TD
 ```
 
 In the blame view:
+
 | Key | Action |
 |-----|--------|
 | `Enter` or `o` | Open the commit that introduced this line |
@@ -1003,6 +1008,7 @@ In the blame view:
 ```
 
 In diff view, use standard Vim diff navigation:
+
 | Key | Action |
 |-----|--------|
 | `]c` | Next change |
@@ -1070,29 +1076,29 @@ mindmap
 ├─────────────┬────────────────────────────────────────────────┤
 │ Object Type │ CLI to Inspect                                 │
 ├─────────────┼────────────────────────────────────────────────┤
-│ Any object  │ git cat-file -t <sha>   (type)                │
-│             │ git cat-file -p <sha>   (contents)            │
+│ Any object  │ git cat-file -t <sha>   (type)                 │
+│             │ git cat-file -p <sha>   (contents)             │
 ├─────────────┼────────────────────────────────────────────────┤
-│ Commit      │ git cat-file -p HEAD                          │
-│             │ git log --oneline --graph --all               │
+│ Commit      │ git cat-file -p HEAD                           │
+│             │ git log --oneline --graph --all                │
 │             │ git show HEAD                                  │
 ├─────────────┼────────────────────────────────────────────────┤
 │ Tree        │ git ls-tree HEAD                               │
-│             │ git ls-tree -r HEAD   (recursive)             │
-│             │ git cat-file -p HEAD^{tree}                   │
+│             │ git ls-tree -r HEAD   (recursive)              │
+│             │ git cat-file -p HEAD^{tree}                    │
 ├─────────────┼────────────────────────────────────────────────┤
-│ Blob        │ git cat-file -p HEAD:path/to/file             │
-│             │ git show HEAD:path/to/file                    │
+│ Blob        │ git cat-file -p HEAD:path/to/file              │
+│             │ git show HEAD:path/to/file                     │
 ├─────────────┼────────────────────────────────────────────────┤
-│ Tag         │ git cat-file -p v1.0                          │
-│             │ git tag -n   (list with messages)             │
+│ Tag         │ git cat-file -p v1.0                           │
+│             │ git tag -n   (list with messages)              │
 ├─────────────┼────────────────────────────────────────────────┤
-│ Refs        │ git for-each-ref                              │
-│             │ git rev-parse HEAD                            │
-│             │ git symbolic-ref HEAD                         │
+│ Refs        │ git for-each-ref                               │
+│             │ git rev-parse HEAD                             │
+│             │ git symbolic-ref HEAD                          │
 ├─────────────┼────────────────────────────────────────────────┤
-│ Index       │ git ls-files -s                               │
-│             │ git diff --cached                             │
+│ Index       │ git ls-files -s                                │
+│             │ git diff --cached                              │
 └─────────────┴────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────┐
@@ -1100,16 +1106,16 @@ mindmap
 ├──────────────────────────┬───────────────────────────────────┤
 │ :G                       │ Status window                     │
 │ :Gedit HEAD              │ Open current commit               │
-│ :Gedit HEAD^{tree}       │ Open root tree of HEAD           │
-│ :Gedit HEAD:src/         │ Open src/ tree                   │
-│ :Gedit HEAD:src/file.py  │ Open file at HEAD                │
-│ :Gedit HEAD~3:src/f.py   │ Open file 3 commits ago         │
-│ :Gclog                   │ History → quickfix               │
-│ :Git blame               │ Blame current file               │
-│ :Gdiffsplit              │ Diff current file                │
-│ Enter (on SHA in buffer) │ Drill into that object           │
-│ Ctrl-O                   │ Go back (jump list)              │
-│ Ctrl-I                   │ Go forward (jump list)           │
+│ :Gedit HEAD^{tree}       │ Open root tree of HEAD            │
+│ :Gedit HEAD:src/         │ Open src/ tree                    │
+│ :Gedit HEAD:src/file.py  │ Open file at HEAD                 │
+│ :Gedit HEAD~3:src/f.py   │ Open file 3 commits ago           │
+│ :Gclog                   │ History → quickfix                │
+│ :Git blame               │ Blame current file                │
+│ :Gdiffsplit              │ Diff current file                 │
+│ Enter (on SHA in buffer) │ Drill into that object            │
+│ Ctrl-O                   │ Go back (jump list)               │
+│ Ctrl-I                   │ Go forward (jump list)            │
 └──────────────────────────┴───────────────────────────────────┘
 ```
 
@@ -1118,15 +1124,9 @@ mindmap
 ## Key Insights to Internalize
 
 1. **Everything is a SHA.** Commits, trees, blobs, and tags are all just SHA-addressed objects in `.git/objects/`. A branch is just a file containing a SHA.
-
 2. **A commit is a snapshot, not a diff.** Git stores full trees, not deltas. The "diff" you see with `git show` is computed on the fly by comparing a commit's tree to its parent's tree.
-
 3. **Content deduplication is automatic.** Identical file contents = identical SHA = stored once. Unchanged files cost nothing in new commits.
-
 4. **Branches are just 41-byte files.** `cat .git/refs/heads/main` will show you a SHA. Moving a branch is just overwriting that file.
-
 5. **HEAD is the "you are here" marker.** It either points to a branch ref (normal) or directly to a SHA (detached HEAD).
-
 6. **The index is the "next commit".** `git add` updates it. `git commit` turns it into a tree object and wraps it in a commit object.
-
 7. **Fugitive's superpower is `Enter`.** When viewing any Git object buffer, pressing `Enter` on a SHA navigates into that object. Use `Ctrl-O` to backtrack. This gives you a browser-like traversal of the object graph.
