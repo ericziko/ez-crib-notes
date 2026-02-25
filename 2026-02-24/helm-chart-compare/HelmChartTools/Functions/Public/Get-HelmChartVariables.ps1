@@ -107,7 +107,9 @@ function Get-HelmChartVariables {
                     # Extract just the variable name from the match
                     switch -Regex ($fullMatch) {
                         '^\{\{\s*\.Values\.(.+?)\s*\}\}$' {
-                            $name = $matches[-1].Groups[1].Value
+                            if ($match.Groups.Count -gt 1) {
+                                $name = $match.Groups[1].Value
+                            }
                             $varType = 'HelmValue'
                         }
                         '^\{\{\s*\.(Release|Chart|Capabilities|Files|Template|Namespace)' {
