@@ -112,7 +112,7 @@ useWikilinks: true
 - 2026-02-23 <span class="fv-link-list-item"></span>
 	- [masked-string](<2026-02-23/masked-string.md>) <span class="fv-link-list-item"></span>
 - 2026-02-25 <span class="fv-link-list-item"></span>
-	- [about-git-data-structures](<2026-02-25/about-git-data-structures/about-git-data-structures.md>) <span class="fv-link-list-item"></span>
+	- [Git Internal Data Structures A Complete Visual Guide](<2026-02-25/Git Internal Data Structures A Complete Visual Guide/Git Internal Data Structures A Complete Visual Guide.md>) <span class="fv-link-list-item"></span>
 - [prompt](<prompt.md>) <span class="fv-link-list-item"></span>
 - [README](<README.md>) <span class="fv-link-list-item"></span>
 <span class="fv-link-list-end" id="58472596-05cd-4494-a169-e7cf2397e8a0"></span>
