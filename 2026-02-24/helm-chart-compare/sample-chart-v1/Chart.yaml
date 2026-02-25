@@ -1,0 +1,22 @@
+apiVersion: v2
+name: myapp
+description: A simple web application Helm chart
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+home: https://github.com/example/myapp
+sources:
+  - https://github.com/example/myapp
+keywords:
+  - web
+  - application
+  - sample
+author: DevOps Team
+maintainers:
+  - name: DevOps Team
+    email: devops@example.com
+dependencies:
+  - name: postgresql
+    version: "12.1.2"
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled

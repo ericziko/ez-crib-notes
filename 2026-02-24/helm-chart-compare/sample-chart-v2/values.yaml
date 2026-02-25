@@ -1,0 +1,132 @@
+# Default values for myapp v2.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 5
+
+image:
+  registry: docker.io
+  repository: mycompany/myapp
+  tag: "2.0.0"
+  pullPolicy: Always
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "8080"
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: true
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+  annotations: {}
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: myapp.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+    - host: api.myapp.example.com
+      paths:
+        - path: /api
+          pathType: Prefix
+  tls:
+    - secretName: myapp-tls
+      hosts:
+        - myapp.example.com
+        - api.myapp.example.com
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 500m
+    memory: 512Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+
+nodeSelector:
+  workload: apps
+
+tolerations:
+  - key: workload
+    operator: Equal
+    value: apps
+    effect: NoSchedule
+
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - myapp
+          topologyKey: kubernetes.io/hostname
+
+env:
+  - name: LOG_LEVEL
+    value: "DEBUG"
+  - name: DATABASE_HOST
+    value: "postgresql"
+  - name: DATABASE_PORT
+    value: "5432"
+  - name: REDIS_HOST
+    value: "redis"
+  - name: REDIS_PORT
+    value: "6379"
+
+postgresql:
+  enabled: true
+  auth:
+    username: myapp_user
+    password: securep@ssw0rd
+    database: myapp_database
+  persistence:
+    enabled: true
+    size: 20Gi
+    storageClassName: fast-ssd
+
+redis:
+  enabled: true
+  auth:
+    enabled: true
+    password: redispass123
+  master:
+    persistence:
+      enabled: true
+      size: 8Gi
