@@ -1,0 +1,36 @@
+{
+  "_comment": "Edit this file to reflect your team's actual GitHub repositories.",
+  "defaultClonePath": "C:\\Dev",
+  "repositories": [
+    {
+      "name": "MyOrg.API",
+      "url": "https://github.com/myorg/myorg-api",
+      "description": "Core REST API — the main backend service"
+    },
+    {
+      "name": "MyOrg.Worker",
+      "url": "https://github.com/myorg/myorg-worker",
+      "description": "Background job processor (Hangfire/Temporal)"
+    },
+    {
+      "name": "MyOrg.Frontend",
+      "url": "https://github.com/myorg/myorg-frontend",
+      "description": "React frontend web application"
+    },
+    {
+      "name": "MyOrg.SharedLibraries",
+      "url": "https://github.com/myorg/myorg-shared-libraries",
+      "description": "Shared NuGet packages and internal utilities"
+    },
+    {
+      "name": "MyOrg.Infrastructure",
+      "url": "https://github.com/myorg/myorg-infrastructure",
+      "description": "Terraform / Pulumi infrastructure-as-code"
+    },
+    {
+      "name": "MyOrg.IntegrationTests",
+      "url": "https://github.com/myorg/myorg-integration-tests",
+      "description": "Cross-service integration and smoke tests"
+    }
+  ]
+}
