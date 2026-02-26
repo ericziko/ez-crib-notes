@@ -9,10 +9,10 @@ tags:
   - chart-comparison
   - variable-management
 created: 2026-02-24T20:00:00
-modified: 2026-02-24T20:00:00
+modified: 2026-02-26T00:45:08
 ---
 
-# HelmChartTools — PowerShell Module for Helm Chart Comparison
+# helm-chart-compare
 
 ## 🤖💡 What This Does
 
@@ -413,4 +413,4 @@ Export-HelmVariableRegistry -ChartPaths ./my-chart -Format CSV -OutputPath ./aud
 ## See Also
 
 - [how-to-breakup-powershell-modules](../2026-02-20/how-to-breakup-powershell-modules/) — Module structure conventions
-- [PowerShell Background Processes Tutorial](../../PowerShell%20Background%20Processes%20Tutorial.md) — Job management
+- [PowerShell Background Processes Tutorial](<../../PowerShell Background Processes Tutorial.md>) — Job management
