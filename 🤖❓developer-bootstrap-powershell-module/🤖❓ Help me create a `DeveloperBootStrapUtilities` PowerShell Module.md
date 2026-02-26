@@ -1,5 +1,5 @@
 ---
-title: 🤖❓ Help me create a DeveloperBootStrapUtilities PowerShell Module
+title: "🤖❓ Help me create a DeveloperBootStrapUtilities PowerShell Module"
 created: 2026-02-26
 tags:
   - powershell
@@ -7,7 +7,6 @@ tags:
   - onboarding
   - spectre-console
   - git
-uid: a17d1a22-c65b-4898-9f83-684044f79988
 ---
 
 # 🤖❓ Help me create a `DeveloperBootStrapUtilities` PowerShell Module
