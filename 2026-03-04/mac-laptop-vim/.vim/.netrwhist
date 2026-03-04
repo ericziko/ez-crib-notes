@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/Users/ericziko/gitHub/ericziko/- 🏦🏡📓 Notes'
+let g:netrw_dirhist_0='/Users/ericziko/gitHub/ericziko'
+let g:netrw_dirhist_9='/Users/ericziko/gitHub/ericziko/ez-crib-notes'
+let g:netrw_dirhist_8='/Users/ericziko/gitHub/ericziko/ez-crib-notes/2026-01-25'
+let g:netrw_dirhist_7='/Users/ericziko'
+let g:netrw_dirhist_6='/Users/ericziko/gitHub/ericziko'
+let g:netrw_dirhist_5='/Users/ericziko/gitHub/ericziko/- 🏦🏡📓 Notes'
+let g:netrw_dirhist_4='/Users/ericziko/.config/nvim-ez-lazyvim/lua/plugins'
+let g:netrw_dirhist_3='/Users/ericziko/.config/kitty'
+let g:netrw_dirhist_2='/Users/ericziko/.zsh'

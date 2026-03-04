@@ -9,5 +9,8 @@
 - The repository takes longer to pull down on git clone then it should - so I suspect some large commit got made
 - Please write me a markdown file / tutorial on how to figure this out with PowerShell
 
-%% Waypoint %%
+%% Begin Waypoint %%
+- [finding-large-git-files](<finding-large-git-files.md>)
+
+%% End Waypoint %%
 

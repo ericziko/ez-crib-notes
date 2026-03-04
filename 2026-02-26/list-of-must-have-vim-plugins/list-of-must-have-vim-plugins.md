@@ -8,6 +8,7 @@ tags:
   - dotnet
   - csharp
   - tooling
+uid: 69aafd3a-e223-4f83-9a72-2f4bbcb286e1
 ---
 
 # list-of-must-have-vim-plugins
