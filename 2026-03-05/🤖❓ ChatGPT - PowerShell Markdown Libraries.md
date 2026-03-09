@@ -1,3 +1,6 @@
+---
+uid: 550bcb54-74af-49ac-a008-4d5283c9189f
+---
 
 # 🤖❓ ChatGPT - PowerShell Markdown Libraries
 
