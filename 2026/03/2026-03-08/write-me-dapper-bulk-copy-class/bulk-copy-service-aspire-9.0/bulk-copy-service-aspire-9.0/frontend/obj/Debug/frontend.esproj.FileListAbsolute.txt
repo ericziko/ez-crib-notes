@@ -1,1 +1,0 @@
-/Users/ericziko/gitHub/ericziko/ez-crib-notes/2026/03/2026-03-08/write-me-dapper-bulk-copy-class/bulk-copy-service-aspire-9.0/bulk-copy-service-aspire-9.0/frontend/obj/Debug/frontend.esproj.CoreCompileInputs.cache
