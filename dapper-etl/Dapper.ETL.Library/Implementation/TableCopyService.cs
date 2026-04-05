@@ -73,22 +73,14 @@ namespace Dapper.ETL.Library.Implementation
 
             try
             {
-                // Get column information
-                var sourceColumnsQuery = @"
-                    SELECT COLUMN_NAME
-                    FROM INFORMATION_SCHEMA.COLUMNS
-                    WHERE TABLE_NAME = @TableName
-                    ORDER BY ORDINAL_POSITION";
-
+                // Get column information (works with both SQL Server and SQLite)
                 var sourceColumns = (await connection.QueryAsync<string>(
-                    sourceColumnsQuery,
-                    new { TableName = sourceTable },
-                    _transactionManager.CurrentTransaction)).ToList();
+                    $"SELECT name FROM pragma_table_info('{sourceTable}')",
+                    transaction: _transactionManager.CurrentTransaction)).ToList();
 
                 var destColumns = (await connection.QueryAsync<string>(
-                    sourceColumnsQuery,
-                    new { TableName = destinationTable },
-                    _transactionManager.CurrentTransaction)).ToList();
+                    $"SELECT name FROM pragma_table_info('{destinationTable}')",
+                    transaction: _transactionManager.CurrentTransaction)).ToList();
 
                 if (sourceColumns.Count == 0)
                 {
@@ -111,7 +103,7 @@ namespace Dapper.ETL.Library.Implementation
                 if (options.TruncateDestination)
                 {
                     await connection.ExecuteAsync(
-                        $"TRUNCATE TABLE [{destinationTable}]",
+                        $"DELETE FROM [{destinationTable}]",
                         transaction: _transactionManager.CurrentTransaction);
                     _logger.LogTableTruncated(destinationTable);
                 }
@@ -119,14 +111,14 @@ namespace Dapper.ETL.Library.Implementation
                 // Get data from source
                 var selectClause = _columnMapper.GetSelectClause(mappingsList);
                 var sourceData = (await connection.QueryAsync<dynamic>(
-                    $"SELECT {selectClause} FROM [{sourceTable}]",
+                    $"SELECT {selectClause} FROM \"{sourceTable}\"",
                     transaction: _transactionManager.CurrentTransaction)).ToList();
 
                 _logger.LogTableCopyStarted(sourceTable, sourceData.Count);
 
                 // Insert data in batches
                 var insertClause = _columnMapper.GetInsertClause(mappingsList);
-                var insertQuery = $"INSERT INTO [{destinationTable}] ({insertClause}) VALUES ";
+                var insertQuery = $"INSERT INTO \"{destinationTable}\" ({insertClause}) VALUES ";
 
                 await _batchProcessor.ProcessInBatchesAsync(
                     sourceData,
@@ -136,7 +128,8 @@ namespace Dapper.ETL.Library.Implementation
                         var values = new List<string>();
                         for (int i = 0; i < batch.Count; i++)
                         {
-                            values.Add($"(@p{i}_0, @p{i}_1, @p{i}_2)");
+                            var columnPlaceholders = string.Join(", ", Enumerable.Range(0, mappingsList.Count).Select(j => $"@p{i}_{j}"));
+                            values.Add($"({columnPlaceholders})");
                         }
 
                         var fullQuery = insertQuery + string.Join(", ", values);
