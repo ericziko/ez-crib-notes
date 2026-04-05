@@ -3,18 +3,77 @@ uid: 6ce9ff2d-821f-4b80-b5a9-c6919e6a1c49
 ---
 # QUICK_START
 
-Quick reference for using the ISchemaInspector abstraction in different scenarios.
+Quick reference for developing with Dapper.ETL, including local development with Aspire and running the CLI.
 
 ---
 
 ## Table of Contents
 
-1. [Quick Links](<#quick-links>)
-2. [Production Setup (SQL Server)](<#production-setup-sql-server>)
-3. [Integration Testing (SQLite)](<#integration-testing-sqlite>)
-4. [Unit Testing (Mocks)](<#unit-testing-mocks>)
-5. [Common Scenarios](<#common-scenarios>)
+1. [Local Development (Aspire Host)](<#local-development-aspire-host>)
+2. [Running Integration Tests](<#running-integration-tests>)
+3. [CLI Commands](<#cli-commands>)
+4. [Production Setup (SQL Server)](<#production-setup-sql-server>)
+5. [ISchemaInspector Usage](<#ischemainspector-usage>)
 6. [Troubleshooting](<#troubleshooting>)
+
+---
+
+## Local Development (Aspire Host)
+
+Start the containerized environment for local development:
+
+```bash
+cd Dapper.ETL.AppHost
+dotnet run
+```
+
+This starts:
+- SQL Server 2022 container with 3 databases
+- Seq logging container
+- Aspire dashboard at `http://localhost:18888`
+
+Connection strings are automatically injected. See [ASPIRE_CONTAINERS_GUIDE.md](ASPIRE_CONTAINERS_GUIDE.md) for full details.
+
+---
+
+## Running Integration Tests
+
+Run all integration tests with Testcontainers (automatic SQL Server containers):
+
+```bash
+dotnet test Dapper.ETL.Orchestrator.Tests
+```
+
+Tests include:
+- 13 command tests (all CLI operations)
+- End-to-end workflow tests
+- Utility and integration tests
+
+See [ASPIRE_CONTAINERS_GUIDE.md](ASPIRE_CONTAINERS_GUIDE.md#integration-testing-with-testcontainers) for test details.
+
+---
+
+## CLI Commands
+
+After Aspire host is running, use the CLI:
+
+```bash
+cd Dapper.ETL.Orchestrator
+
+# Seed test data
+dotnet run -- seed-customers 100
+
+# Check status
+dotnet run -- status
+
+# Run ETL
+dotnet run -- run-etl --mode atomic
+
+# View logs
+dotnet run -- show-logs --limit 10
+```
+
+See [ASPIRE_CONTAINERS_GUIDE.md](ASPIRE_CONTAINERS_GUIDE.md#cli-commands-reference) for all 13 commands.
 
 ---
 
@@ -22,7 +81,9 @@ Quick reference for using the ISchemaInspector abstraction in different scenario
 
 | Scenario | File | Key Class |
 |----------|------|-----------|
-| **Interface** | `Dapper.ETL.Library/Interfaces/ISchemaInspector.cs` | `ISchemaInspector` |
+| **Aspire Host** | `Dapper.ETL.AppHost/Program.cs` | `DistributedApplication` |
+| **Test Fixtures** | `Dapper.ETL.Orchestrator.Tests/Fixtures/SqlServerFixture.cs` | `SqlServerFixture` |
+| **ISchemaInspector** | `Dapper.ETL.Library/Interfaces/ISchemaInspector.cs` | `ISchemaInspector` |
 | **SQL Server** | `Dapper.ETL.Library/Implementation/SqlServerSchemaInspector.cs` | `SqlServerSchemaInspector` |
 | **SQLite** | `Dapper.ETL.Library/Implementation/SqliteSchemaInspector.cs` | `SqliteSchemaInspector` |
 | **Consumer** | `Dapper.ETL.Library/Implementation/TableCopyService.cs` | `TableCopyService` |
@@ -30,7 +91,9 @@ Quick reference for using the ISchemaInspector abstraction in different scenario
 
 ---
 
-## Production Setup (SQL Server)
+## ISchemaInspector Usage
+
+### Production Setup (SQL Server)
 
 ### Step 1: Register Services
 
@@ -67,9 +130,9 @@ The `ISchemaInspector` is automatically injected and uses SQL Server's `INFORMAT
 
 ---
 
-## Integration Testing (SQLite)
+### Integration Testing (SQLite)
 
-### Step 1: Set Up Fixture
+#### Step 1: Set Up Fixture
 
 ```csharp
 public class TableCopyIntegrationTests : IAsyncLifetime
@@ -85,7 +148,7 @@ public class TableCopyIntegrationTests : IAsyncLifetime
     public async Task DisposeAsync() => await _fixture.DisposeAsync();
 ```
 
-### Step 2: Create Real SQLite Inspector
+#### Step 2: Create Real SQLite Inspector
 
 ```csharp
 [Fact]
@@ -126,9 +189,9 @@ public async Task CopyTableAsync_WithMultipleRows_CopiesSuccessfully()
 
 ---
 
-## Unit Testing (Mocks)
+### Unit Testing (Mocks)
 
-### Step 1: Mock the Inspector
+#### Step 1: Mock the Inspector
 
 ```csharp
 [Fact]
@@ -154,7 +217,7 @@ public async Task CopyTableAsync_WithNullSourceTable_ThrowsArgumentException()
 }
 ```
 
-### Step 2: Setup Mock Expectations (Optional)
+#### Step 2: Setup Mock Expectations (Optional)
 
 ```csharp
 [Fact]
