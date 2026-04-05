@@ -1,4 +1,9 @@
-# Architecture Decision Record: ISchemaInspector Abstraction
+---
+uid: 61c6f3d4-9d2e-430f-a79c-f673c115e42c
+created: '2026-04-05T18:04:00+18:04'
+modified: '2026-04-05T19:04:41+19:04'
+---
+# ARCHITECTURE_DECISION
 
 **Date**: 2026-04-05  
 **Status**: Accepted (Architect Verified)  

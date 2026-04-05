@@ -1,4 +1,7 @@
-# ISchemaInspector FAQ & Detailed Examples
+---
+uid: d3cbac83-46d3-40b8-a230-41b8f38d3c69
+---
+# FAQ_AND_EXAMPLES
 
 Frequently asked questions and comprehensive working examples for the ISchemaInspector abstraction.
 
@@ -6,10 +9,10 @@ Frequently asked questions and comprehensive working examples for the ISchemaIns
 
 ## Table of Contents
 
-1. [FAQ](#faq)
-2. [Detailed Examples](#detailed-examples)
-3. [Code Patterns](#code-patterns)
-4. [Migration Guide](#migration-guide)
+1. [FAQ](<#faq>)
+2. [Detailed Examples](<#detailed-examples>)
+3. [Code Patterns](<#code-patterns>)
+4. [Migration Guide](<#migration-guide>)
 
 ---
 

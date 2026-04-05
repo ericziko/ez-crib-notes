@@ -1,4 +1,7 @@
-# ISchemaInspector Quick Start Guide
+---
+uid: 6ce9ff2d-821f-4b80-b5a9-c6919e6a1c49
+---
+# QUICK_START
 
 Quick reference for using the ISchemaInspector abstraction in different scenarios.
 
@@ -6,12 +9,12 @@ Quick reference for using the ISchemaInspector abstraction in different scenario
 
 ## Table of Contents
 
-1. [Quick Links](#quick-links)
-2. [Production Setup (SQL Server)](#production-setup-sql-server)
-3. [Integration Testing (SQLite)](#integration-testing-sqlite)
-4. [Unit Testing (Mocks)](#unit-testing-mocks)
-5. [Common Scenarios](#common-scenarios)
-6. [Troubleshooting](#troubleshooting)
+1. [Quick Links](<#quick-links>)
+2. [Production Setup (SQL Server)](<#production-setup-sql-server>)
+3. [Integration Testing (SQLite)](<#integration-testing-sqlite>)
+4. [Unit Testing (Mocks)](<#unit-testing-mocks>)
+5. [Common Scenarios](<#common-scenarios>)
+6. [Troubleshooting](<#troubleshooting>)
 
 ---
 
@@ -415,5 +418,5 @@ public class CachingSchemaInspector : ISchemaInspector
 | **Custom Database** | Create new class implementing `ISchemaInspector` |
 | **Debugging** | Check that inspector type matches your connection type |
 
-See [SCHEMA_INSPECTOR_GUIDE.md](./SCHEMA_INSPECTOR_GUIDE.md) for detailed examples.  
-See [ARCHITECTURE_DECISION.md](./ARCHITECTURE_DECISION.md) for design rationale.
+See [SCHEMA_INSPECTOR_GUIDE.md](<SCHEMA_INSPECTOR_GUIDE.md>) for detailed examples.  
+See [ARCHITECTURE_DECISION.md](<ARCHITECTURE_DECISION.md>) for design rationale.
