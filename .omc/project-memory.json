@@ -186,6 +186,30 @@
       "accessCount": 1,
       "lastAccessed": 1775377972711,
       "type": "directory"
+    },
+    {
+      "path": "dapper-etl/SCHEMA_INSPECTOR_GUIDE.md",
+      "accessCount": 1,
+      "lastAccessed": 1775379561881,
+      "type": "file"
+    },
+    {
+      "path": "dapper-etl/ARCHITECTURE_DECISION.md",
+      "accessCount": 1,
+      "lastAccessed": 1775379588117,
+      "type": "file"
+    },
+    {
+      "path": "dapper-etl/QUICK_START.md",
+      "accessCount": 1,
+      "lastAccessed": 1775379617456,
+      "type": "file"
+    },
+    {
+      "path": "dapper-etl/FAQ_AND_EXAMPLES.md",
+      "accessCount": 1,
+      "lastAccessed": 1775379662483,
+      "type": "file"
     }
   ],
   "userDirectives": []
