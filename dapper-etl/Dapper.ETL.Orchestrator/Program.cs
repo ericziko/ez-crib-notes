@@ -12,6 +12,7 @@ using Spectre.Console.Cli;
 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
 
 var configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
     .AddJsonFile($"appsettings.{env}.json", optional: true, reloadOnChange: false)
     .AddEnvironmentVariables()
@@ -45,9 +46,17 @@ if (!string.IsNullOrWhiteSpace(seqUrl))
 
 Log.Logger = loggerConfig.CreateLogger();
 
+var isAspire = !string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("ASPIRE_ENVIRONMENT"))
+    || !string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("OTEL_EXPORTER_OTLP_ENDPOINT"));
+
 try
 {
     Log.Information("ETL.Orchestrator starting up (Environment: {Environment})", env);
+
+    if (isAspire)
+        Log.Information("Running under Aspire orchestration");
+    else
+        Log.Information("Running standalone (local docker-compose or manual)");
 
     // Build DI service collection
     var services = new ServiceCollection();
