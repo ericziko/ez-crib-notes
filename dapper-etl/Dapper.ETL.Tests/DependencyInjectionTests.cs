@@ -11,6 +11,17 @@ namespace Dapper.ETL.Tests
     /// </summary>
     public class DependencyInjectionTests
     {
+        /// <summary>
+        /// Helper to configure EtlOptions with a no-op source connection string for unit tests
+        /// that don't actually open database connections.
+        /// </summary>
+        private static void ConfigureTestOptions(EtlOptions opts)
+        {
+            opts.SourceConnectionString = "Server=.;Database=Test;Integrated Security=true;";
+            opts.TargetConnectionString = "Server=.;Database=TestTarget;Integrated Security=true;";
+            opts.LogsConnectionString = "Server=.;Database=TestLogs;Integrated Security=true;";
+        }
+
         [Fact]
         public void AddEtlServices_RegistersAllServices()
         {
@@ -18,7 +29,7 @@ namespace Dapper.ETL.Tests
             var services = new ServiceCollection();
 
             // Act
-            services.AddEtlServices();
+            services.AddEtlServices(ConfigureTestOptions);
             var serviceProvider = services.BuildServiceProvider();
 
             // Assert
@@ -38,7 +49,7 @@ namespace Dapper.ETL.Tests
             var services = new ServiceCollection();
 
             // Act
-            services.AddEtlServices();
+            services.AddEtlServices(ConfigureTestOptions);
             var serviceProvider = services.BuildServiceProvider();
 
             // Assert
@@ -54,7 +65,7 @@ namespace Dapper.ETL.Tests
             var services = new ServiceCollection();
 
             // Act
-            services.AddEtlServices();
+            services.AddEtlServices(ConfigureTestOptions);
             var serviceProvider = services.BuildServiceProvider();
 
             // Assert
@@ -70,7 +81,7 @@ namespace Dapper.ETL.Tests
             var services = new ServiceCollection();
 
             // Act
-            services.AddEtlServices();
+            services.AddEtlServices(ConfigureTestOptions);
             var serviceProvider = services.BuildServiceProvider();
 
             // Assert
@@ -86,7 +97,7 @@ namespace Dapper.ETL.Tests
             var services = new ServiceCollection();
 
             // Act
-            services.AddEtlServices();
+            services.AddEtlServices(ConfigureTestOptions);
             var serviceProvider = services.BuildServiceProvider();
 
             // Assert
@@ -102,7 +113,7 @@ namespace Dapper.ETL.Tests
             var services = new ServiceCollection();
 
             // Act
-            services.AddEtlServices();
+            services.AddEtlServices(ConfigureTestOptions);
             var serviceProvider = services.BuildServiceProvider();
 
             // Assert
@@ -118,7 +129,7 @@ namespace Dapper.ETL.Tests
             var services = new ServiceCollection();
 
             // Act
-            services.AddEtlServices();
+            services.AddEtlServices(ConfigureTestOptions);
             var serviceProvider = services.BuildServiceProvider();
 
             // Assert
@@ -134,7 +145,7 @@ namespace Dapper.ETL.Tests
             var services = new ServiceCollection();
 
             // Act
-            services.AddEtlServices();
+            services.AddEtlServices(ConfigureTestOptions);
             var serviceProvider = services.BuildServiceProvider();
 
             // Assert
@@ -150,11 +161,11 @@ namespace Dapper.ETL.Tests
             var services = new ServiceCollection();
 
             // Act
-            services.AddEtlServices();
+            services.AddEtlServices(ConfigureTestOptions);
             var serviceProvider = services.BuildServiceProvider();
 
-            // Assert
-            Assert.IsType<EtlLogger>(serviceProvider.GetRequiredService<IEtlLogger>());
+            // Assert — IEtlLogger is now backed by SerilogEtlLogger (Phase 0.1)
+            Assert.IsType<SerilogEtlLogger>(serviceProvider.GetRequiredService<IEtlLogger>());
             Assert.IsType<ColumnMapper>(serviceProvider.GetRequiredService<IColumnMapper>());
             Assert.IsType<BatchProcessor>(serviceProvider.GetRequiredService<IBatchProcessor>());
             Assert.IsType<TransactionManager>(serviceProvider.GetRequiredService<ITransactionManager>());
@@ -170,7 +181,7 @@ namespace Dapper.ETL.Tests
             var services = new ServiceCollection();
 
             // Act
-            var result = services.AddEtlServices();
+            var result = services.AddEtlServices(ConfigureTestOptions);
 
             // Assert
             Assert.Same(services, result);
@@ -183,8 +194,8 @@ namespace Dapper.ETL.Tests
             var services = new ServiceCollection();
 
             // Act
-            services.AddEtlServices();
-            services.AddEtlServices(); // Call again
+            services.AddEtlServices(ConfigureTestOptions);
+            services.AddEtlServices(ConfigureTestOptions); // Call again
 
             // Assert
             var serviceProvider = services.BuildServiceProvider();
@@ -198,7 +209,7 @@ namespace Dapper.ETL.Tests
             var services = new ServiceCollection();
 
             // Act
-            services.AddEtlServices();
+            services.AddEtlServices(ConfigureTestOptions);
             var serviceProvider = services.BuildServiceProvider();
 
             // Assert
@@ -215,7 +226,7 @@ namespace Dapper.ETL.Tests
             var services = new ServiceCollection();
 
             // Act
-            services.AddEtlServices();
+            services.AddEtlServices(ConfigureTestOptions);
             var serviceProvider = services.BuildServiceProvider();
 
             // Assert
@@ -231,7 +242,7 @@ namespace Dapper.ETL.Tests
             var services = new ServiceCollection();
 
             // Act
-            services.AddEtlServices();
+            services.AddEtlServices(ConfigureTestOptions);
             var serviceProvider = services.BuildServiceProvider();
 
             // Assert
@@ -247,7 +258,7 @@ namespace Dapper.ETL.Tests
             var services = new ServiceCollection();
 
             // Act
-            services.AddEtlServices();
+            services.AddEtlServices(ConfigureTestOptions);
             var serviceProvider = services.BuildServiceProvider();
 
             // Assert

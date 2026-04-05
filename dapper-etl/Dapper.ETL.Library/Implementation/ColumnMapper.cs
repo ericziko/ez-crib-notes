@@ -63,7 +63,17 @@ namespace Dapper.ETL.Library.Implementation
                 return string.Empty;
             }
 
-            var columnNames = mappingsList.Select(m => $"[{m.SourceColumn}]");
+            var columnNames = mappingsList.Select(m =>
+            {
+                if (string.IsNullOrWhiteSpace(m.SelectExpression))
+                {
+                    return $"[{m.SourceColumn}]";
+                }
+                else
+                {
+                    return $"{m.SelectExpression} AS [{m.DestinationColumn}]";
+                }
+            });
             return string.Join(", ", columnNames);
         }
 

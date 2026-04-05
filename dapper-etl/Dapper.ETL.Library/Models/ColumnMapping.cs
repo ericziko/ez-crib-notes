@@ -27,5 +27,12 @@ namespace Dapper.ETL.Library.Models
         /// Gets the name of the destination column.
         /// </summary>
         public string DestinationColumn { get; }
+
+        /// <summary>
+        /// Optional SQL expression for transforming the source column.
+        /// Examples: "LOWER(EmailAddress)", "TRIM(FirstName)", "CONVERT(INT, ProductId)"
+        /// If null, uses the source column name directly.
+        /// </summary>
+        public string SelectExpression { get; set; }
     }
 }
