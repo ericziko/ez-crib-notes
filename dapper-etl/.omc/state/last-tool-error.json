@@ -1,7 +1,0 @@
-{
-  "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"\\n# Define target path\\nTARGET_PATH=\\\".claude/CLAUDE.md\\\"\\n\\n# Extract old version before download\\nOLD_VERSION=$(grep -m1 \\\"^# oh-my-claudecode\\\" \\\"$TARGET_PATH\\\" 2>/dev/null | grep -oE '...",
-  "error": "Exit code 1\nrg: error parsing flag -E: grep config error: unknown encoding: v[0-9]+\\.[0-9]+\\.[0-9]+\nmktemp: mkstemp failed on /tmp/omc-claude-XXXXXX.md: File exists\ncurl: option -o: blank argument where content is expected\ncurl: try 'curl --help' or 'curl --manual' for more information\nERROR: Failed to download CLAUDE.md. Aborting.\n# Un-recognized argument -f at index 1\n# Un-recognized argument -f at index 1",
-  "timestamp": "2026-04-05T20:45:02.002Z",
-  "retry_count": 1
-}
