@@ -1,4 +1,4 @@
-# ISchemaInspector Abstraction Guide
+# SCHEMA_INSPECTOR_GUIDE
 
 ## Overview
 
