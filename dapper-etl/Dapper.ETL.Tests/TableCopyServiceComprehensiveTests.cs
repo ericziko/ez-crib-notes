@@ -24,10 +24,11 @@ namespace Dapper.ETL.Tests
             var columnMapper = new Mock<IColumnMapper>().Object;
             var batchProcessor = new Mock<IBatchProcessor>().Object;
             var logger = new Mock<IEtlLogger>().Object;
+            var schemaInspector = new Mock<ISchemaInspector>().Object;
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() =>
-                new TableCopyService(null!, columnMapper, batchProcessor, logger));
+                new TableCopyService(null!, columnMapper, batchProcessor, logger, schemaInspector));
         }
 
         [Fact]
@@ -37,10 +38,11 @@ namespace Dapper.ETL.Tests
             var transactionManager = new Mock<ITransactionManager>().Object;
             var batchProcessor = new Mock<IBatchProcessor>().Object;
             var logger = new Mock<IEtlLogger>().Object;
+            var schemaInspector = new Mock<ISchemaInspector>().Object;
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() =>
-                new TableCopyService(transactionManager, null!, batchProcessor, logger));
+                new TableCopyService(transactionManager, null!, batchProcessor, logger, schemaInspector));
         }
 
         [Fact]
@@ -50,10 +52,11 @@ namespace Dapper.ETL.Tests
             var transactionManager = new Mock<ITransactionManager>().Object;
             var columnMapper = new Mock<IColumnMapper>().Object;
             var logger = new Mock<IEtlLogger>().Object;
+            var schemaInspector = new Mock<ISchemaInspector>().Object;
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() =>
-                new TableCopyService(transactionManager, columnMapper, null!, logger));
+                new TableCopyService(transactionManager, columnMapper, null!, logger, schemaInspector));
         }
 
         [Fact]
@@ -63,10 +66,11 @@ namespace Dapper.ETL.Tests
             var transactionManager = new Mock<ITransactionManager>().Object;
             var columnMapper = new Mock<IColumnMapper>().Object;
             var batchProcessor = new Mock<IBatchProcessor>().Object;
+            var schemaInspector = new Mock<ISchemaInspector>().Object;
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() =>
-                new TableCopyService(transactionManager, columnMapper, batchProcessor, null!));
+                new TableCopyService(transactionManager, columnMapper, batchProcessor, null!, schemaInspector));
         }
 
         [Fact]
@@ -77,12 +81,14 @@ namespace Dapper.ETL.Tests
             var mockColumnMapper = new Mock<IColumnMapper>();
             var mockBatchProcessor = new Mock<IBatchProcessor>();
             var mockLogger = new Mock<IEtlLogger>();
+            var mockSchemaInspector = new Mock<ISchemaInspector>();
 
             var service = new TableCopyService(
                 mockTransactionManager.Object,
                 mockColumnMapper.Object,
                 mockBatchProcessor.Object,
-                mockLogger.Object);
+                mockLogger.Object,
+                mockSchemaInspector.Object);
 
             var options = new TableCopyOptions();
 
@@ -99,12 +105,14 @@ namespace Dapper.ETL.Tests
             var mockColumnMapper = new Mock<IColumnMapper>();
             var mockBatchProcessor = new Mock<IBatchProcessor>();
             var mockLogger = new Mock<IEtlLogger>();
+            var mockSchemaInspector = new Mock<ISchemaInspector>();
 
             var service = new TableCopyService(
                 mockTransactionManager.Object,
                 mockColumnMapper.Object,
                 mockBatchProcessor.Object,
-                mockLogger.Object);
+                mockLogger.Object,
+                mockSchemaInspector.Object);
 
             var options = new TableCopyOptions();
 
@@ -121,12 +129,14 @@ namespace Dapper.ETL.Tests
             var mockColumnMapper = new Mock<IColumnMapper>();
             var mockBatchProcessor = new Mock<IBatchProcessor>();
             var mockLogger = new Mock<IEtlLogger>();
+            var mockSchemaInspector = new Mock<ISchemaInspector>();
 
             var service = new TableCopyService(
                 mockTransactionManager.Object,
                 mockColumnMapper.Object,
                 mockBatchProcessor.Object,
-                mockLogger.Object);
+                mockLogger.Object,
+                mockSchemaInspector.Object);
 
             var options = new TableCopyOptions();
 
@@ -143,12 +153,14 @@ namespace Dapper.ETL.Tests
             var mockColumnMapper = new Mock<IColumnMapper>();
             var mockBatchProcessor = new Mock<IBatchProcessor>();
             var mockLogger = new Mock<IEtlLogger>();
+            var mockSchemaInspector = new Mock<ISchemaInspector>();
 
             var service = new TableCopyService(
                 mockTransactionManager.Object,
                 mockColumnMapper.Object,
                 mockBatchProcessor.Object,
-                mockLogger.Object);
+                mockLogger.Object,
+                mockSchemaInspector.Object);
 
             var options = new TableCopyOptions();
 
@@ -165,12 +177,14 @@ namespace Dapper.ETL.Tests
             var mockColumnMapper = new Mock<IColumnMapper>();
             var mockBatchProcessor = new Mock<IBatchProcessor>();
             var mockLogger = new Mock<IEtlLogger>();
+            var mockSchemaInspector = new Mock<ISchemaInspector>();
 
             var service = new TableCopyService(
                 mockTransactionManager.Object,
                 mockColumnMapper.Object,
                 mockBatchProcessor.Object,
-                mockLogger.Object);
+                mockLogger.Object,
+                mockSchemaInspector.Object);
 
             var options = new TableCopyOptions();
 
@@ -187,12 +201,14 @@ namespace Dapper.ETL.Tests
             var mockColumnMapper = new Mock<IColumnMapper>();
             var mockBatchProcessor = new Mock<IBatchProcessor>();
             var mockLogger = new Mock<IEtlLogger>();
+            var mockSchemaInspector = new Mock<ISchemaInspector>();
 
             var service = new TableCopyService(
                 mockTransactionManager.Object,
                 mockColumnMapper.Object,
                 mockBatchProcessor.Object,
-                mockLogger.Object);
+                mockLogger.Object,
+                mockSchemaInspector.Object);
 
             var options = new TableCopyOptions();
 
@@ -209,12 +225,14 @@ namespace Dapper.ETL.Tests
             var mockColumnMapper = new Mock<IColumnMapper>();
             var mockBatchProcessor = new Mock<IBatchProcessor>();
             var mockLogger = new Mock<IEtlLogger>();
+            var mockSchemaInspector = new Mock<ISchemaInspector>();
 
             var service = new TableCopyService(
                 mockTransactionManager.Object,
                 mockColumnMapper.Object,
                 mockBatchProcessor.Object,
-                mockLogger.Object);
+                mockLogger.Object,
+                mockSchemaInspector.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<ArgumentNullException>(async () =>
@@ -230,6 +248,7 @@ namespace Dapper.ETL.Tests
             var mockColumnMapper = new Mock<IColumnMapper>();
             var mockBatchProcessor = new Mock<IBatchProcessor>();
             var mockLogger = new Mock<IEtlLogger>();
+            var mockSchemaInspector = new Mock<ISchemaInspector>();
 
             mockTransactionManager.Setup(x => x.Connection).Returns(mockConnection.Object);
             mockTransactionManager.Setup(x => x.CurrentTransaction).Returns((IDbTransaction)null!);
@@ -242,7 +261,8 @@ namespace Dapper.ETL.Tests
                 mockTransactionManager.Object,
                 mockColumnMapper.Object,
                 mockBatchProcessor.Object,
-                mockLogger.Object);
+                mockLogger.Object,
+                mockSchemaInspector.Object);
 
             var options = new TableCopyOptions();
 
@@ -266,6 +286,7 @@ namespace Dapper.ETL.Tests
             var mockColumnMapper = new Mock<IColumnMapper>();
             var mockBatchProcessor = new Mock<IBatchProcessor>();
             var mockLogger = new Mock<IEtlLogger>();
+            var mockSchemaInspector = new Mock<ISchemaInspector>();
 
             mockColumnMapper.Setup(x => x.GetMapping(It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IDictionary<string, string>>()))
                 .Throws(new ArgumentException("Invalid column mapping"));
@@ -274,7 +295,8 @@ namespace Dapper.ETL.Tests
                 mockTransactionManager.Object,
                 mockColumnMapper.Object,
                 mockBatchProcessor.Object,
-                mockLogger.Object);
+                mockLogger.Object,
+                mockSchemaInspector.Object);
 
             var options = new TableCopyOptions();
 
@@ -295,6 +317,7 @@ namespace Dapper.ETL.Tests
             var mockColumnMapper = new Mock<IColumnMapper>();
             var mockBatchProcessor = new Mock<IBatchProcessor>();
             var mockLogger = new Mock<IEtlLogger>();
+            var mockSchemaInspector = new Mock<ISchemaInspector>();
 
             mockBatchProcessor.Setup(x => x.ProcessInBatchesAsync(
                 It.IsAny<IEnumerable<dynamic>>(),
@@ -307,7 +330,8 @@ namespace Dapper.ETL.Tests
                 mockTransactionManager.Object,
                 mockColumnMapper.Object,
                 mockBatchProcessor.Object,
-                mockLogger.Object);
+                mockLogger.Object,
+                mockSchemaInspector.Object);
 
             var options = new TableCopyOptions();
 
@@ -328,6 +352,7 @@ namespace Dapper.ETL.Tests
             var mockColumnMapper = new Mock<IColumnMapper>();
             var mockBatchProcessor = new Mock<IBatchProcessor>();
             var mockLogger = new Mock<IEtlLogger>();
+            var mockSchemaInspector = new Mock<ISchemaInspector>();
 
             mockColumnMapper.Setup(x => x.GetMapping(It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IDictionary<string, string>>()))
                 .Throws(new Exception("Test error"));
@@ -336,7 +361,8 @@ namespace Dapper.ETL.Tests
                 mockTransactionManager.Object,
                 mockColumnMapper.Object,
                 mockBatchProcessor.Object,
-                mockLogger.Object);
+                mockLogger.Object,
+                mockSchemaInspector.Object);
 
             var options = new TableCopyOptions();
 
@@ -355,6 +381,7 @@ namespace Dapper.ETL.Tests
             var mockColumnMapper = new Mock<IColumnMapper>();
             var mockBatchProcessor = new Mock<IBatchProcessor>();
             var mockLogger = new Mock<IEtlLogger>();
+            var mockSchemaInspector = new Mock<ISchemaInspector>();
 
             mockBatchProcessor.Setup(x => x.ProcessInBatchesAsync(
                 It.IsAny<IEnumerable<dynamic>>(),
@@ -367,7 +394,8 @@ namespace Dapper.ETL.Tests
                 mockTransactionManager.Object,
                 mockColumnMapper.Object,
                 mockBatchProcessor.Object,
-                mockLogger.Object);
+                mockLogger.Object,
+                mockSchemaInspector.Object);
 
             var options = new TableCopyOptions(batchSize: 50);
 
@@ -386,6 +414,7 @@ namespace Dapper.ETL.Tests
             var mockColumnMapper = new Mock<IColumnMapper>();
             var mockBatchProcessor = new Mock<IBatchProcessor>();
             var mockLogger = new Mock<IEtlLogger>();
+            var mockSchemaInspector = new Mock<ISchemaInspector>();
 
             mockColumnMapper.Setup(x => x.GetMapping(It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IDictionary<string, string>>()))
                 .Throws(new Exception("Schema mismatch"));
@@ -394,7 +423,8 @@ namespace Dapper.ETL.Tests
                 mockTransactionManager.Object,
                 mockColumnMapper.Object,
                 mockBatchProcessor.Object,
-                mockLogger.Object);
+                mockLogger.Object,
+                mockSchemaInspector.Object);
 
             var options = new TableCopyOptions();
 

@@ -22,6 +22,8 @@ namespace Dapper.ETL.Library
             services.AddSingleton<IBatchProcessor, BatchProcessor>();
             services.AddTransient<ITransactionManager>(sp =>
                 new TransactionManager(new Microsoft.Data.SqlClient.SqlConnection()));
+            services.AddTransient<ISchemaInspector>(sp =>
+                new SqlServerSchemaInspector(sp.GetRequiredService<ITransactionManager>().Connection));
             services.AddTransient<ITableCopyService, TableCopyService>();
             services.AddTransient<IStoredProcedureService, StoredProcedureService>();
             services.AddTransient<IEtlOrchestrator, EtlOrchestrator>();

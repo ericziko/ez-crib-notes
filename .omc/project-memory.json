@@ -1,0 +1,192 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1775377025998,
+  "projectRoot": "/Users/ericziko/gitHub/ericziko/ez-crib-notes",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "2026": {
+      "path": "2026",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1775377025993,
+      "keyFiles": []
+    },
+    "dapper-etl": {
+      "path": "dapper-etl",
+      "purpose": null,
+      "fileCount": 11,
+      "lastAccessed": 1775377025994,
+      "keyFiles": [
+        "Dapper.ETL.sln",
+        "Dapper.ETL.sln.DotSettings.user",
+        "ETL-Architecture-Design.md",
+        "coverage_snapshot_20260405_001101.dcvr",
+        "coverage_snapshot_20260405_001107.dcvr"
+      ]
+    },
+    "fix-my-vimrc": {
+      "path": "fix-my-vimrc",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1775377025994,
+      "keyFiles": []
+    },
+    "statemachine-for-elevator": {
+      "path": "statemachine-for-elevator",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1775377025994,
+      "keyFiles": [
+        "elevator-state-machine.md"
+      ]
+    },
+    "🤖❓developer-bootstrap-powershell-module": {
+      "path": "🤖❓developer-bootstrap-powershell-module",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1775377025994,
+      "keyFiles": [
+        "🤖❓ Help me create a `DeveloperBootStrapUtilities` PowerShell Module.md"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "dapper-etl/Dapper.ETL.Tests/TableCopyServiceComprehensiveTests.cs",
+      "accessCount": 19,
+      "lastAccessed": 1775379005909,
+      "type": "file"
+    },
+    {
+      "path": "dapper-etl/Dapper.ETL.Library/Implementation/TableCopyService.cs",
+      "accessCount": 19,
+      "lastAccessed": 1775379219123,
+      "type": "file"
+    },
+    {
+      "path": "dapper-etl",
+      "accessCount": 6,
+      "lastAccessed": 1775379229973,
+      "type": "directory"
+    },
+    {
+      "path": "dapper-etl/Dapper.ETL.Tests/TableCopyServiceTests.cs",
+      "accessCount": 6,
+      "lastAccessed": 1775379236234,
+      "type": "file"
+    },
+    {
+      "path": "dapper-etl/SQLLite.Integration.Tests/TableCopyIntegrationTests.cs",
+      "accessCount": 5,
+      "lastAccessed": 1775379234695,
+      "type": "file"
+    },
+    {
+      "path": "dapper-etl/SQLLite.Integration.Tests/EtlOrchestratorIntegrationTests.cs",
+      "accessCount": 3,
+      "lastAccessed": 1775377964909,
+      "type": "file"
+    },
+    {
+      "path": "dapper-etl/Dapper.ETL.Library/Interfaces/ISchemaInspector.cs",
+      "accessCount": 3,
+      "lastAccessed": 1775379216990,
+      "type": "file"
+    },
+    {
+      "path": "dapper-etl/Dapper.ETL.Library/Implementation/SqlServerSchemaInspector.cs",
+      "accessCount": 3,
+      "lastAccessed": 1775379217765,
+      "type": "file"
+    },
+    {
+      "path": "dapper-etl/Dapper.ETL.Library/Implementation/SqliteSchemaInspector.cs",
+      "accessCount": 3,
+      "lastAccessed": 1775379218500,
+      "type": "file"
+    },
+    {
+      "path": "dapper-etl/Dapper.ETL.Library/DependencyInjection.cs",
+      "accessCount": 3,
+      "lastAccessed": 1775379233165,
+      "type": "file"
+    },
+    {
+      "path": "dapper-etl/SQLLite.Integration.Tests/SqliteFixture.cs",
+      "accessCount": 2,
+      "lastAccessed": 1775377795247,
+      "type": "file"
+    },
+    {
+      "path": "dapper-etl/Dapper.ETL.Library/Interfaces/ITableCopyService.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775377795769,
+      "type": "file"
+    },
+    {
+      "path": "dapper-etl/SQLLite.Integration.Tests/ColumnMappingIntegrationTests.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775377801451,
+      "type": "file"
+    },
+    {
+      "path": "dapper-etl/SQLLite.Integration.Tests/TransactionIntegrationTests.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775377801541,
+      "type": "file"
+    },
+    {
+      "path": "dapper-etl/SQLLite.Integration.Tests/SQLLite.Integration.Tests.csproj",
+      "accessCount": 1,
+      "lastAccessed": 1775377819839,
+      "type": "file"
+    },
+    {
+      "path": "dapper-etl/Dapper.ETL.Library/Dapper.ETL.Library.csproj",
+      "accessCount": 1,
+      "lastAccessed": 1775377820216,
+      "type": "file"
+    },
+    {
+      "path": "dapper-etl/SQLLite.Integration.Tests",
+      "accessCount": 1,
+      "lastAccessed": 1775377937376,
+      "type": "directory"
+    },
+    {
+      "path": "dapper-etl/Dapper.ETL.Tests",
+      "accessCount": 1,
+      "lastAccessed": 1775377972711,
+      "type": "directory"
+    }
+  ],
+  "userDirectives": []
+}

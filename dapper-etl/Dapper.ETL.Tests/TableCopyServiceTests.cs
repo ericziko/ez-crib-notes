@@ -17,6 +17,7 @@ namespace Dapper.ETL.Tests
         private readonly Mock<IColumnMapper> _mockColumnMapper;
         private readonly Mock<IBatchProcessor> _mockBatchProcessor;
         private readonly Mock<IEtlLogger> _mockLogger;
+        private readonly Mock<ISchemaInspector> _mockSchemaInspector;
         private readonly TableCopyService _service;
 
         public TableCopyServiceTests()
@@ -25,12 +26,14 @@ namespace Dapper.ETL.Tests
             _mockColumnMapper = new Mock<IColumnMapper>();
             _mockBatchProcessor = new Mock<IBatchProcessor>();
             _mockLogger = new Mock<IEtlLogger>();
+            _mockSchemaInspector = new Mock<ISchemaInspector>();
 
             _service = new TableCopyService(
                 _mockTransactionManager.Object,
                 _mockColumnMapper.Object,
                 _mockBatchProcessor.Object,
-                _mockLogger.Object);
+                _mockLogger.Object,
+                _mockSchemaInspector.Object);
         }
 
         [Fact]

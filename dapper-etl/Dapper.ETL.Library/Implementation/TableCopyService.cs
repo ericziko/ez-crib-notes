@@ -19,6 +19,7 @@ namespace Dapper.ETL.Library.Implementation
         private readonly IColumnMapper _columnMapper;
         private readonly IBatchProcessor _batchProcessor;
         private readonly IEtlLogger _logger;
+        private readonly ISchemaInspector _schemaInspector;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TableCopyService"/> class.
@@ -27,16 +28,19 @@ namespace Dapper.ETL.Library.Implementation
         /// <param name="columnMapper">The column mapper.</param>
         /// <param name="batchProcessor">The batch processor.</param>
         /// <param name="logger">The ETL logger.</param>
+        /// <param name="schemaInspector">The schema inspector for database-agnostic column retrieval.</param>
         public TableCopyService(
             ITransactionManager transactionManager,
             IColumnMapper columnMapper,
             IBatchProcessor batchProcessor,
-            IEtlLogger logger)
+            IEtlLogger logger,
+            ISchemaInspector schemaInspector)
         {
             _transactionManager = transactionManager ?? throw new ArgumentNullException(nameof(transactionManager));
             _columnMapper = columnMapper ?? throw new ArgumentNullException(nameof(columnMapper));
             _batchProcessor = batchProcessor ?? throw new ArgumentNullException(nameof(batchProcessor));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _schemaInspector = schemaInspector ?? throw new ArgumentNullException(nameof(schemaInspector));
         }
 
         /// <summary>
@@ -73,14 +77,9 @@ namespace Dapper.ETL.Library.Implementation
 
             try
             {
-                // Get column information (works with both SQL Server and SQLite)
-                var sourceColumns = (await connection.QueryAsync<string>(
-                    $"SELECT name FROM pragma_table_info('{sourceTable}')",
-                    transaction: _transactionManager.CurrentTransaction)).ToList();
-
-                var destColumns = (await connection.QueryAsync<string>(
-                    $"SELECT name FROM pragma_table_info('{destinationTable}')",
-                    transaction: _transactionManager.CurrentTransaction)).ToList();
+                // Get column information using database-agnostic schema inspector
+                var sourceColumns = await _schemaInspector.GetColumnNamesAsync(sourceTable);
+                var destColumns = await _schemaInspector.GetColumnNamesAsync(destinationTable);
 
                 if (sourceColumns.Count == 0)
                 {
@@ -103,7 +102,7 @@ namespace Dapper.ETL.Library.Implementation
                 if (options.TruncateDestination)
                 {
                     await connection.ExecuteAsync(
-                        $"DELETE FROM [{destinationTable}]",
+                        $"DELETE FROM \"{destinationTable}\"",
                         transaction: _transactionManager.CurrentTransaction);
                     _logger.LogTableTruncated(destinationTable);
                 }
