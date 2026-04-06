@@ -14,15 +14,8 @@ public class GetStatsCommandTests : IAsyncLifetime
 {
     private readonly SqlServerFixture _fixture = new();
 
-    public async Task InitializeAsync()
-    {
-        await _fixture.InitializeAsync();
-    }
-
-    public async Task DisposeAsync()
-    {
-        await _fixture.DisposeAsync();
-    }
+    public Task InitializeAsync() => _fixture.InitializeAsync();
+    public Task DisposeAsync() => _fixture.DisposeAsync();
 
     // ---------------------------------------------------------------------------
     // Tests

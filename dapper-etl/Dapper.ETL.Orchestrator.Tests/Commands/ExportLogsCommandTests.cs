@@ -23,13 +23,7 @@ public class ExportLogsCommandTests : IAsyncLifetime
         _configuration = BuildConfiguration();
     }
 
-    public async Task DisposeAsync()
-    {
-        foreach (var f in _tempFiles)
-            if (File.Exists(f))
-                File.Delete(f);
-        await _fixture.DisposeAsync();
-    }
+    public Task DisposeAsync() => _fixture.DisposeAsync();
 
     // ---------------------------------------------------------------------------
     // Tests

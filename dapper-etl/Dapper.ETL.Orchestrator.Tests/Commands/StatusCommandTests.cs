@@ -19,10 +19,7 @@ public class StatusCommandTests : IAsyncLifetime
         _configuration = BuildConfiguration();
     }
 
-    public async Task DisposeAsync()
-    {
-        await _fixture.DisposeAsync();
-    }
+    public Task DisposeAsync() => _fixture.DisposeAsync();
 
     // ---------------------------------------------------------------------------
     // Tests

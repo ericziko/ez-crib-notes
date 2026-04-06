@@ -16,18 +16,8 @@ public class ExportMetricsCommandTests : IAsyncLifetime
     private readonly SqlServerFixture _fixture = new();
     private readonly List<string> _tempFiles = new();
 
-    public async Task InitializeAsync()
-    {
-        await _fixture.InitializeAsync();
-    }
-
-    public async Task DisposeAsync()
-    {
-        foreach (var f in _tempFiles)
-            if (File.Exists(f))
-                File.Delete(f);
-        await _fixture.DisposeAsync();
-    }
+    public Task InitializeAsync() => _fixture.InitializeAsync();
+    public Task DisposeAsync() => _fixture.DisposeAsync();
 
     // ---------------------------------------------------------------------------
     // Tests
