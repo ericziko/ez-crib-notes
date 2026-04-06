@@ -9,18 +9,17 @@ namespace Dapper.ETL.Orchestrator.Tests.Commands;
 /// <summary>
 /// Integration tests for <see cref="ShowLogsCommand"/> via <see cref="LoggingService"/>.
 /// </summary>
-public class ShowLogsCommandTests : IAsyncLifetime
+[Collection("SharedSqlServer collection")]
+public class ShowLogsCommandTests
 {
-    private readonly SqlServerFixture _fixture = new();
-    private IConfiguration _configuration = null!;
+    private readonly SharedSqlServerFixture _fixture;
+    private readonly IConfiguration _configuration;
 
-    public async Task InitializeAsync()
+    public ShowLogsCommandTests(SharedSqlServerFixture fixture)
     {
-        await _fixture.InitializeAsync();
+        _fixture = fixture;
         _configuration = BuildConfiguration();
     }
-
-    public Task DisposeAsync() => _fixture.DisposeAsync();
 
     // ---------------------------------------------------------------------------
     // Tests

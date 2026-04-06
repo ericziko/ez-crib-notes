@@ -11,19 +11,18 @@ namespace Dapper.ETL.Orchestrator.Tests.Commands;
 /// Tests exercise the service layer directly because <see cref="ExportLogsCommand"/>
 /// renders to AnsiConsole which is not suitable for headless test execution.
 /// </summary>
-public class ExportLogsCommandTests : IAsyncLifetime
+[Collection("SharedSqlServer collection")]
+public class ExportLogsCommandTests
 {
-    private readonly SqlServerFixture _fixture = new();
-    private IConfiguration _configuration = null!;
+    private readonly SharedSqlServerFixture _fixture;
+    private readonly IConfiguration _configuration;
     private readonly List<string> _tempFiles = new();
 
-    public async Task InitializeAsync()
+    public ExportLogsCommandTests(SharedSqlServerFixture fixture)
     {
-        await _fixture.InitializeAsync();
+        _fixture = fixture;
         _configuration = BuildConfiguration();
     }
-
-    public Task DisposeAsync() => _fixture.DisposeAsync();
 
     // ---------------------------------------------------------------------------
     // Tests

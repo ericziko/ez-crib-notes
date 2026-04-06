@@ -11,18 +11,17 @@ namespace Dapper.ETL.Orchestrator.Tests.Commands;
 /// Integration tests for <see cref="RunEtlCommand"/> via <see cref="EtlService"/>.
 /// Each test starts a fresh SQL Server container via <see cref="SqlServerFixture"/>.
 /// </summary>
-public class RunEtlCommandTests : IAsyncLifetime
+[Collection("SharedSqlServer collection")]
+public class RunEtlCommandTests
 {
-    private readonly SqlServerFixture _fixture = new();
-    private IConfiguration _configuration = null!;
+    private readonly SharedSqlServerFixture _fixture;
+    private IConfiguration _configuration;
 
-    public async Task InitializeAsync()
+    public RunEtlCommandTests(SharedSqlServerFixture fixture)
     {
-        await _fixture.InitializeAsync();
+        _fixture = fixture;
         _configuration = BuildConfiguration();
     }
-
-    public Task DisposeAsync() => _fixture.DisposeAsync();
 
     // ---------------------------------------------------------------------------
     // Tests

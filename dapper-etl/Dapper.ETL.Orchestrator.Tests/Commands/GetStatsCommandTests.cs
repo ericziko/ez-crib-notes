@@ -10,12 +10,15 @@ namespace Dapper.ETL.Orchestrator.Tests.Commands;
 /// Tests exercise the service layer directly because <see cref="GetStatsCommand"/>
 /// renders to AnsiConsole which is not suitable for headless test execution.
 /// </summary>
-public class GetStatsCommandTests : IAsyncLifetime
+[Collection("SharedSqlServer collection")]
+public class GetStatsCommandTests
 {
-    private readonly SqlServerFixture _fixture = new();
+    private readonly SharedSqlServerFixture _fixture;
 
-    public Task InitializeAsync() => _fixture.InitializeAsync();
-    public Task DisposeAsync() => _fixture.DisposeAsync();
+    public GetStatsCommandTests(SharedSqlServerFixture fixture)
+    {
+        _fixture = fixture;
+    }
 
     // ---------------------------------------------------------------------------
     // Tests

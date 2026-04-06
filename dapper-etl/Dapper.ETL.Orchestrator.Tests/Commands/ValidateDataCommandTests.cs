@@ -8,18 +8,17 @@ namespace Dapper.ETL.Orchestrator.Tests.Commands;
 /// <summary>
 /// Integration tests for <see cref="ValidateDataCommand"/> via <see cref="ValidationService"/>.
 /// </summary>
-public class ValidateDataCommandTests : IAsyncLifetime
+[Collection("SharedSqlServer collection")]
+public class ValidateDataCommandTests
 {
-    private readonly SqlServerFixture _fixture = new();
-    private IConfiguration _configuration = null!;
+    private readonly SharedSqlServerFixture _fixture;
+    private readonly IConfiguration _configuration;
 
-    public async Task InitializeAsync()
+    public ValidateDataCommandTests(SharedSqlServerFixture fixture)
     {
-        await _fixture.InitializeAsync();
+        _fixture = fixture;
         _configuration = BuildConfiguration();
     }
-
-    public Task DisposeAsync() => _fixture.DisposeAsync();
 
     // ---------------------------------------------------------------------------
     // Tests
@@ -74,7 +73,11 @@ public class ValidateDataCommandTests : IAsyncLifetime
     [Fact]
     public async Task Test_ExecuteAsync_DetectsMismatches()
     {
-        // Arrange: seed source rows but leave targets empty so counts differ
+        // Arrange: truncate first (shared fixture), then seed source rows but leave targets empty so counts differ
+        await using var conn = await _fixture.GetConnectionAsync("TestDbSource");
+        await TestDatabaseHelper.TruncateTableAsync(conn, "Customer");
+        await conn.CloseAsync();
+
         var etlService = new EtlService(_configuration,
             Microsoft.Extensions.Logging.Abstractions.NullLogger<EtlService>.Instance);
         await etlService.SeedCustomers(5);

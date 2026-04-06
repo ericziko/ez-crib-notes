@@ -18,6 +18,7 @@ CREATE TABLE dbo.Customer (
     LastName NVARCHAR(100) NOT NULL,
     EmailAddress NVARCHAR(255) NOT NULL
 );
+GO
 
 -- Use TestDbTarget
 USE TestDbTarget;

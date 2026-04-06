@@ -6,6 +6,9 @@ using Xunit;
 
 namespace Dapper.ETL.Orchestrator.Tests.Fixtures;
 
+[CollectionDefinition("SharedSqlServer collection")]
+public class SharedSqlServerCollection : ICollectionFixture<SharedSqlServerFixture> { }
+
 /// <summary>
 /// Shared SQL Server container fixture managed by xUnit's ICollectionFixture.
 /// The container starts once per collection and is stopped when the collection completes.
@@ -91,7 +94,23 @@ public class SharedSqlServerFixture : IAsyncLifetime
             await using var cmd = conn.CreateCommand();
             cmd.CommandText = batch;
             cmd.CommandTimeout = 60;
-            await cmd.ExecuteNonQueryAsync();
+
+            var preview = batch.Length > 200 ? batch[..200] + "..." : batch;
+            Console.WriteLine($"[InitScript] Executing batch (db='{currentDatabase}'): {preview}");
+
+            try
+            {
+                await cmd.ExecuteNonQueryAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException(
+                    $"Init script batch failed.\n" +
+                    $"  Database : {(string.IsNullOrEmpty(currentDatabase) ? "(master)" : currentDatabase)}\n" +
+                    $"  Batch    : {preview}\n" +
+                    $"  Error    : {ex.Message}",
+                    ex);
+            }
         }
     }
 

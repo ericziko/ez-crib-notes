@@ -9,18 +9,17 @@ namespace Dapper.ETL.Orchestrator.Tests.Commands;
 /// <summary>
 /// Integration tests for <see cref="SeedSourceCustomersCommand"/> via <see cref="EtlService.SeedCustomers"/>.
 /// </summary>
-public class SeedSourceCustomersCommandTests : IAsyncLifetime
+[Collection("SharedSqlServer collection")]
+public class SeedSourceCustomersCommandTests
 {
-    private readonly SqlServerFixture _fixture = new();
-    private IConfiguration _configuration = null!;
+    private readonly SharedSqlServerFixture _fixture;
+    private readonly IConfiguration _configuration;
 
-    public async Task InitializeAsync()
+    public SeedSourceCustomersCommandTests(SharedSqlServerFixture fixture)
     {
-        await _fixture.InitializeAsync();
+        _fixture = fixture;
         _configuration = BuildConfiguration();
     }
-
-    public Task DisposeAsync() => _fixture.DisposeAsync();
 
     // ---------------------------------------------------------------------------
     // Tests
@@ -29,7 +28,11 @@ public class SeedSourceCustomersCommandTests : IAsyncLifetime
     [Fact]
     public async Task Test_ExecuteAsync_Succeeds()
     {
-        // Arrange
+        // Arrange: truncate first (shared fixture)
+        await using var conn = await _fixture.GetConnectionAsync("TestDbSource");
+        await TestDatabaseHelper.TruncateTableAsync(conn, "Customer");
+        await conn.CloseAsync();
+
         var service = BuildEtlService();
 
         // Act & Assert: should not throw
@@ -40,7 +43,11 @@ public class SeedSourceCustomersCommandTests : IAsyncLifetime
     [Fact]
     public async Task Test_ExecuteAsync_CreatesNRows()
     {
-        // Arrange
+        // Arrange: truncate first (shared fixture)
+        await using var connSetup = await _fixture.GetConnectionAsync("TestDbSource");
+        await TestDatabaseHelper.TruncateTableAsync(connSetup, "Customer");
+        await connSetup.CloseAsync();
+
         var service = BuildEtlService();
 
         // Act

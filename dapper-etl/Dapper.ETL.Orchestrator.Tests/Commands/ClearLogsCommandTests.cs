@@ -10,18 +10,18 @@ namespace Dapper.ETL.Orchestrator.Tests.Commands;
 /// Tests exercise the underlying SQL directly because <see cref="ClearLogsCommand"/>
 /// calls <c>AnsiConsole.Confirm</c> which is not suitable for headless test execution.
 /// </summary>
-public class ClearLogsCommandTests : IAsyncLifetime
-{
-    private readonly SqlServerFixture _fixture = new();
-    private IConfiguration _configuration = null!;
 
-    public async Task InitializeAsync()
+[Collection("SharedSqlServer collection")]
+public class ClearLogsCommandTests
+{
+    private readonly SharedSqlServerFixture _fixture;
+    private readonly IConfiguration _configuration;
+
+    public ClearLogsCommandTests(SharedSqlServerFixture fixture)
     {
-        await _fixture.InitializeAsync();
+        _fixture = fixture;
         _configuration = BuildConfiguration();
     }
-
-    public Task DisposeAsync() => _fixture.DisposeAsync();
 
     // ---------------------------------------------------------------------------
     // Tests

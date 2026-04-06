@@ -8,18 +8,17 @@ namespace Dapper.ETL.Orchestrator.Tests.Commands;
 /// <summary>
 /// Integration tests for <see cref="StatusCommand"/> via <see cref="DataService"/>.
 /// </summary>
-public class StatusCommandTests : IAsyncLifetime
+[Collection("SharedSqlServer collection")]
+public class StatusCommandTests
 {
-    private readonly SqlServerFixture _fixture = new();
-    private IConfiguration _configuration = null!;
+    private readonly SharedSqlServerFixture _fixture;
+    private readonly IConfiguration _configuration;
 
-    public async Task InitializeAsync()
+    public StatusCommandTests(SharedSqlServerFixture fixture)
     {
-        await _fixture.InitializeAsync();
+        _fixture = fixture;
         _configuration = BuildConfiguration();
     }
-
-    public Task DisposeAsync() => _fixture.DisposeAsync();
 
     // ---------------------------------------------------------------------------
     // Tests
@@ -28,7 +27,11 @@ public class StatusCommandTests : IAsyncLifetime
     [Fact]
     public async Task Test_ExecuteAsync_DisplaysRowCounts()
     {
-        // Arrange: seed 3 source rows
+        // Arrange: truncate first (shared fixture), then seed 3 source rows
+        await using var conn = await _fixture.GetConnectionAsync("TestDbSource");
+        await TestDatabaseHelper.TruncateTableAsync(conn, "Customer");
+        await conn.CloseAsync();
+
         var etlService = new EtlService(_configuration,
             Microsoft.Extensions.Logging.Abstractions.NullLogger<EtlService>.Instance);
         await etlService.SeedCustomers(3);

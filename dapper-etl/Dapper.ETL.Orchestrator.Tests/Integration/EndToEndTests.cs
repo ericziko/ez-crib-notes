@@ -12,18 +12,17 @@ namespace Dapper.ETL.Orchestrator.Tests.Integration;
 /// End-to-end workflow integration tests.
 /// Each test class owns its own SqlServerFixture so containers are isolated.
 /// </summary>
-public class EndToEndTests : IAsyncLifetime
+[Collection("SharedSqlServer collection")]
+public class EndToEndTests
 {
-    private readonly SqlServerFixture _fixture = new();
-    private IConfiguration _configuration = null!;
+    private readonly SharedSqlServerFixture _fixture;
+    private readonly IConfiguration _configuration;
 
-    public async Task InitializeAsync()
+    public EndToEndTests(SharedSqlServerFixture fixture)
     {
-        await _fixture.InitializeAsync();
+        _fixture = fixture;
         _configuration = BuildConfiguration();
     }
-
-    public Task DisposeAsync() => _fixture.DisposeAsync();
 
     // ---------------------------------------------------------------------------
     // Tests

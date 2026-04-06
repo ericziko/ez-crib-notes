@@ -10,18 +10,17 @@ namespace Dapper.ETL.Orchestrator.Tests.Commands;
 /// Tests exercise the service layer directly because <see cref="CompareDataCommand"/>
 /// renders to AnsiConsole which is not suitable for headless test execution.
 /// </summary>
-public class CompareDataCommandTests : IAsyncLifetime
+[Collection("SharedSqlServer collection")]
+public class CompareDataCommandTests
 {
-    private readonly SqlServerFixture _fixture = new();
-    private IConfiguration _configuration = null!;
+    private readonly SharedSqlServerFixture _fixture;
+    private readonly IConfiguration _configuration;
 
-    public async Task InitializeAsync()
+    public CompareDataCommandTests(SharedSqlServerFixture fixture)
     {
-        await _fixture.InitializeAsync();
+        _fixture = fixture;
         _configuration = BuildConfiguration();
     }
-
-    public Task DisposeAsync() => _fixture.DisposeAsync();
 
     // ---------------------------------------------------------------------------
     // Tests
@@ -30,7 +29,11 @@ public class CompareDataCommandTests : IAsyncLifetime
     [Fact]
     public async Task Test_ExecuteAsync_WithMatchingData_ReturnsNoMismatches()
     {
-        // Arrange: seed source rows; stub ValidateQuick always returns (true, {})
+        // Arrange: truncate first (shared fixture), then seed source rows; stub ValidateQuick always returns (true, {})
+        await using var conn = await _fixture.GetConnectionAsync("TestDbSource");
+        await TestDatabaseHelper.TruncateTableAsync(conn, "Customer");
+        await conn.CloseAsync();
+
         var etlService = new EtlService(_configuration,
             Microsoft.Extensions.Logging.Abstractions.NullLogger<EtlService>.Instance);
         await etlService.SeedCustomers(5);
