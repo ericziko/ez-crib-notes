@@ -9,12 +9,15 @@ namespace Dapper.ETL.Orchestrator.Tests.Commands;
 /// Tests exercise SQL connectivity directly because <see cref="CheckConnectionCommand"/>
 /// renders to AnsiConsole which is not suitable for headless test execution.
 /// </summary>
-public class CheckConnectionCommandTests : IAsyncLifetime
+[Collection("SharedSqlServer collection")]
+public class CheckConnectionCommandTests
 {
-    private readonly SqlServerFixture _fixture = new();
+    private readonly SharedSqlServerFixture _fixture;
 
-    public Task InitializeAsync() => _fixture.InitializeAsync();
-    public Task DisposeAsync() => _fixture.DisposeAsync();
+    public CheckConnectionCommandTests(SharedSqlServerFixture fixture)
+    {
+        _fixture = fixture;
+    }
 
     // ---------------------------------------------------------------------------
     // Tests

@@ -9,18 +9,17 @@ namespace Dapper.ETL.Orchestrator.Tests.Commands;
 /// <summary>
 /// Integration tests for <see cref="ResetTargetDatabaseCommand"/> via <see cref="DataService.ResetTargetDatabase"/>.
 /// </summary>
-public class ResetTargetDatabaseCommandTests : IAsyncLifetime
+[Collection("SharedSqlServer collection")]
+public class ResetTargetDatabaseCommandTests
 {
-    private readonly SqlServerFixture _fixture = new();
-    private IConfiguration _configuration = null!;
+    private readonly SharedSqlServerFixture _fixture;
+    private readonly IConfiguration _configuration;
 
-    public async Task InitializeAsync()
+    public ResetTargetDatabaseCommandTests(SharedSqlServerFixture fixture)
     {
-        await _fixture.InitializeAsync();
+        _fixture = fixture;
         _configuration = BuildConfiguration();
     }
-
-    public Task DisposeAsync() => _fixture.DisposeAsync();
 
     // ---------------------------------------------------------------------------
     // Tests

@@ -8,12 +8,15 @@ namespace Dapper.ETL.Orchestrator.Tests.Commands;
 /// DryRunCommand is purely presentational (no DB writes) so tests verify the
 /// database state is unchanged after what a dry run would have done.
 /// </summary>
-public class DryRunCommandTests : IAsyncLifetime
+[Collection("SharedSqlServer collection")]
+public class DryRunCommandTests
 {
-    private readonly SqlServerFixture _fixture = new();
+    private readonly SharedSqlServerFixture _fixture;
 
-    public Task InitializeAsync() => _fixture.InitializeAsync();
-    public Task DisposeAsync() => _fixture.DisposeAsync();
+    public DryRunCommandTests(SharedSqlServerFixture fixture)
+    {
+        _fixture = fixture;
+    }
 
     // ---------------------------------------------------------------------------
     // Tests
