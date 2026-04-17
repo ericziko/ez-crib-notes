@@ -48,7 +48,21 @@ public class StatusCommandTests
     [Fact]
     public async Task Test_ExecuteAsync_WithEmptyDatabase_ReturnsZeros()
     {
-        // Arrange: no seed data — database starts empty after fixture initialises
+        // Arrange: truncate all tables — shared fixture may have rows from other tests
+        await using var sourceConn = await _fixture.GetConnectionAsync("TestDbSource");
+        await TestDatabaseHelper.TruncateTableAsync(sourceConn, "Customer");
+        await sourceConn.CloseAsync();
+
+        await using var targetConn = await _fixture.GetConnectionAsync("TestDbTarget");
+        await TestDatabaseHelper.TruncateTableAsync(targetConn, "CustomerCopy");
+        await TestDatabaseHelper.TruncateTableAsync(targetConn, "CustomerEmailList");
+        await TestDatabaseHelper.TruncateTableAsync(targetConn, "CustomerLoyaltyRewards");
+        await targetConn.CloseAsync();
+
+        await using var logsConn = await _fixture.GetConnectionAsync("EtlLogs");
+        await TestDatabaseHelper.TruncateTableAsync(logsConn, "Logs");
+        await logsConn.CloseAsync();
+
         var dataService = new DataService(_configuration);
 
         // Act

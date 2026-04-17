@@ -62,7 +62,11 @@ public class SeedSourceCustomersCommandTests
     [Fact]
     public async Task Test_ExecuteAsync_WithZeroCount_Succeeds()
     {
-        // Arrange
+        // Arrange: truncate first to eliminate leftover rows from shared fixture
+        await using var setupConn = await _fixture.GetConnectionAsync("TestDbSource");
+        await TestDatabaseHelper.TruncateTableAsync(setupConn, "Customer");
+        await setupConn.CloseAsync();
+
         var service = BuildEtlService();
 
         // Act

@@ -32,6 +32,7 @@ public class RunEtlCommandTests
     {
         // Arrange: seed 10 source rows
         await using var sourceConn = await _fixture.GetConnectionAsync("TestDbSource");
+        await TestDatabaseHelper.TruncateTableAsync(sourceConn, "Customer");
         await TestDatabaseHelper.InsertCustomersAsync(sourceConn, 10);
 
         var service = BuildEtlService();
@@ -48,6 +49,7 @@ public class RunEtlCommandTests
     {
         // Arrange: seed 10 source rows
         await using var sourceConn = await _fixture.GetConnectionAsync("TestDbSource");
+        await TestDatabaseHelper.TruncateTableAsync(sourceConn, "Customer");
         await TestDatabaseHelper.InsertCustomersAsync(sourceConn, 10);
 
         var service = BuildEtlService();
@@ -64,6 +66,7 @@ public class RunEtlCommandTests
     {
         // Arrange: seed 10 rows, run ETL
         await using var sourceConn = await _fixture.GetConnectionAsync("TestDbSource");
+        await TestDatabaseHelper.TruncateTableAsync(sourceConn, "Customer");
         await TestDatabaseHelper.InsertCustomersAsync(sourceConn, 10);
 
         var service = BuildEtlService();
