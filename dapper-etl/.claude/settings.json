@@ -1,5 +1,12 @@
 {
   "enabledPlugins": {
     "oh-my-claudecode@omc": true
+  },
+  "permissions": {
+    "allow": [
+      "Bash(dotnet test *)",
+      "Bash(dotnet build *)",
+      "Bash(dotnet restore *)"
+    ]
   }
 }
