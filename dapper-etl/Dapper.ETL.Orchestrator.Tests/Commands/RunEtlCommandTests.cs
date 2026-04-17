@@ -1,112 +1,91 @@
+namespace Dapper.ETL.Orchestrator.Tests.Commands;
+
 using Dapper.ETL.Library.Models;
+using Dapper.ETL.Orchestrator.Commands;
 using Dapper.ETL.Orchestrator.Services;
-using Dapper.ETL.Orchestrator.Tests.Fixtures;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging.Abstractions;
 using Xunit;
 
-namespace Dapper.ETL.Orchestrator.Tests.Commands;
-
 /// <summary>
-/// Integration tests for <see cref="RunEtlCommand"/> via <see cref="EtlService"/>.
-/// Each test starts a fresh SQL Server container via <see cref="SqlServerFixture"/>.
+/// Unit tests for EtlService.RunEtl (used by RunEtlCommand).
+/// RunEtl is a stub returning success with 0 rows — no database connection required.
 /// </summary>
-[Collection("SharedSqlServer collection")]
 public class RunEtlCommandTests
 {
-    private readonly SharedSqlServerFixture _fixture;
-    private IConfiguration _configuration;
-
-    public RunEtlCommandTests(SharedSqlServerFixture fixture)
+    private static EtlService BuildEtlService()
     {
-        _fixture = fixture;
-        _configuration = BuildConfiguration();
-    }
-
-    // ---------------------------------------------------------------------------
-    // Tests
-    // ---------------------------------------------------------------------------
-
-    [Fact]
-    public async Task Test_ExecuteAsync_WithAtomicMode_Succeeds()
-    {
-        // Arrange: seed 10 source rows
-        await using var sourceConn = await _fixture.GetConnectionAsync("TestDbSource");
-        await TestDatabaseHelper.TruncateTableAsync(sourceConn, "Customer");
-        await TestDatabaseHelper.InsertCustomersAsync(sourceConn, 10);
-
-        var service = BuildEtlService();
-
-        // Act
-        var result = await service.RunEtl(EtlTransactionMode.Atomic);
-
-        // Assert: stub returns success=true; verify no exception and success flag
-        Assert.True(result.Success, $"ETL should succeed. Error: {result.ErrorMessage}");
-    }
-
-    [Fact]
-    public async Task Test_ExecuteAsync_WithPartialMode_Succeeds()
-    {
-        // Arrange: seed 10 source rows
-        await using var sourceConn = await _fixture.GetConnectionAsync("TestDbSource");
-        await TestDatabaseHelper.TruncateTableAsync(sourceConn, "Customer");
-        await TestDatabaseHelper.InsertCustomersAsync(sourceConn, 10);
-
-        var service = BuildEtlService();
-
-        // Act
-        var result = await service.RunEtl(EtlTransactionMode.Partial);
-
-        // Assert
-        Assert.True(result.Success, $"ETL (partial mode) should succeed. Error: {result.ErrorMessage}");
-    }
-
-    [Fact]
-    public async Task Test_ExecuteAsync_CopiesCorrectRowCount()
-    {
-        // Arrange: seed 10 rows, run ETL
-        await using var sourceConn = await _fixture.GetConnectionAsync("TestDbSource");
-        await TestDatabaseHelper.TruncateTableAsync(sourceConn, "Customer");
-        await TestDatabaseHelper.InsertCustomersAsync(sourceConn, 10);
-
-        var service = BuildEtlService();
-        var result = await service.RunEtl(EtlTransactionMode.Atomic);
-
-        // Assert: result must be successful; RowsCopied is non-negative
-        Assert.True(result.Success);
-        Assert.True(result.RowsCopied >= 0,
-            "RowsCopied should be a non-negative integer");
-    }
-
-    [Fact]
-    public async Task Test_ExecuteAsync_WithAtomicMode_RollsBackOnError()
-    {
-        // Arrange: no source data seeded (empty source) — service stub returns success=true
-        // with 0 rows copied, which represents the "nothing to copy" baseline.
-        var service = BuildEtlService();
-
-        // Act
-        var result = await service.RunEtl(EtlTransactionMode.Atomic);
-
-        // Assert: currently a stub — success should be true and rows should be 0
-        Assert.True(result.Success);
-        Assert.Equal(0, result.RowsCopied);
-    }
-
-    // ---------------------------------------------------------------------------
-    // Helpers
-    // ---------------------------------------------------------------------------
-
-    private EtlService BuildEtlService()
-        => new(_configuration, NullLogger<EtlService>.Instance);
-
-    private IConfiguration BuildConfiguration()
-        => new ConfigurationBuilder()
+        var config = new ConfigurationBuilder()
             .AddInMemoryCollection(new Dictionary<string, string?>
             {
-                ["ConnectionStrings:Source"] = _fixture.GetConnectionString("TestDbSource"),
-                ["ConnectionStrings:Target"] = _fixture.GetConnectionString("TestDbTarget"),
-                ["ConnectionStrings:Logs"]   = _fixture.GetConnectionString("EtlLogs"),
+                ["ConnectionStrings:Source"] = "Server=.;Database=Source;Trusted_Connection=True",
+                ["ConnectionStrings:Target"] = "Server=.;Database=Target;Trusted_Connection=True",
+                ["ConnectionStrings:Logs"]   = "Server=.;Database=Logs;Trusted_Connection=True",
             })
             .Build();
+
+        return new EtlService(config, NullLogger<EtlService>.Instance);
+    }
+
+    [Fact]
+    public async Task Test_RunEtl_AtomicMode_ReturnsSuccess()
+    {
+        // Arrange
+        var etlService = BuildEtlService();
+
+        // Act
+        var result = await etlService.RunEtl(EtlTransactionMode.Atomic);
+
+        // Assert
+        Assert.True(result.Success);
+        Assert.Equal(0, result.RowsCopied);
+        Assert.Equal(0, result.Duration);
+        Assert.Null(result.ErrorMessage);
+    }
+
+    [Fact]
+    public async Task Test_RunEtl_PartialMode_ReturnsSuccess()
+    {
+        // Arrange
+        var etlService = BuildEtlService();
+
+        // Act
+        var result = await etlService.RunEtl(EtlTransactionMode.Partial);
+
+        // Assert
+        Assert.True(result.Success);
+        Assert.Equal(0, result.RowsCopied);
+        Assert.Equal(0, result.Duration);
+        Assert.Null(result.ErrorMessage);
+    }
+
+    [Fact]
+    public void Test_RunEtlSettings_DefaultAtomic_IsTrue()
+    {
+        // Arrange / Act
+        var settings = new RunEtlSettings();
+
+        // Assert
+        Assert.True(settings.Atomic, "Default transaction mode should be Atomic (true).");
+    }
+
+    [Fact]
+    public void Test_RunEtlSettings_CanSetAtomicFalse()
+    {
+        // Arrange / Act
+        var settings = new RunEtlSettings { Atomic = false };
+
+        // Assert
+        Assert.False(settings.Atomic);
+    }
+
+    [Fact]
+    public void Test_EtlService_CanBeConstructed()
+    {
+        // Arrange / Act
+        var exception = Record.Exception(BuildEtlService);
+
+        // Assert
+        Assert.Null(exception);
+    }
 }
