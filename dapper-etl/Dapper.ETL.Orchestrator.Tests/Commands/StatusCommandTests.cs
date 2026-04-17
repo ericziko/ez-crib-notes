@@ -80,6 +80,54 @@ public class StatusCommandTests
         Assert.Equal(0, logsCount);
     }
 
+    [Fact]
+    public async Task Test_GetRowCount_LogsDatabase_ReturnsCount()
+    {
+        // Arrange: ensure at least 3 log rows exist
+        await using var logsConn = await _fixture.GetConnectionAsync("EtlLogs");
+        await TestDatabaseHelper.TruncateTableAsync(logsConn, "Logs");
+        for (int i = 0; i < 3; i++)
+        {
+            await using var cmd = new Microsoft.Data.SqlClient.SqlCommand(
+                "INSERT INTO [dbo].[Logs] ([MessageTemplate],[Level],[TimeStamp]) VALUES ('test','Info',GETUTCDATE())",
+                logsConn);
+            await cmd.ExecuteNonQueryAsync();
+        }
+        await logsConn.CloseAsync();
+
+        var dataService = new DataService(_configuration);
+
+        // Act
+        var count = await dataService.GetRowCount("Logs", "dbo.Logs");
+
+        // Assert
+        Assert.True(count >= 3);
+    }
+
+    [Fact]
+    public async Task Test_GetRowCount_InvalidDatabase_ThrowsArgumentException()
+    {
+        // Arrange
+        var dataService = new DataService(_configuration);
+
+        // Act & Assert
+        await Assert.ThrowsAsync<ArgumentException>(
+            () => dataService.GetRowCount("BadDB", "dbo.Customer"));
+    }
+
+    [Fact]
+    public async Task Test_GetLastEtlRunInfo_ReturnsNull()
+    {
+        // Arrange
+        var dataService = new DataService(_configuration);
+
+        // Act
+        var result = await dataService.GetLastEtlRunInfo();
+
+        // Assert
+        Assert.Null(result);
+    }
+
     // ---------------------------------------------------------------------------
     // Helpers
     // ---------------------------------------------------------------------------
