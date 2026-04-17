@@ -25,11 +25,13 @@ var loggerConfig = new LoggerConfiguration()
     .Enrich.WithMachineName()
     .Enrich.WithEnvironmentName();
 
-var sqlConnectionString = configuration["ConnectionStrings:Logs"];
-if (!string.IsNullOrWhiteSpace(sqlConnectionString))
+var logsConnStr = SqlConnectionExtensions.AssembleConnectionString(
+    configuration, "ConnectionStrings:Logs", "LogsCred");
+
+if (!string.IsNullOrWhiteSpace(logsConnStr))
 {
     loggerConfig = loggerConfig.WriteTo.MSSqlServer(
-        connectionString: sqlConnectionString,
+        connectionString: logsConnStr,
         sinkOptions: new MSSqlServerSinkOptions
         {
             TableName = "Logs",
@@ -69,6 +71,17 @@ try
     {
         builder.ClearProviders();
         builder.AddProvider(new SerilogLoggerProvider(Log.Logger, dispose: false));
+    });
+
+    // Keyed SQL Server connection strings
+    var startupLogger = new Serilog.Extensions.Logging.SerilogLoggerProvider(Log.Logger, dispose: false)
+        .CreateLogger("SqlConnections");
+
+    services.AddKeyedSqlConnections(configuration, startupLogger, connections =>
+    {
+        connections.Add("Source", "ConnectionStrings:Source", "SourceCred");
+        connections.Add("Target", "ConnectionStrings:Target", "TargetCred");
+        connections.Add("Logs",   "ConnectionStrings:Logs",   "LogsCred");
     });
 
     // Application services
