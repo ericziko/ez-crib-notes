@@ -49,6 +49,7 @@ CREATE TABLE dbo.CustomerLoyaltyRewards (
     FirstName NVARCHAR(100) NOT NULL,
     LastName NVARCHAR(100) NOT NULL
 );
+GO
 
 -- Use EtlLogs
 USE EtlLogs;

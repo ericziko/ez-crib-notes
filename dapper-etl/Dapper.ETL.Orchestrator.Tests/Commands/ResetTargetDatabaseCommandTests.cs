@@ -67,8 +67,8 @@ public class ResetTargetDatabaseCommandTests
         await using var insertCmd = conn.CreateCommand();
         insertCmd.CommandText = """
             INSERT INTO dbo.CustomerEmailList (CustomerId, FirstName, LastName, EmailAddress)
+            OUTPUT inserted.CustomerEmailId
             VALUES (1, 'Test', 'User', 'test@example.com');
-            SELECT SCOPE_IDENTITY();
             """;
         var newId = await insertCmd.ExecuteScalarAsync();
 
@@ -83,6 +83,11 @@ public class ResetTargetDatabaseCommandTests
     private async Task SeedTargetTablesAsync(int rowCount)
     {
         await using var conn = await _fixture.GetConnectionAsync("TestDbTarget");
+
+        // Clear tables first to avoid PK conflicts from shared fixture
+        await TestDatabaseHelper.TruncateTableAsync(conn, "CustomerCopy");
+        await TestDatabaseHelper.TruncateTableAsync(conn, "CustomerEmailList");
+        await TestDatabaseHelper.TruncateTableAsync(conn, "CustomerLoyaltyRewards");
 
         for (var i = 1; i <= rowCount; i++)
         {

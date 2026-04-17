@@ -46,7 +46,7 @@ public class DataService
     }
 
     /// <summary>
-    /// Truncates all target tables and resets their identity seeds.
+    /// Truncates all target tables and resets their sequences.
     /// </summary>
     public async Task ResetTargetDatabase()
     {
@@ -64,13 +64,16 @@ public class DataService
         {
             await using var truncateCmd = new SqlCommand($"TRUNCATE TABLE {table}", connection);
             await truncateCmd.ExecuteNonQueryAsync();
-
-            // Reset identity seed so next insert starts at 1.
-            var tableName = table.Split('.')[1];
-            await using var reseedCmd = new SqlCommand(
-                $"DBCC CHECKIDENT ('{table}', RESEED, 0)", connection);
-            await reseedCmd.ExecuteNonQueryAsync();
         }
+
+        // Reset sequences so the next insert starts at 1
+        await using var resetEmailSeq = new SqlCommand(
+            "ALTER SEQUENCE dbo.CustomerEmailIdSequence RESTART WITH 1", connection);
+        await resetEmailSeq.ExecuteNonQueryAsync();
+
+        await using var resetLoyaltySeq = new SqlCommand(
+            "ALTER SEQUENCE dbo.LoyaltyRewardIdSequence RESTART WITH 1", connection);
+        await resetLoyaltySeq.ExecuteNonQueryAsync();
     }
 
     /// <summary>
