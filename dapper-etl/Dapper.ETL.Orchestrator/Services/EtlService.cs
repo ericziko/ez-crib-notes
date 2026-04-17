@@ -3,7 +3,7 @@ namespace Dapper.ETL.Orchestrator.Services
     using Dapper.ETL.Library.Models;
     using Dapper.ETL.Orchestrator.Models;
     using Microsoft.Data.SqlClient;
-    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
 
     /// <summary>
@@ -11,7 +11,7 @@ namespace Dapper.ETL.Orchestrator.Services
     /// </summary>
     public class EtlService
     {
-        private readonly IConfiguration _configuration;
+        private readonly string _sourceConnectionString;
         private readonly ILogger<EtlService> _logger;
 
         private static readonly string[] FirstNames = ["John", "Jane", "Alice", "Bob", "Carol", "Dave", "Eve", "Frank", "Grace", "Hank"];
@@ -20,9 +20,11 @@ namespace Dapper.ETL.Orchestrator.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="EtlService"/> class.
         /// </summary>
-        public EtlService(IConfiguration configuration, ILogger<EtlService> logger)
+        public EtlService(
+            [FromKeyedServices("Source")] string sourceConnectionString,
+            ILogger<EtlService> logger)
         {
-            _configuration = configuration;
+            _sourceConnectionString = sourceConnectionString;
             _logger = logger;
         }
 
@@ -48,15 +50,9 @@ namespace Dapper.ETL.Orchestrator.Services
         /// </summary>
         public async Task<int> SeedCustomers(int count)
         {
-            var connectionString = _configuration["ConnectionStrings:Source"];
-            if (string.IsNullOrWhiteSpace(connectionString))
-            {
-                throw new InvalidOperationException("ConnectionStrings:Source is not configured.");
-            }
-
             _logger.LogInformation("Seeding {Count} customers into source database", count);
 
-            await using var connection = new SqlConnection(connectionString);
+            await using var connection = new SqlConnection(_sourceConnectionString);
             await connection.OpenAsync();
 
             const string insertSql = """

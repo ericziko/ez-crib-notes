@@ -1,6 +1,5 @@
 using Dapper.ETL.Orchestrator.Services;
 using Dapper.ETL.Orchestrator.Tests.Fixtures;
-using Microsoft.Extensions.Configuration;
 using Xunit;
 
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
@@ -12,12 +11,10 @@ namespace Dapper.ETL.Orchestrator.Tests.Commands;
 public class StatusCommandTests
 {
     private readonly SharedSqlServerFixture _fixture;
-    private readonly IConfiguration _configuration;
 
     public StatusCommandTests(SharedSqlServerFixture fixture)
     {
         _fixture = fixture;
-        _configuration = BuildConfiguration();
     }
 
     // ---------------------------------------------------------------------------
@@ -32,11 +29,12 @@ public class StatusCommandTests
         await TestDatabaseHelper.TruncateTableAsync(conn, "Customer");
         await conn.CloseAsync();
 
-        var etlService = new EtlService(_configuration,
+        var etlService = new EtlService(
+            _fixture.GetConnectionString("TestDbSource"),
             Microsoft.Extensions.Logging.Abstractions.NullLogger<EtlService>.Instance);
         await etlService.SeedCustomers(3);
 
-        var dataService = new DataService(_configuration);
+        var dataService = BuildDataService();
 
         // Act
         var sourceCount = await dataService.GetRowCount("Source", "dbo.Customer");
@@ -63,7 +61,7 @@ public class StatusCommandTests
         await TestDatabaseHelper.TruncateTableAsync(logsConn, "Logs");
         await logsConn.CloseAsync();
 
-        var dataService = new DataService(_configuration);
+        var dataService = BuildDataService();
 
         // Act
         var sourceCount = await dataService.GetRowCount("Source", "dbo.Customer");
@@ -95,7 +93,7 @@ public class StatusCommandTests
         }
         await logsConn.CloseAsync();
 
-        var dataService = new DataService(_configuration);
+        var dataService = BuildDataService();
 
         // Act
         var count = await dataService.GetRowCount("Logs", "dbo.Logs");
@@ -108,7 +106,7 @@ public class StatusCommandTests
     public async Task Test_GetRowCount_InvalidDatabase_ThrowsArgumentException()
     {
         // Arrange
-        var dataService = new DataService(_configuration);
+        var dataService = BuildDataService();
 
         // Act & Assert
         await Assert.ThrowsAsync<ArgumentException>(
@@ -119,7 +117,7 @@ public class StatusCommandTests
     public async Task Test_GetLastEtlRunInfo_ReturnsNull()
     {
         // Arrange
-        var dataService = new DataService(_configuration);
+        var dataService = BuildDataService();
 
         // Act
         var result = await dataService.GetLastEtlRunInfo();
@@ -132,13 +130,9 @@ public class StatusCommandTests
     // Helpers
     // ---------------------------------------------------------------------------
 
-    private IConfiguration BuildConfiguration()
-        => new ConfigurationBuilder()
-            .AddInMemoryCollection(new Dictionary<string, string?>
-            {
-                ["ConnectionStrings:Source"] = _fixture.GetConnectionString("TestDbSource"),
-                ["ConnectionStrings:Target"] = _fixture.GetConnectionString("TestDbTarget"),
-                ["ConnectionStrings:Logs"]   = _fixture.GetConnectionString("EtlLogs"),
-            })
-            .Build();
+    private DataService BuildDataService()
+        => new(
+            _fixture.GetConnectionString("TestDbSource"),
+            _fixture.GetConnectionString("TestDbTarget"),
+            _fixture.GetConnectionString("EtlLogs"));
 }

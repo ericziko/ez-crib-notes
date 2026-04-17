@@ -78,7 +78,8 @@ public class ValidateDataCommandTests
         await TestDatabaseHelper.TruncateTableAsync(conn, "Customer");
         await conn.CloseAsync();
 
-        var etlService = new EtlService(_configuration,
+        var etlService = new EtlService(
+            _fixture.GetConnectionString("TestDbSource"),
             Microsoft.Extensions.Logging.Abstractions.NullLogger<EtlService>.Instance);
         await etlService.SeedCustomers(5);
 

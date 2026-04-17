@@ -2,7 +2,7 @@ namespace Dapper.ETL.Orchestrator.Services;
 
 using Dapper.ETL.Orchestrator.Models;
 using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 /// <summary>
 /// Provides data access helpers for ETL status and maintenance operations.
@@ -13,14 +13,14 @@ public class DataService
     private readonly string _targetConnectionString;
     private readonly string _logsConnectionString;
 
-    public DataService(IConfiguration configuration)
+    public DataService(
+        [FromKeyedServices("Source")] string sourceConnectionString,
+        [FromKeyedServices("Target")] string targetConnectionString,
+        [FromKeyedServices("Logs")]   string logsConnectionString)
     {
-        _sourceConnectionString = configuration["ConnectionStrings:Source"]
-            ?? throw new InvalidOperationException("ConnectionStrings:Source is not configured.");
-        _targetConnectionString = configuration["ConnectionStrings:Target"]
-            ?? throw new InvalidOperationException("ConnectionStrings:Target is not configured.");
-        _logsConnectionString = configuration["ConnectionStrings:Logs"]
-            ?? throw new InvalidOperationException("ConnectionStrings:Logs is not configured.");
+        _sourceConnectionString = sourceConnectionString;
+        _targetConnectionString = targetConnectionString;
+        _logsConnectionString   = logsConnectionString;
     }
 
     /// <summary>
