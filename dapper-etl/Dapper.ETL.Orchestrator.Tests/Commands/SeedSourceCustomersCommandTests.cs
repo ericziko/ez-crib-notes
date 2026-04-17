@@ -1,6 +1,5 @@
 using Dapper.ETL.Orchestrator.Services;
 using Dapper.ETL.Orchestrator.Tests.Fixtures;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging.Abstractions;
 using Xunit;
 
@@ -13,12 +12,10 @@ namespace Dapper.ETL.Orchestrator.Tests.Commands;
 public class SeedSourceCustomersCommandTests
 {
     private readonly SharedSqlServerFixture _fixture;
-    private readonly IConfiguration _configuration;
 
     public SeedSourceCustomersCommandTests(SharedSqlServerFixture fixture)
     {
         _fixture = fixture;
-        _configuration = BuildConfiguration();
     }
 
     // ---------------------------------------------------------------------------
@@ -116,38 +113,10 @@ public class SeedSourceCustomersCommandTests
         Assert.Equal("john.smith1@example.com", email);
     }
 
-    [Fact]
-    public async Task Test_SeedCustomers_MissingConnectionString_Throws()
-    {
-        // Arrange
-        var badConfig = new ConfigurationBuilder()
-            .AddInMemoryCollection(new Dictionary<string, string?>
-            {
-                ["ConnectionStrings:Target"] = _fixture.GetConnectionString("TestDbTarget"),
-                ["ConnectionStrings:Logs"]   = _fixture.GetConnectionString("EtlLogs"),
-            })
-            .Build();
-        var etlService = new EtlService(badConfig, NullLogger<EtlService>.Instance);
-
-        // Act & Assert
-        await Assert.ThrowsAsync<InvalidOperationException>(
-            () => etlService.SeedCustomers(1));
-    }
-
     // ---------------------------------------------------------------------------
     // Helpers
     // ---------------------------------------------------------------------------
 
     private EtlService BuildEtlService()
-        => new(_configuration, NullLogger<EtlService>.Instance);
-
-    private IConfiguration BuildConfiguration()
-        => new ConfigurationBuilder()
-            .AddInMemoryCollection(new Dictionary<string, string?>
-            {
-                ["ConnectionStrings:Source"] = _fixture.GetConnectionString("TestDbSource"),
-                ["ConnectionStrings:Target"] = _fixture.GetConnectionString("TestDbTarget"),
-                ["ConnectionStrings:Logs"]   = _fixture.GetConnectionString("EtlLogs"),
-            })
-            .Build();
+        => new(_fixture.GetConnectionString("TestDbSource"), NullLogger<EtlService>.Instance);
 }

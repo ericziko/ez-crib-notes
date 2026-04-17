@@ -3,7 +3,6 @@ namespace Dapper.ETL.Orchestrator.Tests.Commands;
 using Dapper.ETL.Library.Models;
 using Dapper.ETL.Orchestrator.Commands;
 using Dapper.ETL.Orchestrator.Services;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging.Abstractions;
 using Xunit;
 
@@ -14,18 +13,7 @@ using Xunit;
 public class RunEtlCommandTests
 {
     private static EtlService BuildEtlService()
-    {
-        var config = new ConfigurationBuilder()
-            .AddInMemoryCollection(new Dictionary<string, string?>
-            {
-                ["ConnectionStrings:Source"] = "Server=.;Database=Source;Trusted_Connection=True",
-                ["ConnectionStrings:Target"] = "Server=.;Database=Target;Trusted_Connection=True",
-                ["ConnectionStrings:Logs"]   = "Server=.;Database=Logs;Trusted_Connection=True",
-            })
-            .Build();
-
-        return new EtlService(config, NullLogger<EtlService>.Instance);
-    }
+        => new("Server=.;Database=Source;Trusted_Connection=True", NullLogger<EtlService>.Instance);
 
     [Fact]
     public async Task Test_RunEtl_AtomicMode_ReturnsSuccess()

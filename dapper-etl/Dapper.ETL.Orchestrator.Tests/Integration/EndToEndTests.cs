@@ -32,7 +32,7 @@ public class EndToEndTests
     public async Task Test_SeedValidateCompareStatus_FullWorkflow()
     {
         // Step 1 – Seed
-        var etlService = new EtlService(_configuration, NullLogger<EtlService>.Instance);
+        var etlService = new EtlService(_fixture.GetConnectionString("TestDbSource"), NullLogger<EtlService>.Instance);
         var seeded = await etlService.SeedCustomers(10);
         Assert.Equal(10, seeded);
 
@@ -48,7 +48,10 @@ public class EndToEndTests
         Assert.Equal(10, sourceCount);
 
         // Step 4 – Status: verify target tables are accessible
-        var dataService = new DataService(_configuration);
+        var dataService = new DataService(
+            _fixture.GetConnectionString("TestDbSource"),
+            _fixture.GetConnectionString("TestDbTarget"),
+            _fixture.GetConnectionString("EtlLogs"));
         var targetCopyCount   = await dataService.GetRowCount("Target", "dbo.CustomerCopy");
         var targetEmailCount  = await dataService.GetRowCount("Target", "dbo.CustomerEmailList");
         var targetLoyalCount  = await dataService.GetRowCount("Target", "dbo.CustomerLoyaltyRewards");
@@ -63,7 +66,7 @@ public class EndToEndTests
     public async Task Test_ETL_ClearLogs_CheckConnection()
     {
         // Step 1 – Run ETL (stub returns success with 0 rows)
-        var etlService = new EtlService(_configuration, NullLogger<EtlService>.Instance);
+        var etlService = new EtlService(_fixture.GetConnectionString("TestDbSource"), NullLogger<EtlService>.Instance);
         var etlResult = await etlService.RunEtl(Dapper.ETL.Library.Models.EtlTransactionMode.Atomic);
         Assert.True(etlResult.Success);
 
@@ -109,8 +112,7 @@ public class EndToEndTests
 
     private async Task TruncateLogsAsync()
     {
-        var cs = _configuration["ConnectionStrings:Logs"]!;
-        await using var conn = new SqlConnection(cs);
+        await using var conn = new SqlConnection(_fixture.GetConnectionString("EtlLogs"));
         await conn.OpenAsync();
         await using var cmd = new SqlCommand("TRUNCATE TABLE dbo.Logs", conn);
         await cmd.ExecuteNonQueryAsync();

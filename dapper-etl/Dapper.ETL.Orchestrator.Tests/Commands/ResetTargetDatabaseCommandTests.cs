@@ -1,7 +1,5 @@
 using Dapper.ETL.Orchestrator.Services;
 using Dapper.ETL.Orchestrator.Tests.Fixtures;
-using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
 using Xunit;
 
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
@@ -13,12 +11,10 @@ namespace Dapper.ETL.Orchestrator.Tests.Commands;
 public class ResetTargetDatabaseCommandTests
 {
     private readonly SharedSqlServerFixture _fixture;
-    private readonly IConfiguration _configuration;
 
     public ResetTargetDatabaseCommandTests(SharedSqlServerFixture fixture)
     {
         _fixture = fixture;
-        _configuration = BuildConfiguration();
     }
 
     // ---------------------------------------------------------------------------
@@ -39,7 +35,7 @@ public class ResetTargetDatabaseCommandTests
         Assert.True(emailBefore > 0, "CustomerEmailList should have rows before reset");
 
         // Act
-        var dataService = new DataService(_configuration);
+        var dataService = BuildDataService();
         await dataService.ResetTargetDatabase();
 
         // Assert: all target tables are empty
@@ -59,7 +55,7 @@ public class ResetTargetDatabaseCommandTests
         // Arrange: populate and then reset
         await SeedTargetTablesAsync(rowCount: 3);
 
-        var dataService = new DataService(_configuration);
+        var dataService = BuildDataService();
         await dataService.ResetTargetDatabase();
 
         // Act: insert one new row after reset — its identity-like ID should be 1
@@ -79,6 +75,12 @@ public class ResetTargetDatabaseCommandTests
     // ---------------------------------------------------------------------------
     // Helpers
     // ---------------------------------------------------------------------------
+
+    private DataService BuildDataService()
+        => new(
+            _fixture.GetConnectionString("TestDbSource"),
+            _fixture.GetConnectionString("TestDbTarget"),
+            _fixture.GetConnectionString("EtlLogs"));
 
     private async Task SeedTargetTablesAsync(int rowCount)
     {
@@ -128,14 +130,4 @@ public class ResetTargetDatabaseCommandTests
             await loyaltyCmd.ExecuteNonQueryAsync();
         }
     }
-
-    private IConfiguration BuildConfiguration()
-        => new ConfigurationBuilder()
-            .AddInMemoryCollection(new Dictionary<string, string?>
-            {
-                ["ConnectionStrings:Source"] = _fixture.GetConnectionString("TestDbSource"),
-                ["ConnectionStrings:Target"] = _fixture.GetConnectionString("TestDbTarget"),
-                ["ConnectionStrings:Logs"]   = _fixture.GetConnectionString("EtlLogs"),
-            })
-            .Build();
 }
