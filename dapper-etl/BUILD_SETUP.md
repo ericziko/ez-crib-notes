@@ -177,7 +177,7 @@ lsof -i :1433
 docker stop <container-id>
 
 # Or use different port in Aspire host:
-# Edit Dapper.ETL.AppHost/Program.cs
+# Edit src/Dapper.ETL.AppHost/Program.cs
 var sqlServer = builder.AddSqlServer("sql-server", password: sqlPassword, port: 1434);
 ```
 
@@ -291,12 +291,12 @@ After building successfully, verify:
 
 ```bash
 # Check all projects built
-ls -la Dapper.ETL.Library/bin/Debug/net9.0/Dapper.ETL.Library.dll
-ls -la Dapper.ETL.Orchestrator/bin/Debug/net9.0/Dapper.ETL.Orchestrator.dll
-ls -la Dapper.ETL.Orchestrator.Tests/bin/Debug/net8.0/Dapper.ETL.Orchestrator.Tests.dll
+ls -la src/Dapper.ETL.Library/bin/Debug/net9.0/Dapper.ETL.Library.dll
+ls -la src/Dapper.ETL.Orchestrator/bin/Debug/net9.0/Dapper.ETL.Orchestrator.dll
+ls -la tests/Dapper.ETL.Orchestrator.Tests/bin/Debug/net9.0/Dapper.ETL.Orchestrator.Tests.dll
 
 # Run a quick test
-dotnet test Dapper.ETL.Orchestrator.Tests --filter "ClassName=GetStatsCommandTests" -v minimal
+dotnet test tests/Dapper.ETL.Orchestrator.Tests --filter "ClassName=GetStatsCommandTests" -v minimal
 ```
 
 ---
@@ -325,7 +325,7 @@ Example GitHub Actions step:
 
 1. **Verify build works**: `dotnet build -c Debug`
 2. **Run tests**: `dotnet test`
-3. **Start Aspire host**: `cd Dapper.ETL.AppHost && dotnet run`
+3. **Start Aspire host**: `cd src/Dapper.ETL.AppHost && dotnet run`
 4. **See [ASPIRE_CONTAINERS_GUIDE.md](ASPIRE_CONTAINERS_GUIDE.md) for development workflow**
 
 For additional help, see the [QUICK_START.md](QUICK_START.md) or [ASPIRE_CONTAINERS_GUIDE.md](ASPIRE_CONTAINERS_GUIDE.md).

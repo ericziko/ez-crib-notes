@@ -23,7 +23,7 @@ Quick reference for developing with Dapper.ETL, including local development with
 Start the containerized environment for local development:
 
 ```bash
-cd Dapper.ETL.AppHost
+cd src/Dapper.ETL.AppHost
 dotnet run
 ```
 
@@ -41,7 +41,7 @@ Connection strings are automatically injected. See [ASPIRE_CONTAINERS_GUIDE.md](
 Run all integration tests with Testcontainers (automatic SQL Server containers):
 
 ```bash
-dotnet test Dapper.ETL.Orchestrator.Tests
+dotnet test tests/Dapper.ETL.Orchestrator.Tests
 ```
 
 Tests include:
@@ -58,7 +58,7 @@ See [ASPIRE_CONTAINERS_GUIDE.md](ASPIRE_CONTAINERS_GUIDE.md#integration-testing-
 After Aspire host is running, use the CLI:
 
 ```bash
-cd Dapper.ETL.Orchestrator
+cd src/Dapper.ETL.Orchestrator
 
 # Seed test data
 dotnet run -- seed-customers 100
@@ -81,13 +81,13 @@ See [ASPIRE_CONTAINERS_GUIDE.md](ASPIRE_CONTAINERS_GUIDE.md#cli-commands-referen
 
 | Scenario | File | Key Class |
 |----------|------|-----------|
-| **Aspire Host** | `Dapper.ETL.AppHost/Program.cs` | `DistributedApplication` |
-| **Test Fixtures** | `Dapper.ETL.Orchestrator.Tests/Fixtures/SqlServerFixture.cs` | `SqlServerFixture` |
-| **ISchemaInspector** | `Dapper.ETL.Library/Interfaces/ISchemaInspector.cs` | `ISchemaInspector` |
-| **SQL Server** | `Dapper.ETL.Library/Implementation/SqlServerSchemaInspector.cs` | `SqlServerSchemaInspector` |
-| **SQLite** | `Dapper.ETL.Library/Implementation/SqliteSchemaInspector.cs` | `SqliteSchemaInspector` |
-| **Consumer** | `Dapper.ETL.Library/Implementation/TableCopyService.cs` | `TableCopyService` |
-| **DI Setup** | `Dapper.ETL.Library/DependencyInjection.cs` | `AddEtlServices()` |
+| **Aspire Host** | `src/Dapper.ETL.AppHost/Program.cs` | `DistributedApplication` |
+| **Test Fixtures** | `tests/Dapper.ETL.Orchestrator.Tests/Fixtures/SqlServerFixture.cs` | `SqlServerFixture` |
+| **ISchemaInspector** | `src/Dapper.ETL.Library/Interfaces/ISchemaInspector.cs` | `ISchemaInspector` |
+| **SQL Server** | `src/Dapper.ETL.Library/Implementation/SqlServerSchemaInspector.cs` | `SqlServerSchemaInspector` |
+| **SQLite** | `src/Dapper.ETL.Library/Implementation/SqliteSchemaInspector.cs` | `SqliteSchemaInspector` |
+| **Consumer** | `src/Dapper.ETL.Library/Implementation/TableCopyService.cs` | `TableCopyService` |
+| **DI Setup** | `src/Dapper.ETL.Library/DependencyInjection.cs` | `AddEtlServices()` |
 
 ---
 
