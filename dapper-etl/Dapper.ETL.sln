@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dapper.ETL.Library", "Dapper.ETL.Library\Dapper.ETL.Library.csproj", "{A1B2C3D4-E5F6-4A7B-8C9D-0E1F2A3B4C5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dapper.ETL.Library", "src\Dapper.ETL.Library\Dapper.ETL.Library.csproj", "{A1B2C3D4-E5F6-4A7B-8C9D-0E1F2A3B4C5D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dapper.ETL.Tests", "Dapper.ETL.Tests\Dapper.ETL.Tests.csproj", "{B2C3D4E5-F6A7-4B8C-9D0E-1F2A3B4C5D6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dapper.ETL.Tests", "tests\Dapper.ETL.Tests\Dapper.ETL.Tests.csproj", "{B2C3D4E5-F6A7-4B8C-9D0E-1F2A3B4C5D6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLLite.Integration.Tests", "SQLLite.Integration.Tests\SQLLite.Integration.Tests.csproj", "{623D0ED6-D671-4FBB-9F15-5EFB789C4BAD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLLite.Integration.Tests", "tests\SQLLite.Integration.Tests\SQLLite.Integration.Tests.csproj", "{623D0ED6-D671-4FBB-9F15-5EFB789C4BAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.ETL.AppHost", "Dapper.ETL.AppHost\Dapper.ETL.AppHost.csproj", "{068B3A3B-46B8-4FBC-8484-9AE73AF00D9C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.ETL.AppHost", "src\Dapper.ETL.AppHost\Dapper.ETL.AppHost.csproj", "{068B3A3B-46B8-4FBC-8484-9AE73AF00D9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.ETL.Orchestrator", "Dapper.ETL.Orchestrator\Dapper.ETL.Orchestrator.csproj", "{C8760036-0DB7-454C-AD15-E9B35B748A17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.ETL.Orchestrator", "src\Dapper.ETL.Orchestrator\Dapper.ETL.Orchestrator.csproj", "{C8760036-0DB7-454C-AD15-E9B35B748A17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.ETL.Orchestrator.Tests", "Dapper.ETL.Orchestrator.Tests\Dapper.ETL.Orchestrator.Tests.csproj", "{16A1A923-CD0D-4CBF-8F79-7038558572FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.ETL.Orchestrator.Tests", "tests\Dapper.ETL.Orchestrator.Tests\Dapper.ETL.Orchestrator.Tests.csproj", "{16A1A923-CD0D-4CBF-8F79-7038558572FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
