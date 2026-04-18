@@ -3,3 +3,4 @@
 /.omc
 /.omc
 /dapper-etl/coverage-report
+.worktrees/
