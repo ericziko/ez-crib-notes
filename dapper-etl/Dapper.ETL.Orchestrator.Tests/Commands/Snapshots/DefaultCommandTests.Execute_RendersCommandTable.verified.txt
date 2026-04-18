@@ -1,0 +1,22 @@
+﻿Dapper ETL Orchestrator
+Use one of the commands below to interact with the ETL pipeline.
+
+╭────────────────┬──────────────────────────────────────────╮
+│ Command        │ Description                              │
+├────────────────┼──────────────────────────────────────────┤
+│ run            │ Execute the ETL pipeline                 │
+│ seed           │ Seed source database with test customers │
+│ validate       │ Validate data integrity                  │
+│ logs           │ Show recent log entries                  │
+│ clear-logs     │ Clear the logs database                  │
+│ reset          │ Reset target database tables             │
+│ status         │ Show row counts and last ETL run info    │
+│ compare        │ Compare source vs target row counts      │
+│ export-logs    │ Export logs to JSON file                 │
+│ check          │ Check database connectivity              │
+│ stats          │ Show ETL statistics                      │
+│ export-metrics │ Export metrics to file                   │
+│ dry-run        │ Preview ETL without writing data         │
+╰────────────────┴──────────────────────────────────────────╯
+
+Run <command> --help for command-specific options.

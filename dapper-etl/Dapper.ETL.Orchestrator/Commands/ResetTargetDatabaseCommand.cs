@@ -11,12 +11,11 @@ public class ResetTargetDatabaseCommand : Command
 {
     private readonly DataService _dataService;
 
-    private static readonly string[] TargetTables = new[]
-    {
+    private readonly static string[] TargetTables = [
         "dbo.CustomerCopy",
         "dbo.CustomerEmailList",
-        "dbo.CustomerLoyaltyRewards",
-    };
+        "dbo.CustomerLoyaltyRewards"
+    ];
 
     public ResetTargetDatabaseCommand(DataService dataService)
     {

@@ -10,8 +10,8 @@ sqlServer.AddDatabase("TestDbTarget");
 sqlServer.AddDatabase("EtlLogs");
 
 // Seq container for structured logging
-var seq = builder.AddContainer("seq", "datalust/seq:latest")
-    .WithHttpEndpoint(port: 5341, targetPort: 5341)
+var seq = builder.AddContainer("seq", "datalust/seq", "latest")
+    .WithHttpEndpoint(port: 5341, targetPort: 80)
     .WithEnvironment("ACCEPT_EULA", "Y");
 
 // ETL Orchestrator project with references and environment variables
