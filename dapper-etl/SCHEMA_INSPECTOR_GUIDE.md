@@ -74,7 +74,7 @@ The `ISchemaInspector` interface decouples schema introspection from the copy se
 
 ### Interface Definition
 
-**File**: `Dapper.ETL.Library/Interfaces/ISchemaInspector.cs`
+**File**: `src/Dapper.ETL.Library/Interfaces/ISchemaInspector.cs`
 
 ```csharp
 namespace Dapper.ETL.Library.Interfaces
@@ -103,7 +103,7 @@ namespace Dapper.ETL.Library.Interfaces
 
 ### 1. SqlServerSchemaInspector (ANSI-Standard)
 
-**File**: `Dapper.ETL.Library/Implementation/SqlServerSchemaInspector.cs`
+**File**: `src/Dapper.ETL.Library/Implementation/SqlServerSchemaInspector.cs`
 
 ```csharp
 namespace Dapper.ETL.Library.Implementation
@@ -159,7 +159,7 @@ namespace Dapper.ETL.Library.Implementation
 
 ### 2. SqliteSchemaInspector (SQLite-Specific)
 
-**File**: `Dapper.ETL.Library/Implementation/SqliteSchemaInspector.cs`
+**File**: `src/Dapper.ETL.Library/Implementation/SqliteSchemaInspector.cs`
 
 ```csharp
 namespace Dapper.ETL.Library.Implementation
@@ -509,8 +509,8 @@ The solution:
 The `ISchemaInspector` abstraction successfully decouples schema introspection from the data-copy logic, resolving the critical SQL Server regression while enabling database-agnostic operation. The solution follows SOLID principles, is fully tested (282 tests), and supports easy extension to additional database systems.
 
 **Key Files:**
-- `Dapper.ETL.Library/Interfaces/ISchemaInspector.cs` (interface)
-- `Dapper.ETL.Library/Implementation/SqlServerSchemaInspector.cs` (SQL Server)
-- `Dapper.ETL.Library/Implementation/SqliteSchemaInspector.cs` (SQLite)
-- `Dapper.ETL.Library/DependencyInjection.cs` (registration)
-- `Dapper.ETL.Library/Implementation/TableCopyService.cs` (consumer)
+- `src/Dapper.ETL.Library/Interfaces/ISchemaInspector.cs` (interface)
+- `src/Dapper.ETL.Library/Implementation/SqlServerSchemaInspector.cs` (SQL Server)
+- `src/Dapper.ETL.Library/Implementation/SqliteSchemaInspector.cs` (SQLite)
+- `src/Dapper.ETL.Library/DependencyInjection.cs` (registration)
+- `src/Dapper.ETL.Library/Implementation/TableCopyService.cs` (consumer)

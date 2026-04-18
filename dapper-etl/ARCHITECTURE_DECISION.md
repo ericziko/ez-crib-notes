@@ -162,14 +162,14 @@ public class SqliteSchemaInspector : ISchemaInspector { ... }
 ### Files Changed/Created
 
 **New:**
-- `Dapper.ETL.Library/Interfaces/ISchemaInspector.cs` (interface)
-- `Dapper.ETL.Library/Implementation/SqlServerSchemaInspector.cs` (SQL Server)
-- `Dapper.ETL.Library/Implementation/SqliteSchemaInspector.cs` (SQLite)
+- `src/Dapper.ETL.Library/Interfaces/ISchemaInspector.cs` (interface)
+- `src/Dapper.ETL.Library/Implementation/SqlServerSchemaInspector.cs` (SQL Server)
+- `src/Dapper.ETL.Library/Implementation/SqliteSchemaInspector.cs` (SQLite)
 
 **Modified:**
-- `Dapper.ETL.Library/Implementation/TableCopyService.cs` (added 5th parameter)
-- `Dapper.ETL.Library/DependencyInjection.cs` (register inspector)
-- `Dapper.ETL.Tests/*.cs` (39 constructor calls)
+- `src/Dapper.ETL.Library/Implementation/TableCopyService.cs` (added 5th parameter)
+- `src/Dapper.ETL.Library/DependencyInjection.cs` (register inspector)
+- `tests/Dapper.ETL.Tests/*.cs` (39 constructor calls)
 
 ### Key Design Decisions
 

@@ -42,7 +42,7 @@ export LogsCred="your-logs-db-secret"
 ### Credential (dotnet user-secrets — recommended for local development)
 
 ```bash
-cd Dapper.ETL.Orchestrator
+cd src/Dapper.ETL.Orchestrator
 dotnet user-secrets init          # first time only
 dotnet user-secrets set "SourceCred" "your-source-db-secret"
 dotnet user-secrets set "TargetCred" "your-target-db-secret"
@@ -243,9 +243,9 @@ Assert.Equal("Src", builder.InitialCatalog);
 
 | File | Purpose |
 |------|---------|
-| `Dapper.ETL.Orchestrator/Infrastructure/SqlConnectionDescriptor.cs` | Immutable record: DI key + config keys |
-| `Dapper.ETL.Orchestrator/Infrastructure/SqlConnectionBuilder.cs` | Fluent accumulator — call `.Add()` for each database |
-| `Dapper.ETL.Orchestrator/Infrastructure/SqlConnectionExtensions.cs` | `AssembleConnectionString` + `AddKeyedSqlConnections` extension |
-| `Dapper.ETL.Orchestrator/Program.cs` | Registration site |
-| `Dapper.ETL.Orchestrator/appsettings.json` | Base connection strings (no credentials) |
-| `Dapper.ETL.Orchestrator.Tests/Infrastructure/SqlConnectionExtensionsTests.cs` | Unit tests |
+| `src/Dapper.ETL.Orchestrator/Infrastructure/SqlConnectionDescriptor.cs` | Immutable record: DI key + config keys |
+| `src/Dapper.ETL.Orchestrator/Infrastructure/SqlConnectionBuilder.cs` | Fluent accumulator — call `.Add()` for each database |
+| `src/Dapper.ETL.Orchestrator/Infrastructure/SqlConnectionExtensions.cs` | `AssembleConnectionString` + `AddKeyedSqlConnections` extension |
+| `src/Dapper.ETL.Orchestrator/Program.cs` | Registration site |
+| `src/Dapper.ETL.Orchestrator/appsettings.json` | Base connection strings (no credentials) |
+| `tests/Dapper.ETL.Orchestrator.Tests/Infrastructure/SqlConnectionExtensionsTests.cs` | Unit tests |

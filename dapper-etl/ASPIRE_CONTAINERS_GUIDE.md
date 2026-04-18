@@ -38,7 +38,7 @@ This guide covers the containerized infrastructure for the Dapper ETL project, i
 ### Run the Aspire Host (Local Development)
 
 ```bash
-cd Dapper.ETL.AppHost
+cd src/Dapper.ETL.AppHost
 dotnet run
 ```
 
@@ -56,7 +56,7 @@ dotnet run
 ### Run Tests with Testcontainers
 
 ```bash
-dotnet test Dapper.ETL.Orchestrator.Tests
+dotnet test tests/Dapper.ETL.Orchestrator.Tests
 ```
 
 **What this does:**
@@ -127,7 +127,7 @@ dotnet test Dapper.ETL.Orchestrator.Tests
 ### Starting the Aspire Host
 
 ```bash
-cd Dapper.ETL.AppHost
+cd src/Dapper.ETL.AppHost
 dotnet run
 ```
 
@@ -161,7 +161,7 @@ Seq__Url=http://localhost:5341
 
 ```bash
 # After Aspire host is running, in another terminal:
-cd Dapper.ETL.Orchestrator
+cd src/Dapper.ETL.Orchestrator
 dotnet run -- seed-customers 10
 
 # Check logs
@@ -218,16 +218,16 @@ public class EndToEndTests : IAsyncLifetime
 
 ```bash
 # Run all tests
-dotnet test Dapper.ETL.Orchestrator.Tests
+dotnet test tests/Dapper.ETL.Orchestrator.Tests
 
 # Run specific test class
-dotnet test Dapper.ETL.Orchestrator.Tests --filter "ClassName=EndToEndTests"
+dotnet test tests/Dapper.ETL.Orchestrator.Tests --filter "ClassName=EndToEndTests"
 
 # Run with verbose output
-dotnet test Dapper.ETL.Orchestrator.Tests -v detailed
+dotnet test tests/Dapper.ETL.Orchestrator.Tests -v detailed
 
 # Collect code coverage
-dotnet test Dapper.ETL.Orchestrator.Tests /p:CollectCoverage=true
+dotnet test tests/Dapper.ETL.Orchestrator.Tests /p:CollectCoverage=true
 ```
 
 ### Test Categories
@@ -470,7 +470,7 @@ lsof -i :1433
 docker stop <container-id>
 
 # Or use different port in AppHost
-// Dapper.ETL.AppHost/Program.cs
+// src/Dapper.ETL.AppHost/Program.cs
 var sqlServer = builder.AddSqlServer("sql-server", password: sqlPassword, port: 1434);
 ```
 
@@ -488,7 +488,7 @@ var sqlServer = builder.AddSqlServer("sql-server", password: sqlPassword, port: 
 **Error:** `NullReferenceException: ConnectionStrings:Source is null`
 
 **Solution:**
-- Ensure Aspire host is running: `cd Dapper.ETL.AppHost && dotnet run`
+- Ensure Aspire host is running: `cd src/Dapper.ETL.AppHost && dotnet run`
 - Or set environment variables manually (see [Connection String Setup](#connection-string-setup))
 
 ### Issue: `init.sql` failed to execute
@@ -539,9 +539,9 @@ docker restart <seq-container-id>
 
 ## Next Steps
 
-1. **Start local development**: `cd Dapper.ETL.AppHost && dotnet run`
-2. **Run tests**: `dotnet test Dapper.ETL.Orchestrator.Tests`
-3. **Explore CLI**: `cd Dapper.ETL.Orchestrator && dotnet run -- status`
+1. **Start local development**: `cd src/Dapper.ETL.AppHost && dotnet run`
+2. **Run tests**: `dotnet test tests/Dapper.ETL.Orchestrator.Tests`
+3. **Explore CLI**: `cd src/Dapper.ETL.Orchestrator && dotnet run -- status`
 4. **Check logs**: View Seq dashboard at `http://localhost:5341`
 
 See [QUICK_START.md](QUICK_START.md) for the complete development workflow.
