@@ -1,8 +1,4 @@
 <Project>
-  <PropertyGroup>
-    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
-  </PropertyGroup>
   <ItemGroup>
     <!-- Aspire (AppHost) -->
     <PackageVersion Include="Aspire.Hosting" Version="9.0.0" />
