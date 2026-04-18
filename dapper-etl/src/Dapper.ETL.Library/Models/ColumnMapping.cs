@@ -33,6 +33,6 @@ namespace Dapper.ETL.Library.Models
         /// Examples: "LOWER(EmailAddress)", "TRIM(FirstName)", "CONVERT(INT, ProductId)"
         /// If null, uses the source column name directly.
         /// </summary>
-        public string SelectExpression { get; set; }
+        public string? SelectExpression { get; set; }
     }
 }
