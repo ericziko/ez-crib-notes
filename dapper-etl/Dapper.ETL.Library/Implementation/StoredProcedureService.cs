@@ -40,10 +40,7 @@ namespace Dapper.ETL.Library.Implementation
             StoredProcedureDefinition procedureDefinition,
             CancellationToken cancellationToken = default)
         {
-            if (procedureDefinition == null)
-            {
-                throw new ArgumentNullException(nameof(procedureDefinition));
-            }
+            ArgumentNullException.ThrowIfNull(procedureDefinition);
 
             var connection = _transactionManager.Connection;
 

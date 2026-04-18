@@ -67,10 +67,7 @@ namespace Dapper.ETL.Library.Implementation
                 throw new ArgumentException("Destination table name cannot be null or empty.", nameof(destinationTable));
             }
 
-            if (options == null)
-            {
-                throw new ArgumentNullException(nameof(options));
-            }
+            ArgumentNullException.ThrowIfNull(options);
 
             var stopwatch = Stopwatch.StartNew();
             var connection = _transactionManager.Connection;

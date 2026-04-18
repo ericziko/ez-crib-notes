@@ -27,10 +27,7 @@ namespace Dapper.ETL.Orchestrator.Services
         /// <param name="logger">Optional logger for debug output.</param>
         public MetricsService(Meter meter, ILogger<MetricsService>? logger = null)
         {
-            if (meter == null)
-            {
-                throw new ArgumentNullException(nameof(meter));
-            }
+            ArgumentNullException.ThrowIfNull(meter);
 
             _logger = logger;
 

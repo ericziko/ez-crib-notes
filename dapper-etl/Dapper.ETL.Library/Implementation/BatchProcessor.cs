@@ -26,20 +26,14 @@ namespace Dapper.ETL.Library.Implementation
             Func<List<T>, int, CancellationToken, Task> processBatch,
             CancellationToken cancellationToken = default)
         {
-            if (items == null)
-            {
-                throw new ArgumentNullException(nameof(items));
-            }
+            ArgumentNullException.ThrowIfNull(items);
 
             if (batchSize <= 0)
             {
                 throw new ArgumentException("Batch size must be greater than zero.", nameof(batchSize));
             }
 
-            if (processBatch == null)
-            {
-                throw new ArgumentNullException(nameof(processBatch));
-            }
+            ArgumentNullException.ThrowIfNull(processBatch);
 
             var batch = new List<T>(batchSize);
             var batchNumber = 0;
