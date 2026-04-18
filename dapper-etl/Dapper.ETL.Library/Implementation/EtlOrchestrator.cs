@@ -50,10 +50,7 @@ namespace Dapper.ETL.Library.Implementation
             EtlTransactionMode transactionMode = EtlTransactionMode.Atomic,
             CancellationToken cancellationToken = default)
         {
-            if (plan == null)
-            {
-                throw new ArgumentNullException(nameof(plan));
-            }
+            ArgumentNullException.ThrowIfNull(plan);
 
             if (transactionMode == EtlTransactionMode.Partial)
             {
