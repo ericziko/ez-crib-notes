@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" />
+    <PackageReference Include="JetBrains.Annotations" />
     <PackageReference Include="Microsoft.Data.SqlClient" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     <PackageReference Include="Serilog" />

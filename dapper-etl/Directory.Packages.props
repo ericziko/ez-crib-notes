@@ -6,6 +6,7 @@
     <PackageVersion Include="Aspire.Hosting.SqlServer" Version="9.0.0" />
     <!-- Data access -->
     <PackageVersion Include="Dapper" Version="2.1.15" />
+    <PackageVersion Include="JetBrains.Annotations" Version="2025.2.4" />
     <PackageVersion Include="Microsoft.Data.SqlClient" Version="6.1.1" />
     <PackageVersion Include="Microsoft.Data.Sqlite" Version="9.0.0" />
     <!-- Microsoft.Extensions.* -->
