@@ -22,7 +22,7 @@ public class ResetTargetDatabaseCommand : Command
         _dataService = dataService;
     }
 
-    public override int Execute(CommandContext context)
+    protected override int Execute(CommandContext context, CancellationToken cancellationToken)
     {
         try
         {

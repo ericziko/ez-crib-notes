@@ -20,8 +20,11 @@ public class DefaultCommand : Command
         _dataService = dataService;
     }
 
+    public int Execute(CommandContext context) {
+        return Execute(context, CancellationToken.None);
+    }
     /// <inheritdoc/>
-    public override int Execute(CommandContext context)
+    protected override int Execute(CommandContext context, CancellationToken cancellationToken)
     {
         AnsiConsole.MarkupLine("[bold cyan]Dapper ETL Orchestrator[/]");
         AnsiConsole.MarkupLine("[grey]Use one of the commands below to interact with the ETL pipeline.[/]");

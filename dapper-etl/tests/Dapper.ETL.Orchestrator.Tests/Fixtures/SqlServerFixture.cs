@@ -10,9 +10,9 @@ public class SqlServerFixture : IAsyncLifetime
 {
     private const string Password = "TestPassword123!";
 
-    private readonly MsSqlContainer _container = new MsSqlBuilder()
+    private readonly MsSqlContainer _container = new MsSqlBuilder("mcr.microsoft.com/mssql/server:2022-CU14-ubuntu-22.04")
         .WithPassword(Password)
-        .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(1433))
+        .WithWaitStrategy(Wait.ForUnixContainer().UntilInternalTcpPortIsAvailable(1433))
         .Build();
 
     public async Task InitializeAsync()

@@ -31,7 +31,7 @@ public class ExportMetricsCommand : Command<ExportMetricsSettings>
         _metricsService = metricsService;
     }
 
-    public override int Execute(CommandContext context, ExportMetricsSettings settings)
+    protected override int Execute(CommandContext context, ExportMetricsSettings settings, CancellationToken cancellationToken)
     {
         var format = (settings.Format ?? "json").ToLowerInvariant();
         var outputFile = settings.OutputFile ?? $"metrics.{format}";

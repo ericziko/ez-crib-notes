@@ -27,7 +27,7 @@ public sealed class ValidateDataCommand : Command<ValidateDataSettings>
         _validationService = new ValidationService(configuration);
     }
 
-    public override int Execute(CommandContext context, ValidateDataSettings settings)
+    protected override int Execute(CommandContext context, ValidateDataSettings settings, CancellationToken cancellationToken)
     {
         var level = settings.Level.ToLowerInvariant();
 

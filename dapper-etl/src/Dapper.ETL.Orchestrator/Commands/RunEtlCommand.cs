@@ -36,7 +36,7 @@ public class RunEtlCommand : Command<RunEtlSettings> {
     }
 
     /// <inheritdoc />
-    public override int Execute(CommandContext context, RunEtlSettings settings) {
+    protected override int Execute(CommandContext context, RunEtlSettings settings, CancellationToken cancellationToken) {
         var mode = settings.Atomic ? EtlTransactionMode.Atomic : EtlTransactionMode.Partial;
 
         AnsiConsole.MarkupLine($"[grey]Running ETL in [bold]{mode}[/] mode...[/]");

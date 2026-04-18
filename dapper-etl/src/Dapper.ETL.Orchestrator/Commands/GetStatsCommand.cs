@@ -17,8 +17,8 @@ public class GetStatsCommand : Command
         _metricsService = metricsService;
     }
 
-    public override int Execute(CommandContext context)
-    {
+    protected override int Execute(CommandContext context, CancellationToken cancellationToken) {
+        
         var metrics = _metricsService.GetLastMetrics();
 
         if (metrics == null || metrics.Count == 0)

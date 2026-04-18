@@ -31,7 +31,7 @@ public sealed class ShowLogsCommand : Command<ShowLogsSettings>
         _loggingService = new LoggingService(configuration);
     }
 
-    public override int Execute(CommandContext context, ShowLogsSettings settings)
+    protected override int Execute(CommandContext context, ShowLogsSettings settings, CancellationToken cancellationToken)
     {
         AnsiConsole.MarkupLine(
             $"[bold]Fetching logs — level:[cyan]{settings.Level}[/] limit:[cyan]{settings.Limit}[/][/]");

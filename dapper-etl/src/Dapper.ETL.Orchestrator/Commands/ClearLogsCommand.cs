@@ -17,7 +17,7 @@ public class ClearLogsCommand : Command
         _configuration = configuration;
     }
 
-    public override int Execute(CommandContext context)
+    protected override int Execute(CommandContext context, CancellationToken cancellationToken)
     {
         var confirmed = AnsiConsole.Confirm("Clear all logs? This cannot be undone.");
         if (!confirmed)

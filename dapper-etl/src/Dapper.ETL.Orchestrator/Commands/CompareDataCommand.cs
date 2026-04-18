@@ -35,7 +35,7 @@ public class CompareDataCommand : Command<CompareDataSettings>
     }
 
     /// <inheritdoc/>
-    public override int Execute(CommandContext context, CompareDataSettings settings)
+    protected override int Execute(CommandContext context, CompareDataSettings settings, CancellationToken cancellationToken)
     {
         try
         {

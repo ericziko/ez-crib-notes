@@ -21,7 +21,7 @@ public class CheckConnectionCommand : Command
     }
 
     /// <inheritdoc/>
-    public override int Execute(CommandContext context)
+    protected override int Execute(CommandContext context, CancellationToken cancellationToken)
     {
         var databases = new[]
         {

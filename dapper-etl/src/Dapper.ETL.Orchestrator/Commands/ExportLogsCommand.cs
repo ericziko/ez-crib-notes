@@ -51,7 +51,7 @@ public class ExportLogsCommand : Command<ExportLogsSettings>
     }
 
     /// <inheritdoc/>
-    public override int Execute(CommandContext context, ExportLogsSettings settings)
+    protected override int Execute(CommandContext context, ExportLogsSettings settings, CancellationToken cancellationToken)
     {
         try
         {

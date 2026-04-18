@@ -19,7 +19,7 @@ public class DryRunCommand : Command
         _metricsService = metricsService;
     }
 
-    public override int Execute(CommandContext context)
+    protected override int Execute(CommandContext context, CancellationToken cancellationToken)
     {
         AnsiConsole.MarkupLine("[bold]ETL Execution Plan (DRY RUN)[/]");
         AnsiConsole.MarkupLine($"Source table: [cyan]Customer[/]");

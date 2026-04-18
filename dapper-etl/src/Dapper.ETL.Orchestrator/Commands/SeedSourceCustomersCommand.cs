@@ -37,7 +37,7 @@ namespace Dapper.ETL.Orchestrator.Commands
         }
 
         /// <inheritdoc/>
-        public override int Execute(CommandContext context, SeedSourceCustomersSettings settings)
+        protected override int Execute(CommandContext context, SeedSourceCustomersSettings settings, CancellationToken cancellationToken)
         {
             AnsiConsole.MarkupLine($"[grey]Seeding [bold]{settings.Count}[/] customers into source database...[/]");
 
