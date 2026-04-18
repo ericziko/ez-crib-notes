@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Dapper.ETL.Library\Dapper.ETL.Library.csproj" />
+    <ProjectReference Include="..\..\src\Dapper.ETL.Library\Dapper.ETL.Library.csproj" />
   </ItemGroup>
 
 </Project>
