@@ -31,6 +31,18 @@ public class EndToEndTests
     [Fact]
     public async Task Test_SeedValidateCompareStatus_FullWorkflow()
     {
+        // Arrange: truncate source + target tables (shared fixture may hold rows from prior tests)
+        await using (var sourceSetup = await _fixture.GetConnectionAsync("TestDbSource"))
+        {
+            await TestDatabaseHelper.TruncateTableAsync(sourceSetup, "Customer");
+        }
+        await using (var targetSetup = await _fixture.GetConnectionAsync("TestDbTarget"))
+        {
+            await TestDatabaseHelper.TruncateTableAsync(targetSetup, "CustomerCopy");
+            await TestDatabaseHelper.TruncateTableAsync(targetSetup, "CustomerEmailList");
+            await TestDatabaseHelper.TruncateTableAsync(targetSetup, "CustomerLoyaltyRewards");
+        }
+
         // Step 1 – Seed
         var etlService = new EtlService(_fixture.GetConnectionString("TestDbSource"), NullLogger<EtlService>.Instance);
         var seeded = await etlService.SeedCustomers(10);
