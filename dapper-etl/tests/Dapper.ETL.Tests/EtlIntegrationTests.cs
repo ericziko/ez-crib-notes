@@ -1,255 +1,231 @@
-namespace Dapper.ETL.Tests
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Dapper.ETL.Library.Implementation;
-    using Dapper.ETL.Library.Interfaces;
-    using Dapper.ETL.Library.Models;
-    using Moq;
-    using Xunit;
+namespace Dapper.ETL.Tests;
 
-    public class EtlIntegrationTests
-    {
-        [Fact]
-        public async Task FullEtlWorkflow_WithMockedDatabase_ExecutesSuccessfully()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
-            mockConnection.Setup(x => x.State).Returns(ConnectionState.Closed);
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Library.Implementation;
+using Library.Interfaces;
+using Library.Models;
+using Moq;
+using Xunit;
 
-            var transactionManager = new Mock<ITransactionManager>();
-            transactionManager.Setup(x => x.Connection).Returns(mockConnection.Object);
-            transactionManager.Setup(x => x.CurrentTransaction).Returns((IDbTransaction?)null);
+public class EtlIntegrationTests {
+    [Fact]
+    public async Task FullEtlWorkflow_WithMockedDatabase_ExecutesSuccessfully() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
+        mockConnection.Setup(x => x.State).Returns(ConnectionState.Closed);
 
-            var columnMapper = new ColumnMapper();
-            var batchProcessor = new BatchProcessor();
-            var logger = new EtlLogger();
+        var transactionManager = new Mock<ITransactionManager>();
+        transactionManager.Setup(x => x.Connection).Returns(mockConnection.Object);
+        transactionManager.Setup(x => x.CurrentTransaction).Returns((IDbTransaction?)null);
 
-            var tableCopyService = new Mock<ITableCopyService>();
-            var storedProcedureService = new Mock<IStoredProcedureService>();
+        var logger = new EtlLogger();
 
-            var copyResult = new TableCopyResult(true, "source", "dest", 100, 1000);
-            var procResult = new StoredProcedureResult(true, "TestProcedure", 50);
+        var tableCopyService = new Mock<ITableCopyService>();
+        var storedProcedureService = new Mock<IStoredProcedureService>();
 
-            tableCopyService.Setup(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(copyResult);
+        var copyResult = new TableCopyResult(true, "source", "dest", 100, 1000);
+        var procResult = new StoredProcedureResult(true, "TestProcedure", 50);
 
-            storedProcedureService.Setup(x => x.ExecuteAsync(It.IsAny<StoredProcedureDefinition>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(procResult);
+        tableCopyService.Setup(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(copyResult);
 
-            var orchestrator = new EtlOrchestrator(
-                transactionManager.Object,
-                tableCopyService.Object,
-                storedProcedureService.Object,
-                logger);
+        storedProcedureService.Setup(x => x.ExecuteAsync(It.IsAny<StoredProcedureDefinition>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(procResult);
 
-            var plan = new EtlExecutionPlan(
-                tableCopies: new[]
-                {
-                    ("SourceTable1", "DestTable1", new TableCopyOptions()),
-                    ("SourceTable2", "DestTable2", new TableCopyOptions())
-                },
-                storedProcedures: new[]
-                {
-                    new StoredProcedureDefinition("UpdateProcedure"),
-                    new StoredProcedureDefinition("CleanupProcedure")
-                });
+        var orchestrator = new EtlOrchestrator(
+            transactionManager.Object,
+            tableCopyService.Object,
+            storedProcedureService.Object,
+            logger);
 
-            // Act
-            var result = await orchestrator.ExecuteAsync(plan);
+        var plan = new EtlExecutionPlan(
+            tableCopies: [
+                ("SourceTable1", "DestTable1", new TableCopyOptions()),
+                ("SourceTable2", "DestTable2", new TableCopyOptions())
+            ],
+            storedProcedures: [
+                new StoredProcedureDefinition("UpdateProcedure"),
+                new StoredProcedureDefinition("CleanupProcedure")
+            ]);
 
-            // Assert
-            Assert.True(result.Success);
-            Assert.Equal(2, result.TableCopyResults.Count);
-            Assert.Equal(2, result.StoredProcedureResults.Count);
-            Assert.All(result.TableCopyResults, r => Assert.True(r.Success));
-            Assert.All(result.StoredProcedureResults, r => Assert.True(r.Success));
-        }
+        // Act
+        var result = await orchestrator.ExecuteAsync(plan);
 
-        [Fact]
-        public async Task EtlWithMultipleTables_ProcessesInOrder()
-        {
-            // Arrange
-            var executionOrder = new List<string>();
+        // Assert
+        Assert.True(result.Success);
+        Assert.Equal(2, result.TableCopyResults.Count);
+        Assert.Equal(2, result.StoredProcedureResults.Count);
+        Assert.All(result.TableCopyResults, r => Assert.True(r.Success));
+        Assert.All(result.StoredProcedureResults, r => Assert.True(r.Success));
+    }
 
-            var mockConnection = new Mock<IDbConnection>();
-            mockConnection.Setup(x => x.State).Returns(ConnectionState.Closed);
+    [Fact]
+    public async Task EtlWithMultipleTables_ProcessesInOrder() {
+        // Arrange
+        var executionOrder = new List<string>();
 
-            var transactionManager = new Mock<ITransactionManager>();
-            transactionManager.Setup(x => x.Connection).Returns(mockConnection.Object);
-            transactionManager.Setup(x => x.CurrentTransaction).Returns((IDbTransaction?)null);
+        var mockConnection = new Mock<IDbConnection>();
+        mockConnection.Setup(x => x.State).Returns(ConnectionState.Closed);
 
-            var logger = new EtlLogger();
+        var transactionManager = new Mock<ITransactionManager>();
+        transactionManager.Setup(x => x.Connection).Returns(mockConnection.Object);
+        transactionManager.Setup(x => x.CurrentTransaction).Returns((IDbTransaction?)null);
 
-            var tableCopyService = new Mock<ITableCopyService>();
-            var storedProcedureService = new Mock<IStoredProcedureService>();
+        var logger = new EtlLogger();
 
-            tableCopyService.Setup(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
-                .Callback<string, string, TableCopyOptions, CancellationToken>((src, dst, opts, ct) =>
-                {
-                    executionOrder.Add($"Copy {src}");
-                })
-                .ReturnsAsync(new TableCopyResult(true, "source", "dest", 100, 1000));
+        var tableCopyService = new Mock<ITableCopyService>();
+        var storedProcedureService = new Mock<IStoredProcedureService>();
 
-            storedProcedureService.Setup(x => x.ExecuteAsync(It.IsAny<StoredProcedureDefinition>(), It.IsAny<CancellationToken>()))
-                .Callback<StoredProcedureDefinition, CancellationToken>((proc, ct) =>
-                {
-                    executionOrder.Add($"Execute {proc.ProcedureName}");
-                })
-                .ReturnsAsync(new StoredProcedureResult(true, "proc", 10));
+        tableCopyService.Setup(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
+            .Callback<string, string, TableCopyOptions, CancellationToken>((src, _, _, _) => { executionOrder.Add($"Copy {src}"); })
+            .ReturnsAsync(new TableCopyResult(true, "source", "dest", 100, 1000));
 
-            var orchestrator = new EtlOrchestrator(
-                transactionManager.Object,
-                tableCopyService.Object,
-                storedProcedureService.Object,
-                logger);
+        storedProcedureService.Setup(x => x.ExecuteAsync(It.IsAny<StoredProcedureDefinition>(), It.IsAny<CancellationToken>()))
+            .Callback<StoredProcedureDefinition, CancellationToken>((proc, _) => { executionOrder.Add($"Execute {proc.ProcedureName}"); })
+            .ReturnsAsync(new StoredProcedureResult(true, "proc", 10));
 
-            var plan = new EtlExecutionPlan(
-                tableCopies: new[]
-                {
-                    ("Table1", "Table1_Staging", new TableCopyOptions()),
-                    ("Table2", "Table2_Staging", new TableCopyOptions())
-                },
-                storedProcedures: new[]
-                {
-                    new StoredProcedureDefinition("MergeData"),
-                    new StoredProcedureDefinition("UpdateMetadata")
-                });
+        var orchestrator = new EtlOrchestrator(
+            transactionManager.Object,
+            tableCopyService.Object,
+            storedProcedureService.Object,
+            logger);
 
-            // Act
-            var result = await orchestrator.ExecuteAsync(plan);
+        var plan = new EtlExecutionPlan(
+            tableCopies: [
+                ("Table1", "Table1_Staging", new TableCopyOptions()),
+                ("Table2", "Table2_Staging", new TableCopyOptions())
+            ],
+            storedProcedures: [
+                new StoredProcedureDefinition("MergeData"),
+                new StoredProcedureDefinition("UpdateMetadata")
+            ]);
 
-            // Assert
-            Assert.True(result.Success);
-            Assert.Equal(4, executionOrder.Count);
-            Assert.Equal("Copy Table1", executionOrder[0]);
-            Assert.Equal("Copy Table2", executionOrder[1]);
-            Assert.Equal("Execute MergeData", executionOrder[2]);
-            Assert.Equal("Execute UpdateMetadata", executionOrder[3]);
-        }
+        // Act
+        var result = await orchestrator.ExecuteAsync(plan);
 
-        [Fact]
-        public async Task ColumnMapperIntegration_WithComplexSchema_MapsCorrectly()
-        {
-            // Arrange
-            var mapper = new ColumnMapper();
+        // Assert
+        Assert.True(result.Success);
+        Assert.Equal(4, executionOrder.Count);
+        Assert.Equal("Copy Table1", executionOrder[0]);
+        Assert.Equal("Copy Table2", executionOrder[1]);
+        Assert.Equal("Execute MergeData", executionOrder[2]);
+        Assert.Equal("Execute UpdateMetadata", executionOrder[3]);
+    }
 
-            var sourceColumns = new[] { "Id", "FirstName", "LastName", "Email", "CreatedAt", "UpdatedAt", "IsActive" };
-            var destinationColumns = new[] { "UserId", "FirstName", "LastName", "EmailAddress", "CreatedDate", "ModifiedDate", "Active" };
-            var overrides = new Dictionary<string, string>
-            {
-                { "Id", "UserId" },
-                { "Email", "EmailAddress" },
-                { "CreatedAt", "CreatedDate" },
-                { "UpdatedAt", "ModifiedDate" },
-                { "IsActive", "Active" }
-            };
+    [Fact]
+    public void ColumnMapperIntegration_WithComplexSchema_MapsCorrectly() {
+        // Arrange
+        var mapper = new ColumnMapper();
 
-            // Act
-            var mappings = mapper.GetMapping(sourceColumns, destinationColumns, overrides).ToList();
+        var sourceColumns = new[] { "Id", "FirstName", "LastName", "Email", "CreatedAt", "UpdatedAt", "IsActive" };
+        var destinationColumns = new[] { "UserId", "FirstName", "LastName", "EmailAddress", "CreatedDate", "ModifiedDate", "Active" };
+        var overrides = new Dictionary<string, string> {
+            { "Id", "UserId" },
+            { "Email", "EmailAddress" },
+            { "CreatedAt", "CreatedDate" },
+            { "UpdatedAt", "ModifiedDate" },
+            { "IsActive", "Active" }
+        };
 
-            // Assert
-            Assert.Equal(7, mappings.Count);
-            Assert.Contains(mappings, m => m.SourceColumn == "Id" && m.DestinationColumn == "UserId");
-            Assert.Contains(mappings, m => m.SourceColumn == "FirstName" && m.DestinationColumn == "FirstName");
-            Assert.Contains(mappings, m => m.SourceColumn == "Email" && m.DestinationColumn == "EmailAddress");
-        }
+        // Act
+        var mappings = mapper.GetMapping(sourceColumns, destinationColumns, overrides).ToList();
 
-        [Fact]
-        public async Task BatchProcessor_WithLargeDataset_ProcessesAllBatches()
-        {
-            // Arrange
-            var processor = new BatchProcessor();
-            var items = Enumerable.Range(1, 10000).ToList();
-            var processedCount = 0;
-            var batchCounts = new List<int>();
+        // Assert
+        Assert.Equal(7, mappings.Count);
+        Assert.Contains(mappings, m => m is { SourceColumn: "Id", DestinationColumn: "UserId" });
+        Assert.Contains(mappings, m => m is { SourceColumn: "FirstName", DestinationColumn: "FirstName" });
+        Assert.Contains(mappings, m => m is { SourceColumn: "Email", DestinationColumn: "EmailAddress" });
+    }
 
-            // Act
-            await processor.ProcessInBatchesAsync(
-                items,
-                1000,
-                async (batch, batchNumber, ct) =>
-                {
-                    processedCount += batch.Count;
-                    batchCounts.Add(batch.Count);
-                    await Task.CompletedTask;
-                });
+    [Fact]
+    public async Task BatchProcessor_WithLargeDataset_ProcessesAllBatches() {
+        // Arrange
+        var processor = new BatchProcessor();
+        var items = Enumerable.Range(1, 10000).ToList();
+        var processedCount = 0;
+        var batchCounts = new List<int>();
 
-            // Assert
-            Assert.Equal(10000, processedCount);
-            Assert.Equal(10, batchCounts.Count);
-            Assert.All(batchCounts, count => Assert.Equal(1000, count));
-        }
+        // Act
+        await processor.ProcessInBatchesAsync(
+            items,
+            1000,
+            async (batch, _, _) => {
+                processedCount += batch.Count;
+                batchCounts.Add(batch.Count);
+                await Task.CompletedTask;
+            });
 
-        [Fact]
-        public async Task TransactionManager_WithAsyncOperations_MaintainsConnection()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
-            var mockTransaction = new Mock<IDbTransaction>();
+        // Assert
+        Assert.Equal(10000, processedCount);
+        Assert.Equal(10, batchCounts.Count);
+        Assert.All(batchCounts, count => Assert.Equal(1000, count));
+    }
 
-            mockConnection.Setup(x => x.State).Returns(ConnectionState.Closed);
-            mockConnection.Setup(x => x.Open()).Callback(() => mockConnection.Setup(x => x.State).Returns(ConnectionState.Open));
-            mockConnection.Setup(x => x.BeginTransaction(It.IsAny<IsolationLevel>())).Returns(mockTransaction.Object);
+    [Fact]
+    public async Task TransactionManager_WithAsyncOperations_MaintainsConnection() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
+        var mockTransaction = new Mock<IDbTransaction>();
 
-            var manager = new TransactionManager(mockConnection.Object);
+        mockConnection.Setup(x => x.State).Returns(ConnectionState.Closed);
+        mockConnection.Setup(x => x.Open()).Callback(() => mockConnection.Setup(x => x.State).Returns(ConnectionState.Open));
+        mockConnection.Setup(x => x.BeginTransaction(It.IsAny<IsolationLevel>())).Returns(mockTransaction.Object);
 
-            // Act
-            await manager.BeginTransactionAsync();
-            var transaction = manager.CurrentTransaction;
-            await manager.CommitAsync();
+        var manager = new TransactionManager(mockConnection.Object);
 
-            // Assert
-            Assert.NotNull(transaction);
-            mockConnection.Verify(x => x.BeginTransaction(It.IsAny<IsolationLevel>()), Times.Once);
-            mockTransaction.Verify(x => x.Commit(), Times.Once);
-        }
+        // Act
+        await manager.BeginTransactionAsync();
+        var transaction = manager.CurrentTransaction;
+        await manager.CommitAsync();
 
-        [Fact]
-        public async Task EtlOrchestrator_WithRollbackScenario_ProperlyRollsBack()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
-            var mockTransaction = new Mock<IDbTransaction>();
+        // Assert
+        Assert.NotNull(transaction);
+        mockConnection.Verify(x => x.BeginTransaction(It.IsAny<IsolationLevel>()), Times.Once);
+        mockTransaction.Verify(x => x.Commit(), Times.Once);
+    }
 
-            mockConnection.Setup(x => x.State).Returns(ConnectionState.Closed);
-            mockConnection.Setup(x => x.Open()).Callback(() => mockConnection.Setup(x => x.State).Returns(ConnectionState.Open));
-            mockConnection.Setup(x => x.BeginTransaction(It.IsAny<IsolationLevel>())).Returns(mockTransaction.Object);
+    [Fact]
+    public async Task EtlOrchestrator_WithRollbackScenario_ProperlyRollsBack() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
+        var mockTransaction = new Mock<IDbTransaction>();
 
-            var transactionManager = new Mock<ITransactionManager>();
-            transactionManager.Setup(x => x.Connection).Returns(mockConnection.Object);
-            transactionManager.Setup(x => x.CurrentTransaction).Returns(mockTransaction.Object);
+        mockConnection.Setup(x => x.State).Returns(ConnectionState.Closed);
+        mockConnection.Setup(x => x.Open()).Callback(() => mockConnection.Setup(x => x.State).Returns(ConnectionState.Open));
+        mockConnection.Setup(x => x.BeginTransaction(It.IsAny<IsolationLevel>())).Returns(mockTransaction.Object);
 
-            var tableCopyService = new Mock<ITableCopyService>();
-            var storedProcedureService = new Mock<IStoredProcedureService>();
-            var logger = new EtlLogger();
+        var transactionManager = new Mock<ITransactionManager>();
+        transactionManager.Setup(x => x.Connection).Returns(mockConnection.Object);
+        transactionManager.Setup(x => x.CurrentTransaction).Returns(mockTransaction.Object);
 
-            var failureResult = new TableCopyResult(false, "source", "dest", 0, 1000, "Copy failed");
-            tableCopyService.Setup(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(failureResult);
+        var tableCopyService = new Mock<ITableCopyService>();
+        var storedProcedureService = new Mock<IStoredProcedureService>();
+        var logger = new EtlLogger();
 
-            var orchestrator = new EtlOrchestrator(
-                transactionManager.Object,
-                tableCopyService.Object,
-                storedProcedureService.Object,
-                logger);
+        var failureResult = new TableCopyResult(false, "source", "dest", 0, 1000, "Copy failed");
+        tableCopyService.Setup(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(failureResult);
 
-            var plan = new EtlExecutionPlan(
-                tableCopies: new[]
-                {
-                    ("source", "dest", new TableCopyOptions())
-                });
+        var orchestrator = new EtlOrchestrator(
+            transactionManager.Object,
+            tableCopyService.Object,
+            storedProcedureService.Object,
+            logger);
 
-            // Act
-            var result = await orchestrator.ExecuteAsync(plan, shouldRollback: true);
+        var plan = new EtlExecutionPlan(
+            tableCopies: [
+                ("source", "dest", new TableCopyOptions())
+            ]);
 
-            // Assert
-            Assert.False(result.Success);
-            transactionManager.Verify(x => x.RollbackAsync(It.IsAny<CancellationToken>()), Times.Once);
-        }
+        // Act
+        var result = await orchestrator.ExecuteAsync(plan, shouldRollback: true);
+
+        // Assert
+        Assert.False(result.Success);
+        transactionManager.Verify(x => x.RollbackAsync(It.IsAny<CancellationToken>()), Times.Once);
     }
 }
