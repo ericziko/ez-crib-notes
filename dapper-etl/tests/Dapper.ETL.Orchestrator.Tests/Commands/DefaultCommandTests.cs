@@ -1,22 +1,18 @@
-namespace Dapper.ETL.Orchestrator.Tests.Commands;
-
 using Dapper.ETL.Orchestrator.Commands;
 using Dapper.ETL.Orchestrator.Tests.Fixtures;
-using Xunit;
+
+namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 [Collection("SharedSqlServer collection")]
-public class DefaultCommandTests
-{
+public class DefaultCommandTests {
     private readonly SharedSqlServerFixture _fixture;
 
-    public DefaultCommandTests(SharedSqlServerFixture fixture)
-    {
+    public DefaultCommandTests(SharedSqlServerFixture fixture) {
         _fixture = fixture;
     }
 
     [Fact]
-    public async Task Execute_ReturnsZero()
-    {
+    public async Task Execute_ReturnsZero() {
         var command = new DefaultCommand(CommandTestFixtures.BuildDataService(_fixture));
         var context = CommandTestFixtures.CreateContext("default");
 
@@ -27,8 +23,7 @@ public class DefaultCommandTests
     }
 
     [Fact]
-    public async Task Execute_RendersCommandTable()
-    {
+    public async Task Execute_RendersCommandTable() {
         var command = new DefaultCommand(CommandTestFixtures.BuildDataService(_fixture));
         var context = CommandTestFixtures.CreateContext("default");
 

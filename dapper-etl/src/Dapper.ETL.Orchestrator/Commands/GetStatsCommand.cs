@@ -1,28 +1,24 @@
+using Dapper.ETL.Orchestrator.Services;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
 namespace Dapper.ETL.Orchestrator.Commands;
 
-using Dapper.ETL.Orchestrator.Services;
-
 /// <summary>
-/// Displays metrics from the last ETL run as a Spectre.Console table.
+///     Displays metrics from the last ETL run as a Spectre.Console table.
 /// </summary>
-public class GetStatsCommand : Command
-{
+public class GetStatsCommand : Command {
     private readonly MetricsService _metricsService;
 
-    public GetStatsCommand(MetricsService metricsService)
-    {
+    public GetStatsCommand(MetricsService metricsService) {
         _metricsService = metricsService;
     }
 
     protected override int Execute(CommandContext context, CancellationToken cancellationToken) {
-        
+
         var metrics = _metricsService.GetLastMetrics();
 
-        if (metrics == null || metrics.Count == 0)
-        {
+        if (metrics == null || metrics.Count == 0) {
             AnsiConsole.MarkupLine("[yellow]No ETL run recorded[/]");
             return 0;
         }
@@ -32,8 +28,7 @@ public class GetStatsCommand : Command
         table.AddColumn("Value");
         table.AddColumn("Unit");
 
-        foreach (var entry in metrics)
-        {
+        foreach (var entry in metrics) {
             // Each key encodes the unit after a '|' separator, e.g. "Total Duration|ms"
             var parts = entry.Key.Split('|');
             var metricName = parts[0];

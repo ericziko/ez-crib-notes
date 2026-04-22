@@ -1,22 +1,12 @@
-namespace Dapper.ETL.Orchestrator.Tests.Infrastructure;
-
 using Dapper.ETL.Orchestrator.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
-using Xunit;
 
-public class TypeRegistrarTests
-{
-    private interface ITestService { string Value { get; } }
-    private class TestService : ITestService { public string Value => "test"; }
-    private class DisposableService : IDisposable
-    {
-        public bool Disposed { get; private set; }
-        public void Dispose() => Disposed = true;
-    }
+namespace Dapper.ETL.Orchestrator.Tests.Infrastructure;
+
+public class TypeRegistrarTests {
 
     [Fact]
-    public void Test_Build_ReturnsNonNullTypeResolver()
-    {
+    public void Test_Build_ReturnsNonNullTypeResolver() {
         var registrar = new TypeRegistrar(new ServiceCollection());
         var resolver = registrar.Build();
         Assert.NotNull(resolver);
@@ -24,8 +14,7 @@ public class TypeRegistrarTests
     }
 
     [Fact]
-    public void Test_Register_ServiceCanBeResolved()
-    {
+    public void Test_Register_ServiceCanBeResolved() {
         var services = new ServiceCollection();
         var registrar = new TypeRegistrar(services);
         registrar.Register(typeof(ITestService), typeof(TestService));
@@ -35,8 +24,7 @@ public class TypeRegistrarTests
     }
 
     [Fact]
-    public void Test_RegisterInstance_SameInstanceReturned()
-    {
+    public void Test_RegisterInstance_SameInstanceReturned() {
         var services = new ServiceCollection();
         var registrar = new TypeRegistrar(services);
         var instance = new TestService();
@@ -47,8 +35,7 @@ public class TypeRegistrarTests
     }
 
     [Fact]
-    public void Test_RegisterLazy_FactoryInvoked()
-    {
+    public void Test_RegisterLazy_FactoryInvoked() {
         var services = new ServiceCollection();
         var registrar = new TypeRegistrar(services);
         var created = new TestService();
@@ -59,8 +46,7 @@ public class TypeRegistrarTests
     }
 
     [Fact]
-    public void Test_TypeResolver_Resolve_NullType_ReturnsNull()
-    {
+    public void Test_TypeResolver_Resolve_NullType_ReturnsNull() {
         var provider = new ServiceCollection().BuildServiceProvider();
         using var resolver = new TypeResolver(provider);
         var result = resolver.Resolve(null);
@@ -68,8 +54,7 @@ public class TypeRegistrarTests
     }
 
     [Fact]
-    public void Test_TypeResolver_Dispose_DisposesServiceProvider()
-    {
+    public void Test_TypeResolver_Dispose_DisposesServiceProvider() {
         var services = new ServiceCollection();
         services.AddSingleton<DisposableService>();
         var provider = services.BuildServiceProvider();
@@ -77,5 +62,20 @@ public class TypeRegistrarTests
         var resolver = new TypeResolver(provider);
         resolver.Dispose();
         Assert.True(disposable.Disposed);
+    }
+
+    private interface ITestService {
+        string Value { get; }
+    }
+
+    private class TestService : ITestService {
+        public string Value => "test";
+    }
+
+    private class DisposableService : IDisposable {
+        public bool Disposed { get; private set; }
+        public void Dispose() {
+            Disposed = true;
+        }
     }
 }

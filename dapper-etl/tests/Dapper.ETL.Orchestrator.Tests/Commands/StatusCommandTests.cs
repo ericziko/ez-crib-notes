@@ -1,19 +1,18 @@
 using Dapper.ETL.Orchestrator.Services;
 using Dapper.ETL.Orchestrator.Tests.Fixtures;
-using Xunit;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 /// <summary>
-/// Integration tests for <see cref="StatusCommand"/> via <see cref="DataService"/>.
+///     Integration tests for <see cref="StatusCommand" /> via <see cref="DataService" />.
 /// </summary>
 [Collection("SharedSqlServer collection")]
-public class StatusCommandTests
-{
+public class StatusCommandTests {
     private readonly SharedSqlServerFixture _fixture;
 
-    public StatusCommandTests(SharedSqlServerFixture fixture)
-    {
+    public StatusCommandTests(SharedSqlServerFixture fixture) {
         _fixture = fixture;
     }
 
@@ -22,8 +21,7 @@ public class StatusCommandTests
     // ---------------------------------------------------------------------------
 
     [Fact]
-    public async Task Test_ExecuteAsync_DisplaysRowCounts()
-    {
+    public async Task Test_ExecuteAsync_DisplaysRowCounts() {
         // Arrange: truncate first (shared fixture), then seed 3 source rows
         await using var conn = await _fixture.GetConnectionAsync("TestDbSource");
         await TestDatabaseHelper.TruncateTableAsync(conn, "Customer");
@@ -31,7 +29,7 @@ public class StatusCommandTests
 
         var etlService = new EtlService(
             _fixture.GetConnectionString("TestDbSource"),
-            Microsoft.Extensions.Logging.Abstractions.NullLogger<EtlService>.Instance);
+            NullLogger<EtlService>.Instance);
         await etlService.SeedCustomers(3);
 
         var dataService = BuildDataService();
@@ -44,8 +42,7 @@ public class StatusCommandTests
     }
 
     [Fact]
-    public async Task Test_ExecuteAsync_WithEmptyDatabase_ReturnsZeros()
-    {
+    public async Task Test_ExecuteAsync_WithEmptyDatabase_ReturnsZeros() {
         // Arrange: truncate all tables — shared fixture may have rows from other tests
         await using var sourceConn = await _fixture.GetConnectionAsync("TestDbSource");
         await TestDatabaseHelper.TruncateTableAsync(sourceConn, "Customer");
@@ -79,14 +76,12 @@ public class StatusCommandTests
     }
 
     [Fact]
-    public async Task Test_GetRowCount_LogsDatabase_ReturnsCount()
-    {
+    public async Task Test_GetRowCount_LogsDatabase_ReturnsCount() {
         // Arrange: ensure at least 3 log rows exist
         await using var logsConn = await _fixture.GetConnectionAsync("EtlLogs");
         await TestDatabaseHelper.TruncateTableAsync(logsConn, "Logs");
-        for (int i = 0; i < 3; i++)
-        {
-            await using var cmd = new Microsoft.Data.SqlClient.SqlCommand(
+        for (var i = 0; i < 3; i++) {
+            await using var cmd = new SqlCommand(
                 "INSERT INTO [dbo].[Logs] ([MessageTemplate],[Level],[TimeStamp]) VALUES ('test','Info',GETUTCDATE())",
                 logsConn);
             await cmd.ExecuteNonQueryAsync();
@@ -103,19 +98,16 @@ public class StatusCommandTests
     }
 
     [Fact]
-    public async Task Test_GetRowCount_InvalidDatabase_ThrowsArgumentException()
-    {
+    public async Task Test_GetRowCount_InvalidDatabase_ThrowsArgumentException() {
         // Arrange
         var dataService = BuildDataService();
 
         // Act & Assert
-        await Assert.ThrowsAsync<ArgumentException>(
-            () => dataService.GetRowCount("BadDB", "dbo.Customer"));
+        await Assert.ThrowsAsync<ArgumentException>(() => dataService.GetRowCount("BadDB", "dbo.Customer"));
     }
 
     [Fact]
-    public async Task Test_GetLastEtlRunInfo_ReturnsNull()
-    {
+    public async Task Test_GetLastEtlRunInfo_ReturnsNull() {
         // Arrange
         var dataService = BuildDataService();
 
@@ -130,9 +122,10 @@ public class StatusCommandTests
     // Helpers
     // ---------------------------------------------------------------------------
 
-    private DataService BuildDataService()
-        => new(
+    private DataService BuildDataService() {
+        return new DataService(
             _fixture.GetConnectionString("TestDbSource"),
             _fixture.GetConnectionString("TestDbTarget"),
             _fixture.GetConnectionString("EtlLogs"));
+    }
 }

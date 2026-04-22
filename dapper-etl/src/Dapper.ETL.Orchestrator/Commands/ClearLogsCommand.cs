@@ -1,35 +1,30 @@
-namespace Dapper.ETL.Orchestrator.Commands;
-
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
+namespace Dapper.ETL.Orchestrator.Commands;
+
 /// <summary>
-/// Truncates the EtlLogs.dbo.Logs table after user confirmation.
+///     Truncates the EtlLogs.dbo.Logs table after user confirmation.
 /// </summary>
-public class ClearLogsCommand : Command
-{
+public class ClearLogsCommand : Command {
     private readonly IConfiguration _configuration;
 
-    public ClearLogsCommand(IConfiguration configuration)
-    {
+    public ClearLogsCommand(IConfiguration configuration) {
         _configuration = configuration;
     }
 
-    protected override int Execute(CommandContext context, CancellationToken cancellationToken)
-    {
+    protected override int Execute(CommandContext context, CancellationToken cancellationToken) {
         var confirmed = AnsiConsole.Confirm("Clear all logs? This cannot be undone.");
-        if (!confirmed)
-        {
+        if (!confirmed) {
             AnsiConsole.MarkupLine("[yellow]Cancelled. No logs were cleared.[/]");
             return 0;
         }
 
-        try
-        {
+        try {
             var connectionString = _configuration["ConnectionStrings:Logs"]
-                ?? throw new InvalidOperationException("ConnectionStrings:Logs is not configured.");
+                                   ?? throw new InvalidOperationException("ConnectionStrings:Logs is not configured.");
 
             using var connection = new SqlConnection(connectionString);
             connection.Open();
@@ -39,8 +34,7 @@ public class ClearLogsCommand : Command
             AnsiConsole.MarkupLine("[green]All logs cleared successfully.[/]");
             return 0;
         }
-        catch (Exception ex)
-        {
+        catch (Exception ex) {
             AnsiConsole.MarkupLine($"[red]Failed to clear logs: {ex.Message}[/]");
             return 1;
         }

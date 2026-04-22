@@ -2,23 +2,20 @@ using System.Diagnostics.Metrics;
 using System.Text.Json;
 using Dapper.ETL.Orchestrator.Services;
 using Dapper.ETL.Orchestrator.Tests.Fixtures;
-using Xunit;
 
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 /// <summary>
-/// Integration tests for the export-metrics operation via <see cref="MetricsService"/>.
-/// Tests exercise the service layer directly because <see cref="ExportMetricsCommand"/>
-/// renders to AnsiConsole which is not suitable for headless test execution.
+///     Integration tests for the export-metrics operation via <see cref="MetricsService" />.
+///     Tests exercise the service layer directly because <see cref="ExportMetricsCommand" />
+///     renders to AnsiConsole which is not suitable for headless test execution.
 /// </summary>
 [Collection("SharedSqlServer collection")]
-public class ExportMetricsCommandTests
-{
+public class ExportMetricsCommandTests {
     private readonly SharedSqlServerFixture _fixture;
     private readonly List<string> _tempFiles = new();
 
-    public ExportMetricsCommandTests(SharedSqlServerFixture fixture)
-    {
+    public ExportMetricsCommandTests(SharedSqlServerFixture fixture) {
         _fixture = fixture;
     }
 
@@ -27,15 +24,13 @@ public class ExportMetricsCommandTests
     // ---------------------------------------------------------------------------
 
     [Fact]
-    public void Test_ExecuteAsync_ExportsJSON_Succeeds()
-    {
+    public void Test_ExecuteAsync_ExportsJSON_Succeeds() {
         // Arrange
         using var meter = new Meter("Dapper.ETL.Test.Metrics.Json");
         var metricsService = new MetricsService(meter);
-        metricsService.StoreMetrics(new Dictionary<string, object>
-        {
+        metricsService.StoreMetrics(new Dictionary<string, object> {
             ["Total Duration|ms"] = 500L,
-            ["Rows Copied|rows"]  = 50L,
+            ["Rows Copied|rows"] = 50L
         });
 
         var outputFile = TempFile("metrics-test.json");
@@ -53,15 +48,13 @@ public class ExportMetricsCommandTests
     }
 
     [Fact]
-    public void Test_ExecuteAsync_ExportsCSV_Succeeds()
-    {
+    public void Test_ExecuteAsync_ExportsCSV_Succeeds() {
         // Arrange
         using var meter = new Meter("Dapper.ETL.Test.Metrics.Csv");
         var metricsService = new MetricsService(meter);
-        metricsService.StoreMetrics(new Dictionary<string, object>
-        {
+        metricsService.StoreMetrics(new Dictionary<string, object> {
             ["Total Duration|ms"] = 750L,
-            ["Rows Copied|rows"]  = 75L,
+            ["Rows Copied|rows"] = 75L
         });
 
         var outputFile = TempFile("metrics-test.csv");
@@ -69,8 +62,9 @@ public class ExportMetricsCommandTests
         // Act: replicate what ExportMetricsCommand does for format=csv
         var metrics = metricsService.GetLastMetrics()!;
         var lines = new List<string> { "Metric,Value" };
-        foreach (var entry in metrics)
+        foreach (var entry in metrics) {
             lines.Add($"{entry.Key},{entry.Value}");
+        }
         File.WriteAllLines(outputFile, lines);
 
         // Assert
@@ -85,8 +79,7 @@ public class ExportMetricsCommandTests
     // Helpers
     // ---------------------------------------------------------------------------
 
-    private string TempFile(string name)
-    {
+    private string TempFile(string name) {
         var path = Path.Combine(Path.GetTempPath(), name);
         _tempFiles.Add(path);
         return path;

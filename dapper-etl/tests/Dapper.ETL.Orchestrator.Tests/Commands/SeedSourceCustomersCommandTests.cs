@@ -1,20 +1,17 @@
 using Dapper.ETL.Orchestrator.Services;
 using Dapper.ETL.Orchestrator.Tests.Fixtures;
 using Microsoft.Extensions.Logging.Abstractions;
-using Xunit;
 
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 /// <summary>
-/// Integration tests for <see cref="SeedSourceCustomersCommand"/> via <see cref="EtlService.SeedCustomers"/>.
+///     Integration tests for <see cref="SeedSourceCustomersCommand" /> via <see cref="EtlService.SeedCustomers" />.
 /// </summary>
 [Collection("SharedSqlServer collection")]
-public class SeedSourceCustomersCommandTests
-{
+public class SeedSourceCustomersCommandTests {
     private readonly SharedSqlServerFixture _fixture;
 
-    public SeedSourceCustomersCommandTests(SharedSqlServerFixture fixture)
-    {
+    public SeedSourceCustomersCommandTests(SharedSqlServerFixture fixture) {
         _fixture = fixture;
     }
 
@@ -23,8 +20,7 @@ public class SeedSourceCustomersCommandTests
     // ---------------------------------------------------------------------------
 
     [Fact]
-    public async Task Test_ExecuteAsync_Succeeds()
-    {
+    public async Task Test_ExecuteAsync_Succeeds() {
         // Arrange: truncate first (shared fixture)
         await using var conn = await _fixture.GetConnectionAsync("TestDbSource");
         await TestDatabaseHelper.TruncateTableAsync(conn, "Customer");
@@ -38,8 +34,7 @@ public class SeedSourceCustomersCommandTests
     }
 
     [Fact]
-    public async Task Test_ExecuteAsync_CreatesNRows()
-    {
+    public async Task Test_ExecuteAsync_CreatesNRows() {
         // Arrange: truncate first (shared fixture)
         await using var connSetup = await _fixture.GetConnectionAsync("TestDbSource");
         await TestDatabaseHelper.TruncateTableAsync(connSetup, "Customer");
@@ -57,8 +52,7 @@ public class SeedSourceCustomersCommandTests
     }
 
     [Fact]
-    public async Task Test_ExecuteAsync_WithZeroCount_Succeeds()
-    {
+    public async Task Test_ExecuteAsync_WithZeroCount_Succeeds() {
         // Arrange: truncate first to eliminate leftover rows from shared fixture
         await using var setupConn = await _fixture.GetConnectionAsync("TestDbSource");
         await TestDatabaseHelper.TruncateTableAsync(setupConn, "Customer");
@@ -76,8 +70,7 @@ public class SeedSourceCustomersCommandTests
     }
 
     [Fact]
-    public async Task Test_SeedCustomers_ReturnsCorrectInsertedCount()
-    {
+    public async Task Test_SeedCustomers_ReturnsCorrectInsertedCount() {
         // Arrange
         await using var conn = await _fixture.GetConnectionAsync("TestDbSource");
         await TestDatabaseHelper.TruncateTableAsync(conn, "Customer");
@@ -93,8 +86,7 @@ public class SeedSourceCustomersCommandTests
     }
 
     [Fact]
-    public async Task Test_SeedCustomers_GeneratesExpectedEmailFormat()
-    {
+    public async Task Test_SeedCustomers_GeneratesExpectedEmailFormat() {
         // Arrange
         await using var setupConn = await _fixture.GetConnectionAsync("TestDbSource");
         await TestDatabaseHelper.TruncateTableAsync(setupConn, "Customer");
@@ -117,6 +109,7 @@ public class SeedSourceCustomersCommandTests
     // Helpers
     // ---------------------------------------------------------------------------
 
-    private EtlService BuildEtlService()
-        => new(_fixture.GetConnectionString("TestDbSource"), NullLogger<EtlService>.Instance);
+    private EtlService BuildEtlService() {
+        return new EtlService(_fixture.GetConnectionString("TestDbSource"), NullLogger<EtlService>.Instance);
+    }
 }

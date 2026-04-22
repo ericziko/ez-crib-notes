@@ -1,22 +1,18 @@
 using Dapper.ETL.Orchestrator.Services;
 using Dapper.ETL.Orchestrator.Tests.Fixtures;
-using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using Xunit;
 
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 /// <summary>
-/// Integration tests for <see cref="ShowLogsCommand"/> via <see cref="LoggingService"/>.
+///     Integration tests for <see cref="ShowLogsCommand" /> via <see cref="LoggingService" />.
 /// </summary>
 [Collection("SharedSqlServer collection")]
-public class ShowLogsCommandTests
-{
-    private readonly SharedSqlServerFixture _fixture;
+public class ShowLogsCommandTests {
     private readonly IConfiguration _configuration;
+    private readonly SharedSqlServerFixture _fixture;
 
-    public ShowLogsCommandTests(SharedSqlServerFixture fixture)
-    {
+    public ShowLogsCommandTests(SharedSqlServerFixture fixture) {
         _fixture = fixture;
         _configuration = BuildConfiguration();
     }
@@ -26,8 +22,7 @@ public class ShowLogsCommandTests
     // ---------------------------------------------------------------------------
 
     [Fact]
-    public async Task Test_ExecuteAsync_WithNoLogs_ReturnsEmpty()
-    {
+    public async Task Test_ExecuteAsync_WithNoLogs_ReturnsEmpty() {
         // Arrange: no logs seeded
         var service = new LoggingService(_configuration);
 
@@ -40,12 +35,11 @@ public class ShowLogsCommandTests
     }
 
     [Fact]
-    public async Task Test_ExecuteAsync_FiltersByLevel()
-    {
+    public async Task Test_ExecuteAsync_FiltersByLevel() {
         // Arrange: insert logs at different levels
-        await InsertLogAsync("Info",    "Info message");
+        await InsertLogAsync("Info", "Info message");
         await InsertLogAsync("Warning", "Warning message");
-        await InsertLogAsync("Error",   "Error message");
+        await InsertLogAsync("Error", "Error message");
 
         var service = new LoggingService(_configuration);
 
@@ -58,11 +52,11 @@ public class ShowLogsCommandTests
     }
 
     [Fact]
-    public async Task Test_ExecuteAsync_RespectsLimit()
-    {
+    public async Task Test_ExecuteAsync_RespectsLimit() {
         // Arrange: insert 200 log rows
-        for (var i = 0; i < 200; i++)
+        for (var i = 0; i < 200; i++) {
             await InsertLogAsync("Info", $"Log entry {i}");
+        }
 
         var service = new LoggingService(_configuration);
 
@@ -79,27 +73,26 @@ public class ShowLogsCommandTests
     // Helpers
     // ---------------------------------------------------------------------------
 
-    private async Task InsertLogAsync(string level, string messageTemplate)
-    {
+    private async Task InsertLogAsync(string level, string messageTemplate) {
         await using var conn = await _fixture.GetConnectionAsync("EtlLogs");
         await using var cmd = conn.CreateCommand();
         cmd.CommandText = """
-            INSERT INTO dbo.Logs (MessageTemplate, Level, TimeStamp)
-            VALUES (@msg, @level, @ts)
-            """;
-        cmd.Parameters.AddWithValue("@msg",   messageTemplate);
+                          INSERT INTO dbo.Logs (MessageTemplate, Level, TimeStamp)
+                          VALUES (@msg, @level, @ts)
+                          """;
+        cmd.Parameters.AddWithValue("@msg", messageTemplate);
         cmd.Parameters.AddWithValue("@level", level);
-        cmd.Parameters.AddWithValue("@ts",    DateTime.UtcNow);
+        cmd.Parameters.AddWithValue("@ts", DateTime.UtcNow);
         await cmd.ExecuteNonQueryAsync();
     }
 
-    private IConfiguration BuildConfiguration()
-        => new ConfigurationBuilder()
-            .AddInMemoryCollection(new Dictionary<string, string?>
-            {
+    private IConfiguration BuildConfiguration() {
+        return new ConfigurationBuilder()
+            .AddInMemoryCollection(new Dictionary<string, string?> {
                 ["ConnectionStrings:Source"] = _fixture.GetConnectionString("TestDbSource"),
                 ["ConnectionStrings:Target"] = _fixture.GetConnectionString("TestDbTarget"),
-                ["ConnectionStrings:Logs"]   = _fixture.GetConnectionString("EtlLogs"),
+                ["ConnectionStrings:Logs"] = _fixture.GetConnectionString("EtlLogs")
             })
             .Build();
+    }
 }

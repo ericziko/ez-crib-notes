@@ -1,15 +1,15 @@
-namespace Dapper.ETL.Tests;
-
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Library.Implementation;
-using Library.Interfaces;
-using Library.Models;
+using Dapper.ETL.Library.Implementation;
+using Dapper.ETL.Library.Interfaces;
+using Dapper.ETL.Library.Models;
 using Moq;
 using Xunit;
+
+namespace Dapper.ETL.Tests;
 
 public class EtlIntegrationTests {
     [Fact]
@@ -43,11 +43,11 @@ public class EtlIntegrationTests {
             logger);
 
         var plan = new EtlExecutionPlan(
-            tableCopies: [
+            [
                 ("SourceTable1", "DestTable1", new TableCopyOptions()),
                 ("SourceTable2", "DestTable2", new TableCopyOptions())
             ],
-            storedProcedures: [
+            [
                 new StoredProcedureDefinition("UpdateProcedure"),
                 new StoredProcedureDefinition("CleanupProcedure")
             ]);
@@ -95,11 +95,11 @@ public class EtlIntegrationTests {
             logger);
 
         var plan = new EtlExecutionPlan(
-            tableCopies: [
+            [
                 ("Table1", "Table1_Staging", new TableCopyOptions()),
                 ("Table2", "Table2_Staging", new TableCopyOptions())
             ],
-            storedProcedures: [
+            [
                 new StoredProcedureDefinition("MergeData"),
                 new StoredProcedureDefinition("UpdateMetadata")
             ]);
@@ -217,12 +217,12 @@ public class EtlIntegrationTests {
             logger);
 
         var plan = new EtlExecutionPlan(
-            tableCopies: [
-                ("source", "dest", new TableCopyOptions())
-            ]);
+        [
+            ("source", "dest", new TableCopyOptions())
+        ]);
 
         // Act
-        var result = await orchestrator.ExecuteAsync(plan, shouldRollback: true);
+        var result = await orchestrator.ExecuteAsync(plan, true);
 
         // Assert
         Assert.False(result.Success);

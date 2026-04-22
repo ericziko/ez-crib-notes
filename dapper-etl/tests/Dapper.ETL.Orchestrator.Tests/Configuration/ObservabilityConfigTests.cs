@@ -1,39 +1,31 @@
-namespace Dapper.ETL.Orchestrator.Tests.Configuration;
-
+using System.Diagnostics.Metrics;
 using Dapper.ETL.Orchestrator.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging.Abstractions;
-using OpenTelemetry;
 using OpenTelemetry.Metrics;
-using System.Diagnostics.Metrics;
-using Xunit;
 
-public class ObservabilityConfigTests
-{
+namespace Dapper.ETL.Orchestrator.Tests.Configuration;
+
+public class ObservabilityConfigTests {
     [Fact]
-    public void Test_ConfigureOpenTelemetry_WithNullEndpoint_ReturnsMeterProvider()
-    {
+    public void Test_ConfigureOpenTelemetry_WithNullEndpoint_ReturnsMeterProvider() {
         var logger = NullLoggerFactory.Instance.CreateLogger("test");
         MeterProvider? provider = null;
-        try
-        {
+        try {
             provider = ObservabilityConfig.ConfigureOpenTelemetry(logger);
             Assert.NotNull(provider);
         }
-        catch
-        {
+        catch {
             // OTLP exporter may throw if no server; covered by AddObservability fallback path
         }
-        finally
-        {
+        finally {
             provider?.Dispose();
         }
     }
 
     [Fact]
-    public void Test_AddObservability_RegistersMeterAndMeterProvider()
-    {
+    public void Test_AddObservability_RegistersMeterAndMeterProvider() {
         // Arrange
         var services = new ServiceCollection();
         var config = new ConfigurationBuilder().AddInMemoryCollection(new Dictionary<string, string?>()).Build();
@@ -55,13 +47,11 @@ public class ObservabilityConfigTests
     }
 
     [Fact]
-    public void Test_AddObservability_WithCustomOtlpEndpoint_Succeeds()
-    {
+    public void Test_AddObservability_WithCustomOtlpEndpoint_Succeeds() {
         // Arrange: configure a non-existent OTLP endpoint to trigger the catch fallback
         var services = new ServiceCollection();
         var config = new ConfigurationBuilder()
-            .AddInMemoryCollection(new Dictionary<string, string?>
-            {
+            .AddInMemoryCollection(new Dictionary<string, string?> {
                 ["OpenTelemetry:OtlpEndpoint"] = "http://does-not-exist:4317"
             })
             .Build();

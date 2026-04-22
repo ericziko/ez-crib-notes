@@ -1,9 +1,9 @@
-namespace Dapper.ETL.Orchestrator.Services;
-
 using Microsoft.Extensions.Configuration;
 
+namespace Dapper.ETL.Orchestrator.Services;
+
 /// <summary>
-/// Detail for a single table's validation result.
+///     Detail for a single table's validation result.
 /// </summary>
 public record ValidationDetail(
     string TableName,
@@ -13,24 +13,21 @@ public record ValidationDetail(
     string Status);
 
 /// <summary>
-/// Service for validating ETL data integrity across source and target databases.
-/// Stub implementation - full logic added in Phase 4.3+.
+///     Service for validating ETL data integrity across source and target databases.
+///     Stub implementation - full logic added in Phase 4.3+.
 /// </summary>
-public class ValidationService
-{
+public class ValidationService {
     private readonly IConfiguration _configuration;
 
-    public ValidationService(IConfiguration configuration)
-    {
+    public ValidationService(IConfiguration configuration) {
         _configuration = configuration;
     }
 
     /// <summary>
-    /// Quick validation: compare row counts between source and target tables.
+    ///     Quick validation: compare row counts between source and target tables.
     /// </summary>
     public Task<(bool Success, Dictionary<string, ValidationDetail> Results)> ValidateQuick(
-        CancellationToken cancellationToken = default)
-    {
+        CancellationToken cancellationToken = default) {
         // Stub: returns empty success result - Phase 4.3 will query
         // Source: Customer vs Target: CustomerCopy, CustomerEmailList, CustomerLoyaltyRewards
         var results = new Dictionary<string, ValidationDetail>();
@@ -38,24 +35,22 @@ public class ValidationService
     }
 
     /// <summary>
-    /// Standard validation: row count comparison plus schema validation
-    /// (column names, types, nullability).
+    ///     Standard validation: row count comparison plus schema validation
+    ///     (column names, types, nullability).
     /// </summary>
     public Task<(bool Success, Dictionary<string, ValidationDetail> Results)> ValidateStandard(
-        CancellationToken cancellationToken = default)
-    {
+        CancellationToken cancellationToken = default) {
         // Stub: returns empty success result - Phase 4.3 will add schema checks
         var results = new Dictionary<string, ValidationDetail>();
         return Task.FromResult<(bool, Dictionary<string, ValidationDetail>)>((true, results));
     }
 
     /// <summary>
-    /// Thorough validation: MD5 hash comparison and duplicate detection.
-    /// Completes in under 10 seconds for N=100.
+    ///     Thorough validation: MD5 hash comparison and duplicate detection.
+    ///     Completes in under 10 seconds for N=100.
     /// </summary>
     public Task<(bool Success, Dictionary<string, ValidationDetail> Results)> ValidateThorough(
-        CancellationToken cancellationToken = default)
-    {
+        CancellationToken cancellationToken = default) {
         // Stub: returns empty success result - Phase 4.3 will add MD5 hash + duplicate detection
         var results = new Dictionary<string, ValidationDetail>();
         return Task.FromResult<(bool, Dictionary<string, ValidationDetail>)>((true, results));

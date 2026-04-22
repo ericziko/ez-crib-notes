@@ -1,23 +1,21 @@
-namespace Dapper.ETL.Tests;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Library.Implementation;
+using Dapper.ETL.Library.Implementation;
 using Xunit;
 
+namespace Dapper.ETL.Tests;
+
 /// <summary>
-/// Comprehensive tests for BatchProcessor covering all code paths
+///     Comprehensive tests for BatchProcessor covering all code paths
 /// </summary>
-public class BatchProcessorComprehensiveTests
-{
+public class BatchProcessorComprehensiveTests {
     private readonly BatchProcessor _processor = new();
 
     [Fact]
-    public async Task ProcessInBatchesAsync_WithNullItems_ThrowsArgumentNullException()
-    {
+    public async Task ProcessInBatchesAsync_WithNullItems_ThrowsArgumentNullException() {
         var processor = new BatchProcessor();
 
         await Assert.ThrowsAsync<ArgumentNullException>(() =>
@@ -28,8 +26,7 @@ public class BatchProcessorComprehensiveTests
     }
 
     [Fact]
-    public async Task ProcessInBatchesAsync_WithZeroBatchSize_ThrowsArgumentException()
-    {
+    public async Task ProcessInBatchesAsync_WithZeroBatchSize_ThrowsArgumentException() {
         var items = new[] { 1, 2, 3 };
 
         await Assert.ThrowsAsync<ArgumentException>(() =>
@@ -40,8 +37,7 @@ public class BatchProcessorComprehensiveTests
     }
 
     [Fact]
-    public async Task ProcessInBatchesAsync_WithNegativeBatchSize_ThrowsArgumentException()
-    {
+    public async Task ProcessInBatchesAsync_WithNegativeBatchSize_ThrowsArgumentException() {
         var items = new[] { 1, 2, 3 };
 
         await Assert.ThrowsAsync<ArgumentException>(() =>
@@ -52,8 +48,7 @@ public class BatchProcessorComprehensiveTests
     }
 
     [Fact]
-    public async Task ProcessInBatchesAsync_WithNullProcessBatch_ThrowsArgumentNullException()
-    {
+    public async Task ProcessInBatchesAsync_WithNullProcessBatch_ThrowsArgumentNullException() {
         var items = new[] { 1, 2, 3 };
 
         await Assert.ThrowsAsync<ArgumentNullException>(() =>
@@ -64,16 +59,14 @@ public class BatchProcessorComprehensiveTests
     }
 
     [Fact]
-    public async Task ProcessInBatchesAsync_WithEmptyItems_DoesNotProcessAnyBatches()
-    {
+    public async Task ProcessInBatchesAsync_WithEmptyItems_DoesNotProcessAnyBatches() {
         var items = new List<int>();
         var processedCount = 0;
 
         await _processor.ProcessInBatchesAsync(
             items,
             10,
-            async (_,_,_) =>
-            {
+            async (_, _, _) => {
                 processedCount++;
                 await Task.CompletedTask;
             });
@@ -82,16 +75,14 @@ public class BatchProcessorComprehensiveTests
     }
 
     [Fact]
-    public async Task ProcessInBatchesAsync_WithSingleItem_ProcessesAsBatch()
-    {
+    public async Task ProcessInBatchesAsync_WithSingleItem_ProcessesAsBatch() {
         var items = new[] { 42 };
         var batchNumbers = new List<int>();
 
         await _processor.ProcessInBatchesAsync(
             items,
             10,
-            async (batch, batchNum, ct) =>
-            {
+            async (batch, batchNum, ct) => {
                 batchNumbers.Add(batchNum);
                 await Task.CompletedTask;
             });
@@ -101,16 +92,14 @@ public class BatchProcessorComprehensiveTests
     }
 
     [Fact]
-    public async Task ProcessInBatchesAsync_BatchNumbersStartAt1()
-    {
+    public async Task ProcessInBatchesAsync_BatchNumbersStartAt1() {
         var items = Enumerable.Range(1, 35).ToList();
         var batchNumbers = new List<int>();
 
         await _processor.ProcessInBatchesAsync(
             items,
             10,
-            async (batch, batchNum, ct) =>
-            {
+            async (batch, batchNum, ct) => {
                 batchNumbers.Add(batchNum);
                 await Task.CompletedTask;
             });
@@ -119,16 +108,14 @@ public class BatchProcessorComprehensiveTests
     }
 
     [Fact]
-    public async Task ProcessInBatchesAsync_WithProcessBatchException_PropagatesException()
-    {
+    public async Task ProcessInBatchesAsync_WithProcessBatchException_PropagatesException() {
         var items = new[] { 1, 2, 3 };
         var exception = new InvalidOperationException("Batch processing failed");
 
         var thrownException = await Assert.ThrowsAsync<InvalidOperationException>(() =>
             _processor.ProcessInBatchesAsync(
                 items,
-                2, (batch, batchNum, ct) =>
-                {
+                2, (batch, batchNum, ct) => {
                     try {
                         throw exception;
                     }
@@ -141,8 +128,7 @@ public class BatchProcessorComprehensiveTests
     }
 
     [Fact]
-    public async Task ProcessInBatchesAsync_CancellationTokenPassedToBatch()
-    {
+    public async Task ProcessInBatchesAsync_CancellationTokenPassedToBatch() {
         var items = new[] { 1, 2, 3, 4, 5 };
         var receivedTokens = new List<CancellationToken>();
 
@@ -150,8 +136,7 @@ public class BatchProcessorComprehensiveTests
         await _processor.ProcessInBatchesAsync(
             items,
             2,
-            async (batch, batchNum, ct) =>
-            {
+            async (batch, batchNum, ct) => {
                 receivedTokens.Add(ct);
                 await Task.CompletedTask;
             },
@@ -162,16 +147,14 @@ public class BatchProcessorComprehensiveTests
     }
 
     [Fact]
-    public async Task ProcessInBatchesAsync_RemainingItemsProcessedInFinalBatch()
-    {
+    public async Task ProcessInBatchesAsync_RemainingItemsProcessedInFinalBatch() {
         var items = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         var batchSizes = new List<int>();
 
         await _processor.ProcessInBatchesAsync(
             items,
             4,
-            async (batch, batchNum, ct) =>
-            {
+            async (batch, batchNum, ct) => {
                 batchSizes.Add(batch.Count);
                 await Task.CompletedTask;
             });
@@ -180,16 +163,14 @@ public class BatchProcessorComprehensiveTests
     }
 
     [Fact]
-    public async Task ProcessInBatchesAsync_BatchContainsCorrectItems()
-    {
+    public async Task ProcessInBatchesAsync_BatchContainsCorrectItems() {
         var items = new[] { 10, 20, 30, 40, 50 };
         var allBatchItems = new List<List<int>>();
 
         await _processor.ProcessInBatchesAsync(
             items,
             2,
-            async (batch, batchNum, ct) =>
-            {
+            async (batch, batchNum, ct) => {
                 allBatchItems.Add(new List<int>(batch));
                 await Task.CompletedTask;
             });
@@ -201,16 +182,14 @@ public class BatchProcessorComprehensiveTests
     }
 
     [Fact]
-    public async Task ProcessInBatchesAsync_LargeBatchSize_ProcessesAllInOneBatch()
-    {
+    public async Task ProcessInBatchesAsync_LargeBatchSize_ProcessesAllInOneBatch() {
         var items = Enumerable.Range(1, 100).ToList();
         var batchCount = 0;
 
         await _processor.ProcessInBatchesAsync(
             items,
             1000,
-            async (batch, batchNum, ct) =>
-            {
+            async (batch, batchNum, ct) => {
                 batchCount++;
                 Assert.Equal(100, batch.Count);
                 await Task.CompletedTask;
@@ -220,16 +199,14 @@ public class BatchProcessorComprehensiveTests
     }
 
     [Fact]
-    public async Task ProcessInBatchesAsync_WithStringItems_ProcessesCorrectly()
-    {
+    public async Task ProcessInBatchesAsync_WithStringItems_ProcessesCorrectly() {
         var items = new[] { "a", "b", "c", "d", "e", "f" };
         var batchCount = 0;
 
         await _processor.ProcessInBatchesAsync(
             items,
             2,
-            async (batch, batchNum, ct) =>
-            {
+            async (batch, batchNum, ct) => {
                 batchCount++;
                 Assert.Equal(2, batch.Count);
                 await Task.CompletedTask;
@@ -239,10 +216,8 @@ public class BatchProcessorComprehensiveTests
     }
 
     [Fact]
-    public async Task ProcessInBatchesAsync_WithComplexObjects_ProcessesCorrectly()
-    {
-        var items = new List<(int Id, string Name)>
-        {
+    public async Task ProcessInBatchesAsync_WithComplexObjects_ProcessesCorrectly() {
+        var items = new List<(int Id, string Name)> {
             (1, "A"),
             (2, "B"),
             (3, "C"),
@@ -253,8 +228,7 @@ public class BatchProcessorComprehensiveTests
         await _processor.ProcessInBatchesAsync(
             items,
             2,
-            async (batch, batchNum, ct) =>
-            {
+            async (batch, batchNum, ct) => {
                 processedIds.AddRange(batch.Select(x => x.Id));
                 await Task.CompletedTask;
             });
@@ -263,16 +237,14 @@ public class BatchProcessorComprehensiveTests
     }
 
     [Fact]
-    public async Task ProcessInBatchesAsync_OperationIsAsync()
-    {
+    public async Task ProcessInBatchesAsync_OperationIsAsync() {
         var items = new[] { 1, 2, 3 };
         var processingOrder = new List<int>();
 
         await _processor.ProcessInBatchesAsync(
             items,
             2,
-            async (batch, batchNum, ct) =>
-            {
+            async (batch, batchNum, ct) => {
                 processingOrder.Add(batchNum);
                 await Task.Delay(10);
             });
@@ -281,16 +253,14 @@ public class BatchProcessorComprehensiveTests
     }
 
     [Fact]
-    public async Task ProcessInBatchesAsync_BatchSizeEqualToItemCount()
-    {
+    public async Task ProcessInBatchesAsync_BatchSizeEqualToItemCount() {
         var items = new[] { 1, 2, 3, 4, 5 };
         var batchCount = 0;
 
         await _processor.ProcessInBatchesAsync(
             items,
             5,
-            async (batch, batchNum, ct) =>
-            {
+            async (batch, batchNum, ct) => {
                 batchCount++;
                 Assert.Equal(5, batch.Count);
                 await Task.CompletedTask;
@@ -300,16 +270,14 @@ public class BatchProcessorComprehensiveTests
     }
 
     [Fact]
-    public async Task ProcessInBatchesAsync_BatchSizeOfOne_CreatesMultipleBatches()
-    {
+    public async Task ProcessInBatchesAsync_BatchSizeOfOne_CreatesMultipleBatches() {
         var items = new[] { 1, 2, 3 };
         var batchCount = 0;
 
         await _processor.ProcessInBatchesAsync(
             items,
             1,
-            async (batch, batchNum, ct) =>
-            {
+            async (batch, batchNum, ct) => {
                 batchCount++;
                 Assert.Single(batch);
                 await Task.CompletedTask;

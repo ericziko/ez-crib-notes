@@ -1,21 +1,19 @@
 using Dapper.ETL.Orchestrator.Services;
 using Dapper.ETL.Orchestrator.Tests.Fixtures;
 using Microsoft.Extensions.Configuration;
-using Xunit;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 /// <summary>
-/// Integration tests for <see cref="ValidateDataCommand"/> via <see cref="ValidationService"/>.
+///     Integration tests for <see cref="ValidateDataCommand" /> via <see cref="ValidationService" />.
 /// </summary>
 [Collection("SharedSqlServer collection")]
-public class ValidateDataCommandTests
-{
-    private readonly SharedSqlServerFixture _fixture;
+public class ValidateDataCommandTests {
     private readonly IConfiguration _configuration;
+    private readonly SharedSqlServerFixture _fixture;
 
-    public ValidateDataCommandTests(SharedSqlServerFixture fixture)
-    {
+    public ValidateDataCommandTests(SharedSqlServerFixture fixture) {
         _fixture = fixture;
         _configuration = BuildConfiguration();
     }
@@ -25,8 +23,7 @@ public class ValidateDataCommandTests
     // ---------------------------------------------------------------------------
 
     [Fact]
-    public async Task Test_ExecuteAsync_QuickLevel_Succeeds()
-    {
+    public async Task Test_ExecuteAsync_QuickLevel_Succeeds() {
         // Arrange
         var service = new ValidationService(_configuration);
 
@@ -39,8 +36,7 @@ public class ValidateDataCommandTests
     }
 
     [Fact]
-    public async Task Test_ExecuteAsync_StandardLevel_Succeeds()
-    {
+    public async Task Test_ExecuteAsync_StandardLevel_Succeeds() {
         // Arrange
         var service = new ValidationService(_configuration);
 
@@ -53,8 +49,7 @@ public class ValidateDataCommandTests
     }
 
     [Fact]
-    public async Task Test_ExecuteAsync_ThoroughLevel_Succeeds()
-    {
+    public async Task Test_ExecuteAsync_ThoroughLevel_Succeeds() {
         // Arrange
         var service = new ValidationService(_configuration);
 
@@ -71,8 +66,7 @@ public class ValidateDataCommandTests
     }
 
     [Fact]
-    public async Task Test_ExecuteAsync_DetectsMismatches()
-    {
+    public async Task Test_ExecuteAsync_DetectsMismatches() {
         // Arrange: truncate first (shared fixture), then seed source rows but leave targets empty so counts differ
         await using var conn = await _fixture.GetConnectionAsync("TestDbSource");
         await TestDatabaseHelper.TruncateTableAsync(conn, "Customer");
@@ -80,7 +74,7 @@ public class ValidateDataCommandTests
 
         var etlService = new EtlService(
             _fixture.GetConnectionString("TestDbSource"),
-            Microsoft.Extensions.Logging.Abstractions.NullLogger<EtlService>.Instance);
+            NullLogger<EtlService>.Instance);
         await etlService.SeedCustomers(5);
 
         var service = new ValidationService(_configuration);
@@ -98,13 +92,13 @@ public class ValidateDataCommandTests
     // Helpers
     // ---------------------------------------------------------------------------
 
-    private IConfiguration BuildConfiguration()
-        => new ConfigurationBuilder()
-            .AddInMemoryCollection(new Dictionary<string, string?>
-            {
+    private IConfiguration BuildConfiguration() {
+        return new ConfigurationBuilder()
+            .AddInMemoryCollection(new Dictionary<string, string?> {
                 ["ConnectionStrings:Source"] = _fixture.GetConnectionString("TestDbSource"),
                 ["ConnectionStrings:Target"] = _fixture.GetConnectionString("TestDbTarget"),
-                ["ConnectionStrings:Logs"]   = _fixture.GetConnectionString("EtlLogs"),
+                ["ConnectionStrings:Logs"] = _fixture.GetConnectionString("EtlLogs")
             })
             .Build();
+    }
 }

@@ -1,23 +1,21 @@
-namespace Dapper.ETL.Orchestrator.Tests.Commands;
-
 using Dapper.ETL.Library.Models;
 using Dapper.ETL.Orchestrator.Commands;
 using Dapper.ETL.Orchestrator.Services;
 using Microsoft.Extensions.Logging.Abstractions;
-using Xunit;
+
+namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 /// <summary>
-/// Unit tests for EtlService.RunEtl (used by RunEtlCommand).
-/// RunEtl is a stub returning success with 0 rows — no database connection required.
+///     Unit tests for EtlService.RunEtl (used by RunEtlCommand).
+///     RunEtl is a stub returning success with 0 rows — no database connection required.
 /// </summary>
-public class RunEtlCommandTests
-{
-    private static EtlService BuildEtlService()
-        => new("Server=.;Database=Source;Trusted_Connection=True", NullLogger<EtlService>.Instance);
+public class RunEtlCommandTests {
+    private static EtlService BuildEtlService() {
+        return new EtlService("Server=.;Database=Source;Trusted_Connection=True", NullLogger<EtlService>.Instance);
+    }
 
     [Fact]
-    public async Task Test_RunEtl_AtomicMode_ReturnsSuccess()
-    {
+    public async Task Test_RunEtl_AtomicMode_ReturnsSuccess() {
         // Arrange
         var etlService = BuildEtlService();
 
@@ -32,8 +30,7 @@ public class RunEtlCommandTests
     }
 
     [Fact]
-    public async Task Test_RunEtl_PartialMode_ReturnsSuccess()
-    {
+    public async Task Test_RunEtl_PartialMode_ReturnsSuccess() {
         // Arrange
         var etlService = BuildEtlService();
 
@@ -48,8 +45,7 @@ public class RunEtlCommandTests
     }
 
     [Fact]
-    public void Test_RunEtlSettings_DefaultAtomic_IsTrue()
-    {
+    public void Test_RunEtlSettings_DefaultAtomic_IsTrue() {
         // Arrange / Act
         var settings = new RunEtlSettings();
 
@@ -58,8 +54,7 @@ public class RunEtlCommandTests
     }
 
     [Fact]
-    public void Test_RunEtlSettings_CanSetAtomicFalse()
-    {
+    public void Test_RunEtlSettings_CanSetAtomicFalse() {
         // Arrange / Act
         var settings = new RunEtlSettings { Atomic = false };
 
@@ -68,8 +63,7 @@ public class RunEtlCommandTests
     }
 
     [Fact]
-    public void Test_EtlService_CanBeConstructed()
-    {
+    public void Test_EtlService_CanBeConstructed() {
         // Arrange / Act
         var exception = Record.Exception(BuildEtlService);
 

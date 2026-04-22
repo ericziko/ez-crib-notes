@@ -1,66 +1,56 @@
+using System.ComponentModel;
 using System.Text.Json;
+using Dapper.ETL.Orchestrator.Services;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
 namespace Dapper.ETL.Orchestrator.Commands;
 
-using Dapper.ETL.Orchestrator.Services;
-
 /// <summary>
-/// Settings for <see cref="ExportMetricsCommand"/>.
+///     Settings for <see cref="ExportMetricsCommand" />.
 /// </summary>
-public class ExportMetricsSettings : CommandSettings
-{
-    [System.ComponentModel.Description("Export format (csv|json)")]
-    [System.ComponentModel.DefaultValue("json")]
+public class ExportMetricsSettings : CommandSettings {
+    [Description("Export format (csv|json)")]
+    [DefaultValue("json")]
     public string Format { get; init; } = "json";
 
-    [System.ComponentModel.Description("Output file path (optional)")]
+    [Description("Output file path (optional)")]
     public string? OutputFile { get; init; }
 }
 
 /// <summary>
-/// Exports the last ETL metrics to a file in csv or json format.
+///     Exports the last ETL metrics to a file in csv or json format.
 /// </summary>
-public class ExportMetricsCommand : Command<ExportMetricsSettings>
-{
+public class ExportMetricsCommand : Command<ExportMetricsSettings> {
     private readonly MetricsService _metricsService;
 
-    public ExportMetricsCommand(MetricsService metricsService)
-    {
+    public ExportMetricsCommand(MetricsService metricsService) {
         _metricsService = metricsService;
     }
 
-    protected override int Execute(CommandContext context, ExportMetricsSettings settings, CancellationToken cancellationToken)
-    {
+    protected override int Execute(CommandContext context, ExportMetricsSettings settings, CancellationToken cancellationToken) {
         var format = (settings.Format ?? "json").ToLowerInvariant();
         var outputFile = settings.OutputFile ?? $"metrics.{format}";
 
         var metrics = _metricsService.GetLastMetrics();
-        if (metrics == null || metrics.Count == 0)
-        {
+        if (metrics == null || metrics.Count == 0) {
             AnsiConsole.MarkupLine("[yellow]No ETL metrics available to export.[/]");
             return 1;
         }
 
-        try
-        {
-            if (format == "json")
-            {
+        try {
+            if (format == "json") {
                 var json = JsonSerializer.Serialize(metrics, new JsonSerializerOptions { WriteIndented = true });
                 File.WriteAllText(outputFile, json);
             }
-            else if (format == "csv")
-            {
+            else if (format == "csv") {
                 var lines = new List<string> { "Metric,Value" };
-                foreach (var entry in metrics)
-                {
+                foreach (var entry in metrics) {
                     lines.Add($"{entry.Key},{entry.Value}");
                 }
                 File.WriteAllLines(outputFile, lines);
             }
-            else
-            {
+            else {
                 AnsiConsole.MarkupLine($"[red]Unknown format '{format}'. Use 'csv' or 'json'.[/]");
                 return 1;
             }
@@ -68,8 +58,7 @@ public class ExportMetricsCommand : Command<ExportMetricsSettings>
             AnsiConsole.MarkupLine($"[green]Exported {metrics.Count} metrics to[/] [bold]{outputFile}[/]");
             return 0;
         }
-        catch (Exception ex)
-        {
+        catch (Exception ex) {
             AnsiConsole.MarkupLine($"[red]Export failed: {ex.Message}[/]");
             return 1;
         }

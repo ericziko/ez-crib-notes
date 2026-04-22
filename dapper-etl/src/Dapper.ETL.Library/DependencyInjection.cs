@@ -1,75 +1,71 @@
-namespace Dapper.ETL.Library
-{
-    using System;
-    using Dapper.ETL.Library.Implementation;
-    using Dapper.ETL.Library.Interfaces;
-    using Microsoft.Data.SqlClient;
-    using Microsoft.Extensions.DependencyInjection;
+using System;
+using Dapper.ETL.Library.Implementation;
+using Dapper.ETL.Library.Interfaces;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Dapper.ETL.Library;
+
+/// <summary>
+///     Configuration options for ETL services, supporting multi-connection routing.
+/// </summary>
+public class EtlOptions {
+    /// <summary>
+    ///     Connection string for the source database (read operations).
+    /// </summary>
+    public string SourceConnectionString { get; set; } = string.Empty;
 
     /// <summary>
-    /// Configuration options for ETL services, supporting multi-connection routing.
+    ///     Connection string for the target database (write operations).
+    ///     Reserved for future orchestrator use.
     /// </summary>
-    public class EtlOptions
-    {
-        /// <summary>
-        /// Connection string for the source database (read operations).
-        /// </summary>
-        public string SourceConnectionString { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Connection string for the target database (write operations).
-        /// Reserved for future orchestrator use.
-        /// </summary>
-        public string TargetConnectionString { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Connection string for the logs database (audit/logging operations).
-        /// Reserved for future orchestrator use.
-        /// </summary>
-        public string LogsConnectionString { get; set; } = string.Empty;
-    }
+    public string TargetConnectionString { get; set; } = string.Empty;
 
     /// <summary>
-    /// Extension methods for registering ETL services with dependency injection.
+    ///     Connection string for the logs database (audit/logging operations).
+    ///     Reserved for future orchestrator use.
     /// </summary>
-    public static class DependencyInjection
-    {
-        /// <summary>
-        /// Adds ETL services to the service collection with multi-connection routing support.
-        /// </summary>
-        /// <remarks>
-        /// Phase 0.1: Refactored to accept <see cref="EtlOptions"/> for source/target/logs connection routing.
-        /// Target and Logs connections are registered as infrastructure but not yet wired into
-        /// service registrations — that is a separate orchestrator concern.
-        /// Callers must update their registration call to provide the configure delegate.
-        /// </remarks>
-        /// <param name="services">The service collection.</param>
-        /// <param name="configure">Action to configure <see cref="EtlOptions"/>.</param>
-        /// <returns>The service collection for chaining.</returns>
-        public static IServiceCollection AddEtlServices(this IServiceCollection services,
-            Action<EtlOptions> configure)
-        {
-            var options = new EtlOptions();
-            configure(options);
+    public string LogsConnectionString { get; set; } = string.Empty;
+}
 
-            // Serilog-backed logger (replaces basic console EtlLogger).
-            services.AddSingleton<IEtlLogger, SerilogEtlLogger>();
+/// <summary>
+///     Extension methods for registering ETL services with dependency injection.
+/// </summary>
+public static class DependencyInjection {
+    /// <summary>
+    ///     Adds ETL services to the service collection with multi-connection routing support.
+    /// </summary>
+    /// <remarks>
+    ///     Phase 0.1: Refactored to accept <see cref="EtlOptions" /> for source/target/logs connection routing.
+    ///     Target and Logs connections are registered as infrastructure but not yet wired into
+    ///     service registrations — that is a separate orchestrator concern.
+    ///     Callers must update their registration call to provide the configure delegate.
+    /// </remarks>
+    /// <param name="services">The service collection.</param>
+    /// <param name="configure">Action to configure <see cref="EtlOptions" />.</param>
+    /// <returns>The service collection for chaining.</returns>
+    public static IServiceCollection AddEtlServices(this IServiceCollection services,
+        Action<EtlOptions> configure) {
+        var options = new EtlOptions();
+        configure(options);
 
-            services.AddSingleton<IColumnMapper, ColumnMapper>();
-            services.AddSingleton<IBatchProcessor, BatchProcessor>();
+        // Serilog-backed logger (replaces basic console EtlLogger).
+        services.AddSingleton<IEtlLogger, SerilogEtlLogger>();
 
-            // Source connection: used for schema inspection and read-side transaction management.
-            services.AddTransient<ITransactionManager>(sp =>
-                new TransactionManager(new SqlConnection(options.SourceConnectionString)));
+        services.AddSingleton<IColumnMapper, ColumnMapper>();
+        services.AddSingleton<IBatchProcessor, BatchProcessor>();
 
-            services.AddTransient<ISchemaInspector>(sp =>
-                new SqlServerSchemaInspector(sp.GetRequiredService<ITransactionManager>().Connection));
+        // Source connection: used for schema inspection and read-side transaction management.
+        services.AddTransient<ITransactionManager>(sp =>
+            new TransactionManager(new SqlConnection(options.SourceConnectionString)));
 
-            services.AddTransient<ITableCopyService, TableCopyService>();
-            services.AddTransient<IStoredProcedureService, StoredProcedureService>();
-            services.AddTransient<IEtlOrchestrator, EtlOrchestrator>();
+        services.AddTransient<ISchemaInspector>(sp =>
+            new SqlServerSchemaInspector(sp.GetRequiredService<ITransactionManager>().Connection));
 
-            return services;
-        }
+        services.AddTransient<ITableCopyService, TableCopyService>();
+        services.AddTransient<IStoredProcedureService, StoredProcedureService>();
+        services.AddTransient<IEtlOrchestrator, EtlOrchestrator>();
+
+        return services;
     }
 }

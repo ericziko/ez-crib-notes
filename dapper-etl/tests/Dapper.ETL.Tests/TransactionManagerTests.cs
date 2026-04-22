@@ -1,308 +1,287 @@
-namespace Dapper.ETL.Tests
-{
-    using System;
-    using System.Data;
-    using System.Data.SqlClient;
-    using System.Threading.Tasks;
-    using Dapper.ETL.Library.Implementation;
-    using Moq;
-    using VerifyXunit;
-    using Xunit;
+using System;
+using System.Data;
+using System.Threading.Tasks;
+using Dapper.ETL.Library.Implementation;
+using Moq;
+using Xunit;
 
-    /// <summary>
-    /// Tests for TransactionManager using Verify.NET for snapshot verification
-    /// </summary>
-    public class TransactionManagerTests
-    {
-        [Fact]
-        public void Constructor_WithNullConnection_ThrowsArgumentNullException()
-        {
-            // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => new TransactionManager(null!));
-        }
+namespace Dapper.ETL.Tests;
 
-        [Fact]
-        public void Constructor_WithValidConnection_InitializesSuccessfully()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
+/// <summary>
+///     Tests for TransactionManager using Verify.NET for snapshot verification
+/// </summary>
+public class TransactionManagerTests {
+    [Fact]
+    public void Constructor_WithNullConnection_ThrowsArgumentNullException() {
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => new TransactionManager(null!));
+    }
 
-            // Act
-            var manager = new TransactionManager(mockConnection.Object);
+    [Fact]
+    public void Constructor_WithValidConnection_InitializesSuccessfully() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
 
-            // Assert
-            Assert.NotNull(manager);
-            Assert.Equal(mockConnection.Object, manager.Connection);
-            Assert.Null(manager.CurrentTransaction);
-        }
+        // Act
+        var manager = new TransactionManager(mockConnection.Object);
 
-        [Fact]
-        public async Task BeginTransactionAsync_WithClosedConnection_OpensConnection()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
-            var mockTransaction = new Mock<IDbTransaction>();
-            mockConnection.Setup(c => c.State).Returns(ConnectionState.Closed);
-            mockConnection.Setup(c => c.BeginTransaction(It.IsAny<IsolationLevel>()))
-                .Returns(mockTransaction.Object);
+        // Assert
+        Assert.NotNull(manager);
+        Assert.Equal(mockConnection.Object, manager.Connection);
+        Assert.Null(manager.CurrentTransaction);
+    }
 
-            var manager = new TransactionManager(mockConnection.Object);
+    [Fact]
+    public async Task BeginTransactionAsync_WithClosedConnection_OpensConnection() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
+        var mockTransaction = new Mock<IDbTransaction>();
+        mockConnection.Setup(c => c.State).Returns(ConnectionState.Closed);
+        mockConnection.Setup(c => c.BeginTransaction(It.IsAny<IsolationLevel>()))
+            .Returns(mockTransaction.Object);
 
-            // Act
-            await manager.BeginTransactionAsync();
+        var manager = new TransactionManager(mockConnection.Object);
 
-            // Assert
-            mockConnection.Verify(c => c.Open(), Times.Once);
-            mockConnection.Verify(c => c.BeginTransaction(IsolationLevel.ReadCommitted), Times.Once);
-        }
+        // Act
+        await manager.BeginTransactionAsync();
 
-        [Fact]
-        public async Task BeginTransactionAsync_WithOpenConnection_DoesNotOpenAgain()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
-            var mockTransaction = new Mock<IDbTransaction>();
-            mockConnection.Setup(c => c.State).Returns(ConnectionState.Open);
-            mockConnection.Setup(c => c.BeginTransaction(It.IsAny<IsolationLevel>()))
-                .Returns(mockTransaction.Object);
+        // Assert
+        mockConnection.Verify(c => c.Open(), Times.Once);
+        mockConnection.Verify(c => c.BeginTransaction(IsolationLevel.ReadCommitted), Times.Once);
+    }
 
-            var manager = new TransactionManager(mockConnection.Object);
+    [Fact]
+    public async Task BeginTransactionAsync_WithOpenConnection_DoesNotOpenAgain() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
+        var mockTransaction = new Mock<IDbTransaction>();
+        mockConnection.Setup(c => c.State).Returns(ConnectionState.Open);
+        mockConnection.Setup(c => c.BeginTransaction(It.IsAny<IsolationLevel>()))
+            .Returns(mockTransaction.Object);
 
-            // Act
-            await manager.BeginTransactionAsync();
+        var manager = new TransactionManager(mockConnection.Object);
 
-            // Assert
-            mockConnection.Verify(c => c.Open(), Times.Never);
-        }
+        // Act
+        await manager.BeginTransactionAsync();
 
-        [Fact]
-        public async Task BeginTransactionAsync_WithCustomIsolationLevel_UsesSpecifiedLevel()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
-            var mockTransaction = new Mock<IDbTransaction>();
-            mockConnection.Setup(c => c.State).Returns(ConnectionState.Open);
-            mockConnection.Setup(c => c.BeginTransaction(IsolationLevel.Serializable))
-                .Returns(mockTransaction.Object);
+        // Assert
+        mockConnection.Verify(c => c.Open(), Times.Never);
+    }
 
-            var manager = new TransactionManager(mockConnection.Object);
+    [Fact]
+    public async Task BeginTransactionAsync_WithCustomIsolationLevel_UsesSpecifiedLevel() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
+        var mockTransaction = new Mock<IDbTransaction>();
+        mockConnection.Setup(c => c.State).Returns(ConnectionState.Open);
+        mockConnection.Setup(c => c.BeginTransaction(IsolationLevel.Serializable))
+            .Returns(mockTransaction.Object);
 
-            // Act
-            await manager.BeginTransactionAsync(IsolationLevel.Serializable);
+        var manager = new TransactionManager(mockConnection.Object);
 
-            // Assert
-            mockConnection.Verify(c => c.BeginTransaction(IsolationLevel.Serializable), Times.Once);
-        }
+        // Act
+        await manager.BeginTransactionAsync(IsolationLevel.Serializable);
 
-        [Fact]
-        public async Task BeginTransactionAsync_AfterDispose_ThrowsObjectDisposedException()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
-            var manager = new TransactionManager(mockConnection.Object);
-            await manager.DisposeAsync();
+        // Assert
+        mockConnection.Verify(c => c.BeginTransaction(IsolationLevel.Serializable), Times.Once);
+    }
 
-            // Act & Assert
-            await Assert.ThrowsAsync<ObjectDisposedException>(() =>
-                manager.BeginTransactionAsync());
-        }
+    [Fact]
+    public async Task BeginTransactionAsync_AfterDispose_ThrowsObjectDisposedException() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
+        var manager = new TransactionManager(mockConnection.Object);
+        await manager.DisposeAsync();
 
-        [Fact]
-        public async Task CommitAsync_WithActiveTransaction_CommitsAndDisposesTransaction()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
-            var mockTransaction = new Mock<IDbTransaction>();
-            mockConnection.Setup(c => c.State).Returns(ConnectionState.Open);
-            mockConnection.Setup(c => c.BeginTransaction(It.IsAny<IsolationLevel>()))
-                .Returns(mockTransaction.Object);
+        // Act & Assert
+        await Assert.ThrowsAsync<ObjectDisposedException>(() =>
+            manager.BeginTransactionAsync());
+    }
 
-            var manager = new TransactionManager(mockConnection.Object);
-            await manager.BeginTransactionAsync();
+    [Fact]
+    public async Task CommitAsync_WithActiveTransaction_CommitsAndDisposesTransaction() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
+        var mockTransaction = new Mock<IDbTransaction>();
+        mockConnection.Setup(c => c.State).Returns(ConnectionState.Open);
+        mockConnection.Setup(c => c.BeginTransaction(It.IsAny<IsolationLevel>()))
+            .Returns(mockTransaction.Object);
 
-            // Act
-            await manager.CommitAsync();
+        var manager = new TransactionManager(mockConnection.Object);
+        await manager.BeginTransactionAsync();
 
-            // Assert
-            mockTransaction.Verify(t => t.Commit(), Times.Once);
-            mockTransaction.Verify(t => t.Dispose(), Times.Once);
-            Assert.Null(manager.CurrentTransaction);
-        }
+        // Act
+        await manager.CommitAsync();
 
-        [Fact]
-        public async Task CommitAsync_WithoutActiveTransaction_DoesNotThrow()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
-            var manager = new TransactionManager(mockConnection.Object);
+        // Assert
+        mockTransaction.Verify(t => t.Commit(), Times.Once);
+        mockTransaction.Verify(t => t.Dispose(), Times.Once);
+        Assert.Null(manager.CurrentTransaction);
+    }
 
-            // Act & Assert - should not throw
-            await manager.CommitAsync();
-            Assert.Null(manager.CurrentTransaction);
-        }
+    [Fact]
+    public async Task CommitAsync_WithoutActiveTransaction_DoesNotThrow() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
+        var manager = new TransactionManager(mockConnection.Object);
 
-        [Fact]
-        public async Task CommitAsync_AfterDispose_ThrowsObjectDisposedException()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
-            var manager = new TransactionManager(mockConnection.Object);
-            await manager.DisposeAsync();
+        // Act & Assert - should not throw
+        await manager.CommitAsync();
+        Assert.Null(manager.CurrentTransaction);
+    }
 
-            // Act & Assert
-            await Assert.ThrowsAsync<ObjectDisposedException>(() => manager.CommitAsync());
-        }
+    [Fact]
+    public async Task CommitAsync_AfterDispose_ThrowsObjectDisposedException() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
+        var manager = new TransactionManager(mockConnection.Object);
+        await manager.DisposeAsync();
 
-        [Fact]
-        public async Task RollbackAsync_WithActiveTransaction_RollsBackAndDisposesTransaction()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
-            var mockTransaction = new Mock<IDbTransaction>();
-            mockConnection.Setup(c => c.State).Returns(ConnectionState.Open);
-            mockConnection.Setup(c => c.BeginTransaction(It.IsAny<IsolationLevel>()))
-                .Returns(mockTransaction.Object);
+        // Act & Assert
+        await Assert.ThrowsAsync<ObjectDisposedException>(() => manager.CommitAsync());
+    }
 
-            var manager = new TransactionManager(mockConnection.Object);
-            await manager.BeginTransactionAsync();
+    [Fact]
+    public async Task RollbackAsync_WithActiveTransaction_RollsBackAndDisposesTransaction() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
+        var mockTransaction = new Mock<IDbTransaction>();
+        mockConnection.Setup(c => c.State).Returns(ConnectionState.Open);
+        mockConnection.Setup(c => c.BeginTransaction(It.IsAny<IsolationLevel>()))
+            .Returns(mockTransaction.Object);
 
-            // Act
-            await manager.RollbackAsync();
+        var manager = new TransactionManager(mockConnection.Object);
+        await manager.BeginTransactionAsync();
 
-            // Assert
-            mockTransaction.Verify(t => t.Rollback(), Times.Once);
-            mockTransaction.Verify(t => t.Dispose(), Times.Once);
-            Assert.Null(manager.CurrentTransaction);
-        }
+        // Act
+        await manager.RollbackAsync();
 
-        [Fact]
-        public async Task RollbackAsync_WithoutActiveTransaction_DoesNotThrow()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
-            var manager = new TransactionManager(mockConnection.Object);
+        // Assert
+        mockTransaction.Verify(t => t.Rollback(), Times.Once);
+        mockTransaction.Verify(t => t.Dispose(), Times.Once);
+        Assert.Null(manager.CurrentTransaction);
+    }
 
-            // Act & Assert - should not throw
-            await manager.RollbackAsync();
-            Assert.Null(manager.CurrentTransaction);
-        }
+    [Fact]
+    public async Task RollbackAsync_WithoutActiveTransaction_DoesNotThrow() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
+        var manager = new TransactionManager(mockConnection.Object);
 
-        [Fact]
-        public async Task RollbackAsync_AfterDispose_ThrowsObjectDisposedException()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
-            var manager = new TransactionManager(mockConnection.Object);
-            await manager.DisposeAsync();
+        // Act & Assert - should not throw
+        await manager.RollbackAsync();
+        Assert.Null(manager.CurrentTransaction);
+    }
 
-            // Act & Assert
-            await Assert.ThrowsAsync<ObjectDisposedException>(() => manager.RollbackAsync());
-        }
+    [Fact]
+    public async Task RollbackAsync_AfterDispose_ThrowsObjectDisposedException() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
+        var manager = new TransactionManager(mockConnection.Object);
+        await manager.DisposeAsync();
 
-        [Fact]
-        public async Task DisposeAsync_WithActiveTransaction_DisposesTransactionAndConnection()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
-            var mockTransaction = new Mock<IDbTransaction>();
-            mockConnection.Setup(c => c.State).Returns(ConnectionState.Open);
-            mockConnection.Setup(c => c.BeginTransaction(It.IsAny<IsolationLevel>()))
-                .Returns(mockTransaction.Object);
+        // Act & Assert
+        await Assert.ThrowsAsync<ObjectDisposedException>(() => manager.RollbackAsync());
+    }
 
-            var manager = new TransactionManager(mockConnection.Object);
-            await manager.BeginTransactionAsync();
+    [Fact]
+    public async Task DisposeAsync_WithActiveTransaction_DisposesTransactionAndConnection() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
+        var mockTransaction = new Mock<IDbTransaction>();
+        mockConnection.Setup(c => c.State).Returns(ConnectionState.Open);
+        mockConnection.Setup(c => c.BeginTransaction(It.IsAny<IsolationLevel>()))
+            .Returns(mockTransaction.Object);
 
-            // Act
-            await manager.DisposeAsync();
+        var manager = new TransactionManager(mockConnection.Object);
+        await manager.BeginTransactionAsync();
 
-            // Assert
-            mockTransaction.Verify(t => t.Dispose(), Times.Once);
-            mockConnection.Verify(c => c.Close(), Times.Once);
-            mockConnection.Verify(c => c.Dispose(), Times.Once);
-        }
+        // Act
+        await manager.DisposeAsync();
 
-        [Fact]
-        public async Task DisposeAsync_CalledMultipleTimes_IsIdempotent()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
-            var manager = new TransactionManager(mockConnection.Object);
+        // Assert
+        mockTransaction.Verify(t => t.Dispose(), Times.Once);
+        mockConnection.Verify(c => c.Close(), Times.Once);
+        mockConnection.Verify(c => c.Dispose(), Times.Once);
+    }
 
-            // Act
-            await manager.DisposeAsync();
-            await manager.DisposeAsync();
+    [Fact]
+    public async Task DisposeAsync_CalledMultipleTimes_IsIdempotent() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
+        var manager = new TransactionManager(mockConnection.Object);
 
-            // Assert - should not throw and only close once
-            mockConnection.Verify(c => c.Close(), Times.AtMostOnce);
-        }
+        // Act
+        await manager.DisposeAsync();
+        await manager.DisposeAsync();
 
-        [Fact]
-        public async Task DisposeAsync_WithClosedConnection_StillDisposesConnection()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
-            mockConnection.Setup(c => c.State).Returns(ConnectionState.Closed);
+        // Assert - should not throw and only close once
+        mockConnection.Verify(c => c.Close(), Times.AtMostOnce);
+    }
 
-            var manager = new TransactionManager(mockConnection.Object);
+    [Fact]
+    public async Task DisposeAsync_WithClosedConnection_StillDisposesConnection() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
+        mockConnection.Setup(c => c.State).Returns(ConnectionState.Closed);
 
-            // Act
-            await manager.DisposeAsync();
+        var manager = new TransactionManager(mockConnection.Object);
 
-            // Assert
-            mockConnection.Verify(c => c.Dispose(), Times.Once);
-            mockConnection.Verify(c => c.Close(), Times.Never);
-        }
+        // Act
+        await manager.DisposeAsync();
 
-        [Fact]
-        public async Task CompleteLifecycle_BeginCommit_SuccessfullyCompletesTransaction()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
-            var mockTransaction = new Mock<IDbTransaction>();
-            mockConnection.Setup(c => c.State).Returns(ConnectionState.Open);
-            mockConnection.Setup(c => c.BeginTransaction(It.IsAny<IsolationLevel>()))
-                .Returns(mockTransaction.Object);
+        // Assert
+        mockConnection.Verify(c => c.Dispose(), Times.Once);
+        mockConnection.Verify(c => c.Close(), Times.Never);
+    }
 
-            var manager = new TransactionManager(mockConnection.Object);
+    [Fact]
+    public async Task CompleteLifecycle_BeginCommit_SuccessfullyCompletesTransaction() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
+        var mockTransaction = new Mock<IDbTransaction>();
+        mockConnection.Setup(c => c.State).Returns(ConnectionState.Open);
+        mockConnection.Setup(c => c.BeginTransaction(It.IsAny<IsolationLevel>()))
+            .Returns(mockTransaction.Object);
 
-            // Act
-            await manager.BeginTransactionAsync();
-            Assert.NotNull(manager.CurrentTransaction);
+        var manager = new TransactionManager(mockConnection.Object);
 
-            await manager.CommitAsync();
-            Assert.Null(manager.CurrentTransaction);
+        // Act
+        await manager.BeginTransactionAsync();
+        Assert.NotNull(manager.CurrentTransaction);
 
-            await manager.DisposeAsync();
+        await manager.CommitAsync();
+        Assert.Null(manager.CurrentTransaction);
 
-            // Assert
-            mockConnection.Verify(c => c.BeginTransaction(It.IsAny<IsolationLevel>()), Times.Once);
-            mockTransaction.Verify(t => t.Commit(), Times.Once);
-        }
+        await manager.DisposeAsync();
 
-        [Fact]
-        public async Task CompleteLifecycle_BeginRollback_SuccessfullyRollsBackTransaction()
-        {
-            // Arrange
-            var mockConnection = new Mock<IDbConnection>();
-            var mockTransaction = new Mock<IDbTransaction>();
-            mockConnection.Setup(c => c.State).Returns(ConnectionState.Open);
-            mockConnection.Setup(c => c.BeginTransaction(It.IsAny<IsolationLevel>()))
-                .Returns(mockTransaction.Object);
+        // Assert
+        mockConnection.Verify(c => c.BeginTransaction(It.IsAny<IsolationLevel>()), Times.Once);
+        mockTransaction.Verify(t => t.Commit(), Times.Once);
+    }
 
-            var manager = new TransactionManager(mockConnection.Object);
+    [Fact]
+    public async Task CompleteLifecycle_BeginRollback_SuccessfullyRollsBackTransaction() {
+        // Arrange
+        var mockConnection = new Mock<IDbConnection>();
+        var mockTransaction = new Mock<IDbTransaction>();
+        mockConnection.Setup(c => c.State).Returns(ConnectionState.Open);
+        mockConnection.Setup(c => c.BeginTransaction(It.IsAny<IsolationLevel>()))
+            .Returns(mockTransaction.Object);
 
-            // Act
-            await manager.BeginTransactionAsync();
-            Assert.NotNull(manager.CurrentTransaction);
+        var manager = new TransactionManager(mockConnection.Object);
 
-            await manager.RollbackAsync();
-            Assert.Null(manager.CurrentTransaction);
+        // Act
+        await manager.BeginTransactionAsync();
+        Assert.NotNull(manager.CurrentTransaction);
 
-            await manager.DisposeAsync();
+        await manager.RollbackAsync();
+        Assert.Null(manager.CurrentTransaction);
 
-            // Assert
-            mockConnection.Verify(c => c.BeginTransaction(It.IsAny<IsolationLevel>()), Times.Once);
-            mockTransaction.Verify(t => t.Rollback(), Times.Once);
-        }
+        await manager.DisposeAsync();
+
+        // Assert
+        mockConnection.Verify(c => c.BeginTransaction(It.IsAny<IsolationLevel>()), Times.Once);
+        mockTransaction.Verify(t => t.Rollback(), Times.Once);
     }
 }

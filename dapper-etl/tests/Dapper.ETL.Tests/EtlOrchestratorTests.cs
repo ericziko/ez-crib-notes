@@ -1,256 +1,235 @@
-namespace Dapper.ETL.Tests
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Dapper.ETL.Library.Implementation;
-    using Dapper.ETL.Library.Interfaces;
-    using Dapper.ETL.Library.Models;
-    using Moq;
-    using Xunit;
+using System;
+using System.Data;
+using System.Threading;
+using System.Threading.Tasks;
+using Dapper.ETL.Library.Implementation;
+using Dapper.ETL.Library.Interfaces;
+using Dapper.ETL.Library.Models;
+using Moq;
+using Xunit;
 
-    public class EtlOrchestratorTests
-    {
-        private readonly Mock<ITransactionManager> _mockTransactionManager;
-        private readonly Mock<ITableCopyService> _mockTableCopyService;
-        private readonly Mock<IStoredProcedureService> _mockStoredProcedureService;
-        private readonly Mock<IEtlLogger> _mockLogger;
-        private readonly EtlOrchestrator _orchestrator;
+namespace Dapper.ETL.Tests;
 
-        public EtlOrchestratorTests()
-        {
-            _mockTransactionManager = new Mock<ITransactionManager>();
-            _mockTableCopyService = new Mock<ITableCopyService>();
-            _mockStoredProcedureService = new Mock<IStoredProcedureService>();
-            _mockLogger = new Mock<IEtlLogger>();
+public class EtlOrchestratorTests {
+    private readonly Mock<IEtlLogger> _mockLogger;
+    private readonly Mock<IStoredProcedureService> _mockStoredProcedureService;
+    private readonly Mock<ITableCopyService> _mockTableCopyService;
+    private readonly Mock<ITransactionManager> _mockTransactionManager;
+    private readonly EtlOrchestrator _orchestrator;
 
-            _orchestrator = new EtlOrchestrator(
-                _mockTransactionManager.Object,
-                _mockTableCopyService.Object,
-                _mockStoredProcedureService.Object,
-                _mockLogger.Object);
-        }
+    public EtlOrchestratorTests() {
+        _mockTransactionManager = new Mock<ITransactionManager>();
+        _mockTableCopyService = new Mock<ITableCopyService>();
+        _mockStoredProcedureService = new Mock<IStoredProcedureService>();
+        _mockLogger = new Mock<IEtlLogger>();
 
-        [Fact]
-        public async Task ExecuteAsync_WithNullPlan_ThrowsArgumentNullException()
-        {
-            // Act & Assert
-            await Assert.ThrowsAsync<ArgumentNullException>(async () =>
-                await _orchestrator.ExecuteAsync(null!));
-        }
+        _orchestrator = new EtlOrchestrator(
+            _mockTransactionManager.Object,
+            _mockTableCopyService.Object,
+            _mockStoredProcedureService.Object,
+            _mockLogger.Object);
+    }
 
-        [Fact]
-        public async Task ExecuteAsync_WithSuccessfulTableCopy_CommitsTransaction()
-        {
-            // Arrange
-            var plan = new EtlExecutionPlan(
-                tableCopies: new[]
-                {
-                    ("source", "dest", new TableCopyOptions())
-                });
+    [Fact]
+    public async Task ExecuteAsync_WithNullPlan_ThrowsArgumentNullException() {
+        // Act & Assert
+        await Assert.ThrowsAsync<ArgumentNullException>(async () =>
+            await _orchestrator.ExecuteAsync(null!));
+    }
 
-            var copyResult = new TableCopyResult(true, "source", "dest", 100, 1000);
+    [Fact]
+    public async Task ExecuteAsync_WithSuccessfulTableCopy_CommitsTransaction() {
+        // Arrange
+        var plan = new EtlExecutionPlan(
+            new[] {
+                ("source", "dest", new TableCopyOptions())
+            });
 
-            _mockTableCopyService.Setup(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(copyResult);
+        var copyResult = new TableCopyResult(true, "source", "dest", 100, 1000);
 
-            // Act
-            var result = await _orchestrator.ExecuteAsync(plan);
+        _mockTableCopyService.Setup(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(copyResult);
 
-            // Assert
-            Assert.True(result.Success);
-            _mockTransactionManager.Verify(x => x.BeginTransactionAsync(It.IsAny<System.Data.IsolationLevel>(), It.IsAny<CancellationToken>()), Times.Once);
-            _mockTransactionManager.Verify(x => x.CommitAsync(It.IsAny<CancellationToken>()), Times.Once);
-        }
+        // Act
+        var result = await _orchestrator.ExecuteAsync(plan);
 
-        [Fact]
-        public async Task ExecuteAsync_WithTableCopyFailure_RollsBackTransaction()
-        {
-            // Arrange
-            var plan = new EtlExecutionPlan(
-                tableCopies: new[]
-                {
-                    ("source", "dest", new TableCopyOptions())
-                });
+        // Assert
+        Assert.True(result.Success);
+        _mockTransactionManager.Verify(x => x.BeginTransactionAsync(It.IsAny<IsolationLevel>(), It.IsAny<CancellationToken>()), Times.Once);
+        _mockTransactionManager.Verify(x => x.CommitAsync(It.IsAny<CancellationToken>()), Times.Once);
+    }
 
-            var failureResult = new TableCopyResult(false, "source", "dest", 0, 1000, "Copy failed");
+    [Fact]
+    public async Task ExecuteAsync_WithTableCopyFailure_RollsBackTransaction() {
+        // Arrange
+        var plan = new EtlExecutionPlan(
+            new[] {
+                ("source", "dest", new TableCopyOptions())
+            });
 
-            _mockTableCopyService.Setup(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(failureResult);
+        var failureResult = new TableCopyResult(false, "source", "dest", 0, 1000, "Copy failed");
 
-            // Act
-            var result = await _orchestrator.ExecuteAsync(plan, shouldRollback: true);
+        _mockTableCopyService.Setup(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(failureResult);
 
-            // Assert
-            Assert.False(result.Success);
-            _mockTransactionManager.Verify(x => x.RollbackAsync(It.IsAny<CancellationToken>()), Times.Once);
-        }
+        // Act
+        var result = await _orchestrator.ExecuteAsync(plan, true);
 
-        [Fact]
-        public async Task ExecuteAsync_WithStoredProcedureFailure_RollsBackTransaction()
-        {
-            // Arrange
-            var procedure = new StoredProcedureDefinition("TestProcedure");
+        // Assert
+        Assert.False(result.Success);
+        _mockTransactionManager.Verify(x => x.RollbackAsync(It.IsAny<CancellationToken>()), Times.Once);
+    }
 
-            var plan = new EtlExecutionPlan(
-                storedProcedures: new[] { procedure });
+    [Fact]
+    public async Task ExecuteAsync_WithStoredProcedureFailure_RollsBackTransaction() {
+        // Arrange
+        var procedure = new StoredProcedureDefinition("TestProcedure");
 
-            var failureResult = new StoredProcedureResult(false, "TestProcedure", 0, "Execution failed");
+        var plan = new EtlExecutionPlan(
+            storedProcedures: new[] { procedure });
 
-            _mockStoredProcedureService.Setup(x => x.ExecuteAsync(It.IsAny<StoredProcedureDefinition>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(failureResult);
+        var failureResult = new StoredProcedureResult(false, "TestProcedure", 0, "Execution failed");
 
-            // Act
-            var result = await _orchestrator.ExecuteAsync(plan, shouldRollback: true);
+        _mockStoredProcedureService.Setup(x => x.ExecuteAsync(It.IsAny<StoredProcedureDefinition>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(failureResult);
 
-            // Assert
-            Assert.False(result.Success);
-            _mockTransactionManager.Verify(x => x.RollbackAsync(It.IsAny<CancellationToken>()), Times.Once);
-        }
+        // Act
+        var result = await _orchestrator.ExecuteAsync(plan, true);
 
-        [Fact]
-        public async Task ExecuteAsync_WithMultipleTables_CopiesAllTables()
-        {
-            // Arrange
-            var plan = new EtlExecutionPlan(
-                tableCopies: new[]
-                {
-                    ("source1", "dest1", new TableCopyOptions()),
-                    ("source2", "dest2", new TableCopyOptions()),
-                    ("source3", "dest3", new TableCopyOptions())
-                });
+        // Assert
+        Assert.False(result.Success);
+        _mockTransactionManager.Verify(x => x.RollbackAsync(It.IsAny<CancellationToken>()), Times.Once);
+    }
 
-            var copyResult = new TableCopyResult(true, "source", "dest", 100, 1000);
+    [Fact]
+    public async Task ExecuteAsync_WithMultipleTables_CopiesAllTables() {
+        // Arrange
+        var plan = new EtlExecutionPlan(
+            new[] {
+                ("source1", "dest1", new TableCopyOptions()),
+                ("source2", "dest2", new TableCopyOptions()),
+                ("source3", "dest3", new TableCopyOptions())
+            });
 
-            _mockTableCopyService.Setup(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(copyResult);
+        var copyResult = new TableCopyResult(true, "source", "dest", 100, 1000);
 
-            // Act
-            var result = await _orchestrator.ExecuteAsync(plan);
+        _mockTableCopyService.Setup(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(copyResult);
 
-            // Assert
-            Assert.True(result.Success);
-            Assert.Equal(3, result.TableCopyResults.Count);
-            _mockTableCopyService.Verify(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()), Times.Exactly(3));
-        }
+        // Act
+        var result = await _orchestrator.ExecuteAsync(plan);
 
-        [Fact]
-        public async Task ExecuteAsync_WithMultipleProcedures_ExecutesAllProcedures()
-        {
-            // Arrange
-            var plan = new EtlExecutionPlan(
-                storedProcedures: new[]
-                {
-                    new StoredProcedureDefinition("Procedure1"),
-                    new StoredProcedureDefinition("Procedure2"),
-                    new StoredProcedureDefinition("Procedure3")
-                });
+        // Assert
+        Assert.True(result.Success);
+        Assert.Equal(3, result.TableCopyResults.Count);
+        _mockTableCopyService.Verify(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()), Times.Exactly(3));
+    }
 
-            var procResult = new StoredProcedureResult(true, "Procedure", 10);
+    [Fact]
+    public async Task ExecuteAsync_WithMultipleProcedures_ExecutesAllProcedures() {
+        // Arrange
+        var plan = new EtlExecutionPlan(
+            storedProcedures: new[] {
+                new StoredProcedureDefinition("Procedure1"),
+                new StoredProcedureDefinition("Procedure2"),
+                new StoredProcedureDefinition("Procedure3")
+            });
 
-            _mockStoredProcedureService.Setup(x => x.ExecuteAsync(It.IsAny<StoredProcedureDefinition>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(procResult);
+        var procResult = new StoredProcedureResult(true, "Procedure", 10);
 
-            // Act
-            var result = await _orchestrator.ExecuteAsync(plan);
+        _mockStoredProcedureService.Setup(x => x.ExecuteAsync(It.IsAny<StoredProcedureDefinition>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(procResult);
 
-            // Assert
-            Assert.True(result.Success);
-            Assert.Equal(3, result.StoredProcedureResults.Count);
-            _mockStoredProcedureService.Verify(x => x.ExecuteAsync(It.IsAny<StoredProcedureDefinition>(), It.IsAny<CancellationToken>()), Times.Exactly(3));
-        }
+        // Act
+        var result = await _orchestrator.ExecuteAsync(plan);
 
-        [Fact]
-        public async Task ExecuteAsync_WithEmptyPlan_CommitsTransaction()
-        {
-            // Arrange
-            var plan = new EtlExecutionPlan();
+        // Assert
+        Assert.True(result.Success);
+        Assert.Equal(3, result.StoredProcedureResults.Count);
+        _mockStoredProcedureService.Verify(x => x.ExecuteAsync(It.IsAny<StoredProcedureDefinition>(), It.IsAny<CancellationToken>()), Times.Exactly(3));
+    }
 
-            // Act
-            var result = await _orchestrator.ExecuteAsync(plan);
+    [Fact]
+    public async Task ExecuteAsync_WithEmptyPlan_CommitsTransaction() {
+        // Arrange
+        var plan = new EtlExecutionPlan();
 
-            // Assert
-            Assert.True(result.Success);
-            _mockTransactionManager.Verify(x => x.CommitAsync(It.IsAny<CancellationToken>()), Times.Once);
-        }
+        // Act
+        var result = await _orchestrator.ExecuteAsync(plan);
 
-        [Fact]
-        public async Task ExecuteAsync_WithTableCopyFailureAndShouldRollbackFalse_DoesNotRollback()
-        {
-            // Arrange
-            var plan = new EtlExecutionPlan(
-                tableCopies: new[]
-                {
-                    ("source", "dest", new TableCopyOptions())
-                });
+        // Assert
+        Assert.True(result.Success);
+        _mockTransactionManager.Verify(x => x.CommitAsync(It.IsAny<CancellationToken>()), Times.Once);
+    }
 
-            var failureResult = new TableCopyResult(false, "source", "dest", 0, 1000, "Copy failed");
+    [Fact]
+    public async Task ExecuteAsync_WithTableCopyFailureAndShouldRollbackFalse_DoesNotRollback() {
+        // Arrange
+        var plan = new EtlExecutionPlan(
+            new[] {
+                ("source", "dest", new TableCopyOptions())
+            });
 
-            _mockTableCopyService.Setup(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(failureResult);
+        var failureResult = new TableCopyResult(false, "source", "dest", 0, 1000, "Copy failed");
 
-            // Act
-            var result = await _orchestrator.ExecuteAsync(plan, shouldRollback: false);
+        _mockTableCopyService.Setup(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(failureResult);
 
-            // Assert
-            Assert.False(result.Success);
-            _mockTransactionManager.Verify(x => x.RollbackAsync(It.IsAny<CancellationToken>()), Times.Never);
-        }
+        // Act
+        var result = await _orchestrator.ExecuteAsync(plan, false);
 
-        [Fact]
-        public async Task ExecuteAsync_WithTablesAndProcedures_ExecutesBothInOrder()
-        {
-            // Arrange
-            var plan = new EtlExecutionPlan(
-                tableCopies: new[]
-                {
-                    ("source", "dest", new TableCopyOptions())
-                },
-                storedProcedures: new[]
-                {
-                    new StoredProcedureDefinition("TestProcedure")
-                });
+        // Assert
+        Assert.False(result.Success);
+        _mockTransactionManager.Verify(x => x.RollbackAsync(It.IsAny<CancellationToken>()), Times.Never);
+    }
 
-            var copyResult = new TableCopyResult(true, "source", "dest", 100, 1000);
-            var procResult = new StoredProcedureResult(true, "TestProcedure", 50);
+    [Fact]
+    public async Task ExecuteAsync_WithTablesAndProcedures_ExecutesBothInOrder() {
+        // Arrange
+        var plan = new EtlExecutionPlan(
+            new[] {
+                ("source", "dest", new TableCopyOptions())
+            },
+            new[] {
+                new StoredProcedureDefinition("TestProcedure")
+            });
 
-            _mockTableCopyService.Setup(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(copyResult);
+        var copyResult = new TableCopyResult(true, "source", "dest", 100, 1000);
+        var procResult = new StoredProcedureResult(true, "TestProcedure", 50);
 
-            _mockStoredProcedureService.Setup(x => x.ExecuteAsync(It.IsAny<StoredProcedureDefinition>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(procResult);
+        _mockTableCopyService.Setup(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(copyResult);
 
-            // Act
-            var result = await _orchestrator.ExecuteAsync(plan);
+        _mockStoredProcedureService.Setup(x => x.ExecuteAsync(It.IsAny<StoredProcedureDefinition>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(procResult);
 
-            // Assert
-            Assert.True(result.Success);
-            Assert.Single(result.TableCopyResults);
-            Assert.Single(result.StoredProcedureResults);
-            _mockTransactionManager.Verify(x => x.CommitAsync(It.IsAny<CancellationToken>()), Times.Once);
-        }
+        // Act
+        var result = await _orchestrator.ExecuteAsync(plan);
 
-        [Fact]
-        public async Task ExecuteAsync_LogsErrorOnFailure()
-        {
-            // Arrange
-            var plan = new EtlExecutionPlan(
-                tableCopies: new[]
-                {
-                    ("source", "dest", new TableCopyOptions())
-                });
+        // Assert
+        Assert.True(result.Success);
+        Assert.Single(result.TableCopyResults);
+        Assert.Single(result.StoredProcedureResults);
+        _mockTransactionManager.Verify(x => x.CommitAsync(It.IsAny<CancellationToken>()), Times.Once);
+    }
 
-            var failureResult = new TableCopyResult(false, "source", "dest", 0, 1000, "Copy failed");
+    [Fact]
+    public async Task ExecuteAsync_LogsErrorOnFailure() {
+        // Arrange
+        var plan = new EtlExecutionPlan(
+            new[] {
+                ("source", "dest", new TableCopyOptions())
+            });
 
-            _mockTableCopyService.Setup(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(failureResult);
+        var failureResult = new TableCopyResult(false, "source", "dest", 0, 1000, "Copy failed");
 
-            // Act
-            await _orchestrator.ExecuteAsync(plan);
+        _mockTableCopyService.Setup(x => x.CopyTableAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(failureResult);
 
-            // Assert
-            _mockLogger.Verify(x => x.LogError(It.IsAny<string>(), It.IsAny<Exception>()), Times.Once);
-        }
+        // Act
+        await _orchestrator.ExecuteAsync(plan);
+
+        // Assert
+        _mockLogger.Verify(x => x.LogError(It.IsAny<string>(), It.IsAny<Exception>()), Times.Once);
     }
 }

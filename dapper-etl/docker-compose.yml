@@ -8,8 +8,8 @@ services:
     ports:
       - "1433:1433"
     healthcheck:
-      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost",
-             "-U", "sa", "-P", "TestPassword123!", "-Q", "SELECT 1"]
+      test: [ "CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost",
+              "-U", "sa", "-P", "TestPassword123!", "-Q", "SELECT 1" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -23,7 +23,7 @@ services:
     environment:
       ACCEPT_EULA: "Y"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:80/api/"]
+      test: [ "CMD", "curl", "-f", "http://localhost:80/api/" ]
       interval: 10s
       timeout: 5s
       retries: 5

@@ -1,18 +1,15 @@
-namespace Dapper.ETL.Orchestrator.Tests.Infrastructure;
-
 using Dapper.ETL.Orchestrator.Infrastructure;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using Xunit;
 
-public class SqlConnectionBuilderTests
-{
+namespace Dapper.ETL.Orchestrator.Tests.Infrastructure;
+
+public class SqlConnectionBuilderTests {
     [Fact]
-    public void Add_AccumulatesDescriptors()
-    {
+    public void Add_AccumulatesDescriptors() {
         var builder = new SqlConnectionBuilder();
 
         builder.Add("Source", "ConnectionStrings:Source", "SourceCred");
@@ -22,21 +19,19 @@ public class SqlConnectionBuilderTests
     }
 
     [Fact]
-    public void Add_StoresCorrectValues()
-    {
+    public void Add_StoresCorrectValues() {
         var builder = new SqlConnectionBuilder();
 
         builder.Add("Source", "ConnectionStrings:Source", "SourceCred");
         var d = builder.Descriptors[0];
 
-        Assert.Equal("Source",                   d.ServiceKey);
+        Assert.Equal("Source", d.ServiceKey);
         Assert.Equal("ConnectionStrings:Source", d.ConnectionStringKey);
-        Assert.Equal("SourceCred",               d.CredentialKey);
+        Assert.Equal("SourceCred", d.CredentialKey);
     }
 
     [Fact]
-    public void Add_IsChainable()
-    {
+    public void Add_IsChainable() {
         var builder = new SqlConnectionBuilder();
 
         var returned = builder.Add("A", "ConnectionStrings:A", "ACred");
@@ -45,18 +40,16 @@ public class SqlConnectionBuilderTests
     }
 }
 
-public class AssembleConnectionStringTests
-{
-    private static IConfiguration Cfg(Dictionary<string, string?> values)
-        => new ConfigurationBuilder().AddInMemoryCollection(values).Build();
+public class AssembleConnectionStringTests {
+    private static IConfiguration Cfg(Dictionary<string, string?> values) {
+        return new ConfigurationBuilder().AddInMemoryCollection(values).Build();
+    }
 
     [Fact]
-    public void WithCredential_CredentialIsApplied()
-    {
-        var config = Cfg(new()
-        {
+    public void WithCredential_CredentialIsApplied() {
+        var config = Cfg(new Dictionary<string, string?> {
             ["ConnectionStrings:Source"] = "Server=localhost;Database=Src;Encrypt=false",
-            ["MyCred"] = "s3cr3t",
+            ["MyCred"] = "s3cr3t"
         });
 
         var result = SqlConnectionExtensions.AssembleConnectionString(
@@ -67,11 +60,9 @@ public class AssembleConnectionStringTests
     }
 
     [Fact]
-    public void WithoutCredential_UsesIntegratedSecurity()
-    {
-        var config = Cfg(new()
-        {
-            ["ConnectionStrings:Source"] = "Server=localhost;Database=Src;Encrypt=false",
+    public void WithoutCredential_UsesIntegratedSecurity() {
+        var config = Cfg(new Dictionary<string, string?> {
+            ["ConnectionStrings:Source"] = "Server=localhost;Database=Src;Encrypt=false"
         });
 
         var result = SqlConnectionExtensions.AssembleConnectionString(
@@ -82,9 +73,8 @@ public class AssembleConnectionStringTests
     }
 
     [Fact]
-    public void MissingBaseConnectionString_ThrowsInvalidOperationException()
-    {
-        var config = Cfg(new() { ["MyCred"] = "s3cr3t" });
+    public void MissingBaseConnectionString_ThrowsInvalidOperationException() {
+        var config = Cfg(new Dictionary<string, string?> { ["MyCred"] = "s3cr3t" });
 
         var ex = Assert.Throws<InvalidOperationException>(() =>
             SqlConnectionExtensions.AssembleConnectionString(
@@ -94,12 +84,10 @@ public class AssembleConnectionStringTests
     }
 
     [Fact]
-    public void Result_IsValidSqlConnectionString()
-    {
-        var config = Cfg(new()
-        {
+    public void Result_IsValidSqlConnectionString() {
+        var config = Cfg(new Dictionary<string, string?> {
             ["ConnectionStrings:Source"] = "Server=localhost;Database=Src;Encrypt=false",
-            ["MyCred"] = "s3cr3t",
+            ["MyCred"] = "s3cr3t"
         });
 
         var result = SqlConnectionExtensions.AssembleConnectionString(
@@ -110,12 +98,10 @@ public class AssembleConnectionStringTests
     }
 
     [Fact]
-    public void Result_ContainsExpectedDatabase()
-    {
-        var config = Cfg(new()
-        {
+    public void Result_ContainsExpectedDatabase() {
+        var config = Cfg(new Dictionary<string, string?> {
             ["ConnectionStrings:Source"] = "Server=localhost;Database=MyDb;Encrypt=false",
-            ["MyCred"] = "s3cr3t",
+            ["MyCred"] = "s3cr3t"
         });
 
         var result = SqlConnectionExtensions.AssembleConnectionString(
@@ -126,18 +112,16 @@ public class AssembleConnectionStringTests
     }
 }
 
-public class AddKeyedSqlConnectionsTests
-{
-    private static IConfiguration Cfg(Dictionary<string, string?> values)
-        => new ConfigurationBuilder().AddInMemoryCollection(values).Build();
+public class AddKeyedSqlConnectionsTests {
+    private static IConfiguration Cfg(Dictionary<string, string?> values) {
+        return new ConfigurationBuilder().AddInMemoryCollection(values).Build();
+    }
 
     [Fact]
-    public void SingleConnection_ResolvesFromKeyedServices()
-    {
-        var config = Cfg(new()
-        {
+    public void SingleConnection_ResolvesFromKeyedServices() {
+        var config = Cfg(new Dictionary<string, string?> {
             ["ConnectionStrings:Source"] = "Server=localhost;Database=Src;Encrypt=false",
-            ["SourceCred"] = "s3cr3t",
+            ["SourceCred"] = "s3cr3t"
         });
         var services = new ServiceCollection();
 
@@ -152,19 +136,16 @@ public class AddKeyedSqlConnectionsTests
     }
 
     [Fact]
-    public void MultipleConnections_AllResolveByKey()
-    {
-        var config = Cfg(new()
-        {
+    public void MultipleConnections_AllResolveByKey() {
+        var config = Cfg(new Dictionary<string, string?> {
             ["ConnectionStrings:Source"] = "Server=localhost;Database=Src;Encrypt=false",
             ["ConnectionStrings:Target"] = "Server=localhost;Database=Tgt;Encrypt=false",
             ["SourceCred"] = "s3cr3t",
-            ["TargetCred"] = "t4rg3t",
+            ["TargetCred"] = "t4rg3t"
         });
         var services = new ServiceCollection();
 
-        services.AddKeyedSqlConnections(config, NullLogger.Instance, b =>
-        {
+        services.AddKeyedSqlConnections(config, NullLogger.Instance, b => {
             b.Add("Source", "ConnectionStrings:Source", "SourceCred");
             b.Add("Target", "ConnectionStrings:Target", "TargetCred");
         });
@@ -179,9 +160,8 @@ public class AddKeyedSqlConnectionsTests
     }
 
     [Fact]
-    public void MissingBaseConnectionString_ThrowsAtRegistrationTime()
-    {
-        var config = Cfg(new() { ["SourceCred"] = "s3cr3t" });
+    public void MissingBaseConnectionString_ThrowsAtRegistrationTime() {
+        var config = Cfg(new Dictionary<string, string?> { ["SourceCred"] = "s3cr3t" });
         var services = new ServiceCollection();
 
         var ex = Assert.Throws<InvalidOperationException>(() =>
@@ -192,12 +172,10 @@ public class AddKeyedSqlConnectionsTests
     }
 
     [Fact]
-    public void LogsConnectionProperties_DoesNotThrow()
-    {
-        var config = Cfg(new()
-        {
+    public void LogsConnectionProperties_DoesNotThrow() {
+        var config = Cfg(new Dictionary<string, string?> {
             ["ConnectionStrings:Source"] = "Server=localhost;Database=Src;Encrypt=false",
-            ["SourceCred"] = "s3cr3t",
+            ["SourceCred"] = "s3cr3t"
         });
         var services = new ServiceCollection();
 
@@ -209,15 +187,13 @@ public class AddKeyedSqlConnectionsTests
     }
 
     [Fact]
-    public void RegisteredConnectionString_DoesNotLogCredential()
-    {
+    public void RegisteredConnectionString_DoesNotLogCredential() {
         var log = new List<string>();
         var logger = new RecordingLogger(log);
 
-        var config = Cfg(new()
-        {
+        var config = Cfg(new Dictionary<string, string?> {
             ["ConnectionStrings:Source"] = "Server=localhost;Database=Src;Encrypt=false",
-            ["SourceCred"] = "SuperSecret99",
+            ["SourceCred"] = "SuperSecret99"
         });
         var services = new ServiceCollection();
 
@@ -228,11 +204,15 @@ public class AddKeyedSqlConnectionsTests
     }
 }
 
-file sealed class RecordingLogger(List<string> messages) : ILogger
-{
-    public IDisposable? BeginScope<TState>(TState state) where TState : notnull => null;
-    public bool IsEnabled(LogLevel logLevel) => true;
+file sealed class RecordingLogger(List<string> messages) : ILogger {
+    public IDisposable? BeginScope<TState>(TState state) where TState : notnull {
+        return null;
+    }
+    public bool IsEnabled(LogLevel logLevel) {
+        return true;
+    }
     public void Log<TState>(LogLevel logLevel, EventId eventId, TState state,
-        Exception? exception, Func<TState, Exception?, string> formatter)
-        => messages.Add(formatter(state, exception));
+        Exception? exception, Func<TState, Exception?, string> formatter) {
+        messages.Add(formatter(state, exception));
+    }
 }

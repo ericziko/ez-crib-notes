@@ -3,24 +3,21 @@ using Microsoft.Data.SqlClient;
 namespace Dapper.ETL.Orchestrator.Tests.Fixtures;
 
 /// <summary>
-/// Static helpers for seeding and inspecting test databases.
+///     Static helpers for seeding and inspecting test databases.
 /// </summary>
-public static class TestDatabaseHelper
-{
+public static class TestDatabaseHelper {
     /// <summary>
-    /// Inserts <paramref name="count"/> synthetic Customer rows into
-    /// TestDbSource.dbo.Customer.  The connection must already be open and
-    /// targeting TestDbSource.
+    ///     Inserts <paramref name="count" /> synthetic Customer rows into
+    ///     TestDbSource.dbo.Customer.  The connection must already be open and
+    ///     targeting TestDbSource.
     /// </summary>
-    public static async Task InsertCustomersAsync(SqlConnection conn, int count)
-    {
-        for (var i = 1; i <= count; i++)
-        {
+    public static async Task InsertCustomersAsync(SqlConnection conn, int count) {
+        for (var i = 1; i <= count; i++) {
             await using var cmd = conn.CreateCommand();
             cmd.CommandText = """
-                INSERT INTO dbo.Customer (CustomerId, FirstName, LastName, EmailAddress)
-                VALUES (@id, @first, @last, @email)
-                """;
+                              INSERT INTO dbo.Customer (CustomerId, FirstName, LastName, EmailAddress)
+                              VALUES (@id, @first, @last, @email)
+                              """;
             cmd.Parameters.AddWithValue("@id", i);
             cmd.Parameters.AddWithValue("@first", $"FirstName{i}");
             cmd.Parameters.AddWithValue("@last", $"LastName{i}");
@@ -30,15 +27,14 @@ public static class TestDatabaseHelper
     }
 
     /// <summary>
-    /// Returns the row count for <paramref name="table"/> in
-    /// <paramref name="schema"/> (defaults to dbo).
-    /// The connection must already be open and targeting the correct database.
+    ///     Returns the row count for <paramref name="table" /> in
+    ///     <paramref name="schema" /> (defaults to dbo).
+    ///     The connection must already be open and targeting the correct database.
     /// </summary>
     public static async Task<int> GetRowCountAsync(
         SqlConnection conn,
         string table,
-        string schema = "dbo")
-    {
+        string schema = "dbo") {
         await using var cmd = conn.CreateCommand();
         // Table and schema are not user-supplied at runtime so inline is safe here.
         cmd.CommandText = $"SELECT COUNT(*) FROM [{schema}].[{table}]";
@@ -47,14 +43,13 @@ public static class TestDatabaseHelper
     }
 
     /// <summary>
-    /// Truncates <paramref name="table"/> in <paramref name="schema"/>.
-    /// The connection must already be open and targeting the correct database.
+    ///     Truncates <paramref name="table" /> in <paramref name="schema" />.
+    ///     The connection must already be open and targeting the correct database.
     /// </summary>
     public static async Task TruncateTableAsync(
         SqlConnection conn,
         string table,
-        string schema = "dbo")
-    {
+        string schema = "dbo") {
         await using var cmd = conn.CreateCommand();
         cmd.CommandText = $"TRUNCATE TABLE [{schema}].[{table}]";
         await cmd.ExecuteNonQueryAsync();

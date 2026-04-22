@@ -1,196 +1,186 @@
-namespace Dapper.ETL.Tests
-{
-    using System.Collections.Generic;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Dapper.ETL.Library.Implementation;
-    using Dapper.ETL.Library.Interfaces;
-    using Dapper.ETL.Library.Models;
-    using Moq;
-    using Xunit;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Dapper.ETL.Library.Implementation;
+using Dapper.ETL.Library.Interfaces;
+using Dapper.ETL.Library.Models;
+using Moq;
+using Xunit;
 
-    /// <summary>
-    /// Integration-style unit tests for EtlOrchestrator transaction mode behaviour.
-    /// </summary>
-    public class EtlOrchestratorIntegrationTests
-    {
-        private readonly Mock<ITransactionManager> _mockTm;
-        private readonly Mock<ITableCopyService> _mockTableCopy;
-        private readonly Mock<IStoredProcedureService> _mockSp;
-        private readonly Mock<IEtlLogger> _mockLogger;
-        private readonly EtlOrchestrator _orchestrator;
+namespace Dapper.ETL.Tests;
 
-        public EtlOrchestratorIntegrationTests()
-        {
-            _mockTm = new Mock<ITransactionManager>();
-            _mockTableCopy = new Mock<ITableCopyService>();
-            _mockSp = new Mock<IStoredProcedureService>();
-            _mockLogger = new Mock<IEtlLogger>();
+/// <summary>
+///     Integration-style unit tests for EtlOrchestrator transaction mode behaviour.
+/// </summary>
+public class EtlOrchestratorIntegrationTests {
+    private readonly Mock<IEtlLogger> _mockLogger;
+    private readonly Mock<IStoredProcedureService> _mockSp;
+    private readonly Mock<ITableCopyService> _mockTableCopy;
+    private readonly Mock<ITransactionManager> _mockTm;
+    private readonly EtlOrchestrator _orchestrator;
 
-            _orchestrator = new EtlOrchestrator(
-                _mockTm.Object,
-                _mockTableCopy.Object,
-                _mockSp.Object,
-                _mockLogger.Object);
-        }
+    public EtlOrchestratorIntegrationTests() {
+        _mockTm = new Mock<ITransactionManager>();
+        _mockTableCopy = new Mock<ITableCopyService>();
+        _mockSp = new Mock<IStoredProcedureService>();
+        _mockLogger = new Mock<IEtlLogger>();
 
-        // -----------------------------------------------------------------------
-        // Atomic mode
-        // -----------------------------------------------------------------------
+        _orchestrator = new EtlOrchestrator(
+            _mockTm.Object,
+            _mockTableCopy.Object,
+            _mockSp.Object,
+            _mockLogger.Object);
+    }
 
-        [Fact]
-        public async Task ExecuteAsync_AtomicMode_WhenFirstCopyFails_RollsBackAndReturnsFailure()
-        {
-            // Arrange - two tables; first fails, second should never be attempted
-            var failResult = new TableCopyResult(false, "src1", "dst1", 0, 10, "disk full");
-            var successResult = new TableCopyResult(true, "src2", "dst2", 50, 20);
+    // -----------------------------------------------------------------------
+    // Atomic mode
+    // -----------------------------------------------------------------------
 
-            var callOrder = new List<string>();
-            _mockTableCopy
-                .SetupSequence(s => s.CopyTableAsync(
-                    It.IsAny<string>(), It.IsAny<string>(),
-                    It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(failResult)
-                .ReturnsAsync(successResult);
+    [Fact]
+    public async Task ExecuteAsync_AtomicMode_WhenFirstCopyFails_RollsBackAndReturnsFailure() {
+        // Arrange - two tables; first fails, second should never be attempted
+        var failResult = new TableCopyResult(false, "src1", "dst1", 0, 10, "disk full");
+        var successResult = new TableCopyResult(true, "src2", "dst2", 50, 20);
 
-            var plan = new EtlExecutionPlan(tableCopies: new[]
-            {
-                ("src1", "dst1", new TableCopyOptions()),
-                ("src2", "dst2", new TableCopyOptions()),
-            });
+        var callOrder = new List<string>();
+        _mockTableCopy
+            .SetupSequence(s => s.CopyTableAsync(
+                It.IsAny<string>(), It.IsAny<string>(),
+                It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(failResult)
+            .ReturnsAsync(successResult);
 
-            // Act
-            var result = await _orchestrator.ExecuteAsync(
-                plan,
-                shouldRollback: true,
-                transactionMode: EtlTransactionMode.Atomic);
+        var plan = new EtlExecutionPlan(new[] {
+            ("src1", "dst1", new TableCopyOptions()),
+            ("src2", "dst2", new TableCopyOptions())
+        });
 
-            // Assert
-            Assert.False(result.Success);
-            Assert.NotNull(result.ErrorMessage);
-            Assert.Contains("disk full", result.ErrorMessage);
+        // Act
+        var result = await _orchestrator.ExecuteAsync(
+            plan,
+            true,
+            EtlTransactionMode.Atomic);
 
-            // Rollback called once; commit never called
-            _mockTm.Verify(t => t.RollbackAsync(It.IsAny<CancellationToken>()), Times.Once);
-            _mockTm.Verify(t => t.CommitAsync(It.IsAny<CancellationToken>()), Times.Never);
+        // Assert
+        Assert.False(result.Success);
+        Assert.NotNull(result.ErrorMessage);
+        Assert.Contains("disk full", result.ErrorMessage);
 
-            // Second table copy was never attempted (stopped on first failure)
-            _mockTableCopy.Verify(
-                s => s.CopyTableAsync("src2", "dst2", It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()),
-                Times.Never);
-        }
+        // Rollback called once; commit never called
+        _mockTm.Verify(t => t.RollbackAsync(It.IsAny<CancellationToken>()), Times.Once);
+        _mockTm.Verify(t => t.CommitAsync(It.IsAny<CancellationToken>()), Times.Never);
 
-        [Fact]
-        public async Task ExecuteAsync_AtomicMode_WhenAllSucceed_CommitsAndReportsRowCounts()
-        {
-            // Arrange
-            var r1 = new TableCopyResult(true, "src1", "dst1", 100, 50);
-            var r2 = new TableCopyResult(true, "src2", "dst2", 200, 80);
+        // Second table copy was never attempted (stopped on first failure)
+        _mockTableCopy.Verify(
+            s => s.CopyTableAsync("src2", "dst2", It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()),
+            Times.Never);
+    }
 
-            _mockTableCopy
-                .SetupSequence(s => s.CopyTableAsync(
-                    It.IsAny<string>(), It.IsAny<string>(),
-                    It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(r1)
-                .ReturnsAsync(r2);
+    [Fact]
+    public async Task ExecuteAsync_AtomicMode_WhenAllSucceed_CommitsAndReportsRowCounts() {
+        // Arrange
+        var r1 = new TableCopyResult(true, "src1", "dst1", 100, 50);
+        var r2 = new TableCopyResult(true, "src2", "dst2", 200, 80);
 
-            var plan = new EtlExecutionPlan(tableCopies: new[]
-            {
-                ("src1", "dst1", new TableCopyOptions()),
-                ("src2", "dst2", new TableCopyOptions()),
-            });
+        _mockTableCopy
+            .SetupSequence(s => s.CopyTableAsync(
+                It.IsAny<string>(), It.IsAny<string>(),
+                It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(r1)
+            .ReturnsAsync(r2);
 
-            // Act
-            var result = await _orchestrator.ExecuteAsync(
-                plan,
-                transactionMode: EtlTransactionMode.Atomic);
+        var plan = new EtlExecutionPlan(new[] {
+            ("src1", "dst1", new TableCopyOptions()),
+            ("src2", "dst2", new TableCopyOptions())
+        });
 
-            // Assert
-            Assert.True(result.Success);
-            Assert.Null(result.ErrorMessage);
-            Assert.Equal(2, result.TableCopyResults.Count);
-            Assert.Equal(100, result.TableCopyResults[0].RowCount);
-            Assert.Equal(200, result.TableCopyResults[1].RowCount);
+        // Act
+        var result = await _orchestrator.ExecuteAsync(
+            plan,
+            transactionMode: EtlTransactionMode.Atomic);
 
-            _mockTm.Verify(t => t.CommitAsync(It.IsAny<CancellationToken>()), Times.Once);
-            _mockTm.Verify(t => t.RollbackAsync(It.IsAny<CancellationToken>()), Times.Never);
-        }
+        // Assert
+        Assert.True(result.Success);
+        Assert.Null(result.ErrorMessage);
+        Assert.Equal(2, result.TableCopyResults.Count);
+        Assert.Equal(100, result.TableCopyResults[0].RowCount);
+        Assert.Equal(200, result.TableCopyResults[1].RowCount);
 
-        // -----------------------------------------------------------------------
-        // Partial mode
-        // -----------------------------------------------------------------------
+        _mockTm.Verify(t => t.CommitAsync(It.IsAny<CancellationToken>()), Times.Once);
+        _mockTm.Verify(t => t.RollbackAsync(It.IsAny<CancellationToken>()), Times.Never);
+    }
 
-        [Fact]
-        public async Task ExecuteAsync_PartialMode_WhenFirstCopyFails_ContinuesToSecondAndLogsFailure()
-        {
-            // Arrange - first fails, second succeeds
-            var failResult = new TableCopyResult(false, "src1", "dst1", 0, 10, "constraint violation");
-            var successResult = new TableCopyResult(true, "src2", "dst2", 75, 30);
+    // -----------------------------------------------------------------------
+    // Partial mode
+    // -----------------------------------------------------------------------
 
-            _mockTableCopy
-                .SetupSequence(s => s.CopyTableAsync(
-                    It.IsAny<string>(), It.IsAny<string>(),
-                    It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(failResult)
-                .ReturnsAsync(successResult);
+    [Fact]
+    public async Task ExecuteAsync_PartialMode_WhenFirstCopyFails_ContinuesToSecondAndLogsFailure() {
+        // Arrange - first fails, second succeeds
+        var failResult = new TableCopyResult(false, "src1", "dst1", 0, 10, "constraint violation");
+        var successResult = new TableCopyResult(true, "src2", "dst2", 75, 30);
 
-            var plan = new EtlExecutionPlan(tableCopies: new[]
-            {
-                ("src1", "dst1", new TableCopyOptions()),
-                ("src2", "dst2", new TableCopyOptions()),
-            });
+        _mockTableCopy
+            .SetupSequence(s => s.CopyTableAsync(
+                It.IsAny<string>(), It.IsAny<string>(),
+                It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(failResult)
+            .ReturnsAsync(successResult);
 
-            // Act
-            var result = await _orchestrator.ExecuteAsync(
-                plan,
-                transactionMode: EtlTransactionMode.Partial);
+        var plan = new EtlExecutionPlan(new[] {
+            ("src1", "dst1", new TableCopyOptions()),
+            ("src2", "dst2", new TableCopyOptions())
+        });
 
-            // Assert: overall failure because one copy failed
-            Assert.False(result.Success);
-            Assert.NotNull(result.ErrorMessage);
+        // Act
+        var result = await _orchestrator.ExecuteAsync(
+            plan,
+            transactionMode: EtlTransactionMode.Partial);
 
-            // Both copies were attempted
-            Assert.Equal(2, result.TableCopyResults.Count);
-            Assert.False(result.TableCopyResults[0].Success);
-            Assert.True(result.TableCopyResults[1].Success);
-            Assert.Equal(75, result.TableCopyResults[1].RowCount);
+        // Assert: overall failure because one copy failed
+        Assert.False(result.Success);
+        Assert.NotNull(result.ErrorMessage);
 
-            // Logger called for the failure
-            _mockLogger.Verify(
-                l => l.LogError(It.IsAny<string>(), It.IsAny<System.Exception>()),
-                Times.AtLeastOnce);
-        }
+        // Both copies were attempted
+        Assert.Equal(2, result.TableCopyResults.Count);
+        Assert.False(result.TableCopyResults[0].Success);
+        Assert.True(result.TableCopyResults[1].Success);
+        Assert.Equal(75, result.TableCopyResults[1].RowCount);
 
-        [Fact]
-        public async Task ExecuteAsync_PartialMode_WhenAllSucceed_ReturnsSuccessWithRowCounts()
-        {
-            // Arrange
-            var r1 = new TableCopyResult(true, "A", "B", 42, 10);
-            var r2 = new TableCopyResult(true, "C", "D", 99, 20);
+        // Logger called for the failure
+        _mockLogger.Verify(
+            l => l.LogError(It.IsAny<string>(), It.IsAny<Exception>()),
+            Times.AtLeastOnce);
+    }
 
-            _mockTableCopy
-                .SetupSequence(s => s.CopyTableAsync(
-                    It.IsAny<string>(), It.IsAny<string>(),
-                    It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(r1)
-                .ReturnsAsync(r2);
+    [Fact]
+    public async Task ExecuteAsync_PartialMode_WhenAllSucceed_ReturnsSuccessWithRowCounts() {
+        // Arrange
+        var r1 = new TableCopyResult(true, "A", "B", 42, 10);
+        var r2 = new TableCopyResult(true, "C", "D", 99, 20);
 
-            var plan = new EtlExecutionPlan(tableCopies: new[]
-            {
-                ("A", "B", new TableCopyOptions()),
-                ("C", "D", new TableCopyOptions()),
-            });
+        _mockTableCopy
+            .SetupSequence(s => s.CopyTableAsync(
+                It.IsAny<string>(), It.IsAny<string>(),
+                It.IsAny<TableCopyOptions>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(r1)
+            .ReturnsAsync(r2);
 
-            // Act
-            var result = await _orchestrator.ExecuteAsync(
-                plan,
-                transactionMode: EtlTransactionMode.Partial);
+        var plan = new EtlExecutionPlan(new[] {
+            ("A", "B", new TableCopyOptions()),
+            ("C", "D", new TableCopyOptions())
+        });
 
-            // Assert
-            Assert.True(result.Success);
-            Assert.Null(result.ErrorMessage);
-            Assert.Equal(42, result.TableCopyResults[0].RowCount);
-            Assert.Equal(99, result.TableCopyResults[1].RowCount);
-        }
+        // Act
+        var result = await _orchestrator.ExecuteAsync(
+            plan,
+            transactionMode: EtlTransactionMode.Partial);
+
+        // Assert
+        Assert.True(result.Success);
+        Assert.Null(result.ErrorMessage);
+        Assert.Equal(42, result.TableCopyResults[0].RowCount);
+        Assert.Equal(99, result.TableCopyResults[1].RowCount);
     }
 }

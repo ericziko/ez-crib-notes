@@ -1,24 +1,20 @@
 using Dapper.ETL.Orchestrator.Tests.Fixtures;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using Xunit;
 
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 /// <summary>
-/// Integration tests for the clear-logs operation.
-/// Tests exercise the underlying SQL directly because <see cref="ClearLogsCommand"/>
-/// calls <c>AnsiConsole.Confirm</c> which is not suitable for headless test execution.
+///     Integration tests for the clear-logs operation.
+///     Tests exercise the underlying SQL directly because <see cref="ClearLogsCommand" />
+///     calls <c>AnsiConsole.Confirm</c> which is not suitable for headless test execution.
 /// </summary>
-
 [Collection("SharedSqlServer collection")]
-public class ClearLogsCommandTests
-{
-    private readonly SharedSqlServerFixture _fixture;
+public class ClearLogsCommandTests {
     private readonly IConfiguration _configuration;
+    private readonly SharedSqlServerFixture _fixture;
 
-    public ClearLogsCommandTests(SharedSqlServerFixture fixture)
-    {
+    public ClearLogsCommandTests(SharedSqlServerFixture fixture) {
         _fixture = fixture;
         _configuration = BuildConfiguration();
     }
@@ -28,11 +24,11 @@ public class ClearLogsCommandTests
     // ---------------------------------------------------------------------------
 
     [Fact]
-    public async Task Test_ExecuteAsync_ClearsAllLogs()
-    {
+    public async Task Test_ExecuteAsync_ClearsAllLogs() {
         // Arrange: insert 100 log rows
-        for (var i = 0; i < 100; i++)
+        for (var i = 0; i < 100; i++) {
             await InsertLogAsync("Info", $"Log entry {i}");
+        }
 
         // Verify rows exist before clear
         await using var connBefore = await _fixture.GetConnectionAsync("EtlLogs");
@@ -49,8 +45,7 @@ public class ClearLogsCommandTests
     }
 
     [Fact]
-    public async Task Test_ExecuteAsync_WithEmptyLogs_Succeeds()
-    {
+    public async Task Test_ExecuteAsync_WithEmptyLogs_Succeeds() {
         // Arrange: no logs seeded — table starts empty
 
         // Act & Assert: TRUNCATE on empty table should not throw
@@ -66,22 +61,20 @@ public class ClearLogsCommandTests
     // Helpers
     // ---------------------------------------------------------------------------
 
-    private async Task InsertLogAsync(string level, string messageTemplate)
-    {
+    private async Task InsertLogAsync(string level, string messageTemplate) {
         await using var conn = await _fixture.GetConnectionAsync("EtlLogs");
         await using var cmd = conn.CreateCommand();
         cmd.CommandText = """
-            INSERT INTO dbo.Logs (MessageTemplate, Level, TimeStamp)
-            VALUES (@msg, @level, @ts)
-            """;
-        cmd.Parameters.AddWithValue("@msg",   messageTemplate);
+                          INSERT INTO dbo.Logs (MessageTemplate, Level, TimeStamp)
+                          VALUES (@msg, @level, @ts)
+                          """;
+        cmd.Parameters.AddWithValue("@msg", messageTemplate);
         cmd.Parameters.AddWithValue("@level", level);
-        cmd.Parameters.AddWithValue("@ts",    DateTime.UtcNow);
+        cmd.Parameters.AddWithValue("@ts", DateTime.UtcNow);
         await cmd.ExecuteNonQueryAsync();
     }
 
-    private async Task TruncateLogsAsync()
-    {
+    private async Task TruncateLogsAsync() {
         var connectionString = _configuration["ConnectionStrings:Logs"]!;
         await using var connection = new SqlConnection(connectionString);
         await connection.OpenAsync();
@@ -89,13 +82,13 @@ public class ClearLogsCommandTests
         await command.ExecuteNonQueryAsync();
     }
 
-    private IConfiguration BuildConfiguration()
-        => new ConfigurationBuilder()
-            .AddInMemoryCollection(new Dictionary<string, string?>
-            {
+    private IConfiguration BuildConfiguration() {
+        return new ConfigurationBuilder()
+            .AddInMemoryCollection(new Dictionary<string, string?> {
                 ["ConnectionStrings:Source"] = _fixture.GetConnectionString("TestDbSource"),
                 ["ConnectionStrings:Target"] = _fixture.GetConnectionString("TestDbTarget"),
-                ["ConnectionStrings:Logs"]   = _fixture.GetConnectionString("EtlLogs"),
+                ["ConnectionStrings:Logs"] = _fixture.GetConnectionString("EtlLogs")
             })
             .Build();
+    }
 }

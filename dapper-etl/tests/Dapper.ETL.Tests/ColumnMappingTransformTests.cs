@@ -1,80 +1,73 @@
-namespace Dapper.ETL.Tests
-{
-    using Dapper.ETL.Library.Models;
-    using Xunit;
+using Dapper.ETL.Library.Models;
+using Xunit;
 
-    /// <summary>
-    /// Tests verifying ColumnMapping.SelectExpression behaviour.
-    /// </summary>
-    public class ColumnMappingTransformTests
-    {
-        [Fact]
-        public void SelectExpression_DefaultsToNull_WhenNotSet()
-        {
-            // Arrange & Act
-            var mapping = new ColumnMapping("EmailAddress", "Email");
+namespace Dapper.ETL.Tests;
 
-            // Assert
-            Assert.Null(mapping.SelectExpression);
-        }
+/// <summary>
+///     Tests verifying ColumnMapping.SelectExpression behaviour.
+/// </summary>
+public class ColumnMappingTransformTests {
+    [Fact]
+    public void SelectExpression_DefaultsToNull_WhenNotSet() {
+        // Arrange & Act
+        var mapping = new ColumnMapping("EmailAddress", "Email");
 
-        [Fact]
-        public void SelectExpression_CanBeSetToSqlLowerFunction()
-        {
-            // Arrange
-            var mapping = new ColumnMapping("EmailAddress", "Email");
+        // Assert
+        Assert.Null(mapping.SelectExpression);
+    }
 
-            // Act
-            mapping.SelectExpression = "LOWER(EmailAddress)";
+    [Fact]
+    public void SelectExpression_CanBeSetToSqlLowerFunction() {
+        // Arrange
+        var mapping = new ColumnMapping("EmailAddress", "Email");
 
-            // Assert
-            Assert.Equal("LOWER(EmailAddress)", mapping.SelectExpression);
-        }
+        // Act
+        mapping.SelectExpression = "LOWER(EmailAddress)";
 
-        [Fact]
-        public void SelectExpression_CanBeSetToSqlTrimFunction()
-        {
-            // Arrange
-            var mapping = new ColumnMapping("FirstName", "FirstName");
+        // Assert
+        Assert.Equal("LOWER(EmailAddress)", mapping.SelectExpression);
+    }
 
-            // Act
-            mapping.SelectExpression = "TRIM(FirstName)";
+    [Fact]
+    public void SelectExpression_CanBeSetToSqlTrimFunction() {
+        // Arrange
+        var mapping = new ColumnMapping("FirstName", "FirstName");
 
-            // Assert
-            Assert.Equal("TRIM(FirstName)", mapping.SelectExpression);
-        }
+        // Act
+        mapping.SelectExpression = "TRIM(FirstName)";
 
-        [Fact]
-        public void MultipleColumnMappings_EachHasIndependentSelectExpression()
-        {
-            // Arrange
-            var lowerMapping = new ColumnMapping("EmailAddress", "Email");
-            var trimMapping = new ColumnMapping("FirstName", "FirstName");
-            var noTransformMapping = new ColumnMapping("Id", "Id");
+        // Assert
+        Assert.Equal("TRIM(FirstName)", mapping.SelectExpression);
+    }
 
-            // Act
-            lowerMapping.SelectExpression = "LOWER(EmailAddress)";
-            trimMapping.SelectExpression = "TRIM(FirstName)";
-            // noTransformMapping left as null
+    [Fact]
+    public void MultipleColumnMappings_EachHasIndependentSelectExpression() {
+        // Arrange
+        var lowerMapping = new ColumnMapping("EmailAddress", "Email");
+        var trimMapping = new ColumnMapping("FirstName", "FirstName");
+        var noTransformMapping = new ColumnMapping("Id", "Id");
 
-            // Assert
-            Assert.Equal("LOWER(EmailAddress)", lowerMapping.SelectExpression);
-            Assert.Equal("TRIM(FirstName)", trimMapping.SelectExpression);
-            Assert.Null(noTransformMapping.SelectExpression);
-        }
+        // Act
+        lowerMapping.SelectExpression = "LOWER(EmailAddress)";
+        trimMapping.SelectExpression = "TRIM(FirstName)";
+        // noTransformMapping left as null
 
-        [Fact]
-        public void ColumnMapping_NullSelectExpression_MeansColumnCopiedAsIs()
-        {
-            // Arrange
-            var mapping = new ColumnMapping("ProductCode", "ProductCode");
+        // Assert
+        Assert.Equal("LOWER(EmailAddress)", lowerMapping.SelectExpression);
+        Assert.Equal("TRIM(FirstName)", trimMapping.SelectExpression);
+        Assert.Null(noTransformMapping.SelectExpression);
+    }
 
-            // Act - leave SelectExpression as null (no transform)
+    [Fact]
+    public void ColumnMapping_NullSelectExpression_MeansColumnCopiedAsIs() {
+        // Arrange
+        var mapping = new ColumnMapping("ProductCode", "ProductCode");
 
-            // Assert: null SelectExpression signals "copy column as-is"
-            Assert.Null(mapping.SelectExpression);
-            Assert.Equal("ProductCode", mapping.SourceColumn);
-            Assert.Equal("ProductCode", mapping.DestinationColumn);
-        }
+        // Act - leave SelectExpression as null (no transform)
+
+        // Assert: null SelectExpression signals "copy column as-is"
+        Assert.Null(mapping.SelectExpression);
+        Assert.Equal("ProductCode", mapping.SourceColumn);
+        Assert.Equal("ProductCode", mapping.DestinationColumn);
     }
 }

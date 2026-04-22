@@ -1,11 +1,10 @@
 using Dapper.ETL.Library.Implementation;
 using Dapper.ETL.Library.Models;
 
-
 namespace SQLLite.Integration.Tests;
 
 /// <summary>
-/// Integration tests for column mapping with a real SQLite database.
+///     Integration tests for column mapping with a real SQLite database.
 /// </summary>
 public class ColumnMappingIntegrationTests : IAsyncLifetime {
     private readonly SqliteFixture _fixture = new();

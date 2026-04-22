@@ -2,24 +2,21 @@ using System.Text.Json;
 using Dapper.ETL.Orchestrator.Services;
 using Dapper.ETL.Orchestrator.Tests.Fixtures;
 using Microsoft.Extensions.Configuration;
-using Xunit;
 
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 /// <summary>
-/// Integration tests for the export-logs operation via <see cref="LoggingService"/>.
-/// Tests exercise the service layer directly because <see cref="ExportLogsCommand"/>
-/// renders to AnsiConsole which is not suitable for headless test execution.
+///     Integration tests for the export-logs operation via <see cref="LoggingService" />.
+///     Tests exercise the service layer directly because <see cref="ExportLogsCommand" />
+///     renders to AnsiConsole which is not suitable for headless test execution.
 /// </summary>
 [Collection("SharedSqlServer collection")]
-public class ExportLogsCommandTests
-{
-    private readonly SharedSqlServerFixture _fixture;
+public class ExportLogsCommandTests {
     private readonly IConfiguration _configuration;
+    private readonly SharedSqlServerFixture _fixture;
     private readonly List<string> _tempFiles = new();
 
-    public ExportLogsCommandTests(SharedSqlServerFixture fixture)
-    {
+    public ExportLogsCommandTests(SharedSqlServerFixture fixture) {
         _fixture = fixture;
         _configuration = BuildConfiguration();
     }
@@ -29,8 +26,7 @@ public class ExportLogsCommandTests
     // ---------------------------------------------------------------------------
 
     [Fact]
-    public async Task Test_ExecuteAsync_ExportsToJson_Succeeds()
-    {
+    public async Task Test_ExecuteAsync_ExportsToJson_Succeeds() {
         // Arrange: seed some log rows (stub returns empty list but we verify the
         // serialisation and file-write plumbing works)
         var service = new LoggingService(_configuration);
@@ -48,8 +44,7 @@ public class ExportLogsCommandTests
     }
 
     [Fact]
-    public async Task Test_ExecuteAsync_ExportsToCSV_Succeeds()
-    {
+    public async Task Test_ExecuteAsync_ExportsToCSV_Succeeds() {
         // Arrange: export logs in a CSV-like format (one line per entry)
         var service = new LoggingService(_configuration);
         var outputFile = TempFile("etl-logs-warning.csv");
@@ -57,8 +52,9 @@ public class ExportLogsCommandTests
         // Act: retrieve logs and write a simple CSV
         var logs = await service.GetLogs("Warning", 50);
         var lines = new List<string> { "TimeStamp,Level,MessageTemplate,Properties" };
-        foreach (var entry in logs)
+        foreach (var entry in logs) {
             lines.Add($"{entry.TimeStamp:O},{entry.Level},{entry.MessageTemplate},{entry.Properties}");
+        }
         File.WriteAllLines(outputFile, lines);
 
         // Assert
@@ -69,8 +65,7 @@ public class ExportLogsCommandTests
     }
 
     [Fact]
-    public async Task Test_ExecuteAsync_CreatesOutputFile()
-    {
+    public async Task Test_ExecuteAsync_CreatesOutputFile() {
         // Arrange: unique output path to confirm file creation
         var outputFile = TempFile($"created-logs-{Guid.NewGuid():N}.json");
         Assert.False(File.Exists(outputFile), "Pre-condition: file must not exist yet.");
@@ -91,20 +86,19 @@ public class ExportLogsCommandTests
     // Helpers
     // ---------------------------------------------------------------------------
 
-    private string TempFile(string name)
-    {
+    private string TempFile(string name) {
         var path = Path.Combine(Path.GetTempPath(), name);
         _tempFiles.Add(path);
         return path;
     }
 
-    private IConfiguration BuildConfiguration()
-        => new ConfigurationBuilder()
-            .AddInMemoryCollection(new Dictionary<string, string?>
-            {
+    private IConfiguration BuildConfiguration() {
+        return new ConfigurationBuilder()
+            .AddInMemoryCollection(new Dictionary<string, string?> {
                 ["ConnectionStrings:Source"] = _fixture.GetConnectionString("TestDbSource"),
                 ["ConnectionStrings:Target"] = _fixture.GetConnectionString("TestDbTarget"),
-                ["ConnectionStrings:Logs"]   = _fixture.GetConnectionString("EtlLogs"),
+                ["ConnectionStrings:Logs"] = _fixture.GetConnectionString("EtlLogs")
             })
             .Build();
+    }
 }

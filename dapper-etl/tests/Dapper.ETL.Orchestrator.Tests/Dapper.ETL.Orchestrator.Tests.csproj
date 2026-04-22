@@ -1,19 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" />
-    <PackageReference Include="Testcontainers" />
-    <PackageReference Include="Testcontainers.MsSql" />
-    <PackageReference Include="OpenTelemetry" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations"/>
+        <PackageReference Include="Testcontainers"/>
+        <PackageReference Include="Testcontainers.MsSql"/>
+        <PackageReference Include="OpenTelemetry"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Dapper.ETL.Orchestrator\Dapper.ETL.Orchestrator.csproj" />
-    <ProjectReference Include="..\..\src\Dapper.ETL.Library\Dapper.ETL.Library.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Dapper.ETL.Orchestrator\Dapper.ETL.Orchestrator.csproj"/>
+        <ProjectReference Include="..\..\src\Dapper.ETL.Library\Dapper.ETL.Library.csproj"/>
+    </ItemGroup>
 
 </Project>

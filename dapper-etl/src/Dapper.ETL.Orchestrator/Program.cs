@@ -1,3 +1,4 @@
+using System.Diagnostics.Metrics;
 using Dapper.ETL.Orchestrator.Commands;
 using Dapper.ETL.Orchestrator.Infrastructure;
 using Dapper.ETL.Orchestrator.Services;
@@ -13,8 +14,8 @@ var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Devel
 
 var configuration = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
-    .AddJsonFile($"appsettings.{env}.json", optional: true, reloadOnChange: false)
+    .AddJsonFile("appsettings.json", false, false)
+    .AddJsonFile($"appsettings.{env}.json", true, false)
     .AddEnvironmentVariables()
     .Build();
 
@@ -28,12 +29,10 @@ var loggerConfig = new LoggerConfiguration()
 var logsConnStr = SqlConnectionExtensions.AssembleConnectionString(
     configuration, "ConnectionStrings:Logs", "LogsCred");
 
-if (!string.IsNullOrWhiteSpace(logsConnStr))
-{
+if (!string.IsNullOrWhiteSpace(logsConnStr)) {
     loggerConfig = loggerConfig.WriteTo.MSSqlServer(
-        connectionString: logsConnStr,
-        sinkOptions: new MSSqlServerSinkOptions
-        {
+        logsConnStr,
+        new MSSqlServerSinkOptions {
             TableName = "Logs",
             SchemaName = "dbo",
             AutoCreateSqlTable = true
@@ -41,24 +40,24 @@ if (!string.IsNullOrWhiteSpace(logsConnStr))
 }
 
 var seqUrl = configuration["Seq:Url"];
-if (!string.IsNullOrWhiteSpace(seqUrl))
-{
+if (!string.IsNullOrWhiteSpace(seqUrl)) {
     loggerConfig = loggerConfig.WriteTo.Seq(seqUrl);
 }
 
 Log.Logger = loggerConfig.CreateLogger();
 
 var isAspire = !string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("ASPIRE_ENVIRONMENT"))
-    || !string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("OTEL_EXPORTER_OTLP_ENDPOINT"));
+               || !string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("OTEL_EXPORTER_OTLP_ENDPOINT"));
 
-try
-{
+try {
     Log.Information("ETL.Orchestrator starting up (Environment: {Environment})", env);
 
-    if (isAspire)
+    if (isAspire) {
         Log.Information("Running under Aspire orchestration");
-    else
+    }
+    else {
         Log.Information("Running standalone (local docker-compose or manual)");
+    }
 
     // Build DI service collection
     var services = new ServiceCollection();
@@ -67,27 +66,24 @@ try
     services.AddSingleton<IConfiguration>(configuration);
 
     // Logging — wire Serilog into Microsoft.Extensions.Logging
-    services.AddLogging(builder =>
-    {
+    services.AddLogging(builder => {
         builder.ClearProviders();
-        builder.AddProvider(new SerilogLoggerProvider(Log.Logger, dispose: false));
+        builder.AddProvider(new SerilogLoggerProvider(Log.Logger, false));
     });
 
     // Keyed SQL Server connection strings
-    var startupLogger = new Serilog.Extensions.Logging.SerilogLoggerProvider(Log.Logger, dispose: false)
+    var startupLogger = new SerilogLoggerProvider(Log.Logger, false)
         .CreateLogger("SqlConnections");
 
-    services.AddKeyedSqlConnections(configuration, startupLogger, connections =>
-    {
+    services.AddKeyedSqlConnections(configuration, startupLogger, connections => {
         connections.Add("Source", "ConnectionStrings:Source", "SourceCred");
         connections.Add("Target", "ConnectionStrings:Target", "TargetCred");
-        connections.Add("Logs",   "ConnectionStrings:Logs",   "LogsCred");
+        connections.Add("Logs", "ConnectionStrings:Logs", "LogsCred");
     });
 
     // Application services
-    services.AddSingleton<MetricsService>(sp =>
-    {
-        var meter = new System.Diagnostics.Metrics.Meter("Dapper.ETL");
+    services.AddSingleton<MetricsService>(sp => {
+        var meter = new Meter("Dapper.ETL");
         var logger = sp.GetService<ILogger<MetricsService>>();
         return new MetricsService(meter, logger);
     });
@@ -102,8 +98,7 @@ try
     // Build and configure command app
     var app = new CommandApp<DefaultCommand>(registrar);
 
-    app.Configure(config =>
-    {
+    app.Configure(config => {
         config.SetApplicationName("etl");
         config.AddCommand<RunEtlCommand>("run")
             .WithDescription("Execute the ETL pipeline");
@@ -138,12 +133,10 @@ try
     Log.Information("ETL.Orchestrator completed with exit code {ExitCode}", exitCode);
     return exitCode;
 }
-catch (Exception ex)
-{
+catch (Exception ex) {
     Log.Fatal(ex, "ETL.Orchestrator terminated unexpectedly");
     return 1;
 }
-finally
-{
+finally {
     await Log.CloseAndFlushAsync();
 }

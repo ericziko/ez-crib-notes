@@ -2,7 +2,6 @@ using System.Text.RegularExpressions;
 using DotNet.Testcontainers.Builders;
 using Microsoft.Data.SqlClient;
 using Testcontainers.MsSql;
-using Xunit;
 
 namespace Dapper.ETL.Orchestrator.Tests.Fixtures;
 
@@ -10,11 +9,10 @@ namespace Dapper.ETL.Orchestrator.Tests.Fixtures;
 public class SharedSqlServerCollection : ICollectionFixture<SharedSqlServerFixture> { }
 
 /// <summary>
-/// Shared SQL Server container fixture managed by xUnit's ICollectionFixture.
-/// The container starts once per collection and is stopped when the collection completes.
+///     Shared SQL Server container fixture managed by xUnit's ICollectionFixture.
+///     The container starts once per collection and is stopped when the collection completes.
 /// </summary>
-public class SharedSqlServerFixture : IAsyncLifetime
-{
+public class SharedSqlServerFixture : IAsyncLifetime {
     private const string Password = "TestPassword123!";
 
     private readonly MsSqlContainer _container = new MsSqlBuilder("mcr.microsoft.com/mssql/server:2022-CU14-ubuntu-22.04")
@@ -22,8 +20,7 @@ public class SharedSqlServerFixture : IAsyncLifetime
         .WithWaitStrategy(Wait.ForUnixContainer().UntilInternalTcpPortIsAvailable(1433))
         .Build();
 
-    public async Task InitializeAsync()
-    {
+    public async Task InitializeAsync() {
         await _container.StartAsync();
 
         var sqlScript = await File.ReadAllTextAsync(
@@ -32,26 +29,22 @@ public class SharedSqlServerFixture : IAsyncLifetime
         await ExecuteInitScriptAsync(sqlScript);
     }
 
-    public async Task DisposeAsync()
-    {
+    public async Task DisposeAsync() {
         await _container.StopAsync();
         await _container.DisposeAsync();
     }
 
     /// <summary>Returns an open SqlConnection to the specified database.</summary>
     /// <param name="database">One of: TestDbSource, TestDbTarget, EtlLogs, or empty string for master.</param>
-    public async Task<SqlConnection> GetConnectionAsync(string database = "")
-    {
+    public async Task<SqlConnection> GetConnectionAsync(string database = "") {
         var conn = new SqlConnection(GetConnectionString(database));
         await conn.OpenAsync();
         return conn;
     }
 
     /// <summary>Returns a connection string for the specified database.</summary>
-    public string GetConnectionString(string database = "")
-    {
-        var builder = new SqlConnectionStringBuilder(_container.GetConnectionString())
-        {
+    public string GetConnectionString(string database = "") {
+        var builder = new SqlConnectionStringBuilder(_container.GetConnectionString()) {
             InitialCatalog = database,
             TrustServerCertificate = true
         };
@@ -62,31 +55,30 @@ public class SharedSqlServerFixture : IAsyncLifetime
     // Private helpers
     // ---------------------------------------------------------------------------
 
-    private async Task ExecuteInitScriptAsync(string sqlScript)
-    {
+    private async Task ExecuteInitScriptAsync(string sqlScript) {
         // Split the script into batches on GO (on its own line, case-insensitive).
         var batches = Regex.Split(sqlScript, @"^\s*GO\s*$",
             RegexOptions.Multiline | RegexOptions.IgnoreCase);
 
         var currentDatabase = "";
 
-        foreach (var raw in batches)
-        {
+        foreach (var raw in batches) {
             var batch = raw.Trim();
-            if (string.IsNullOrWhiteSpace(batch))
+            if (string.IsNullOrWhiteSpace(batch)) {
                 continue;
+            }
 
             // Detect USE <database>; statement in this batch.
             var useMatch = Regex.Match(batch,
                 @"^\s*USE\s+(\w+)\s*;?\s*$",
                 RegexOptions.Multiline | RegexOptions.IgnoreCase);
 
-            if (useMatch.Success)
-            {
+            if (useMatch.Success) {
                 currentDatabase = useMatch.Groups[1].Value;
                 if (Regex.IsMatch(batch, @"^\s*USE\s+\w+\s*;?\s*$",
-                        RegexOptions.IgnoreCase | RegexOptions.Singleline))
+                        RegexOptions.IgnoreCase | RegexOptions.Singleline)) {
                     continue;
+                }
             }
 
             await using var conn = new SqlConnection(GetConnectionString(currentDatabase));
@@ -98,12 +90,10 @@ public class SharedSqlServerFixture : IAsyncLifetime
             var preview = batch.Length > 200 ? batch[..200] + "..." : batch;
             Console.WriteLine($"[InitScript] Executing batch (db='{currentDatabase}'): {preview}");
 
-            try
-            {
+            try {
                 await cmd.ExecuteNonQueryAsync();
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 throw new InvalidOperationException(
                     $"Init script batch failed.\n" +
                     $"  Database : {(string.IsNullOrEmpty(currentDatabase) ? "(master)" : currentDatabase)}\n" +
@@ -114,13 +104,12 @@ public class SharedSqlServerFixture : IAsyncLifetime
         }
     }
 
-    private static string FindRepoRoot()
-    {
+    private static string FindRepoRoot() {
         var dir = new DirectoryInfo(AppContext.BaseDirectory);
-        while (dir != null)
-        {
-            if (Directory.Exists(Path.Combine(dir.FullName, "scripts")))
+        while (dir != null) {
+            if (Directory.Exists(Path.Combine(dir.FullName, "scripts"))) {
                 return dir.FullName;
+            }
             dir = dir.Parent;
         }
 

@@ -1,24 +1,19 @@
+using System.Diagnostics.Metrics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
-using System.Diagnostics.Metrics;
 
 namespace Dapper.ETL.Orchestrator.Configuration;
 
-public static class ObservabilityConfig
-{
-    public static MeterProvider ConfigureOpenTelemetry(ILogger logger, string? otlpEndpoint = null)
-    {
+public static class ObservabilityConfig {
+    public static MeterProvider ConfigureOpenTelemetry(ILogger logger, string? otlpEndpoint = null) {
         var endpoint = otlpEndpoint ?? "http://localhost:4317"; // Aspire default OTLP/gRPC
 
         var meterProvider = Sdk.CreateMeterProviderBuilder()
             .AddMeter("Dapper.ETL")
-            .AddOtlpExporter(options =>
-            {
-                options.Endpoint = new Uri(endpoint);
-            })
+            .AddOtlpExporter(options => { options.Endpoint = new Uri(endpoint); })
             .Build();
 
         logger.LogInformation("OpenTelemetry OTLP exporter configured: {Endpoint}", endpoint);
@@ -29,17 +24,14 @@ public static class ObservabilityConfig
     public static IServiceCollection AddObservability(
         this IServiceCollection services,
         IConfiguration config,
-        ILogger logger)
-    {
+        ILogger logger) {
         var otlpEndpoint = config["OpenTelemetry:OtlpEndpoint"];
 
         MeterProvider meterProvider;
-        try
-        {
+        try {
             meterProvider = ConfigureOpenTelemetry(logger, otlpEndpoint);
         }
-        catch (Exception ex)
-        {
+        catch (Exception ex) {
             logger.LogWarning(ex,
                 "Failed to configure OTLP exporter for endpoint {Endpoint}. Metrics export will be unavailable.",
                 otlpEndpoint ?? "http://localhost:4317");

@@ -1,14 +1,11 @@
-namespace Dapper.ETL.Orchestrator.Tests.Models;
-
 using Dapper.ETL.Orchestrator.Models;
 using Dapper.ETL.Orchestrator.Services;
-using Xunit;
 
-public class ModelsTests
-{
+namespace Dapper.ETL.Orchestrator.Tests.Models;
+
+public class ModelsTests {
     [Fact]
-    public void Test_EtlResult_Properties_CanBeSetAndRead()
-    {
+    public void Test_EtlResult_Properties_CanBeSetAndRead() {
         var result = new EtlResult { Success = true, RowsCopied = 42, Duration = 100, ErrorMessage = "err" };
         Assert.True(result.Success);
         Assert.Equal(42, result.RowsCopied);
@@ -17,8 +14,7 @@ public class ModelsTests
     }
 
     [Fact]
-    public void Test_EtlResult_DefaultValues_AreCorrect()
-    {
+    public void Test_EtlResult_DefaultValues_AreCorrect() {
         var result = new EtlResult();
         Assert.False(result.Success);
         Assert.Equal(0, result.RowsCopied);
@@ -27,8 +23,7 @@ public class ModelsTests
     }
 
     [Fact]
-    public void Test_EtlRunInfo_Properties_CanBeSetAndRead()
-    {
+    public void Test_EtlRunInfo_Properties_CanBeSetAndRead() {
         var now = DateTime.UtcNow;
         var info = new EtlRunInfo { RunAt = now, DurationMs = 500, RowsCopied = 10, Success = true, ErrorMessage = null };
         Assert.Equal(now, info.RunAt);
@@ -39,8 +34,7 @@ public class ModelsTests
     }
 
     [Fact]
-    public void Test_MetricsData_DefaultCapturedAt_IsRecentUtcNow()
-    {
+    public void Test_MetricsData_DefaultCapturedAt_IsRecentUtcNow() {
         var before = DateTime.UtcNow;
         var data = new MetricsData();
         var after = DateTime.UtcNow;
@@ -48,10 +42,8 @@ public class ModelsTests
     }
 
     [Fact]
-    public void Test_MetricsData_Properties_CanBeSetAndRead()
-    {
-        var data = new MetricsData
-        {
+    public void Test_MetricsData_Properties_CanBeSetAndRead() {
+        var data = new MetricsData {
             TotalRowsCopied = 100,
             LastRunDurationMs = 200,
             ThroughputRowsPerSec = 50.0,
@@ -68,10 +60,8 @@ public class ModelsTests
     }
 
     [Fact]
-    public void Test_ValidationResult_Properties_CanBeSetAndRead()
-    {
-        var result = new ValidationResult
-        {
+    public void Test_ValidationResult_Properties_CanBeSetAndRead() {
+        var result = new ValidationResult {
             Success = false,
             TablesChecked = 3,
             TablesPassed = 2,
@@ -86,8 +76,7 @@ public class ModelsTests
     }
 
     [Fact]
-    public void Test_LogEntry_Record_ConstructsAndDeconstructs()
-    {
+    public void Test_LogEntry_Record_ConstructsAndDeconstructs() {
         var ts = DateTime.UtcNow;
         var entry = new LogEntry(ts, "Info", "Hello {Name}", "{\"Name\":\"World\"}");
         Assert.Equal(ts, entry.TimeStamp);
@@ -97,8 +86,7 @@ public class ModelsTests
     }
 
     [Fact]
-    public void Test_ValidationDetail_Record_ConstructsAndDeconstructs()
-    {
+    public void Test_ValidationDetail_Record_ConstructsAndDeconstructs() {
         var detail = new ValidationDetail("Customer", 100, 100, 100.0, "OK");
         Assert.Equal("Customer", detail.TableName);
         Assert.Equal(100, detail.SourceCount);

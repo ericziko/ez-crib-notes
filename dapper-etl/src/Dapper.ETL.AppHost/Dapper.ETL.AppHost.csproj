@@ -1,23 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
+    <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0"/>
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <IsAspireHost>true</IsAspireHost>
-    <UserSecretsId>dapper-etl-apphost</UserSecretsId>
-  </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <IsAspireHost>true</IsAspireHost>
+        <UserSecretsId>dapper-etl-apphost</UserSecretsId>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" />
-    <PackageReference Include="Aspire.Hosting" />
-    <PackageReference Include="Aspire.Hosting.SqlServer" />
-    <PackageReference Include="JetBrains.Annotations" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Aspire.Hosting.AppHost"/>
+        <PackageReference Include="Aspire.Hosting"/>
+        <PackageReference Include="Aspire.Hosting.SqlServer"/>
+        <PackageReference Include="JetBrains.Annotations"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Dapper.ETL.Library\Dapper.ETL.Library.csproj" IsAspireProjectResource="false" />
-    <ProjectReference Include="..\Dapper.ETL.Orchestrator\Dapper.ETL.Orchestrator.csproj" IsAspireProjectResource="true" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Dapper.ETL.Library\Dapper.ETL.Library.csproj" IsAspireProjectResource="false"/>
+        <ProjectReference Include="..\Dapper.ETL.Orchestrator\Dapper.ETL.Orchestrator.csproj" IsAspireProjectResource="true"/>
+    </ItemGroup>
 
 </Project>
