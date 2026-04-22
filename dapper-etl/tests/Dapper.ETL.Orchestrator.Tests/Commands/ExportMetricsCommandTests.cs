@@ -6,9 +6,9 @@ using Dapper.ETL.Orchestrator.Tests.Fixtures;
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 /// <summary>
-///     Integration tests for the export-metrics operation via <see cref="MetricsService" />.
-///     Tests exercise the service layer directly because <see cref="ExportMetricsCommand" />
-///     renders to AnsiConsole which is not suitable for headless test execution.
+/// Integration tests for the export-metrics operation via <see cref="MetricsService" />.
+/// Tests exercise the service layer directly because <see cref="ExportMetricsCommand" />
+/// renders to AnsiConsole which is not suitable for headless test execution.
 /// </summary>
 [Collection("SharedSqlServer collection")]
 public class ExportMetricsCommandTests {

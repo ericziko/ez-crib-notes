@@ -4,7 +4,7 @@ using Dapper.ETL.Orchestrator.Tests.Fixtures;
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 /// <summary>
-///     Integration tests for <see cref="ResetTargetDatabaseCommand" /> via <see cref="DataService.ResetTargetDatabase" />.
+/// Integration tests for <see cref="ResetTargetDatabaseCommand" /> via <see cref="DataService.ResetTargetDatabase" />.
 /// </summary>
 [Collection("SharedSqlServer collection")]
 public class ResetTargetDatabaseCommandTests {

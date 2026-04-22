@@ -4,7 +4,7 @@ using Microsoft.Data.Sqlite;
 namespace SQLLite.Integration.Tests;
 
 /// <summary>
-///     Fixture that provides a SQLite database connection for integration tests.
+/// Fixture that provides a SQLite database connection for integration tests.
 /// </summary>
 public class SqliteFixture : IAsyncLifetime {
     private readonly string _databasePath;

@@ -9,8 +9,8 @@ namespace Dapper.ETL.Orchestrator.Tests.Fixtures;
 public class SharedSqlServerCollection : ICollectionFixture<SharedSqlServerFixture> { }
 
 /// <summary>
-///     Shared SQL Server container fixture managed by xUnit's ICollectionFixture.
-///     The container starts once per collection and is stopped when the collection completes.
+/// Shared SQL Server container fixture managed by xUnit's ICollectionFixture.
+/// The container starts once per collection and is stopped when the collection completes.
 /// </summary>
 public class SharedSqlServerFixture : IAsyncLifetime {
     private const string Password = "TestPassword123!";

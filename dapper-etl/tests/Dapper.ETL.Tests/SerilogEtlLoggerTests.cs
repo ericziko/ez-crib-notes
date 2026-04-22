@@ -7,7 +7,7 @@ using Xunit;
 namespace Dapper.ETL.Tests;
 
 /// <summary>
-///     Tests for the SerilogEtlLogger implementation.
+/// Tests for the SerilogEtlLogger implementation.
 /// </summary>
 public class SerilogEtlLoggerTests {
     private readonly Mock<ILogger> _mockLogger;

@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 /// <summary>
-///     Integration tests for <see cref="ShowLogsCommand" /> via <see cref="LoggingService" />.
+/// Integration tests for <see cref="ShowLogsCommand" /> via <see cref="LoggingService" />.
 /// </summary>
 [Collection("SharedSqlServer collection")]
 public class ShowLogsCommandTests {

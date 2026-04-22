@@ -7,39 +7,39 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Dapper.ETL.Library;
 
 /// <summary>
-///     Configuration options for ETL services, supporting multi-connection routing.
+/// Configuration options for ETL services, supporting multi-connection routing.
 /// </summary>
 public class EtlOptions {
     /// <summary>
-    ///     Connection string for the source database (read operations).
+    /// Connection string for the source database (read operations).
     /// </summary>
     public string SourceConnectionString { get; set; } = string.Empty;
 
     /// <summary>
-    ///     Connection string for the target database (write operations).
-    ///     Reserved for future orchestrator use.
+    /// Connection string for the target database (write operations).
+    /// Reserved for future orchestrator use.
     /// </summary>
     public string TargetConnectionString { get; set; } = string.Empty;
 
     /// <summary>
-    ///     Connection string for the logs database (audit/logging operations).
-    ///     Reserved for future orchestrator use.
+    /// Connection string for the logs database (audit/logging operations).
+    /// Reserved for future orchestrator use.
     /// </summary>
     public string LogsConnectionString { get; set; } = string.Empty;
 }
 
 /// <summary>
-///     Extension methods for registering ETL services with dependency injection.
+/// Extension methods for registering ETL services with dependency injection.
 /// </summary>
 public static class DependencyInjection {
     /// <summary>
-    ///     Adds ETL services to the service collection with multi-connection routing support.
+    /// Adds ETL services to the service collection with multi-connection routing support.
     /// </summary>
     /// <remarks>
-    ///     Phase 0.1: Refactored to accept <see cref="EtlOptions" /> for source/target/logs connection routing.
-    ///     Target and Logs connections are registered as infrastructure but not yet wired into
-    ///     service registrations — that is a separate orchestrator concern.
-    ///     Callers must update their registration call to provide the configure delegate.
+    /// Phase 0.1: Refactored to accept <see cref="EtlOptions" /> for source/target/logs connection routing.
+    /// Target and Logs connections are registered as infrastructure but not yet wired into
+    /// service registrations — that is a separate orchestrator concern.
+    /// Callers must update their registration call to provide the configure delegate.
     /// </remarks>
     /// <param name="services">The service collection.</param>
     /// <param name="configure">Action to configure <see cref="EtlOptions" />.</param>

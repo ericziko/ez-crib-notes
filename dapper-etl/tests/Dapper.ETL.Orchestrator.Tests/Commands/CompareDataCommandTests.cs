@@ -6,9 +6,9 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 /// <summary>
-///     Integration tests for the compare-data operation via <see cref="ValidationService" />.
-///     Tests exercise the service layer directly because <see cref="CompareDataCommand" />
-///     renders to AnsiConsole which is not suitable for headless test execution.
+/// Integration tests for the compare-data operation via <see cref="ValidationService" />.
+/// Tests exercise the service layer directly because <see cref="CompareDataCommand" />
+/// renders to AnsiConsole which is not suitable for headless test execution.
 /// </summary>
 [Collection("SharedSqlServer collection")]
 public class CompareDataCommandTests {

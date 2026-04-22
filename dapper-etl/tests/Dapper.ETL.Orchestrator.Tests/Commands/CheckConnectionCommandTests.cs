@@ -4,9 +4,9 @@ using Microsoft.Data.SqlClient;
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 /// <summary>
-///     Integration tests for the check-connection operation.
-///     Tests exercise SQL connectivity directly because <see cref="CheckConnectionCommand" />
-///     renders to AnsiConsole which is not suitable for headless test execution.
+/// Integration tests for the check-connection operation.
+/// Tests exercise SQL connectivity directly because <see cref="CheckConnectionCommand" />
+/// renders to AnsiConsole which is not suitable for headless test execution.
 /// </summary>
 [Collection("SharedSqlServer collection")]
 public class CheckConnectionCommandTests {

@@ -7,7 +7,7 @@ using Spectre.Console.Cli;
 namespace Dapper.ETL.Orchestrator.Commands;
 
 /// <summary>
-///     Settings for <see cref="ExportMetricsCommand" />.
+/// Settings for <see cref="ExportMetricsCommand" />.
 /// </summary>
 public class ExportMetricsSettings : CommandSettings {
     [Description("Export format (csv|json)")]
@@ -19,7 +19,7 @@ public class ExportMetricsSettings : CommandSettings {
 }
 
 /// <summary>
-///     Exports the last ETL metrics to a file in csv or json format.
+/// Exports the last ETL metrics to a file in csv or json format.
 /// </summary>
 public class ExportMetricsCommand : Command<ExportMetricsSettings> {
     private readonly MetricsService _metricsService;

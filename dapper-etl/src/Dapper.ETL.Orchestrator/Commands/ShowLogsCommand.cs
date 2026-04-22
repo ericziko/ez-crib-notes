@@ -19,7 +19,7 @@ public sealed class ShowLogsSettings : CommandSettings {
 }
 
 /// <summary>
-///     Displays structured log entries from EtlLogs.dbo.Logs filtered by level and row limit.
+/// Displays structured log entries from EtlLogs.dbo.Logs filtered by level and row limit.
 /// </summary>
 public sealed class ShowLogsCommand : Command<ShowLogsSettings> {
     private readonly LoggingService _loggingService;

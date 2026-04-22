@@ -3,11 +3,11 @@ using System;
 namespace Dapper.ETL.Library.Models;
 
 /// <summary>
-///     Represents the result of a table copy operation.
+/// Represents the result of a table copy operation.
 /// </summary>
 public class TableCopyResult {
     /// <summary>
-    ///     Initializes a new instance of the <see cref="TableCopyResult" /> class.
+    /// Initializes a new instance of the <see cref="TableCopyResult" /> class.
     /// </summary>
     /// <param name="success">Whether the copy operation was successful.</param>
     /// <param name="sourceTable">The name of the source table.</param>
@@ -31,32 +31,32 @@ public class TableCopyResult {
     }
 
     /// <summary>
-    ///     Gets a value indicating whether the copy operation was successful.
+    /// Gets a value indicating whether the copy operation was successful.
     /// </summary>
     public bool Success { get; }
 
     /// <summary>
-    ///     Gets the name of the source table.
+    /// Gets the name of the source table.
     /// </summary>
     public string SourceTable { get; }
 
     /// <summary>
-    ///     Gets the name of the destination table.
+    /// Gets the name of the destination table.
     /// </summary>
     public string DestinationTable { get; }
 
     /// <summary>
-    ///     Gets the number of rows copied.
+    /// Gets the number of rows copied.
     /// </summary>
     public int RowCount { get; }
 
     /// <summary>
-    ///     Gets the duration of the operation in milliseconds.
+    /// Gets the duration of the operation in milliseconds.
     /// </summary>
     public long DurationMs { get; }
 
     /// <summary>
-    ///     Gets an error message if the operation failed.
+    /// Gets an error message if the operation failed.
     /// </summary>
     public string? ErrorMessage { get; }
 }

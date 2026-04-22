@@ -4,12 +4,12 @@ using Microsoft.Data.SqlClient;
 namespace Dapper.ETL.Orchestrator.Tests.Utility;
 
 /// <summary>
-///     Common assertion helpers shared across integration and end-to-end tests.
+/// Common assertion helpers shared across integration and end-to-end tests.
 /// </summary>
 public static class TestHelpers {
     /// <summary>
-    ///     Asserts that the row count in <paramref name="sourceTable" /> (source DB)
-    ///     matches the row count in each of <paramref name="targetTables" /> (target DB).
+    /// Asserts that the row count in <paramref name="sourceTable" /> (source DB)
+    /// matches the row count in each of <paramref name="targetTables" /> (target DB).
     /// </summary>
     public static async Task AssertRowCountsMatchAsync(
         string sourceConnectionString,
@@ -30,8 +30,8 @@ public static class TestHelpers {
     }
 
     /// <summary>
-    ///     Asserts that the file at <paramref name="filePath" /> exists and contains
-    ///     valid content for the specified <paramref name="format" /> ("json" or "csv").
+    /// Asserts that the file at <paramref name="filePath" /> exists and contains
+    /// valid content for the specified <paramref name="format" /> ("json" or "csv").
     /// </summary>
     public static void AssertLogsExportValid(string filePath, string format) {
         Assert.True(File.Exists(filePath), $"Export file '{filePath}' must exist.");
@@ -53,8 +53,8 @@ public static class TestHelpers {
     }
 
     /// <summary>
-    ///     Asserts that the metrics export file at <paramref name="filePath" /> exists
-    ///     and is valid for the specified <paramref name="format" /> ("json" or "csv").
+    /// Asserts that the metrics export file at <paramref name="filePath" /> exists
+    /// and is valid for the specified <paramref name="format" /> ("json" or "csv").
     /// </summary>
     public static void AssertMetricsExportValid(string filePath, string format) {
         Assert.True(File.Exists(filePath), $"Metrics export file '{filePath}' must exist.");
@@ -77,7 +77,7 @@ public static class TestHelpers {
     }
 
     /// <summary>
-    ///     Asserts that all provided connection strings can open a SQL connection successfully.
+    /// Asserts that all provided connection strings can open a SQL connection successfully.
     /// </summary>
     public static async Task AssertAllConnectionsReachableAsync(params string[] connectionStrings) {
         foreach (var cs in connectionStrings) {

@@ -5,7 +5,7 @@ using Spectre.Console.Cli;
 namespace Dapper.ETL.Orchestrator.Commands;
 
 /// <summary>
-///     Displays row counts for all ETL-related tables and the last ETL run info.
+/// Displays row counts for all ETL-related tables and the last ETL run info.
 /// </summary>
 public class StatusCommand : Command {
 

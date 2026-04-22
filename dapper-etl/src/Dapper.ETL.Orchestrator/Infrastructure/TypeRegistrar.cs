@@ -4,13 +4,13 @@ using Spectre.Console.Cli;
 namespace Dapper.ETL.Orchestrator.Infrastructure;
 
 /// <summary>
-///     Adapts Microsoft.Extensions.DependencyInjection to Spectre.Console.Cli's ITypeRegistrar.
+/// Adapts Microsoft.Extensions.DependencyInjection to Spectre.Console.Cli's ITypeRegistrar.
 /// </summary>
 public sealed class TypeRegistrar : ITypeRegistrar {
     private readonly IServiceCollection _services;
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="TypeRegistrar" /> class.
+    /// Initializes a new instance of the <see cref="TypeRegistrar" /> class.
     /// </summary>
     public TypeRegistrar(IServiceCollection services) {
         _services = services;
@@ -38,13 +38,13 @@ public sealed class TypeRegistrar : ITypeRegistrar {
 }
 
 /// <summary>
-///     Resolves types from a built <see cref="IServiceProvider" />.
+/// Resolves types from a built <see cref="IServiceProvider" />.
 /// </summary>
 public sealed class TypeResolver : ITypeResolver, IDisposable {
     private readonly IServiceProvider _provider;
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="TypeResolver" /> class.
+    /// Initializes a new instance of the <see cref="TypeResolver" /> class.
     /// </summary>
     public TypeResolver(IServiceProvider provider) {
         _provider = provider;

@@ -6,7 +6,7 @@ using Xunit;
 namespace Dapper.ETL.Tests;
 
 /// <summary>
-///     Tests for service result objects - comprehensive coverage of all combinations
+/// Tests for service result objects - comprehensive coverage of all combinations
 /// </summary>
 public class ServiceResultsSnapshotTests {
     [Fact]

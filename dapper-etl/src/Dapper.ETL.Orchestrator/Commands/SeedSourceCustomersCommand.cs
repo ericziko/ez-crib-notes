@@ -7,11 +7,11 @@ using Spectre.Console.Cli;
 namespace Dapper.ETL.Orchestrator.Commands;
 
 /// <summary>
-///     Settings for the seed-source-customers command.
+/// Settings for the seed-source-customers command.
 /// </summary>
 public class SeedSourceCustomersSettings : CommandSettings {
     /// <summary>
-    ///     Gets or sets the number of customers to seed.
+    /// Gets or sets the number of customers to seed.
     /// </summary>
     [CommandArgument(0, "<count>")]
     [Description("Number of customers to seed")]
@@ -19,14 +19,14 @@ public class SeedSourceCustomersSettings : CommandSettings {
 }
 
 /// <summary>
-///     Command that seeds test customer rows into the source database.
+/// Command that seeds test customer rows into the source database.
 /// </summary>
 public class SeedSourceCustomersCommand : Command<SeedSourceCustomersSettings> {
     private readonly EtlService _etlService;
     private readonly ILogger<SeedSourceCustomersCommand> _logger;
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="SeedSourceCustomersCommand" /> class.
+    /// Initializes a new instance of the <see cref="SeedSourceCustomersCommand" /> class.
     /// </summary>
     public SeedSourceCustomersCommand(EtlService etlService, ILogger<SeedSourceCustomersCommand> logger) {
         _etlService = etlService;

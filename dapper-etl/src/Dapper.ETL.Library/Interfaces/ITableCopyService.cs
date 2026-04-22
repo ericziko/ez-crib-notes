@@ -5,11 +5,11 @@ using Dapper.ETL.Library.Models;
 namespace Dapper.ETL.Library.Interfaces;
 
 /// <summary>
-///     Interface for copying data between tables.
+/// Interface for copying data between tables.
 /// </summary>
 public interface ITableCopyService {
     /// <summary>
-    ///     Copies data from a source table to a destination table asynchronously.
+    /// Copies data from a source table to a destination table asynchronously.
     /// </summary>
     /// <param name="sourceTable">The name of the source table.</param>
     /// <param name="destinationTable">The name of the destination table.</param>

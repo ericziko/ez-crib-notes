@@ -14,8 +14,8 @@ public sealed class ValidateDataSettings : CommandSettings {
 }
 
 /// <summary>
-///     Validates ETL data integrity between source and target databases.
-///     Dispatches to quick (row counts), standard (schema), or thorough (MD5 + duplicates).
+/// Validates ETL data integrity between source and target databases.
+/// Dispatches to quick (row counts), standard (schema), or thorough (MD5 + duplicates).
 /// </summary>
 public sealed class ValidateDataCommand : Command<ValidateDataSettings> {
     private readonly ValidationService _validationService;

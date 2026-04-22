@@ -7,18 +7,18 @@ using Spectre.Console.Cli;
 namespace Dapper.ETL.Orchestrator.Commands;
 
 /// <summary>
-///     Settings for the export-logs command.
+/// Settings for the export-logs command.
 /// </summary>
 public class ExportLogsSettings : CommandSettings {
     /// <summary>
-    ///     Gets or sets the output file path for the exported logs.
+    /// Gets or sets the output file path for the exported logs.
     /// </summary>
     [CommandArgument(0, "[output]")]
     [Description("Output file path (default: etl-logs.json)")]
     public string Output { get; set; } = "etl-logs.json";
 
     /// <summary>
-    ///     Gets or sets the minimum log level to include.
+    /// Gets or sets the minimum log level to include.
     /// </summary>
     [CommandOption("--level")]
     [Description("Minimum log level: Info, Warning, Error")]
@@ -26,7 +26,7 @@ public class ExportLogsSettings : CommandSettings {
     public string Level { get; set; } = "Info";
 
     /// <summary>
-    ///     Gets or sets the maximum number of log entries to export.
+    /// Gets or sets the maximum number of log entries to export.
     /// </summary>
     [CommandOption("--limit")]
     [Description("Maximum number of entries to export")]
@@ -35,13 +35,13 @@ public class ExportLogsSettings : CommandSettings {
 }
 
 /// <summary>
-///     Command that exports log entries to a JSON file.
+/// Command that exports log entries to a JSON file.
 /// </summary>
 public class ExportLogsCommand : Command<ExportLogsSettings> {
     private readonly LoggingService _loggingService;
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="ExportLogsCommand" /> class.
+    /// Initializes a new instance of the <see cref="ExportLogsCommand" /> class.
     /// </summary>
     public ExportLogsCommand(LoggingService loggingService) {
         _loggingService = loggingService;

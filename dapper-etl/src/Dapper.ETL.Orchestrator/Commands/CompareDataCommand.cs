@@ -6,11 +6,11 @@ using Spectre.Console.Cli;
 namespace Dapper.ETL.Orchestrator.Commands;
 
 /// <summary>
-///     Settings for the compare command.
+/// Settings for the compare command.
 /// </summary>
 public class CompareDataSettings : CommandSettings {
     /// <summary>
-    ///     Gets or sets a value indicating whether to show only mismatched tables.
+    /// Gets or sets a value indicating whether to show only mismatched tables.
     /// </summary>
     [CommandOption("--mismatches-only")]
     [Description("Show only tables where source and target counts differ")]
@@ -19,13 +19,13 @@ public class CompareDataSettings : CommandSettings {
 }
 
 /// <summary>
-///     Command that compares row counts between source and target databases.
+/// Command that compares row counts between source and target databases.
 /// </summary>
 public class CompareDataCommand : Command<CompareDataSettings> {
     private readonly ValidationService _validationService;
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="CompareDataCommand" /> class.
+    /// Initializes a new instance of the <see cref="CompareDataCommand" /> class.
     /// </summary>
     public CompareDataCommand(ValidationService validationService) {
         _validationService = validationService;

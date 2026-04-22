@@ -8,11 +8,11 @@ using Spectre.Console.Cli;
 namespace Dapper.ETL.Orchestrator.Commands;
 
 /// <summary>
-///     Settings for the run-etl command.
+/// Settings for the run-etl command.
 /// </summary>
 public class RunEtlSettings : CommandSettings {
     /// <summary>
-    ///     Gets or sets a value indicating whether to run the ETL in atomic (all-or-nothing) mode.
+    /// Gets or sets a value indicating whether to run the ETL in atomic (all-or-nothing) mode.
     /// </summary>
     [CommandOption("--atomic")]
     [Description("Use atomic transaction (all-or-nothing)")]
@@ -21,14 +21,14 @@ public class RunEtlSettings : CommandSettings {
 }
 
 /// <summary>
-///     Command that executes the ETL pipeline.
+/// Command that executes the ETL pipeline.
 /// </summary>
 public class RunEtlCommand : Command<RunEtlSettings> {
     private readonly EtlService _etlService;
     private readonly ILogger<RunEtlCommand> _logger;
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="RunEtlCommand" /> class.
+    /// Initializes a new instance of the <see cref="RunEtlCommand" /> class.
     /// </summary>
     public RunEtlCommand(EtlService etlService, ILogger<RunEtlCommand> logger) {
         _etlService = etlService;

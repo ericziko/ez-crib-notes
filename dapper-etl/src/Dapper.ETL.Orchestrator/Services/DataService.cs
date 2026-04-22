@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Dapper.ETL.Orchestrator.Services;
 
 /// <summary>
-///     Provides data access helpers for ETL status and maintenance operations.
+/// Provides data access helpers for ETL status and maintenance operations.
 /// </summary>
 public class DataService {
     private readonly string _logsConnectionString;
@@ -22,7 +22,7 @@ public class DataService {
     }
 
     /// <summary>
-    ///     Returns the row count for a table in the given database using the appropriate connection string.
+    /// Returns the row count for a table in the given database using the appropriate connection string.
     /// </summary>
     /// <param name="database">Logical database name: "Source", "Target", or "Logs".</param>
     /// <param name="table">Fully-qualified table name, e.g. "dbo.Customer".</param>
@@ -42,7 +42,7 @@ public class DataService {
     }
 
     /// <summary>
-    ///     Truncates all target tables and resets their sequences.
+    /// Truncates all target tables and resets their sequences.
     /// </summary>
     public async Task ResetTargetDatabase() {
         var tables = new[] {
@@ -70,7 +70,7 @@ public class DataService {
     }
 
     /// <summary>
-    ///     Returns information about the last ETL run. Returns null until Phase 4.5 wires up metrics persistence.
+    /// Returns information about the last ETL run. Returns null until Phase 4.5 wires up metrics persistence.
     /// </summary>
     public Task<EtlRunInfo?> GetLastEtlRunInfo() {
         // Placeholder: populated in Phase 4.5 when metrics cache/database is available.

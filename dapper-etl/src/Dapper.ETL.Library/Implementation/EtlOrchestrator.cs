@@ -8,7 +8,7 @@ using Dapper.ETL.Library.Models;
 namespace Dapper.ETL.Library.Implementation;
 
 /// <summary>
-///     Service for orchestrating complete ETL workflows.
+/// Service for orchestrating complete ETL workflows.
 /// </summary>
 public class EtlOrchestrator : IEtlOrchestrator {
     private readonly IEtlLogger _logger;
@@ -17,7 +17,7 @@ public class EtlOrchestrator : IEtlOrchestrator {
     private readonly ITransactionManager _transactionManager;
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="EtlOrchestrator" /> class.
+    /// Initializes a new instance of the <see cref="EtlOrchestrator" /> class.
     /// </summary>
     /// <param name="transactionManager">The transaction manager.</param>
     /// <param name="tableCopyService">The table copy service.</param>
@@ -35,13 +35,13 @@ public class EtlOrchestrator : IEtlOrchestrator {
     }
 
     /// <summary>
-    ///     Executes an ETL execution plan asynchronously.
+    /// Executes an ETL execution plan asynchronously.
     /// </summary>
     /// <param name="plan">The ETL execution plan to execute.</param>
     /// <param name="shouldRollback">Whether to rollback the transaction on failure.</param>
     /// <param name="transactionMode">
-    ///     Controls whether all copies share one transaction (Atomic) or each gets its own
-    ///     (Partial).
+    /// Controls whether all copies share one transaction (Atomic) or each gets its own
+    /// (Partial).
     /// </param>
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>The result of the ETL execution.</returns>

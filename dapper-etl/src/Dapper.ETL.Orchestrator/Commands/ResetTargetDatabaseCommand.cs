@@ -5,7 +5,7 @@ using Spectre.Console.Cli;
 namespace Dapper.ETL.Orchestrator.Commands;
 
 /// <summary>
-///     Truncates all target tables and resets their identity seeds.
+/// Truncates all target tables and resets their identity seeds.
 /// </summary>
 public class ResetTargetDatabaseCommand : Command {
 

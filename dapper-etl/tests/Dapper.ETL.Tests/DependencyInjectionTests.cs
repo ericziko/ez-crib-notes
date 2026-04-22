@@ -7,12 +7,12 @@ using Xunit;
 namespace Dapper.ETL.Tests;
 
 /// <summary>
-///     Tests for dependency injection configuration
+/// Tests for dependency injection configuration
 /// </summary>
 public class DependencyInjectionTests {
     /// <summary>
-    ///     Helper to configure EtlOptions with a no-op source connection string for unit tests
-    ///     that don't actually open database connections.
+    /// Helper to configure EtlOptions with a no-op source connection string for unit tests
+    /// that don't actually open database connections.
     /// </summary>
     private static void ConfigureTestOptions(EtlOptions opts) {
         opts.SourceConnectionString = "Server=.;Database=Test;Integrated Security=true;";

@@ -6,13 +6,13 @@ using Spectre.Console.Cli;
 namespace Dapper.ETL.Orchestrator.Commands;
 
 /// <summary>
-///     Command that checks connectivity to all configured databases.
+/// Command that checks connectivity to all configured databases.
 /// </summary>
 public class CheckConnectionCommand : Command {
     private readonly IConfiguration _configuration;
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="CheckConnectionCommand" /> class.
+    /// Initializes a new instance of the <see cref="CheckConnectionCommand" /> class.
     /// </summary>
     public CheckConnectionCommand(IConfiguration configuration) {
         _configuration = configuration;

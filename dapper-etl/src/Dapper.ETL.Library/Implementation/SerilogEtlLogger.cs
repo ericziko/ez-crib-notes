@@ -5,20 +5,20 @@ using Serilog;
 namespace Dapper.ETL.Library.Implementation;
 
 /// <summary>
-///     Serilog-backed implementation of ETL logging.
+/// Serilog-backed implementation of ETL logging.
 /// </summary>
 public class SerilogEtlLogger : IEtlLogger {
     private readonly ILogger _logger;
 
     /// <summary>
-    ///     Initializes a new instance of <see cref="SerilogEtlLogger" /> using the static Serilog logger.
+    /// Initializes a new instance of <see cref="SerilogEtlLogger" /> using the static Serilog logger.
     /// </summary>
     public SerilogEtlLogger() {
         _logger = Log.ForContext<SerilogEtlLogger>();
     }
 
     /// <summary>
-    ///     Initializes a new instance of <see cref="SerilogEtlLogger" /> with an explicit logger instance.
+    /// Initializes a new instance of <see cref="SerilogEtlLogger" /> with an explicit logger instance.
     /// </summary>
     /// <param name="logger">The Serilog logger instance to use.</param>
     public SerilogEtlLogger(ILogger logger) {

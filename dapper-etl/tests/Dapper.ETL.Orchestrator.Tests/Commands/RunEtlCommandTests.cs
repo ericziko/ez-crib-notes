@@ -6,8 +6,8 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 /// <summary>
-///     Unit tests for EtlService.RunEtl (used by RunEtlCommand).
-///     RunEtl is a stub returning success with 0 rows — no database connection required.
+/// Unit tests for EtlService.RunEtl (used by RunEtlCommand).
+/// RunEtl is a stub returning success with 0 rows — no database connection required.
 /// </summary>
 public class RunEtlCommandTests {
     private static EtlService BuildEtlService() {

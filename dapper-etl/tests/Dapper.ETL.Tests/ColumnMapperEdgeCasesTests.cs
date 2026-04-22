@@ -8,7 +8,7 @@ using Xunit;
 namespace Dapper.ETL.Tests;
 
 /// <summary>
-///     Edge case tests for ColumnMapper covering all code paths
+/// Edge case tests for ColumnMapper covering all code paths
 /// </summary>
 public class ColumnMapperEdgeCasesTests {
     private readonly ColumnMapper _mapper = new();

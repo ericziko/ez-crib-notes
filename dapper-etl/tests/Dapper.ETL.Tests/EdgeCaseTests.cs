@@ -8,7 +8,7 @@ using Xunit;
 namespace Dapper.ETL.Tests;
 
 /// <summary>
-///     Edge case tests for complete 100% coverage
+/// Edge case tests for complete 100% coverage
 /// </summary>
 public class EdgeCaseTests {
     private readonly ColumnMapper _columnMapper = new();

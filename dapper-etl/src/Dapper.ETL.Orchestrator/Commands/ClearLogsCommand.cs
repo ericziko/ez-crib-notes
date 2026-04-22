@@ -6,7 +6,7 @@ using Spectre.Console.Cli;
 namespace Dapper.ETL.Orchestrator.Commands;
 
 /// <summary>
-///     Truncates the EtlLogs.dbo.Logs table after user confirmation.
+/// Truncates the EtlLogs.dbo.Logs table after user confirmation.
 /// </summary>
 public class ClearLogsCommand : Command {
     private readonly IConfiguration _configuration;

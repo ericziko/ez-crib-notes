@@ -4,7 +4,7 @@ using Xunit;
 namespace Dapper.ETL.Tests;
 
 /// <summary>
-///     Tests verifying ColumnMapping.SelectExpression behaviour.
+/// Tests verifying ColumnMapping.SelectExpression behaviour.
 /// </summary>
 public class ColumnMappingTransformTests {
     [Fact]

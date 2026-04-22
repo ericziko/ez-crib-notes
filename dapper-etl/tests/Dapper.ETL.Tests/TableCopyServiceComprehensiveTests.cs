@@ -12,8 +12,8 @@ using Xunit;
 namespace Dapper.ETL.Tests;
 
 /// <summary>
-///     Comprehensive tests for TableCopyService edge cases and error handling.
-///     Tests parameter validation, dependency injection errors, and exception scenarios.
+/// Comprehensive tests for TableCopyService edge cases and error handling.
+/// Tests parameter validation, dependency injection errors, and exception scenarios.
 /// </summary>
 public class TableCopyServiceComprehensiveTests {
     [Fact]

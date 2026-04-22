@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 namespace Dapper.ETL.Orchestrator.Services;
 
 /// <summary>
-///     Detail for a single table's validation result.
+/// Detail for a single table's validation result.
 /// </summary>
 public record ValidationDetail(
     string TableName,
@@ -13,8 +13,8 @@ public record ValidationDetail(
     string Status);
 
 /// <summary>
-///     Service for validating ETL data integrity across source and target databases.
-///     Stub implementation - full logic added in Phase 4.3+.
+/// Service for validating ETL data integrity across source and target databases.
+/// Stub implementation - full logic added in Phase 4.3+.
 /// </summary>
 public class ValidationService {
     private readonly IConfiguration _configuration;
@@ -24,7 +24,7 @@ public class ValidationService {
     }
 
     /// <summary>
-    ///     Quick validation: compare row counts between source and target tables.
+    /// Quick validation: compare row counts between source and target tables.
     /// </summary>
     public Task<(bool Success, Dictionary<string, ValidationDetail> Results)> ValidateQuick(
         CancellationToken cancellationToken = default) {
@@ -35,8 +35,8 @@ public class ValidationService {
     }
 
     /// <summary>
-    ///     Standard validation: row count comparison plus schema validation
-    ///     (column names, types, nullability).
+    /// Standard validation: row count comparison plus schema validation
+    /// (column names, types, nullability).
     /// </summary>
     public Task<(bool Success, Dictionary<string, ValidationDetail> Results)> ValidateStandard(
         CancellationToken cancellationToken = default) {
@@ -46,8 +46,8 @@ public class ValidationService {
     }
 
     /// <summary>
-    ///     Thorough validation: MD5 hash comparison and duplicate detection.
-    ///     Completes in under 10 seconds for N=100.
+    /// Thorough validation: MD5 hash comparison and duplicate detection.
+    /// Completes in under 10 seconds for N=100.
     /// </summary>
     public Task<(bool Success, Dictionary<string, ValidationDetail> Results)> ValidateThorough(
         CancellationToken cancellationToken = default) {

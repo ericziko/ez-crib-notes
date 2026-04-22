@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 namespace Dapper.ETL.Orchestrator.Services;
 
 /// <summary>
-///     Represents a single log entry from EtlLogs.dbo.Logs.
+/// Represents a single log entry from EtlLogs.dbo.Logs.
 /// </summary>
 public record LogEntry(
     DateTime TimeStamp,
@@ -12,8 +12,8 @@ public record LogEntry(
     string? Properties);
 
 /// <summary>
-///     Service for querying structured logs from the EtlLogs database.
-///     Stub implementation - full logic added in Phase 4.3+.
+/// Service for querying structured logs from the EtlLogs database.
+/// Stub implementation - full logic added in Phase 4.3+.
 /// </summary>
 public class LoggingService {
     private readonly IConfiguration _configuration;
@@ -23,8 +23,8 @@ public class LoggingService {
     }
 
     /// <summary>
-    ///     Retrieves log entries filtered by minimum level and limited to the specified row count.
-    ///     Queries EtlLogs.dbo.Logs ordered by TimeStamp descending.
+    /// Retrieves log entries filtered by minimum level and limited to the specified row count.
+    /// Queries EtlLogs.dbo.Logs ordered by TimeStamp descending.
     /// </summary>
     /// <param name="level">Minimum log level: Info, Warning, or Error.</param>
     /// <param name="limit">Maximum number of rows to return.</param>

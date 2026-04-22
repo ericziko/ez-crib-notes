@@ -4,11 +4,11 @@ using System.Collections.Generic;
 namespace Dapper.ETL.Library.Models;
 
 /// <summary>
-///     Options for a table copy operation.
+/// Options for a table copy operation.
 /// </summary>
 public class TableCopyOptions {
     /// <summary>
-    ///     Initializes a new instance of the <see cref="TableCopyOptions" /> class.
+    /// Initializes a new instance of the <see cref="TableCopyOptions" /> class.
     /// </summary>
     /// <param name="truncateDestination">Whether to truncate the destination table before copying.</param>
     /// <param name="batchSize">The size of batches to process.</param>
@@ -27,17 +27,17 @@ public class TableCopyOptions {
     }
 
     /// <summary>
-    ///     Gets a value indicating whether the destination table should be truncated before copying.
+    /// Gets a value indicating whether the destination table should be truncated before copying.
     /// </summary>
     public bool TruncateDestination { get; }
 
     /// <summary>
-    ///     Gets the size of batches to process.
+    /// Gets the size of batches to process.
     /// </summary>
     public int BatchSize { get; }
 
     /// <summary>
-    ///     Gets the optional column mapping overrides.
+    /// Gets the optional column mapping overrides.
     /// </summary>
     public IDictionary<string, string> ColumnMappingOverrides { get; }
 }

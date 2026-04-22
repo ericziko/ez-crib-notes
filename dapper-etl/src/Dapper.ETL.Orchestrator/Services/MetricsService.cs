@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 namespace Dapper.ETL.Orchestrator.Services;
 
 /// <summary>
-///     Service for recording OpenTelemetry metrics during ETL operations.
+/// Service for recording OpenTelemetry metrics during ETL operations.
 /// </summary>
 public class MetricsService {
     private readonly Histogram<long> _durationHistogram;
@@ -20,7 +20,7 @@ public class MetricsService {
     private double _throughput;
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="MetricsService" /> class.
+    /// Initializes a new instance of the <see cref="MetricsService" /> class.
     /// </summary>
     /// <param name="meter">The OpenTelemetry meter (name: "Dapper.ETL").</param>
     /// <param name="logger">Optional logger for debug output.</param>
@@ -57,7 +57,7 @@ public class MetricsService {
     }
 
     /// <summary>
-    ///     Records the number of rows copied for a table.
+    /// Records the number of rows copied for a table.
     /// </summary>
     public void RecordRowsCopied(long count, string tableName) {
         _rowsCopiedCounter.Add(count, new KeyValuePair<string, object?>("table", tableName));
@@ -65,7 +65,7 @@ public class MetricsService {
     }
 
     /// <summary>
-    ///     Records the number of rows expected for a table.
+    /// Records the number of rows expected for a table.
     /// </summary>
     public void RecordRowsExpected(long count, string tableName) {
         _rowsExpectedCounter.Add(count, new KeyValuePair<string, object?>("table", tableName));
@@ -73,7 +73,7 @@ public class MetricsService {
     }
 
     /// <summary>
-    ///     Records the duration of an ETL stage in milliseconds.
+    /// Records the duration of an ETL stage in milliseconds.
     /// </summary>
     public void RecordDuration(long durationMs, string stage = "total") {
         _durationHistogram.Record(durationMs, new KeyValuePair<string, object?>("stage", stage));
@@ -81,7 +81,7 @@ public class MetricsService {
     }
 
     /// <summary>
-    ///     Records an error by type.
+    /// Records an error by type.
     /// </summary>
     public void RecordError(string errorType) {
         _errorCounter.Add(1, new KeyValuePair<string, object?>("error_type", errorType));
@@ -89,7 +89,7 @@ public class MetricsService {
     }
 
     /// <summary>
-    ///     Records a passed validation.
+    /// Records a passed validation.
     /// </summary>
     public void RecordValidationPassed() {
         _validationPassedCounter.Add(1);
@@ -97,7 +97,7 @@ public class MetricsService {
     }
 
     /// <summary>
-    ///     Records a failed validation.
+    /// Records a failed validation.
     /// </summary>
     public void RecordValidationFailed() {
         _validationFailedCounter.Add(1);
@@ -105,7 +105,7 @@ public class MetricsService {
     }
 
     /// <summary>
-    ///     Updates the current throughput value (rows per second) used by the observable gauge.
+    /// Updates the current throughput value (rows per second) used by the observable gauge.
     /// </summary>
     public void UpdateThroughput(double rowsPerSec) {
         _throughput = rowsPerSec;
@@ -113,14 +113,14 @@ public class MetricsService {
     }
 
     /// <summary>
-    ///     Caches a metrics snapshot from the last ETL run for later retrieval by commands.
+    /// Caches a metrics snapshot from the last ETL run for later retrieval by commands.
     /// </summary>
     public void StoreMetrics(Dictionary<string, object> metrics) {
         _lastMetrics = new Dictionary<string, object>(metrics);
     }
 
     /// <summary>
-    ///     Returns the metrics cached by the last call to <see cref="StoreMetrics" />, or null if no run has been recorded.
+    /// Returns the metrics cached by the last call to <see cref="StoreMetrics" />, or null if no run has been recorded.
     /// </summary>
     public Dictionary<string, object>? GetLastMetrics() {
         return _lastMetrics;

@@ -5,7 +5,7 @@ using Dapper.ETL.Library.Implementation;
 namespace SQLLite.Integration.Tests;
 
 /// <summary>
-///     Integration tests for TransactionManager using a real SQLite database.
+/// Integration tests for TransactionManager using a real SQLite database.
 /// </summary>
 public class TransactionIntegrationTests : IAsyncLifetime {
     private readonly SqliteFixture _fixture;

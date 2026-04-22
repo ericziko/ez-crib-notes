@@ -5,9 +5,9 @@ using Microsoft.Extensions.Configuration;
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 /// <summary>
-///     Integration tests for the clear-logs operation.
-///     Tests exercise the underlying SQL directly because <see cref="ClearLogsCommand" />
-///     calls <c>AnsiConsole.Confirm</c> which is not suitable for headless test execution.
+/// Integration tests for the clear-logs operation.
+/// Tests exercise the underlying SQL directly because <see cref="ClearLogsCommand" />
+/// calls <c>AnsiConsole.Confirm</c> which is not suitable for headless test execution.
 /// </summary>
 [Collection("SharedSqlServer collection")]
 public class ClearLogsCommandTests {

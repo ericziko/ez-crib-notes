@@ -7,11 +7,11 @@ using Dapper.ETL.Library.Interfaces;
 namespace Dapper.ETL.Library.Implementation;
 
 /// <summary>
-///     Default implementation of batch processing.
+/// Default implementation of batch processing.
 /// </summary>
 public class BatchProcessor : IBatchProcessor {
     /// <summary>
-    ///     Processes items in batches asynchronously.
+    /// Processes items in batches asynchronously.
     /// </summary>
     /// <typeparam name="T">The type of items to process.</typeparam>
     /// <param name="items">The items to process.</param>

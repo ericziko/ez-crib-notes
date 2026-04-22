@@ -3,11 +3,11 @@ using System;
 namespace Dapper.ETL.Library.Models;
 
 /// <summary>
-///     Represents the result of a stored procedure execution.
+/// Represents the result of a stored procedure execution.
 /// </summary>
 public class StoredProcedureResult {
     /// <summary>
-    ///     Initializes a new instance of the <see cref="StoredProcedureResult" /> class.
+    /// Initializes a new instance of the <see cref="StoredProcedureResult" /> class.
     /// </summary>
     /// <param name="success">Whether the execution was successful.</param>
     /// <param name="procedureName">The name of the stored procedure.</param>
@@ -25,22 +25,22 @@ public class StoredProcedureResult {
     }
 
     /// <summary>
-    ///     Gets a value indicating whether the execution was successful.
+    /// Gets a value indicating whether the execution was successful.
     /// </summary>
     public bool Success { get; }
 
     /// <summary>
-    ///     Gets the name of the stored procedure.
+    /// Gets the name of the stored procedure.
     /// </summary>
     public string ProcedureName { get; }
 
     /// <summary>
-    ///     Gets the number of rows affected by the procedure.
+    /// Gets the number of rows affected by the procedure.
     /// </summary>
     public int RowsAffected { get; }
 
     /// <summary>
-    ///     Gets an error message if the execution failed.
+    /// Gets an error message if the execution failed.
     /// </summary>
     public string? ErrorMessage { get; }
 }

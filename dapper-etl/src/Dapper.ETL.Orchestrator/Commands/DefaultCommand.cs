@@ -5,14 +5,14 @@ using Spectre.Console.Cli;
 namespace Dapper.ETL.Orchestrator.Commands;
 
 /// <summary>
-///     Default command shown when no sub-command is specified.
-///     Displays ETL status and available commands.
+/// Default command shown when no sub-command is specified.
+/// Displays ETL status and available commands.
 /// </summary>
 public class DefaultCommand : Command {
     private readonly DataService _dataService;
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="DefaultCommand" /> class.
+    /// Initializes a new instance of the <see cref="DefaultCommand" /> class.
     /// </summary>
     public DefaultCommand(DataService dataService) {
         _dataService = dataService;

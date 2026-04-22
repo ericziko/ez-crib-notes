@@ -9,8 +9,8 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace Dapper.ETL.Orchestrator.Tests.Integration;
 
 /// <summary>
-///     End-to-end workflow integration tests.
-///     Each test class owns its own SqlServerFixture so containers are isolated.
+/// End-to-end workflow integration tests.
+/// Each test class owns its own SqlServerFixture so containers are isolated.
 /// </summary>
 [Collection("SharedSqlServer collection")]
 public class EndToEndTests {

@@ -8,14 +8,14 @@ using Dapper.ETL.Library.Models;
 namespace Dapper.ETL.Library.Implementation;
 
 /// <summary>
-///     Service for executing stored procedures using Dapper.
+/// Service for executing stored procedures using Dapper.
 /// </summary>
 public class StoredProcedureService : IStoredProcedureService {
     private readonly IEtlLogger _logger;
     private readonly ITransactionManager _transactionManager;
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="StoredProcedureService" /> class.
+    /// Initializes a new instance of the <see cref="StoredProcedureService" /> class.
     /// </summary>
     /// <param name="transactionManager">The transaction manager.</param>
     /// <param name="logger">The ETL logger.</param>
@@ -27,7 +27,7 @@ public class StoredProcedureService : IStoredProcedureService {
     }
 
     /// <summary>
-    ///     Executes a stored procedure asynchronously.
+    /// Executes a stored procedure asynchronously.
     /// </summary>
     /// <param name="procedureDefinition">The definition of the stored procedure to execute.</param>
     /// <param name="cancellationToken">The cancellation token.</param>

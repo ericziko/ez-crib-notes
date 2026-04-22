@@ -11,7 +11,7 @@ using Xunit;
 namespace Dapper.ETL.Tests;
 
 /// <summary>
-///     Integration-style unit tests for EtlOrchestrator transaction mode behaviour.
+/// Integration-style unit tests for EtlOrchestrator transaction mode behaviour.
 /// </summary>
 public class EtlOrchestratorIntegrationTests {
     private readonly Mock<IEtlLogger> _mockLogger;

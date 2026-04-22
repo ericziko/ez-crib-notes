@@ -10,7 +10,7 @@ using Dapper.ETL.Library.Models;
 namespace Dapper.ETL.Library.Implementation;
 
 /// <summary>
-///     Service for copying data between tables using Dapper.
+/// Service for copying data between tables using Dapper.
 /// </summary>
 public class TableCopyService : ITableCopyService {
     private readonly IBatchProcessor _batchProcessor;
@@ -20,7 +20,7 @@ public class TableCopyService : ITableCopyService {
     private readonly ITransactionManager _transactionManager;
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="TableCopyService" /> class.
+    /// Initializes a new instance of the <see cref="TableCopyService" /> class.
     /// </summary>
     /// <param name="transactionManager">The transaction manager.</param>
     /// <param name="columnMapper">The column mapper.</param>
@@ -41,7 +41,7 @@ public class TableCopyService : ITableCopyService {
     }
 
     /// <summary>
-    ///     Copies data from a source table to a destination table asynchronously.
+    /// Copies data from a source table to a destination table asynchronously.
     /// </summary>
     /// <param name="sourceTable">The name of the source table.</param>
     /// <param name="destinationTable">The name of the destination table.</param>

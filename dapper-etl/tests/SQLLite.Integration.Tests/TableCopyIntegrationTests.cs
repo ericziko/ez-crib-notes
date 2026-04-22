@@ -4,7 +4,7 @@ using Dapper.ETL.Library.Models;
 namespace SQLLite.Integration.Tests;
 
 /// <summary>
-///     Integration tests for TableCopyService using a real SQLite database.
+/// Integration tests for TableCopyService using a real SQLite database.
 /// </summary>
 public class TableCopyIntegrationTests : IAsyncLifetime {
     private readonly SqliteFixture _fixture;

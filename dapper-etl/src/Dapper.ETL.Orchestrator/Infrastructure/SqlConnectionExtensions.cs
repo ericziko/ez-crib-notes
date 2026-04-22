@@ -21,10 +21,10 @@ public static class SqlConnectionExtensions {
         new(StringComparer.Ordinal) { "ConnectionString", "Values" };
 
     /// <summary>
-    ///     Assembles a validated SQL Server connection string from a base connection string key
-    ///     and a separate credential key in IConfiguration.
-    ///     Throws <see cref="InvalidOperationException" /> if the base connection string is absent.
-    ///     Falls back to integrated security when the credential key is absent or blank.
+    /// Assembles a validated SQL Server connection string from a base connection string key
+    /// and a separate credential key in IConfiguration.
+    /// Throws <see cref="InvalidOperationException" /> if the base connection string is absent.
+    /// Falls back to integrated security when the credential key is absent or blank.
     /// </summary>
     public static string AssembleConnectionString(
         IConfiguration configuration,
@@ -48,9 +48,9 @@ public static class SqlConnectionExtensions {
     }
 
     /// <summary>
-    ///     Registers keyed SQL Server connection strings with the DI container.
-    ///     Logs all non-credential connection string properties at startup.
-    ///     Fails fast if any base connection string is missing from configuration.
+    /// Registers keyed SQL Server connection strings with the DI container.
+    /// Logs all non-credential connection string properties at startup.
+    /// Fails fast if any base connection string is missing from configuration.
     /// </summary>
     public static IServiceCollection AddKeyedSqlConnections(
         this IServiceCollection services,

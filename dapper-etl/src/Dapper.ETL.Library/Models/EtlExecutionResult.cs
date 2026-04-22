@@ -4,11 +4,11 @@ using System.Linq;
 namespace Dapper.ETL.Library.Models;
 
 /// <summary>
-///     Represents the result of an ETL execution.
+/// Represents the result of an ETL execution.
 /// </summary>
 public class EtlExecutionResult {
     /// <summary>
-    ///     Initializes a new instance of the <see cref="EtlExecutionResult" /> class.
+    /// Initializes a new instance of the <see cref="EtlExecutionResult" /> class.
     /// </summary>
     /// <param name="success">Whether the execution was successful.</param>
     /// <param name="tableCopyResults">The results of table copy operations.</param>
@@ -26,22 +26,22 @@ public class EtlExecutionResult {
     }
 
     /// <summary>
-    ///     Gets a value indicating whether the execution was successful.
+    /// Gets a value indicating whether the execution was successful.
     /// </summary>
     public bool Success { get; }
 
     /// <summary>
-    ///     Gets the results of table copy operations.
+    /// Gets the results of table copy operations.
     /// </summary>
     public IList<TableCopyResult> TableCopyResults { get; }
 
     /// <summary>
-    ///     Gets the results of stored procedure executions.
+    /// Gets the results of stored procedure executions.
     /// </summary>
     public IList<StoredProcedureResult> StoredProcedureResults { get; }
 
     /// <summary>
-    ///     Gets an error message if the execution failed.
+    /// Gets an error message if the execution failed.
     /// </summary>
     public string? ErrorMessage { get; }
 }

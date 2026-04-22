@@ -12,7 +12,7 @@ using Xunit;
 namespace Dapper.ETL.Tests;
 
 /// <summary>
-///     Tests for EtlOrchestrator service
+/// Tests for EtlOrchestrator service
 /// </summary>
 public class EtlOrchestratorServiceTests {
     [Fact]

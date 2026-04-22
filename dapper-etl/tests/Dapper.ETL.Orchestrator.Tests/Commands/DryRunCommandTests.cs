@@ -4,9 +4,9 @@ using Microsoft.Data.SqlClient;
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 /// <summary>
-///     Integration tests for the dry-run operation.
-///     DryRunCommand is purely presentational (no DB writes) so tests verify the
-///     database state is unchanged after what a dry run would have done.
+/// Integration tests for the dry-run operation.
+/// DryRunCommand is purely presentational (no DB writes) so tests verify the
+/// database state is unchanged after what a dry run would have done.
 /// </summary>
 [Collection("SharedSqlServer collection")]
 public class DryRunCommandTests {

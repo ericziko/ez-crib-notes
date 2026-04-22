@@ -6,9 +6,9 @@ using Microsoft.Extensions.Configuration;
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 /// <summary>
-///     Integration tests for the export-logs operation via <see cref="LoggingService" />.
-///     Tests exercise the service layer directly because <see cref="ExportLogsCommand" />
-///     renders to AnsiConsole which is not suitable for headless test execution.
+/// Integration tests for the export-logs operation via <see cref="LoggingService" />.
+/// Tests exercise the service layer directly because <see cref="ExportLogsCommand" />
+/// renders to AnsiConsole which is not suitable for headless test execution.
 /// </summary>
 [Collection("SharedSqlServer collection")]
 public class ExportLogsCommandTests {

@@ -5,7 +5,7 @@ using Spectre.Console.Cli;
 namespace Dapper.ETL.Orchestrator.Commands;
 
 /// <summary>
-///     Displays metrics from the last ETL run as a Spectre.Console table.
+/// Displays metrics from the last ETL run as a Spectre.Console table.
 /// </summary>
 public class GetStatsCommand : Command {
     private readonly MetricsService _metricsService;

@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace Dapper.ETL.Orchestrator.Tests.Commands;
 
 /// <summary>
-///     Integration tests for <see cref="SeedSourceCustomersCommand" /> via <see cref="EtlService.SeedCustomers" />.
+/// Integration tests for <see cref="SeedSourceCustomersCommand" /> via <see cref="EtlService.SeedCustomers" />.
 /// </summary>
 [Collection("SharedSqlServer collection")]
 public class SeedSourceCustomersCommandTests {

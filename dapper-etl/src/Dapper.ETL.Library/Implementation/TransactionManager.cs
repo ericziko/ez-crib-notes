@@ -7,13 +7,13 @@ using Dapper.ETL.Library.Interfaces;
 namespace Dapper.ETL.Library.Implementation;
 
 /// <summary>
-///     Implementation of transaction management wrapping an IDbConnection and IDbTransaction.
+/// Implementation of transaction management wrapping an IDbConnection and IDbTransaction.
 /// </summary>
 public class TransactionManager : ITransactionManager {
     private bool _disposed;
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="TransactionManager" /> class.
+    /// Initializes a new instance of the <see cref="TransactionManager" /> class.
     /// </summary>
     /// <param name="connection">The database connection.</param>
     public TransactionManager(IDbConnection connection) {
@@ -21,17 +21,17 @@ public class TransactionManager : ITransactionManager {
     }
 
     /// <summary>
-    ///     Gets the underlying database connection.
+    /// Gets the underlying database connection.
     /// </summary>
     public IDbConnection Connection { get; }
 
     /// <summary>
-    ///     Gets the current transaction.
+    /// Gets the current transaction.
     /// </summary>
     public IDbTransaction? CurrentTransaction { get; private set; }
 
     /// <summary>
-    ///     Begins a new transaction asynchronously.
+    /// Begins a new transaction asynchronously.
     /// </summary>
     /// <param name="isolationLevel">The isolation level of the transaction.</param>
     /// <param name="cancellationToken">The cancellation token.</param>
@@ -49,7 +49,7 @@ public class TransactionManager : ITransactionManager {
     }
 
     /// <summary>
-    ///     Commits the current transaction asynchronously.
+    /// Commits the current transaction asynchronously.
     /// </summary>
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A task that represents the asynchronous operation.</returns>
@@ -66,7 +66,7 @@ public class TransactionManager : ITransactionManager {
     }
 
     /// <summary>
-    ///     Rolls back the current transaction asynchronously.
+    /// Rolls back the current transaction asynchronously.
     /// </summary>
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A task that represents the asynchronous operation.</returns>
@@ -83,7 +83,7 @@ public class TransactionManager : ITransactionManager {
     }
 
     /// <summary>
-    ///     Disposes the transaction manager.
+    /// Disposes the transaction manager.
     /// </summary>
     public async ValueTask DisposeAsync() {
         if (_disposed) {

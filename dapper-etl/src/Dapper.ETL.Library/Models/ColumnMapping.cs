@@ -3,11 +3,11 @@ using System;
 namespace Dapper.ETL.Library.Models;
 
 /// <summary>
-///     Represents the mapping between a source column and a destination column.
+/// Represents the mapping between a source column and a destination column.
 /// </summary>
 public class ColumnMapping {
     /// <summary>
-    ///     Initializes a new instance of the <see cref="ColumnMapping" /> class.
+    /// Initializes a new instance of the <see cref="ColumnMapping" /> class.
     /// </summary>
     /// <param name="sourceColumn">The name of the source column.</param>
     /// <param name="destinationColumn">The name of the destination column.</param>
@@ -17,19 +17,19 @@ public class ColumnMapping {
     }
 
     /// <summary>
-    ///     Gets the name of the source column.
+    /// Gets the name of the source column.
     /// </summary>
     public string SourceColumn { get; }
 
     /// <summary>
-    ///     Gets the name of the destination column.
+    /// Gets the name of the destination column.
     /// </summary>
     public string DestinationColumn { get; }
 
     /// <summary>
-    ///     Optional SQL expression for transforming the source column.
-    ///     Examples: "LOWER(EmailAddress)", "TRIM(FirstName)", "CONVERT(INT, ProductId)"
-    ///     If null, uses the source column name directly.
+    /// Optional SQL expression for transforming the source column.
+    /// Examples: "LOWER(EmailAddress)", "TRIM(FirstName)", "CONVERT(INT, ProductId)"
+    /// If null, uses the source column name directly.
     /// </summary>
     public string? SelectExpression { get; set; }
 }

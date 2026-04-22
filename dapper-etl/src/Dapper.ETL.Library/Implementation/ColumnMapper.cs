@@ -7,11 +7,11 @@ using Dapper.ETL.Library.Models;
 namespace Dapper.ETL.Library.Implementation;
 
 /// <summary>
-///     Default implementation of column mapping.
+/// Default implementation of column mapping.
 /// </summary>
 public class ColumnMapper : IColumnMapper {
     /// <summary>
-    ///     Gets the column mappings for a table copy operation.
+    /// Gets the column mappings for a table copy operation.
     /// </summary>
     /// <param name="sourceColumns">The columns in the source table.</param>
     /// <param name="destinationColumns">The columns in the destination table.</param>
@@ -44,7 +44,7 @@ public class ColumnMapper : IColumnMapper {
     }
 
     /// <summary>
-    ///     Generates a SELECT clause from the given column mappings.
+    /// Generates a SELECT clause from the given column mappings.
     /// </summary>
     /// <param name="mappings">The column mappings.</param>
     /// <returns>The SELECT clause as a string.</returns>
@@ -65,7 +65,7 @@ public class ColumnMapper : IColumnMapper {
     }
 
     /// <summary>
-    ///     Generates an INSERT clause from the given column mappings.
+    /// Generates an INSERT clause from the given column mappings.
     /// </summary>
     /// <param name="mappings">The column mappings.</param>
     /// <returns>The INSERT clause as a string.</returns>

@@ -6,7 +6,7 @@ using Xunit;
 namespace Dapper.ETL.Tests;
 
 /// <summary>
-///     Tests for the EtlLogger implementation.
+/// Tests for the EtlLogger implementation.
 /// </summary>
 public class EtlLoggerTests {
     private readonly EtlLogger _logger = new();

@@ -8,7 +8,7 @@ using Xunit;
 namespace Dapper.ETL.Tests;
 
 /// <summary>
-///     Tests for TransactionManager using Verify.NET for snapshot verification
+/// Tests for TransactionManager using Verify.NET for snapshot verification
 /// </summary>
 public class TransactionManagerTests {
     [Fact]

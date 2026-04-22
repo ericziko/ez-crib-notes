@@ -5,7 +5,7 @@ using Spectre.Console.Cli;
 namespace Dapper.ETL.Orchestrator.Commands;
 
 /// <summary>
-///     Shows a dry-run execution plan for the ETL without committing any data.
+/// Shows a dry-run execution plan for the ETL without committing any data.
 /// </summary>
 public class DryRunCommand : Command {
     private const double ThroughputRowsPerSec = 20.0;

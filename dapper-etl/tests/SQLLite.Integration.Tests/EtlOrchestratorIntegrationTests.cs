@@ -4,8 +4,8 @@ using Dapper.ETL.Library.Models;
 namespace SQLLite.Integration.Tests;
 
 /// <summary>
-///     Integration tests for EtlOrchestrator using a real SQLite database.
-///     Tests complete ETL workflows with transaction management.
+/// Integration tests for EtlOrchestrator using a real SQLite database.
+/// Tests complete ETL workflows with transaction management.
 /// </summary>
 public class EtlOrchestratorIntegrationTests : IAsyncLifetime {
     private readonly SqliteFixture _fixture;

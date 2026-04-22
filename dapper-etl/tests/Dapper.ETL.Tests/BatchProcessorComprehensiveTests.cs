@@ -9,7 +9,7 @@ using Xunit;
 namespace Dapper.ETL.Tests;
 
 /// <summary>
-///     Comprehensive tests for BatchProcessor covering all code paths
+/// Comprehensive tests for BatchProcessor covering all code paths
 /// </summary>
 public class BatchProcessorComprehensiveTests {
     private readonly BatchProcessor _processor = new();
