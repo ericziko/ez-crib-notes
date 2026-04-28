@@ -3,15 +3,6 @@ using Microsoft.Extensions.Configuration;
 namespace Dapper.ETL.Orchestrator.Services;
 
 /// <summary>
-/// Represents a single log entry from EtlLogs.dbo.Logs.
-/// </summary>
-public record LogEntry(
-    DateTime TimeStamp,
-    string Level,
-    string MessageTemplate,
-    string? Properties);
-
-/// <summary>
 /// Service for querying structured logs from the EtlLogs database.
 /// Stub implementation - full logic added in Phase 4.3+.
 /// </summary>

@@ -1,22 +1,9 @@
-using System.ComponentModel;
 using System.Text.Json;
 using Dapper.ETL.Orchestrator.Services;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
 namespace Dapper.ETL.Orchestrator.Commands;
-
-/// <summary>
-/// Settings for <see cref="ExportMetricsCommand" />.
-/// </summary>
-public class ExportMetricsSettings : CommandSettings {
-    [Description("Export format (csv|json)")]
-    [DefaultValue("json")]
-    public string Format { get; init; } = "json";
-
-    [Description("Output file path (optional)")]
-    public string? OutputFile { get; init; }
-}
 
 /// <summary>
 /// Exports the last ETL metrics to a file in csv or json format.

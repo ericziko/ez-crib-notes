@@ -5,9 +5,6 @@ using Testcontainers.MsSql;
 
 namespace Dapper.ETL.Orchestrator.Tests.Fixtures;
 
-[CollectionDefinition("SharedSqlServer collection")]
-public class SharedSqlServerCollection : ICollectionFixture<SharedSqlServerFixture> { }
-
 /// <summary>
 /// Shared SQL Server container fixture managed by xUnit's ICollectionFixture.
 /// The container starts once per collection and is stopped when the collection completes.

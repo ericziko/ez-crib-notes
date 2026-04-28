@@ -1,17 +1,9 @@
-using System.ComponentModel;
 using Dapper.ETL.Orchestrator.Services;
 using Microsoft.Extensions.Configuration;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
 namespace Dapper.ETL.Orchestrator.Commands;
-
-public sealed class ValidateDataSettings : CommandSettings {
-    [Description("Validation level (quick|standard|thorough)")]
-    [CommandOption("-l|--level")]
-    [DefaultValue("quick")]
-    public string Level { get; init; } = "quick";
-}
 
 /// <summary>
 /// Validates ETL data integrity between source and target databases.

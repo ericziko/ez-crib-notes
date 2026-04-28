@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using Dapper.ETL.Library.Models;
 using Dapper.ETL.Orchestrator.Services;
 using Microsoft.Extensions.Logging;
@@ -6,19 +5,6 @@ using Spectre.Console;
 using Spectre.Console.Cli;
 
 namespace Dapper.ETL.Orchestrator.Commands;
-
-/// <summary>
-/// Settings for the run-etl command.
-/// </summary>
-public class RunEtlSettings : CommandSettings {
-    /// <summary>
-    /// Gets or sets a value indicating whether to run the ETL in atomic (all-or-nothing) mode.
-    /// </summary>
-    [CommandOption("--atomic")]
-    [Description("Use atomic transaction (all-or-nothing)")]
-    [DefaultValue(true)]
-    public bool Atomic { get; set; } = true;
-}
 
 /// <summary>
 /// Command that executes the ETL pipeline.

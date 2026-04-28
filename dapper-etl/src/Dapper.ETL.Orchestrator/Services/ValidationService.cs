@@ -3,16 +3,6 @@ using Microsoft.Extensions.Configuration;
 namespace Dapper.ETL.Orchestrator.Services;
 
 /// <summary>
-/// Detail for a single table's validation result.
-/// </summary>
-public record ValidationDetail(
-    string TableName,
-    long SourceCount,
-    long TargetCount,
-    double MatchPercent,
-    string Status);
-
-/// <summary>
 /// Service for validating ETL data integrity across source and target databases.
 /// Stub implementation - full logic added in Phase 4.3+.
 /// </summary>
