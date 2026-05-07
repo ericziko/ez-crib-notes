@@ -68,7 +68,7 @@ This is the “two endpoint” pattern Microsoft shows:
 
 ## 1) Register health checks (tag readiness dependencies)
 
-```rb
+```cs
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 var builder = WebApplication.CreateBuilder(args);
 // Core health checks
@@ -95,7 +95,7 @@ var app = builder.Build();
 
 ## 2) Map /health/live and /health/ready
 
-```rb
+```cs
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 app.MapHealthChecks("/health/ready", new HealthCheckOptions
@@ -127,7 +127,7 @@ Here are two lightweight “timeout-safe” custom checks you can copy/paste.
 
 ## Redis ping check (IDistributedCache)
 
-```rb
+```cs
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 public sealed class RedisPingHealthCheck : IHealthCheck
@@ -160,7 +160,7 @@ public sealed class RedisPingHealthCheck : IHealthCheck
 
 ## Downstream HTTP check (timeboxed)
 
-```rb
+```cs
 using System.Net.Http;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 public sealed class DownstreamHttpHealthCheck : IHealthCheck
