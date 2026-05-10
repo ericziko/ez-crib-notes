@@ -1,0 +1,1 @@
+{"nodes": [{"id": "empty_webp_placeholder", "label": "Empty WebP placeholder (EmptyFiles fixture)", "file_type": "image", "source_file": "dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.webp", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null}], "edges": [], "hyperedges": []}

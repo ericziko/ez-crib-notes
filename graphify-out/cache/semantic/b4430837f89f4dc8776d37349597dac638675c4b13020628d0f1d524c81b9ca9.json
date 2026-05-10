@@ -1,0 +1,1 @@
+{"nodes": [{"id": "buildserviceprovider_singleton_issue", "label": "BuildServiceProvider Singleton Duplication Issue", "file_type": "concept", "source_file": "2026/02/2026-02-17/Stop Calling BuildServiceProvider in .NET 10 The DI Mistake That Spawns Duplicate Singletons.md", "source_location": null}], "edges": [], "hyperedges": []}
