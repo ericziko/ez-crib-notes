@@ -1,0 +1,1730 @@
+{
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-27/powershell-unit-test-script-using-oauth-credentials/smoke-test.ps1": {
+    "mtime": 1777337084.8598278,
+    "hash": "42860df68e29fd60b2550f7fbb70061c"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/HelmChartTools/Functions/Public/Compare-HelmCharts.ps1": {
+    "mtime": 1777337084.8449945,
+    "hash": "3c319fcf3aa3007b9ce5ffcde34b35f7"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/HelmChartTools/Functions/Public/Test-HelmVariableConsistency.ps1": {
+    "mtime": 1777337084.8460743,
+    "hash": "7a9ca8f970666263790a9fd998c8615f"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/HelmChartTools/Functions/Public/Get-HelmChartVariables.ps1": {
+    "mtime": 1777337084.845642,
+    "hash": "d23db77478da6f432aa94d740a99bd3f"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/HelmChartTools/Functions/Public/Invoke-HelmVariableReplace.ps1": {
+    "mtime": 1777337084.8458638,
+    "hash": "9ada24a11e430be042a4f67a61c5baae"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/HelmChartTools/Functions/Public/Get-HelmChartStructure.ps1": {
+    "mtime": 1777337084.8454206,
+    "hash": "2bd812713e8f0cfb4a28b5ed5717e9c3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/HelmChartTools/Functions/Public/Compare-HelmChartValues.ps1": {
+    "mtime": 1777337084.844722,
+    "hash": "05993ce6216d625667e9bc553ccab9d6"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/HelmChartTools/Functions/Public/Export-HelmVariableRegistry.ps1": {
+    "mtime": 1777337084.8452098,
+    "hash": "f9218c3a1de6adc72394774627e34817"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/HelmChartTools/Functions/Private/Get-HelmVariablePattern.ps1": {
+    "mtime": 1777337084.8442657,
+    "hash": "20608f1286a3617ffee6ea1bc9063f06"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/HelmChartTools/Functions/Private/Compare-FlatYaml.ps1": {
+    "mtime": 1777337084.8434896,
+    "hash": "cd56daf2094391241182f9c7457ea394"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/HelmChartTools/Functions/Private/ConvertTo-FlatYaml.ps1": {
+    "mtime": 1777337084.843798,
+    "hash": "e2a07747e6408439c49b4f601ffe3ed2"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-20/how-to-breakup-powershell-modules/Split-ModuleFunctions.ps1": {
+    "mtime": 1777337084.8426485,
+    "hash": "07e84bdcb75879783adfae1e8d027157"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Orchestrator.Tests/obj/Debug/net8.0/Verify.Attributes.cs": {
+    "mtime": 1776519190.4808729,
+    "hash": "0c56fca1a37f503eb1aa587244347b60"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Orchestrator.Tests/obj/Debug/net8.0/Dapper.ETL.Orchestrator.Tests.AssemblyInfo.cs": {
+    "mtime": 1776519190.4844308,
+    "hash": "b3f5c64010d266c3022549352bbec8ff"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Orchestrator.Tests/obj/Debug/net8.0/VerifyXunit.Attributes.cs": {
+    "mtime": 1776519190.4812458,
+    "hash": "700dbed9af1b5c51391bd630920e6211"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Orchestrator.Tests/obj/Debug/net8.0/Dapper.ETL.Orchestrator.Tests.GlobalUsings.g.cs": {
+    "mtime": 1776484929.0705786,
+    "hash": "2e65ee4ceecab8fd0e790c9884a75a12"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Tests/obj/Debug/net8.0/Dapper.ETL.Tests.AssemblyInfo.cs": {
+    "mtime": 1776519190.3984056,
+    "hash": "573e6adf880a61401f14bab1258710a3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Tests/obj/Debug/net8.0/Verify.Attributes.cs": {
+    "mtime": 1776519190.3600929,
+    "hash": "478b2acb065a4073be20a640f1db30cf"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Tests/obj/Debug/net8.0/VerifyXunit.Attributes.cs": {
+    "mtime": 1776519190.3612676,
+    "hash": "f1230079ca0ea1a655e01cfc367742df"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/obj/Debug/net8.0/Verify.Attributes.cs": {
+    "mtime": 1776528029.4725664,
+    "hash": "47675f00bb9d3c0822243319b8281a71"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/obj/Debug/net8.0/Dapper.ETL.Orchestrator.Tests.AssemblyInfo.cs": {
+    "mtime": 1776528029.5049546,
+    "hash": "4afbff993f1478b3dfc5ece50a49f9bb"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/obj/Debug/net8.0/VerifyXunit.Attributes.cs": {
+    "mtime": 1776528029.4737244,
+    "hash": "ec68973ea767444d4648910c8b289285"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/obj/Debug/net8.0/Dapper.ETL.Orchestrator.Tests.GlobalUsings.g.cs": {
+    "mtime": 1776519788.4508789,
+    "hash": "2e65ee4ceecab8fd0e790c9884a75a12"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/obj/Debug/net9.0/Verify.Attributes.cs": {
+    "mtime": 1777357631.1136494,
+    "hash": "bc2031ce8fe138d847bd3bb3965349f8"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/obj/Debug/net9.0/Dapper.ETL.Orchestrator.Tests.AssemblyInfo.cs": {
+    "mtime": 1777357631.1449933,
+    "hash": "cbb519abc2d727af1d6eee32e10dd5e5"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/obj/Debug/net9.0/VerifyXunit.Attributes.cs": {
+    "mtime": 1777357631.1147525,
+    "hash": "ee7887536d28960505518c76dbdaeabb"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/obj/Debug/net9.0/Dapper.ETL.Orchestrator.Tests.GlobalUsings.g.cs": {
+    "mtime": 1776903164.2242682,
+    "hash": "b6ba02db8897487dc1e2721f68011be0"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Configuration/ObservabilityConfigTests.cs": {
+    "mtime": 1776885576.8330355,
+    "hash": "b015f48b6992d8d9b8f17175e01411ca"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Integration/EndToEndTests.cs": {
+    "mtime": 1777337108.1161492,
+    "hash": "2018fb7ec8436b1484a318896ab173cb"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Models/ModelsTests.cs": {
+    "mtime": 1776885576.834648,
+    "hash": "0b5f73ee1c91d4ce1efb44a01bdeefd9"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Fixtures/SharedSqlServerCollection.cs": {
+    "mtime": 1777335454.9916606,
+    "hash": "5871e8476045b732a51566ad5e4ad277"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Fixtures/TestDatabaseHelper.cs": {
+    "mtime": 1777337108.115767,
+    "hash": "857b0599d6e4249b689c42fda308a383"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Fixtures/SqlServerFixture.cs": {
+    "mtime": 1776885576.8337264,
+    "hash": "91ea5b122e0e97262d2eb06af6d112c0"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Fixtures/CommandTestFixtures.cs": {
+    "mtime": 1776885576.8334014,
+    "hash": "55b9021c2761f07cc02c337503249c3d"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Fixtures/SharedSqlServerFixture.cs": {
+    "mtime": 1777337108.115603,
+    "hash": "22acee3c4d6c0fd19fc682fda0cb385e"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Commands/GetStatsCommandTests.cs": {
+    "mtime": 1777337108.114418,
+    "hash": "1f635bfc34360ce89aec3ccd8cc7de0c"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Commands/RunEtlCommandTests.cs": {
+    "mtime": 1777337108.1148162,
+    "hash": "fab2c5b4e50b6115a9750411bd9b1e0f"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Commands/ExportMetricsCommandTests.cs": {
+    "mtime": 1777337108.1142182,
+    "hash": "137aab4465f1012fed0089b4229eec50"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Commands/DefaultCommandTests.cs": {
+    "mtime": 1776885576.8310723,
+    "hash": "147b9025c6d63c7f4fa749af848e9e4d"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Commands/ValidateDataCommandTests.cs": {
+    "mtime": 1776885576.8327324,
+    "hash": "71a944add9046499c94fc470620f02b8"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Commands/CompareDataCommandTests.cs": {
+    "mtime": 1777337108.1135495,
+    "hash": "c7e677f45ab9ae1f2587161ef0e081e1"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Commands/ExportLogsCommandTests.cs": {
+    "mtime": 1777337108.1140056,
+    "hash": "3ed6c933d8dc6432bb8707bb822033c3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Commands/ClearLogsCommandTests.cs": {
+    "mtime": 1777337108.1133301,
+    "hash": "cd9ed0dcd1f6c53402ec015ad820140d"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Commands/DryRunCommandTests.cs": {
+    "mtime": 1777337108.1137714,
+    "hash": "483543b3bf89b4e412c361f54b3f51ad"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Commands/CheckConnectionCommandTests.cs": {
+    "mtime": 1777337108.113153,
+    "hash": "44b3a0627998cc7f96f8d8a29878711d"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Commands/ShowLogsCommandTests.cs": {
+    "mtime": 1777337108.1153724,
+    "hash": "82fed15eb829fb92f34d5e43cc95a3c9"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Commands/SeedSourceCustomersCommandTests.cs": {
+    "mtime": 1777337108.1151907,
+    "hash": "4d30be60cd5e719d65358143529f2d4b"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Commands/ResetTargetDatabaseCommandTests.cs": {
+    "mtime": 1777337108.1146424,
+    "hash": "b20acf62ec2674bda93edbafdfa4edf1"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Commands/StatusCommandTests.cs": {
+    "mtime": 1776885576.8325484,
+    "hash": "01e24a5f41c2d71b1185a38407f04125"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Infrastructure/AssembleConnectionStringTests.cs": {
+    "mtime": 1777335454.994744,
+    "hash": "c84e40e350cfba9fada6702a69373498"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Infrastructure/SqlConnectionBuilderTests.cs": {
+    "mtime": 1777335492.1777363,
+    "hash": "5d80f58c182f9e7e8544f4e2e3441e3b"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Infrastructure/TypeRegistrarTests.cs": {
+    "mtime": 1776885576.834304,
+    "hash": "5fe95ea93b03be7b5aad86074eec6127"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Infrastructure/RecordingLogger.cs": {
+    "mtime": 1777337108.1159382,
+    "hash": "bf68b68827c02bbb13b914d9ed56c207"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Infrastructure/AddKeyedSqlConnectionsTests.cs": {
+    "mtime": 1777357695.760125,
+    "hash": "5f465406e8b9cb1b17b7989f45926564"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Utility/TestHelpers.cs": {
+    "mtime": 1777337108.1163943,
+    "hash": "216f0a67d831295e650fef3688aae030"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/BatchProcessorTests.cs": {
+    "mtime": 1776885576.8352857,
+    "hash": "00cb95532b9cc062c2e4a99e874b4420"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/EdgeCaseTests.cs": {
+    "mtime": 1777337108.117503,
+    "hash": "c3b44c4d81546edf1666eca16f354607"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/ModelsTests.cs": {
+    "mtime": 1776885576.8377483,
+    "hash": "754caa1ae0415b62f218769a80ff1379"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/TableCopyServiceTests.cs": {
+    "mtime": 1777337108.119607,
+    "hash": "54df9295c4a1c2b99ccb024546a5ac3b"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/TransactionManagerTests.cs": {
+    "mtime": 1777337108.119851,
+    "hash": "fa93f2ba91eb5443a559b815d07aa127"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/EtlIntegrationTests.cs": {
+    "mtime": 1777337108.1177342,
+    "hash": "f95a32a6dc64a58ec241d3332d154511"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/SerilogEtlLoggerTests.cs": {
+    "mtime": 1777337108.1189277,
+    "hash": "35542803ff671762c5601e56a8f2b789"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/ColumnMapperTests.cs": {
+    "mtime": 1776885576.8357806,
+    "hash": "8ae4296dd481e00645ad0be0826f0b03"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/ColumnMapperEdgeCasesTests.cs": {
+    "mtime": 1777337108.1168914,
+    "hash": "84b78b58820288c80602315697599288"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/EtlOrchestratorServiceTests.cs": {
+    "mtime": 1777337108.118463,
+    "hash": "1f7d1c3d89023ee80a9e57ba6be2c550"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/TableCopyServiceComprehensiveTests.cs": {
+    "mtime": 1777337108.1193504,
+    "hash": "8b0b6dc4df47e78c04148bc9ce0be8a1"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/BatchProcessorComprehensiveTests.cs": {
+    "mtime": 1777337108.116652,
+    "hash": "b8323c5e0d8dea7ba3df2bef5f7fd015"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/StoredProcedureServiceTests.cs": {
+    "mtime": 1776885576.838362,
+    "hash": "ddfceb0715052c146a688e943d2171bb"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/EtlOrchestratorIntegrationTests.cs": {
+    "mtime": 1777337108.118184,
+    "hash": "649342eb9354a2297009dc148d802fbf"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/ColumnMappingTransformTests.cs": {
+    "mtime": 1777337108.117057,
+    "hash": "01293fe5f079c71835969062d0cb07fd"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/ServiceResultsSnapshotTests.cs": {
+    "mtime": 1777337108.1191604,
+    "hash": "36df4b4aa02f8349c74ae90fa3a78cbc"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/DependencyInjectionTests.cs": {
+    "mtime": 1777337108.1172907,
+    "hash": "bb9805f2327cdae931d83872d781e26c"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/EtlOrchestratorTests.cs": {
+    "mtime": 1777337108.1187208,
+    "hash": "a71c31410c17667ceb9d198578f8f4c6"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/EtlLoggerTests.cs": {
+    "mtime": 1777337108.1179564,
+    "hash": "0241513e0d3bb60014a77e0646b8a6db"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/obj/Debug/net8.0/Dapper.ETL.Tests.AssemblyInfo.cs": {
+    "mtime": 1776528027.5410342,
+    "hash": "80e3fa48531a12e30d9988d2780a6b31"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/obj/Debug/net8.0/Verify.Attributes.cs": {
+    "mtime": 1776528027.514655,
+    "hash": "4ae806744a758d1ad73f6bb148784410"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/obj/Debug/net8.0/VerifyXunit.Attributes.cs": {
+    "mtime": 1776528027.515611,
+    "hash": "ea8449acd58d7732069fda8ed1ccaa3b"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/obj/Debug/net9.0/Dapper.ETL.Tests.AssemblyInfo.cs": {
+    "mtime": 1777357630.6939967,
+    "hash": "a12b2e7d2f925dee3fb76e9e9a3742e1"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/obj/Debug/net9.0/Verify.Attributes.cs": {
+    "mtime": 1777357630.6668665,
+    "hash": "149c8cff510956a1372651691c35d448"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/obj/Debug/net9.0/VerifyXunit.Attributes.cs": {
+    "mtime": 1777357630.6677644,
+    "hash": "ee7887536d28960505518c76dbdaeabb"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/TableCopyIntegrationTests.cs": {
+    "mtime": 1777337108.1206586,
+    "hash": "a4d98635b97028d2650d951e419aec8e"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/EtlOrchestratorIntegrationTests.cs": {
+    "mtime": 1777337108.1202295,
+    "hash": "660e63df04bbddd40d51bfa9bf7f7304"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/ColumnMappingIntegrationTests.cs": {
+    "mtime": 1777337108.1200373,
+    "hash": "d70f462cbbd01741ae015900903fe621"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/TransactionIntegrationTests.cs": {
+    "mtime": 1777337108.1208465,
+    "hash": "208dba7e4a32f6752960304834220a7f"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/SqliteFixture.cs": {
+    "mtime": 1777337108.1204493,
+    "hash": "4cfd44167bf54fd7466f4c578c42a8f0"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/obj/Debug/net8.0/SQLLite.Integration.Tests.GlobalUsings.g.cs": {
+    "mtime": 1776519788.3147314,
+    "hash": "2e65ee4ceecab8fd0e790c9884a75a12"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/obj/Debug/net8.0/Verify.Attributes.cs": {
+    "mtime": 1776528027.5195365,
+    "hash": "60215d9a85b3a4fd07e935d4bd128037"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/obj/Debug/net8.0/SQLLite.Integration.Tests.AssemblyInfo.cs": {
+    "mtime": 1776528027.5488727,
+    "hash": "f1143703639c103a428787fb780c1848"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/obj/Debug/net8.0/VerifyXunit.Attributes.cs": {
+    "mtime": 1776528027.5205593,
+    "hash": "085183ddff3cc06d1d7df4c7da3d03a5"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/obj/Debug/net9.0/SQLLite.Integration.Tests.GlobalUsings.g.cs": {
+    "mtime": 1776903163.9191082,
+    "hash": "b6ba02db8897487dc1e2721f68011be0"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/obj/Debug/net9.0/Verify.Attributes.cs": {
+    "mtime": 1777357630.667098,
+    "hash": "91ed9249ff2abc74851e36c1ce45aa6d"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/obj/Debug/net9.0/SQLLite.Integration.Tests.AssemblyInfo.cs": {
+    "mtime": 1777357630.6935992,
+    "hash": "6704ff524a208682e6c2ea9055a21cab"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/obj/Debug/net9.0/VerifyXunit.Attributes.cs": {
+    "mtime": 1777357630.667957,
+    "hash": "ee7887536d28960505518c76dbdaeabb"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.AppHost/obj/Debug/net9.0/Dapper.ETL.AppHost.AssemblyInfo.cs": {
+    "mtime": 1776519190.5216897,
+    "hash": "94ecc64780c8780f21db84cb0b46df63"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.AppHost/obj/Debug/net9.0/Aspire/references/_AppHost.ProjectMetadata.g.cs": {
+    "mtime": 1776485860.3195555,
+    "hash": "11b03894769ce756d7ba1d0e83a620bf"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.AppHost/obj/Debug/net9.0/Aspire/references/Dapper_ETL_Orchestrator.ProjectMetadata.g.cs": {
+    "mtime": 1776485860.3188436,
+    "hash": "6d6e62dcbb2811e7897fe57697d5662e"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/SQLLite.Integration.Tests/obj/Debug/net8.0/SQLLite.Integration.Tests.GlobalUsings.g.cs": {
+    "mtime": 1776484955.9341803,
+    "hash": "2e65ee4ceecab8fd0e790c9884a75a12"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/SQLLite.Integration.Tests/obj/Debug/net8.0/Verify.Attributes.cs": {
+    "mtime": 1776519190.3642998,
+    "hash": "9097960bb969fa2816b4a94ea7bd2c4b"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/SQLLite.Integration.Tests/obj/Debug/net8.0/SQLLite.Integration.Tests.AssemblyInfo.cs": {
+    "mtime": 1776519190.4,
+    "hash": "9446bbe6450176890516ea32f392f276"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/SQLLite.Integration.Tests/obj/Debug/net8.0/VerifyXunit.Attributes.cs": {
+    "mtime": 1776519190.3652165,
+    "hash": "6efe932c26aee417e28fd2b60b218445"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/scripts/init.sql": {
+    "mtime": 1777337108.1016836,
+    "hash": "ada156d1d395a02df2fa54c79b1bf17c"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Library/obj/Debug/net8.0/Dapper.ETL.Library.AssemblyInfo.cs": {
+    "mtime": 1776519190.2407994,
+    "hash": "785cd6118536b21f3a2e8a78a0960bf7"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Orchestrator/obj/Debug/net8.0/Dapper.ETL.Orchestrator.AssemblyInfo.cs": {
+    "mtime": 1776519190.405963,
+    "hash": "c4d9dcac8f299d73c8f9276d14720b02"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Orchestrator/obj/Debug/net8.0/Dapper.ETL.Orchestrator.GlobalUsings.g.cs": {
+    "mtime": 1776455105.978791,
+    "hash": "98926837ba69930b8428d861944bcd0a"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.AppHost/Program.cs": {
+    "mtime": 1776885576.8194776,
+    "hash": "3d4e332e4cd5e09549f77981c20e6a28"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.AppHost/obj/Debug/net9.0/Dapper.ETL.AppHost.AssemblyInfo.cs": {
+    "mtime": 1777356839.1056182,
+    "hash": "e2cb3acf3f688c3164d1a81dfc0c7f42"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.AppHost/obj/Debug/net9.0/Aspire/references/_AppHost.ProjectMetadata.g.cs": {
+    "mtime": 1777336984.059963,
+    "hash": "fcc3b20efa2162c83a68be4fb2e304f9"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.AppHost/obj/Debug/net9.0/Aspire/references/Dapper_ETL_Orchestrator.ProjectMetadata.g.cs": {
+    "mtime": 1777336984.0595489,
+    "hash": "e677dc2fc0758a6a4b3d8920812eccd4"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/DependencyInjection.cs": {
+    "mtime": 1777337108.1019635,
+    "hash": "fe070ed9bffcec737722da5b1beee078"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/EtlOptions.cs": {
+    "mtime": 1777337108.1022282,
+    "hash": "a82a32c38e8baac9d1eac40e19842223"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/obj/Debug/net8.0/Dapper.ETL.Library.AssemblyInfo.cs": {
+    "mtime": 1776527995.0978436,
+    "hash": "283b51f7bffa2a6963b8e16870826946"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/obj/Debug/net9.0/Dapper.ETL.Library.AssemblyInfo.cs": {
+    "mtime": 1777357630.369761,
+    "hash": "5746f7dd549b65f32ef71122303e4724"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Models/TableCopyOptions.cs": {
+    "mtime": 1777337108.1067107,
+    "hash": "165630330fa8fd0e6ce06c5c8988fdc0"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Models/StoredProcedureDefinition.cs": {
+    "mtime": 1777337108.1063497,
+    "hash": "e0c23985295658cf0423f61b72b5ddee"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Models/EtlExecutionPlan.cs": {
+    "mtime": 1777337108.1058123,
+    "hash": "16697f52f992404d418da6ce35b146bd"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Models/ColumnMapping.cs": {
+    "mtime": 1777337108.1056163,
+    "hash": "e0d4daadd5a3d6eb34a32fd34dc14bcd"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Models/StoredProcedureResult.cs": {
+    "mtime": 1777337108.106525,
+    "hash": "2a7c6e215c950f1e092644d7ededc9c8"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Models/TableCopyResult.cs": {
+    "mtime": 1777337108.106887,
+    "hash": "6c09795018049c29a85182658403287b"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Models/EtlTransactionMode.cs": {
+    "mtime": 1777337108.10616,
+    "hash": "e9ffc1abb0ecb9a5721ba621e2ae13a2"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Models/EtlExecutionResult.cs": {
+    "mtime": 1777337108.1059926,
+    "hash": "301d63940137558b904755c9e2b4f493"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Implementation/SerilogEtlLogger.cs": {
+    "mtime": 1777337108.1034408,
+    "hash": "4a93a1b6cb3441481159a84584e0d004"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Implementation/TableCopyService.cs": {
+    "mtime": 1777337108.1042874,
+    "hash": "00e82a2ceaf6d50d704ea3927d1daf09"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Implementation/SqliteSchemaInspector.cs": {
+    "mtime": 1777337108.1038542,
+    "hash": "25dbdaa5d996628d917b063c553e9618"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Implementation/StoredProcedureService.cs": {
+    "mtime": 1777337108.1040468,
+    "hash": "604238c160726b2b00484c553498098a"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Implementation/EtlOrchestrator.cs": {
+    "mtime": 1777337108.1032376,
+    "hash": "08874e9193f0687552191fce01d08cc7"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Implementation/TransactionManager.cs": {
+    "mtime": 1777337108.1045141,
+    "hash": "19454604a4ad9d6b5c796f57e9044a5d"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Implementation/EtlLogger.cs": {
+    "mtime": 1777337108.1029274,
+    "hash": "4cad2df0cb9bd4aa4e5a63fb8c65b5bf"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Implementation/ColumnMapper.cs": {
+    "mtime": 1777337108.1027112,
+    "hash": "579c60a1f4885e2839d418f13ed0a157"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Implementation/SqlServerSchemaInspector.cs": {
+    "mtime": 1777337108.1036472,
+    "hash": "e484f588435d481a03e12c94d6f4661c"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Implementation/BatchProcessor.cs": {
+    "mtime": 1777337108.1024804,
+    "hash": "da3bd72b989640f666faf066f84ce955"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Interfaces/ISchemaInspector.cs": {
+    "mtime": 1777337108.1049347,
+    "hash": "2f1ea33b6ff526da3861c6fad305d4f9"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Interfaces/IEtlLogger.cs": {
+    "mtime": 1776885576.8221498,
+    "hash": "b2e772a2f1e71f84d8c2d190afff78f9"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Interfaces/ITableCopyService.cs": {
+    "mtime": 1777337108.1052744,
+    "hash": "32f4a4bffc89630985dd0b668b884137"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Interfaces/ITransactionManager.cs": {
+    "mtime": 1777337108.1054466,
+    "hash": "d28617d28363b34c06fa956a86172cfa"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Interfaces/IEtlOrchestrator.cs": {
+    "mtime": 1777337108.104741,
+    "hash": "e00cd23cbcb4b1bde4f23f4996d466d6"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Interfaces/IStoredProcedureService.cs": {
+    "mtime": 1777337108.1051104,
+    "hash": "b61f2014a3e6f67d09ce38f68e7b6beb"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Interfaces/IColumnMapper.cs": {
+    "mtime": 1776885576.8219955,
+    "hash": "8ccdf9ebf587cbe9a44c20027dc3b500"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/Interfaces/IBatchProcessor.cs": {
+    "mtime": 1776885576.8218348,
+    "hash": "73ea8dcc046477cb5ee4269bed6b000a"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Program.cs": {
+    "mtime": 1777337108.1117227,
+    "hash": "7336e6679ae83348b19e7fea2f30430e"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/obj/Debug/net8.0/Dapper.ETL.Orchestrator.AssemblyInfo.cs": {
+    "mtime": 1776528027.543147,
+    "hash": "c6e6fe40dec5f5a97bd9902150979d77"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/obj/Debug/net8.0/Dapper.ETL.Orchestrator.GlobalUsings.g.cs": {
+    "mtime": 1776519785.268513,
+    "hash": "98926837ba69930b8428d861944bcd0a"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/obj/Debug/net9.0/Dapper.ETL.Orchestrator.AssemblyInfo.cs": {
+    "mtime": 1777357630.6905382,
+    "hash": "02b8b069fbd36e1b4db1d09a232f8b4a"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/obj/Debug/net9.0/Dapper.ETL.Orchestrator.GlobalUsings.g.cs": {
+    "mtime": 1776903164.0542526,
+    "hash": "70500239e348e01027b65982f5792ea0"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Configuration/ObservabilityConfig.cs": {
+    "mtime": 1776885576.8276336,
+    "hash": "e8613a78db98a857a66b59616e8334bd"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Models/EtlResult.cs": {
+    "mtime": 1777337108.1112971,
+    "hash": "244a8afdfe86d084e2c8272caba3b33a"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Models/EtlRunInfo.cs": {
+    "mtime": 1777337108.1114705,
+    "hash": "2450b1cdb5915c27fc39ee3125f3c54d"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Models/MetricsData.cs": {
+    "mtime": 1776885576.8288958,
+    "hash": "404d066547b4a13e801a401c2b019a68"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Models/ValidationResult.cs": {
+    "mtime": 1776885576.8290286,
+    "hash": "6e9faaa4e5a9e1f380637bf8e8c459ab"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/ExportMetricsSettings.cs": {
+    "mtime": 1777337108.1087167,
+    "hash": "045f9c3d0666f5c3d6ecfe2ca76e368a"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/DefaultCommand.cs": {
+    "mtime": 1777337108.107812,
+    "hash": "27e70a9cf59a0e52df5a32bc43c9f0a5"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/DryRunCommand.cs": {
+    "mtime": 1777337108.107992,
+    "hash": "d073c4770fc5ad53c5376881df8da09a"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/ShowLogsCommand.cs": {
+    "mtime": 1777337108.1099854,
+    "hash": "92416f490fd6c173b8d54eae888080a3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/ExportMetricsCommand.cs": {
+    "mtime": 1777337108.1085443,
+    "hash": "8a9ede4fd4166966924b855fd0189344"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/ValidateDataCommand.cs": {
+    "mtime": 1777337108.1103535,
+    "hash": "aa5f9a8b06f5014acb5b8720dd8ec033"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/ResetTargetDatabaseCommand.cs": {
+    "mtime": 1777337108.1090832,
+    "hash": "a8dc63facc6162b7e5c316c036bec369"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/ExportLogsCommand.cs": {
+    "mtime": 1777337108.1081777,
+    "hash": "36d518bf006c9acbd2f1189549bdd19d"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/SeedSourceCustomersCommand.cs": {
+    "mtime": 1777337108.1096184,
+    "hash": "53b35fde2cf4a24cd4ce1eae5820f7ad"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/ClearLogsCommand.cs": {
+    "mtime": 1777337108.1072764,
+    "hash": "a46e6a9bddab39365cc226979c5271d9"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/ValidateDataSettings.cs": {
+    "mtime": 1777335454.9404848,
+    "hash": "020abc4be4dbb3938ea8b6415ef0beab"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/ExportLogsSettings.cs": {
+    "mtime": 1777337108.108354,
+    "hash": "26f6a70898146ff4ef0896becc70327a"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/RunEtlCommand.cs": {
+    "mtime": 1777337108.10926,
+    "hash": "cb33fddde5854964251d42bb9593d362"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/SeedSourceCustomersSettings.cs": {
+    "mtime": 1777337108.109804,
+    "hash": "cd3255b4cfd602302b0ef004644b6d63"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/RunEtlSettings.cs": {
+    "mtime": 1777337108.109434,
+    "hash": "af2ef830505d5a960e3b3786ecdb324f"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/CheckConnectionCommand.cs": {
+    "mtime": 1777337108.107096,
+    "hash": "a18bab72a3745412d5484d0dd329ebb4"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/CompareDataSettings.cs": {
+    "mtime": 1777337108.1076384,
+    "hash": "8b6e1da2ca03d83e8516894b53634c72"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/StatusCommand.cs": {
+    "mtime": 1777337108.1101649,
+    "hash": "3f47a5d1732c982ff9b6b0b3135dbafd"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/CompareDataCommand.cs": {
+    "mtime": 1777337108.1074634,
+    "hash": "608bbe89e0194901d9868b4feb4015ac"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/ShowLogsSettings.cs": {
+    "mtime": 1777335454.937466,
+    "hash": "14d79cc71be46436ab6ba905b206705e"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Commands/GetStatsCommand.cs": {
+    "mtime": 1777337108.1088934,
+    "hash": "103789f6226bcb7f7a04b07f1d190f61"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Infrastructure/SqlConnectionBuilder.cs": {
+    "mtime": 1776885576.8279567,
+    "hash": "2d021d6b43865651160287e154ee1900"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Infrastructure/TypeResolver.cs": {
+    "mtime": 1777337108.1109781,
+    "hash": "7f55b5368cfe93ee4ff6aee3a58d2e73"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Infrastructure/SqlConnectionDescriptor.cs": {
+    "mtime": 1776885576.828107,
+    "hash": "774401d58f16f5203fa6ad368f0c6d69"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Infrastructure/TypeRegistrar.cs": {
+    "mtime": 1777337108.1107893,
+    "hash": "1726f05c7fd26f7dc949a0f32c419d6f"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Infrastructure/SqlConnectionExtensions.cs": {
+    "mtime": 1777337108.1106083,
+    "hash": "91f9c422dffddb21a6e192ea21df5942"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Services/LogEntry.cs": {
+    "mtime": 1777337108.1121402,
+    "hash": "2d8853b56cd54e4417725e2e266e4623"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Services/ValidationService.cs": {
+    "mtime": 1777337108.1129427,
+    "hash": "93da5eb0794acfa87507f60b948abf8d"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Services/MetricsService.cs": {
+    "mtime": 1777337108.11259,
+    "hash": "f58272b4493bff3b2344718a35d906b7"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Services/DataService.cs": {
+    "mtime": 1777337108.11191,
+    "hash": "75186d9dff9c371c2e1bcd08207ab26f"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Services/ValidationDetail.cs": {
+    "mtime": 1777337108.1127708,
+    "hash": "92d5db0e5ae1d0fd646ae05bc0824315"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Services/LoggingService.cs": {
+    "mtime": 1777337108.1123486,
+    "hash": "51024ded6128be312cec269d6ec4f2ef"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/Services/EtlService.cs": {
+    "mtime": 1776885576.8295236,
+    "hash": "91de9d0476104e441a903bf510f6e43d"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/powershell-wrapper-for-dotnet-run-configuraitons/Setup-Dev.ps1": {
+    "mtime": 1777337108.1244361,
+    "hash": "24ac108552b3be93475a10c2c9d400a0"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/powershell-wrapper-for-dotnet-run-configuraitons/DevRunner/Public/Show-RunConfigurations.ps1": {
+    "mtime": 1777337108.1240597,
+    "hash": "b5a3d6e410e8a0cd605cf80b10adece1"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/powershell-wrapper-for-dotnet-run-configuraitons/DevRunner/Public/Invoke-DotnetRun.ps1": {
+    "mtime": 1777337108.1238918,
+    "hash": "befa8884872255f38936fef6bc19642b"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/powershell-wrapper-for-dotnet-run-configuraitons/DevRunner/Public/Start-DevApp.ps1": {
+    "mtime": 1777337108.1242492,
+    "hash": "d9debbaff4140686457e9707cf16a0d2"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/powershell-wrapper-for-dotnet-run-configuraitons/DevRunner/Public/Get-DotnetProjects.ps1": {
+    "mtime": 1777337108.1237218,
+    "hash": "9ee3b73334750f63dd48f072f27a1f0e"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/powershell-wrapper-for-dotnet-run-configuraitons/DevRunner/Private/Find-ProjectFile.ps1": {
+    "mtime": 1777337108.123195,
+    "hash": "ef05e1691488c2b94eb3f3dca9edbb9b"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/powershell-wrapper-for-dotnet-run-configuraitons/DevRunner/Private/Get-LaunchSettings.ps1": {
+    "mtime": 1777337108.1233668,
+    "hash": "f08ba0c720d5f1ce91aedd3bbb5a5833"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/powershell-wrapper-for-dotnet-run-configuraitons/DevRunner/Private/Resolve-SolutionRoot.ps1": {
+    "mtime": 1777337108.1235402,
+    "hash": "3c7110135a585f5a8dac286ab7ecb627"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/info.txt": {
+    "mtime": 1776885576.8405244,
+    "hash": "d6da511882f03262ea562451494d97a1"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/ez-crib-notes.md": {
+    "mtime": 1777337108.1213653,
+    "hash": "dd7a0ce72908a3a314054f909e41a9a3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/README.md": {
+    "mtime": 1768317397.216117,
+    "hash": "e6cff9b5f8abe117da44e64ab4e50767"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/PowerShell Background Processes Tutorial.md": {
+    "mtime": 1777337108.0915074,
+    "hash": "1db3108c15f6d968d034d7bb94ca967e"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/CLAUDE.md": {
+    "mtime": 1777337086.5759492,
+    "hash": "0f5b3c95544c9292e2574eb66be122c1"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/LazyGit-Version-Resolution.md": {
+    "mtime": 1777337108.0910504,
+    "hash": "d7a8780b00a7658f06838d2d967e3a41"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/\ud83e\udd16\u2753Strategies-for-multiple-application.json-config-files/\ud83e\udd16\u2753Strategies-for-multiple-application.json-config-files.md": {
+    "mtime": 1777337108.126973,
+    "hash": "b4f9e5a98ea2df6639081514f191bbf2"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/\ud83e\udd16\u2753Strategies-for-multiple-application.json-config-files/appsettings-config-strategies.md": {
+    "mtime": 1777337108.1265814,
+    "hash": "32ee97acb469b45f048da7a36a4b1d40"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/\ud83e\udd16\u2753Strategies-for-multiple-application.json-config-files/\ud83e\udd16\u2753Chat-GPT-Strategies-for-multiple-application.json-config-files.md": {
+    "mtime": 1777337108.1268125,
+    "hash": "9f700f1e0a24087451ec7e6cb5e42829"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/CVE-2026-32933/cve-2026-32933-risk-analysis.md": {
+    "mtime": 1777337095.1573534,
+    "hash": "00ed7194e79991e8af48a8fb78fa5b1f"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/CVE-2026-32933/vim-flog-instructions.md": {
+    "mtime": 1777337095.1576672,
+    "hash": "e50ebd3c2b4170cbdc57fa2422890e07"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/CVE-2026-32933/CVE-2026-32933.md": {
+    "mtime": 1777337095.1569233,
+    "hash": "411910960410b5943bb8c4b9f051e5d6"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/vim-flog-instructions/vim-flog-windows-luajit-setup.md": {
+    "mtime": 1777337108.1263428,
+    "hash": "6d3cf99dae3e5ba6bbcb0e0cd6b094b2"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/vim-flog-instructions/vim-flog-instructions.md": {
+    "mtime": 1777337108.1261308,
+    "hash": "e50ebd3c2b4170cbdc57fa2422890e07"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/claude-cheatsheet/claude-cheatsheet.md": {
+    "mtime": 1777337108.0924976,
+    "hash": "e761fc6bb65d50484539cb22fd0e92f3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-09/chat-gpt-open-shift-oom-converation.md": {
+    "mtime": 1777337084.8540077,
+    "hash": "0360d238f72bcb508c1a8c8e97a6183f"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-09/splunk-tutorial/splunk-tutorial.md": {
+    "mtime": 1777337084.8543398,
+    "hash": "9b6663e4dcdc925c0af641be57762af6"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-09/splunk-tutorial/ez-splunk-tutorial.md": {
+    "mtime": 1777337084.8541937,
+    "hash": "8ff2ca02eb10cb146140bb9b6d282574"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-08/write-me-dapper-bulk-copy-class/write-me-dapper-bulk-copy-class.md": {
+    "mtime": 1777337084.8538408,
+    "hash": "513273e357f02b9b47549853995fb768"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-25/how-to-airgap-powershell-modules/how-to-airgap-powershell-modules.md": {
+    "mtime": 1777337084.8565767,
+    "hash": "370d9da66a2c3e3a381a4226fb643b14"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-25/sql-server-high-availability-connections/sql-server-high-availability-connections.md": {
+    "mtime": 1777337084.8572643,
+    "hash": "356603c400a04da02cc7e4f18c21338d"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-25/list-of-open-source-markdown-publishing-alternatives/\ud83e\udd16\u2753 list-of-open-source-markdown-publishing-alternatives.md": {
+    "mtime": 1777337084.857031,
+    "hash": "0b9c17142956fc7530ccf433f9544e8d"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-25/list-of-open-source-markdown-publishing-alternatives/Hidden-Gems-Lesser-Known-Markdown-Publishing-Tools.md": {
+    "mtime": 1777337084.8568141,
+    "hash": "16b1a4abf17da8799ff2781ac56d4598"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-13/\ud83e\udd16\u2753SQL Server High CPU Usage During Maintenance.md": {
+    "mtime": 1777337084.8548536,
+    "hash": "8af2ac9256256e61c9b1835cb147e786"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-03/About-custom-profile-paths.md": {
+    "mtime": 1777337084.853227,
+    "hash": "15e09f30b75c0b2bce150622b5ddce59"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-03/big-git-files/finding-large-git-files.md": {
+    "mtime": 1777337084.8535295,
+    "hash": "2dab7e4287c8c68266f7e5a6b4945d64"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-03/big-git-files/big-git-files.md": {
+    "mtime": 1777337084.8533459,
+    "hash": "4c0dd5402dec8fdbce5df2dfdd7d411a"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-05/\ud83e\udd16\u2753 ChatGPT - PowerShell Markdown Libraries.md": {
+    "mtime": 1777337084.8537233,
+    "hash": "f6d0e2ad91514947add26263c2e9b8ed"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-20/chezmoi-brew-sync-across-macs.md": {
+    "mtime": 1777337084.856247,
+    "hash": "39f97fb43133aefb6455d762e80b3e5e"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-20/how-to-sync-brew-installs.md": {
+    "mtime": 1777337084.8563962,
+    "hash": "e48fde8d9df3cba7b2ae86ff9832b587"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-27/explain-the-following-git-config-options-to-me/explain-the-following-git-config-options-to-me.md": {
+    "mtime": 1777337084.85867,
+    "hash": "9095d437a213930c009dfeb87d0e57f3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-27/explain-the-following-git-config-options-to-me/git-config-pull-rebase-explained.md": {
+    "mtime": 1777337084.8589094,
+    "hash": "07cccc6b63f4c6b08e5aa3df6e83789b"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-27/explain-rebase-update-refs/explain-rebase-update-refs.md": {
+    "mtime": 1777337084.85825,
+    "hash": "5d8c54c742e13ae86d6842e01a698747"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-27/explain-rebase-update-refs/git-rebase-update-refs-tutorial.md": {
+    "mtime": 1777337084.8584802,
+    "hash": "d3e62d136bafac9f0d694518a3d335f2"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-27/explain-fixup-commits-git/git-fixup-commits-tutorial.md": {
+    "mtime": 1777337084.8580663,
+    "hash": "70b3be3ca18120a6caa7dc2090b1a8bd"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-27/explain-fixup-commits-git/explain-fixup-commits-git.md": {
+    "mtime": 1777337084.8578508,
+    "hash": "fa014eadc08db38cfa8d9731cdf8257d"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-27/powershell-unit-test-script-using-oauth-credentials/oauth-smoke-test-tutorial.md": {
+    "mtime": 1777337084.8594313,
+    "hash": "c089c1a44444e808945f1ce956b8eb56"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-18/powershell-module-to-find-all-git-directories/powershell-module-to-find-all-git-directories-prompt.md": {
+    "mtime": 1777337084.8557134,
+    "hash": "30a9ae18f2a6b66580db5964dfd5a6f7"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-18/powershell-module-to-find-all-git-directories/GitRepoFinder.md": {
+    "mtime": 1777337084.8552294,
+    "hash": "dc92a9addde1671cfea0c063581404b1"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-26/How-to-configure-vim-for-both-windows-and-git-version.md": {
+    "mtime": 1777337084.8574347,
+    "hash": "28e330ccbf828b5a29ef904fdd6f8758"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-26/How-to-configure-vim-for-both-windows-and-git-version/how-to-configure-vim-for-both-windows-and-git-version.md": {
+    "mtime": 1777337084.8576634,
+    "hash": "0a29f7200738aece97a05988a6a879c0"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-19/\ud83e\udd16\u2753How do I get the database size in SQL Server \u2753.md": {
+    "mtime": 1777337084.855877,
+    "hash": "623776bc67c2d25391ae815cfa85b3d8"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-19/\ud83e\udd16\ud83d\udc8e PowerShell function to find Git directories with `fd`.md": {
+    "mtime": 1777337084.8560424,
+    "hash": "c1d598fd62eed7698c0c7573e6413867"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-17/\ud83e\udd16\ud83d\udca1 Git Aliases.md": {
+    "mtime": 1777337084.855019,
+    "hash": "112bce93c6ee3ef23f5b221a1662cfcb"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-28/how-do-I-add-more-diff-views-to-lazy-git/Research-Sources.md": {
+    "mtime": 1777337084.8603227,
+    "hash": "f0f0512ae0722b05661af65fb6a8319a"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-28/how-do-I-add-more-diff-views-to-lazy-git/Adding-Custom-Diff-Views-to-Lazygit-Tutorial.md": {
+    "mtime": 1777337084.8600743,
+    "hash": "f314b3da558add89737aa0e3bcc9e4e3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-28/how-do-I-add-more-diff-views-to-lazy-git/how-do-I-add-more-diff-views-to-lazy-git.md": {
+    "mtime": 1777337084.8605065,
+    "hash": "b169be78359b9898e5678a4c2fa62aa0"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-28/obsidian-embedded-base-pointing-at-parent-folder/obsidian-embedded-base-tutorial.md": {
+    "mtime": 1777337084.8607366,
+    "hash": "6f0e14065ba4a0900f65034a9f72f886"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-28/obsidian-embedded-base-pointing-at-parent-folder/obsidian-embedded-base-pointing-at-parent-folder.md": {
+    "mtime": 1775182194.8018923,
+    "hash": "989e4cd38faed9a97df891c45f1660a2"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/03/2026-03-10/question-about-hashicorp-vault-structure/question-about-hashicorp-vault-structure.md": {
+    "mtime": 1777337084.8544922,
+    "hash": "8480db1defda36f79e8e1e0438ebb761"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/04/how-to-kill-aspire-processes/how-to-kill-aspire-processes.md": {
+    "mtime": 1777337084.8634665,
+    "hash": "9beba169271fbd868c857c414b4a4a73"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/04/how-to-kill-aspire-processes/kill-aspire-tutorial.md": {
+    "mtime": 1777337084.8636909,
+    "hash": "24afc502431fc6584f9bbda6a56d1d64"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/04/2026-04-19/_NET Background Job Reliability in Production Stop Silent Failures.md": {
+    "mtime": 1777337084.8629174,
+    "hash": "265aae808be915b7eb41efe9967eb283"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/04/2026-04-28/Detailed tutorial on Keyed Services in c-sharp.md": {
+    "mtime": 1777411444.5786364,
+    "hash": "b0a4d1a971d008354310f271c8313c4f"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/04/2026-04-17/open-shift-orleans-etl-architecture-questions.md": {
+    "mtime": 1777337084.862628,
+    "hash": "fc719b4ace6a00a1d93f010b2eb9a511"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/04/2026-04-06/vim-preview-to-pandoc.md": {
+    "mtime": 1777337084.8616157,
+    "hash": "49bdea6e0ffdb803130a403d6c686efe"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/04/2026-04-06/suggested-vimrc.md": {
+    "mtime": 1775520880.243927,
+    "hash": "58bf092df22c63087261a5e3a2d8f93f"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/04/2026-04-06/vim-markdown-preview.md": {
+    "mtime": 1777337084.861418,
+    "hash": "eaf3425c2e2a023bdeee4a8c5f1c9a55"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/04/2026-04-06/vimrc-documentation.md": {
+    "mtime": 1777337084.8618503,
+    "hash": "2aaca3a34220426001b2cb83bc503789"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/04/2026-04-06/Harness-deploy-without-health-checks/Harness-deploy-without-health-checks.md": {
+    "mtime": 1777337084.8611803,
+    "hash": "9aa4cd9b43bf114efd58f62ae11f4ab9"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/04/2026-04-06/Harness-deploy-without-health-checks/Harness-Job-Deployment-Tutorial.md": {
+    "mtime": 1777337084.8609967,
+    "hash": "b27a985a8f43439a4a629835b0bf3d78"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/04/2026-04-08/how-do-I-use-fzf-write-me-a-tutorial.md": {
+    "mtime": 1776446961.3630702,
+    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/04/2026-04-08/Obsidian-Claude-Plugins-Reference.md": {
+    "mtime": 1777337084.862399,
+    "hash": "8a402ba0676fcc1aa9399a3f49dc9566"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/05/2026-05-09/graphify-run-notes.md": {
+    "mtime": 1778368215.5477157,
+    "hash": "d99825828fc8d007d4fa6364bed8843b"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/05/2026-05-07/Is there a way to setup a margin in vim around the terminal or the input window.md": {
+    "mtime": 1778177495.8149993,
+    "hash": "0921eb8d3810d87d87168fbfb208bb47"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/05/2026-05-08/_NET 10 Health Checks Stop Routing Traffic to \u201cHealthy\u201d Pods 1.md": {
+    "mtime": 1778287110.3577766,
+    "hash": "91c2a8665ccb89f5cbb7f7485f707154"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/05/2026-05-08/\ud83e\udd16\u2753Tutorial on interrogating OpenShift with oc utility.md": {
+    "mtime": 1778274551.1851826,
+    "hash": "953168e297bd7024267c6d0af65ba5f1"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/05/2026-05-08/\ud83e\udd16\u2753 Tutorial on using submodules in git.md": {
+    "mtime": 1778273871.872987,
+    "hash": "d12a0fdf3ae21b4ecdf9a381c6a8763f"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-22/\ud83e\udd16\u2753 In Sql Server - is there a way to reflect on the signature of a view to get metadata about the columns and types of columns that it returns.md": {
+    "mtime": 1777337084.8430228,
+    "hash": "1930916d39612ebaed8d99d698226d62"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-25/Git Internal Data Structures A Complete Visual Guide/Git Internal Data Structures A Complete Visual Guide.md": {
+    "mtime": 1777337084.850731,
+    "hash": "71bc23d92f47b3e13e10ecd502392cd9"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-25/about-git-data-structures/about-git-data-structures.md": {
+    "mtime": 1777337084.850897,
+    "hash": "d6bdbeb4ad281e71abebaa1c5806748b"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-25/vim-fugitive/fugitive/doc/fugitive.txt": {
+    "mtime": 1775182194.2297626,
+    "hash": "9b0f5cec50af870f6faa0be894ebe03f"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-13/Writing .NET Database Integration Tests.md": {
+    "mtime": 1777337084.8418381,
+    "hash": "f4604487f2e51642795a5261ce5b658c"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-13/Health Checks Stop Routing Traffic to Healthy Pods 1.md": {
+    "mtime": 1777337084.8416378,
+    "hash": "f2d747404cf24be0bd999078554de36d"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-13/Checkout-throw-away-db.md": {
+    "mtime": 1777337084.8412046,
+    "hash": "312239336df2efae1992ddf2b576f5f6"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-13/Complete Observability with OpenTelemetry in .NET 10 A Practical and Universal Guide.md": {
+    "mtime": 1777337084.841435,
+    "hash": "7a79e866db95a021f436b60bda9259ff"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-13/stuff-to-tell-seth.md": {
+    "mtime": 1777337084.8419864,
+    "hash": "104ec9078e58492e263417cf9024ff80"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/\ud83e\udd16\u2753How to kill Aspire.md": {
+    "mtime": 1777337084.8504972,
+    "hash": "8eda8d21c4b4b672195bcdc2bc9a7b9a"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/\ud83e\udd16\u2753Aspire without Docker.md": {
+    "mtime": 1777337084.8502471,
+    "hash": "7313f42b5a1c7ec18761960aecf84bb3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/TESTING.md": {
+    "mtime": 1777337084.846879,
+    "hash": "7442b421d5ecf541ce1d96cd1cf445ea"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/helm-chart-compare.md": {
+    "mtime": 1777337084.84725,
+    "hash": "eca1f5435f1c648a8ba805e4e287626c"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/sample-chart-v2/Chart.yaml": {
+    "mtime": 1775182194.2269757,
+    "hash": "c39f8ca4ff3c528bf97f4d9767920905"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/sample-chart-v2/values.yaml": {
+    "mtime": 1777337084.8498075,
+    "hash": "e9c140f5e357bef26503d84c73438e27"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/sample-chart-v2/templates/deployment.yaml": {
+    "mtime": 1777337084.8491309,
+    "hash": "f3cd1149477dced57905b31dbe8c0250"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/sample-chart-v2/templates/ingress.yaml": {
+    "mtime": 1777337084.849348,
+    "hash": "6bf41c0620ea6bdacba7302df3a470cd"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/sample-chart-v2/templates/service.yaml": {
+    "mtime": 1777337084.8496394,
+    "hash": "2aafaf6bcbe2c75e4c68e5bf11481fb3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/sample-chart-v2/templates/configmap.yaml": {
+    "mtime": 1777337084.8488882,
+    "hash": "99890dbb6dc4983eb718c112d62caca5"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/sample-chart-v1/Chart.yaml": {
+    "mtime": 1775182194.226212,
+    "hash": "85a2b08c6175e59ec25bd34aadb4139e"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/sample-chart-v1/values.yaml": {
+    "mtime": 1777337084.8485706,
+    "hash": "7b3a5a809ea30acb5709e3939d9b8baa"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/sample-chart-v1/templates/deployment.yaml": {
+    "mtime": 1777337084.8478384,
+    "hash": "34578ba58877eda546391a14a4f5c6a0"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/sample-chart-v1/templates/service.yaml": {
+    "mtime": 1777337084.8482122,
+    "hash": "3894eb59b3be4a2b3ac7e522973e9163"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-24/helm-chart-compare/sample-chart-v1/templates/configmap.yaml": {
+    "mtime": 1777337084.8476417,
+    "hash": "9778107c046a7a144439d693b592781a"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-23/masked-string.md": {
+    "mtime": 1777337084.8431835,
+    "hash": "6327c4b47110d527fe0ccf6b97b9c171"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-02/\ud83e\udd16\u2753 GitHub co-pilot prompts for PR code quality reviews.md": {
+    "mtime": 1777337084.840668,
+    "hash": "b67b89f6593817b0f9360adb1ffba8fd"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-26/What-kind-of-charts-should-I-reverse-engineer-for-Kubernetes-documentation_1.md": {
+    "mtime": 1777337084.8522503,
+    "hash": "440e4105bd19fd87fac6bf2710688804"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-26/retro-ideas.md": {
+    "mtime": 1777337084.8530884,
+    "hash": "53682cfdbe8ad6fd7c863ed207af373f"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-26/What-kind-of-charts-should-I-reverse-engineer-for-Kubernetes-documentation.md": {
+    "mtime": 1777337084.852072,
+    "hash": "440e4105bd19fd87fac6bf2710688804"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-26/list-of-must-have-vim-plugins_1/list-of-must-have-vim-plugins.md": {
+    "mtime": 1777337084.8529484,
+    "hash": "4b558c7f5ce9e56081a1638b039db7ca"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-26/list-of-must-have-vim-plugins/list-of-must-have-vim-plugins.md": {
+    "mtime": 1777337084.8524683,
+    "hash": "462599adaf4bd0bf262395005f9d1523"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-17/Stop Calling BuildServiceProvider in .NET 10 The DI Mistake That Spawns Duplicate Singletons.md": {
+    "mtime": 1777337084.8421848,
+    "hash": "1ffab0e869ebcc9d9496f3b5c44ea94e"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-11/prompt.md": {
+    "mtime": 1777337084.841049,
+    "hash": "70159371910bf33d6a7180f2950b9671"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-11/The definition of toil.md": {
+    "mtime": 1777337084.8408494,
+    "hash": "2ffbafa349250d3f0fbe7f89c804029c"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-20/how-to-breakup-powershell-modules/how-to-breakup-powershell-modules.md": {
+    "mtime": 1777337084.8428442,
+    "hash": "b4db599506a059e080911095366894f5"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-20/how-to-breakup-powershell-modules/Split-ModuleFunctions.README.md": {
+    "mtime": 1777337084.8424108,
+    "hash": "0d02ca14c9c2d570d22245a7082384f6"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-28/NET 10 Health Checks Stop Routing Traffic to Healthy Pods.md": {
+    "mtime": 1778194495.5131907,
+    "hash": "03942c9e070422ed6af71042bff5495c"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-16/cribbed - A productive command-line Git workflow for indie app developers.md": {
+    "mtime": 1777337084.835149,
+    "hash": "dda170ac8a6b67af8b00d41caa8736ca"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-16/Crib about PKM.md": {
+    "mtime": 1777337084.834946,
+    "hash": "8303de112c24779ec199f44a02660e10"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-20/NET 10 HttpClient The Default That Quietly Breaks Production.md": {
+    "mtime": 1777337084.8353798,
+    "hash": "23cadd0b2600890b56b15c475bca85fd"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-22/No NullReferenceException in .NET Anymore Mark Your Nullable Reference Type Warnings As Errors.md": {
+    "mtime": 1777337084.8356247,
+    "hash": "172cdad16adf72b3717364f9e40661e6"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-25/CQRS Doesn\u2019t Have To Be Complicated  Clean Architecture with .NET 10.md": {
+    "mtime": 1777337084.835873,
+    "hash": "2019c3468bddb49c7f934192f70fd0cc"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-25/\ud83e\udded How to Implement the CQRS Pattern in Clean Architecture (From Scratch).md": {
+    "mtime": 1777337084.838955,
+    "hash": "39525f7d73535a1d54972fb9c0e3e2a6"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-25/Unit Testing CQRS Handlers With Moq, FluentAssertions, and xUnit.md": {
+    "mtime": 1777337084.837015,
+    "hash": "ce9a4a51c6f3fa031a372cf05b496484"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-25/\ud83e\udd16\u2753 Questions about using SqlServerLocalDB in Unit Tests.md": {
+    "mtime": 1777337084.837394,
+    "hash": "d1e4479ee9a5f49fe4966de5ee9c7f48"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-25/Unit Testing CQRS Handlers With Moq, Fluent Assertions, and xUnit..md": {
+    "mtime": 1777337084.836435,
+    "hash": "03a403c8ddd15749294957da775e3f57"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-25/How to Implement the CQRS Pattern in Clean Architecture (From Scratch).md": {
+    "mtime": 1777337084.8362288,
+    "hash": "c3d72dd2343879f3b10edd7964dc2e1c"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-25/\ud83e\udd16\u2753 Questions about using SqlServerLocalDB in Unit Tests/Chat-GPT - New transcription.md": {
+    "mtime": 1777337084.837797,
+    "hash": "5810bc13a1516a1f6c32ed82a34ea1e2"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-25/\ud83e\udd16\u2753 Questions about using SqlServerLocalDB in Unit Tests/\ud83e\udd16\u2753 Questions about using SqlServerLocalDB in Unit Tests.md": {
+    "mtime": 1777337084.838572,
+    "hash": "783aaeba01874d6f4ab2719b11e8d98e"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-25/\ud83e\udd16\u2753 Questions about using SqlServerLocalDB in Unit Tests/Chat-Gpt - First - Transcription.md": {
+    "mtime": 1777337084.8382428,
+    "hash": "06974fd78e1c202e3855de2aecaf0745"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-13/\ud83d\udcf0 Serilog Tips and Tricks Structured Console Logging with Formatting.md": {
+    "mtime": 1777337084.8334143,
+    "hash": "2e9164e0483df546654c4a2cdb688c58"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-13/\ud83d\udcf0 The Best Way To Validate Your Options In .NET Core 9.md": {
+    "mtime": 1777337084.8336012,
+    "hash": "9808e2ae0444e4487db57986433b9c0e"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-13/\ud83d\udcf0 Building Your Own Mediator Pattern in Modern .NET.md": {
+    "mtime": 1777337084.829877,
+    "hash": "53211f4492330f413e0f0a22beef90c8"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-13/\ud83d\udcf0 c-sharp Extension Methods Every Corporate Developer Wishes They Had.md": {
+    "mtime": 1777337084.8340118,
+    "hash": "401f8c4c49e6d42ddc392bc0a22c87e8"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-13/\ud83d\udcf0 11 Practical Ways to Write Faster SQL with Dapper in .NET 9 (Clean Architecture, Copy-Paste Ready).md": {
+    "mtime": 1777337084.8280132,
+    "hash": "cdfb462c276f67840123cd6650dbdd38"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-13/\ud83d\udcf0 Microservices with .NET 8 Clean Architecture, CQRS & MediatR.md": {
+    "mtime": 1777337084.8319588,
+    "hash": "1490e0833e58daa97f0042e3ae8c64dd"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-13/\ud83d\udcf0 Building a Custom LINQ Provider in .NET.md": {
+    "mtime": 1777337084.8302424,
+    "hash": "503abe3fbf8529df02057a7a8148cace"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-13/\ud83d\udcf0 \ud83d\udee1\ufe0f How to Write Architecture Tests for Clean Architecture with .NET 9 1.md": {
+    "mtime": 1777337084.8342578,
+    "hash": "c26676c9ae809bf72468af98eb484c93"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-13/\ud83d\udcf0 Clean Code in C A Step-by-Step Guide to SonarQube & .NET.md": {
+    "mtime": 1777337084.8305635,
+    "hash": "806929524fcc5ad8adf0e1d3ee5ed3ff"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-13/\ud83d\udcf0 Background Jobs and Schedulers in .NET From Hangfire to Temporal\u200a\u2014\u200aChoosing the Right Tool.md": {
+    "mtime": 1777337084.8292186,
+    "hash": "7ffe1a7c6cf51d58ae6dc1c1f1e2d05c"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-13/\ud83d\udcf0 How To Create Smart Enums in C With Rich Behavior (.NET 9).md": {
+    "mtime": 1777337084.8316867,
+    "hash": "65a0a9468020c5ee719962a21612a85a"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-13/\ud83d\udcf0 Microsoft just released System.CommandLine\u200a\u2014\u200aAnd I made it even easier to use.md": {
+    "mtime": 1777337084.8322158,
+    "hash": "b313806c9724e3b09548904230cbcb74"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-13/\ud83d\udcf0 5 .NET Diagnostics Tools That Feel Overkill Until You Need Them.md": {
+    "mtime": 1777337084.8285291,
+    "hash": "0c488b69574c762c84d67de5391c4e2c"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-13/\ud83d\udcf0\ud83d\udca5 You're Using HttpClient Wrong\u200a\u2014\u200aAnd It's Costing You in Production.md": {
+    "mtime": 1777337084.8344884,
+    "hash": "3b240f4590fa2d16051c2352f4825f05"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-13/\ud83d\udcf0 Guide to Using HttpClientFactory Correctly.md": {
+    "mtime": 1777337084.8313465,
+    "hash": "d13359cfbd6506c9b73980ac41251edc"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-13/\ud83d\udcf0 Clean Architecture With .NET 10 And CQRS\u200a\u2014\u200aProject Setup (With Full Code).md": {
+    "mtime": 1775182194.1939251,
+    "hash": "8659b9aee557788efd1089e6f51d3865"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-13/\ud83d\udcf0 Modern C-Sharp Error Handling Patterns You Should Be Using in 2025.md": {
+    "mtime": 1777337084.8327234,
+    "hash": "6672f4af82d2bbebd54d40c5583d21d6"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-13/\ud83d\udcf0 Real Plugin Systems in .NET AssemblyLoadContext, Unloadability, and Reflection\u2011Free Discovery.md": {
+    "mtime": 1777337084.8331864,
+    "hash": "972d39a765a3329080c4a7cbd588d10d"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-14/\ud83d\udc8e PowerShell VIM PSReadLine edit CLI macro.md": {
+    "mtime": 1777337084.8347678,
+    "hash": "83369aa5e262e51ea384948f7f984247"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-30/WF Notes for SqlLocalDB XUnit Testing/SqlLocalDB File Location.md": {
+    "mtime": 1777337084.8396726,
+    "hash": "fa84531415bce8df461a894b815741f3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-30/WF Notes for SqlLocalDB XUnit Testing/SqlServer LocalDB in Unit tests.md": {
+    "mtime": 1777337084.8399003,
+    "hash": "54e9ca7707cedc82e9e388d701a41942"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-30/WF Notes for SqlLocalDB XUnit Testing/\ud83e\udd16\u2753Xunit2 Parallelism.md": {
+    "mtime": 1777337084.8404155,
+    "hash": "097858c33079eb38837c87abd1b38aee"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-30/WF Notes for SqlLocalDB XUnit Testing/WF Notes for SqlLocalDB XUnit Testing.md": {
+    "mtime": 1777337084.8401039,
+    "hash": "9f52879e210a8224dfcea65ed338635d"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/01/2026-01-30/WF Notes for SqlLocalDB XUnit Testing/Querying SQL Server DDL Metadata.md": {
+    "mtime": 1777337084.8394494,
+    "hash": "9cc02f33bb52761af3efab36bf80952e"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/sql-server-ha-question/sql-server-ha-dns-openshift-analysis-claude-answer-w-mermaid.md": {
+    "mtime": 1777337108.125457,
+    "hash": "aec47408a18dba60b63f74d45520df00"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/sql-server-ha-question/sql-server-ha-dns-openshift-analysis-chat-gpt-answer.md": {
+    "mtime": 1777337108.1252322,
+    "hash": "6a528478a6958abd937a74a59a8ac7d8"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/sql-server-ha-question/SQL Server High Availability Failover DNS Question - Claude Answer.md": {
+    "mtime": 1777337108.1250112,
+    "hash": "819ad6a61d0454e0458954c63e8fc866"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/sql-server-ha-question/sql-server-ha-dns-openshift-analysis-claude-answer.md": {
+    "mtime": 1777337108.1257198,
+    "hash": "976d8cfbc53d1287bc9b3eaee33ba0db"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/\ud83e\udd16\u2753developer-bootstrap-powershell-module/\ud83e\udd16\u2753 Help me create a `DeveloperBootStrapUtilities` PowerShell Module.md": {
+    "mtime": 1777337108.127745,
+    "hash": "b359b3d582c1888b9b61523213d93499"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/obsidian-performance-issues/obsidian-freeze-troubleshooting.md": {
+    "mtime": 1777337108.1225321,
+    "hash": "628fa0e8ece00c84d610c186a3383a4e"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/obsidian-performance-issues/obsidian-performances-issues.md": {
+    "mtime": 1777337108.12269,
+    "hash": "a36815a2da24c83a58dd6816e4682964"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/BUILD_SETUP.md": {
+    "mtime": 1777337108.0963347,
+    "hash": "cf9452bb6a2d4745ffba965918ab4ec0"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/FAQ_AND_EXAMPLES.md": {
+    "mtime": 1777337108.096976,
+    "hash": "692437e0205ff833f8575a54a5319a5e"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/\ud83e\udd16\u2753Dapper-etl-code.md": {
+    "mtime": 1777337108.1209924,
+    "hash": "956070ba27f6e2ee7430ab71b6a603ea"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/ETL-Architecture-Design.md": {
+    "mtime": 1777337108.0966651,
+    "hash": "0ac9227198c30679f9af95fde974dae3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/ASPIRE_CONTAINERS_GUIDE.md": {
+    "mtime": 1777337108.0958502,
+    "hash": "7473284f31a4e3789b91f2e05c0f622a"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/\ud83e\udd16\ud83c\udfd7\ufe0f `Dapper.ETL.Library` Sql Server integration test project.md": {
+    "mtime": 1777337108.1211283,
+    "hash": "a003bd9d167bf1d98ec530a5fe0f08c6"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/ARCHITECTURE_DECISION.md": {
+    "mtime": 1777337108.0953755,
+    "hash": "2cc332adbef73874d4986d73d2bb9f37"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/docker-compose.yml": {
+    "mtime": 1776885576.8181784,
+    "hash": "7c84f288ff28a9f7696cc57c9d1136a0"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/SCHEMA_INSPECTOR_GUIDE.md": {
+    "mtime": 1777337108.0978734,
+    "hash": "362dcbc7228a6853f1f1609fbfbc8e5d"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/QUICK_START.md": {
+    "mtime": 1777337108.0973802,
+    "hash": "e0e5ce5cdae2a1e63f3ea78148e55e7c"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Orchestrator.Tests/obj/Debug/net8.0/Dapper.ETL.Orchestrator.Tests.csproj.FileListAbsolute.txt": {
+    "mtime": 1776486840.6029246,
+    "hash": "4875faeb45e1c69ee58e8857f4f30647"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Tests/obj/Debug/net8.0/Dapper.ETL.Tests.csproj.FileListAbsolute.txt": {
+    "mtime": 1776486840.2773955,
+    "hash": "78517a661a2b916d607e29b949ad1f36"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/obj/Debug/net8.0/Dapper.ETL.Orchestrator.Tests.csproj.FileListAbsolute.txt": {
+    "mtime": 1776528029.8187408,
+    "hash": "790e136daf12fefa0ede291a61a1c9b7"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/obj/Debug/net9.0/Dapper.ETL.Orchestrator.Tests.csproj.FileListAbsolute.txt": {
+    "mtime": 1777357631.4716332,
+    "hash": "c4e9cb159f66967a3a25565758cec1f9"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Commands/Snapshots/DefaultCommandTests.Execute_RendersCommandTable.verified.txt": {
+    "mtime": 1776519779.5241473,
+    "hash": "387f7d9ad959f0af058fde8daa90945f"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/obj/Debug/net8.0/Dapper.ETL.Tests.csproj.FileListAbsolute.txt": {
+    "mtime": 1776528029.3934581,
+    "hash": "8ba830ccf1d581848380e875f6ce6c0f"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/obj/Debug/net9.0/Dapper.ETL.Tests.csproj.FileListAbsolute.txt": {
+    "mtime": 1777357631.0560575,
+    "hash": "132903f7b585dc14b2c457c7c0f1207e"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/obj/Debug/net8.0/SQLLite.Integration.Tests.csproj.FileListAbsolute.txt": {
+    "mtime": 1776528029.3989413,
+    "hash": "786b7a33faa19f231c30632f41722e6a"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/obj/Debug/net9.0/SQLLite.Integration.Tests.csproj.FileListAbsolute.txt": {
+    "mtime": 1777357631.4781277,
+    "hash": "1e65f3da2a8e7fff337f16c1123a87fa"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/docs/keyed-sql-connections.md": {
+    "mtime": 1777337108.098498,
+    "hash": "76bbf69f5fe0a641d485217b74fe9b28"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/docs/superpowers/plans/2026-04-17-keyed-sql-connections.md": {
+    "mtime": 1777337108.1005297,
+    "hash": "a568d31fc7153e928e0476f5993e3faf"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/docs/superpowers/plans/2026-04-17-command-coverage-100pct.md": {
+    "mtime": 1777337108.0991728,
+    "hash": "732556365b0ab856e78e413fafd5cdc4"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/docs/superpowers/plans/2026-04-17-directory-build-props-migration.md": {
+    "mtime": 1777337108.0999265,
+    "hash": "76714caedb55cee514c1adcfa8c04dd3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/docs/superpowers/specs/2026-04-17-directory-build-props-migration-design.md": {
+    "mtime": 1777337108.1009889,
+    "hash": "d33a70c05e11b9f06563ba261796b032"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.AppHost/obj/Debug/net9.0/Dapper.ETL.AppHost.csproj.FileListAbsolute.txt": {
+    "mtime": 1776486841.3038783,
+    "hash": "e3aa872fba58f64ef085ae29a292a156"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/SQLLite.Integration.Tests/obj/Debug/net8.0/SQLLite.Integration.Tests.csproj.FileListAbsolute.txt": {
+    "mtime": 1776486840.1449592,
+    "hash": "c9d75cef2cb5acc191063164006bf7a0"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Library/obj/Debug/net8.0/Dapper.ETL.Library.csproj.FileListAbsolute.txt": {
+    "mtime": 1776486839.7064416,
+    "hash": "8affaf575007f22ff7c3c5ea9f6aba80"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Orchestrator/obj/Debug/net8.0/Dapper.ETL.Orchestrator.csproj.FileListAbsolute.txt": {
+    "mtime": 1776486840.2279594,
+    "hash": "a1acc7096ab846194502d9dbd281f4f3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.AppHost/obj/Debug/net9.0/Dapper.ETL.AppHost.csproj.FileListAbsolute.txt": {
+    "mtime": 1777357631.7612839,
+    "hash": "ebe0ad6892c271bdee9ef0b89ab2e190"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/obj/Debug/net8.0/Dapper.ETL.Library.csproj.FileListAbsolute.txt": {
+    "mtime": 1776526400.753779,
+    "hash": "2a5880dd194f52089c649c36422ccb53"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Library/obj/Debug/net9.0/Dapper.ETL.Library.csproj.FileListAbsolute.txt": {
+    "mtime": 1777357630.5701268,
+    "hash": "cdb7b72bb2114100786f98560f92ecf8"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/obj/Debug/net8.0/Dapper.ETL.Orchestrator.csproj.FileListAbsolute.txt": {
+    "mtime": 1776526401.3631098,
+    "hash": "8b0d9b72cafd8c24febf3879bf99f5fc"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/src/Dapper.ETL.Orchestrator/obj/Debug/net9.0/Dapper.ETL.Orchestrator.csproj.FileListAbsolute.txt": {
+    "mtime": 1777357631.0237439,
+    "hash": "56adda9fd2429c20db0482f2b3f5c6d6"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/statemachine-for-elevator/elevator-state-machine.md": {
+    "mtime": 1777337108.1259432,
+    "hash": "c9b68062914ef4e0ad20fa6d5376fbbb"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/powershell-wrapper-for-dotnet-run-configuraitons/powershell-wrapper-for-dotnet-run-configuraitons.md": {
+    "mtime": 1777337108.1248357,
+    "hash": "13001680026b10c65995ddf6187713c6"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/powershell-wrapper-for-dotnet-run-configuraitons/dotnet-run-ergonomics-tutorial.md": {
+    "mtime": 1777337108.1246586,
+    "hash": "c9b9a0c99318cd5eb4fa666b58adf882"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/learn-openshift-on-mac/ez-openshift-on-mac-tutorial.md": {
+    "mtime": 1777337108.1218088,
+    "hash": "cb0070648a993db671718173a0fd2226"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/learn-openshift-on-mac/learn-openshift-on-mac.md": {
+    "mtime": 1777337108.122305,
+    "hash": "b9858078b209116870969ca61c8b91b7"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/learn-openshift-on-mac/aspire-datastore-deployment-tutorial.md": {
+    "mtime": 1777337108.12159,
+    "hash": "486c25d0de81f9fc78189f6896f02b92"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/2026/02/2026-02-20/PowerShell_Cookbook_4th_Edition.pdf": {
+    "mtime": 1775182194.2229016,
+    "hash": "5eea28750440cb7eae250dd19c46d47e"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Orchestrator.Tests/bin/Debug/net8.0/EmptyFiles/document/empty.pdf": {
+    "mtime": 1710242064.0,
+    "hash": "f1d9ea4dc65860c356e91b380c079465"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Tests/bin/Debug/net8.0/EmptyFiles/document/empty.pdf": {
+    "mtime": 1710242064.0,
+    "hash": "f1d9ea4dc65860c356e91b380c079465"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/bin/Debug/net8.0/EmptyFiles/document/empty.pdf": {
+    "mtime": 1710242064.0,
+    "hash": "f1d9ea4dc65860c356e91b380c079465"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/bin/Debug/net9.0/EmptyFiles/document/empty.pdf": {
+    "mtime": 1770408316.0,
+    "hash": "2442a9a61f4349b7399059194a8da049"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/bin/Debug/net8.0/EmptyFiles/document/empty.pdf": {
+    "mtime": 1710242064.0,
+    "hash": "f1d9ea4dc65860c356e91b380c079465"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/bin/Debug/net9.0/EmptyFiles/document/empty.pdf": {
+    "mtime": 1770408316.0,
+    "hash": "2442a9a61f4349b7399059194a8da049"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/bin/Debug/net8.0/EmptyFiles/document/empty.pdf": {
+    "mtime": 1710242064.0,
+    "hash": "f1d9ea4dc65860c356e91b380c079465"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/bin/Debug/net9.0/EmptyFiles/document/empty.pdf": {
+    "mtime": 1770408316.0,
+    "hash": "2442a9a61f4349b7399059194a8da049"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/SQLLite.Integration.Tests/bin/Debug/net8.0/EmptyFiles/document/empty.pdf": {
+    "mtime": 1710242064.0,
+    "hash": "f1d9ea4dc65860c356e91b380c079465"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Orchestrator.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.png": {
+    "mtime": 1710242064.0,
+    "hash": "8923730b6bd3ff16abb6677f341df4a9"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Orchestrator.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.jpg": {
+    "mtime": 1710242064.0,
+    "hash": "77f057e95127e1d20d10664beb3140e3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Orchestrator.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.jpeg": {
+    "mtime": 1710242064.0,
+    "hash": "77f057e95127e1d20d10664beb3140e3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Orchestrator.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.gif": {
+    "mtime": 1710242064.0,
+    "hash": "982264fb9362ff966cc1ce02d968fa66"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Orchestrator.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.webp": {
+    "mtime": 1710242064.0,
+    "hash": "a8b6fd8f17f41a01b65a6ce319fe1c33"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.png": {
+    "mtime": 1710242064.0,
+    "hash": "8923730b6bd3ff16abb6677f341df4a9"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.jpg": {
+    "mtime": 1710242064.0,
+    "hash": "77f057e95127e1d20d10664beb3140e3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.jpeg": {
+    "mtime": 1710242064.0,
+    "hash": "77f057e95127e1d20d10664beb3140e3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.gif": {
+    "mtime": 1710242064.0,
+    "hash": "982264fb9362ff966cc1ce02d968fa66"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/Dapper.ETL.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.webp": {
+    "mtime": 1710242064.0,
+    "hash": "a8b6fd8f17f41a01b65a6ce319fe1c33"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.png": {
+    "mtime": 1710242064.0,
+    "hash": "8923730b6bd3ff16abb6677f341df4a9"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.jpg": {
+    "mtime": 1710242064.0,
+    "hash": "77f057e95127e1d20d10664beb3140e3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.jpeg": {
+    "mtime": 1710242064.0,
+    "hash": "77f057e95127e1d20d10664beb3140e3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.gif": {
+    "mtime": 1710242064.0,
+    "hash": "982264fb9362ff966cc1ce02d968fa66"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.webp": {
+    "mtime": 1710242064.0,
+    "hash": "a8b6fd8f17f41a01b65a6ce319fe1c33"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/bin/Debug/net9.0/EmptyFiles/image/empty.png": {
+    "mtime": 1770408316.0,
+    "hash": "21dc3b82f444e30db4280b4c0e8814e2"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/bin/Debug/net9.0/EmptyFiles/image/empty.jpg": {
+    "mtime": 1770408316.0,
+    "hash": "eef4de8daacc35ef6bfd0e27dcf39eef"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/bin/Debug/net9.0/EmptyFiles/image/empty.jpeg": {
+    "mtime": 1770408316.0,
+    "hash": "eef4de8daacc35ef6bfd0e27dcf39eef"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/bin/Debug/net9.0/EmptyFiles/image/empty.gif": {
+    "mtime": 1770408316.0,
+    "hash": "58b81345958e6ed96aeb0f410cd13270"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/bin/Debug/net9.0/EmptyFiles/image/empty.webp": {
+    "mtime": 1770408316.0,
+    "hash": "eea3625fdabd66e177e24f8ac34e78eb"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.png": {
+    "mtime": 1710242064.0,
+    "hash": "8923730b6bd3ff16abb6677f341df4a9"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.jpg": {
+    "mtime": 1710242064.0,
+    "hash": "77f057e95127e1d20d10664beb3140e3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.jpeg": {
+    "mtime": 1710242064.0,
+    "hash": "77f057e95127e1d20d10664beb3140e3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.gif": {
+    "mtime": 1710242064.0,
+    "hash": "982264fb9362ff966cc1ce02d968fa66"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.webp": {
+    "mtime": 1710242064.0,
+    "hash": "a8b6fd8f17f41a01b65a6ce319fe1c33"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/bin/Debug/net9.0/EmptyFiles/image/empty.png": {
+    "mtime": 1770408316.0,
+    "hash": "21dc3b82f444e30db4280b4c0e8814e2"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/bin/Debug/net9.0/EmptyFiles/image/empty.jpg": {
+    "mtime": 1770408316.0,
+    "hash": "eef4de8daacc35ef6bfd0e27dcf39eef"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/bin/Debug/net9.0/EmptyFiles/image/empty.jpeg": {
+    "mtime": 1770408316.0,
+    "hash": "eef4de8daacc35ef6bfd0e27dcf39eef"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/bin/Debug/net9.0/EmptyFiles/image/empty.gif": {
+    "mtime": 1770408316.0,
+    "hash": "58b81345958e6ed96aeb0f410cd13270"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/Dapper.ETL.Tests/bin/Debug/net9.0/EmptyFiles/image/empty.webp": {
+    "mtime": 1770408316.0,
+    "hash": "eea3625fdabd66e177e24f8ac34e78eb"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.png": {
+    "mtime": 1710242064.0,
+    "hash": "8923730b6bd3ff16abb6677f341df4a9"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.jpg": {
+    "mtime": 1710242064.0,
+    "hash": "77f057e95127e1d20d10664beb3140e3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.jpeg": {
+    "mtime": 1710242064.0,
+    "hash": "77f057e95127e1d20d10664beb3140e3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.gif": {
+    "mtime": 1710242064.0,
+    "hash": "982264fb9362ff966cc1ce02d968fa66"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.webp": {
+    "mtime": 1710242064.0,
+    "hash": "a8b6fd8f17f41a01b65a6ce319fe1c33"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/bin/Debug/net9.0/EmptyFiles/image/empty.png": {
+    "mtime": 1770408316.0,
+    "hash": "21dc3b82f444e30db4280b4c0e8814e2"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/bin/Debug/net9.0/EmptyFiles/image/empty.jpg": {
+    "mtime": 1770408316.0,
+    "hash": "eef4de8daacc35ef6bfd0e27dcf39eef"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/bin/Debug/net9.0/EmptyFiles/image/empty.jpeg": {
+    "mtime": 1770408316.0,
+    "hash": "eef4de8daacc35ef6bfd0e27dcf39eef"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/bin/Debug/net9.0/EmptyFiles/image/empty.gif": {
+    "mtime": 1770408316.0,
+    "hash": "58b81345958e6ed96aeb0f410cd13270"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/tests/SQLLite.Integration.Tests/bin/Debug/net9.0/EmptyFiles/image/empty.webp": {
+    "mtime": 1770408316.0,
+    "hash": "eea3625fdabd66e177e24f8ac34e78eb"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/SQLLite.Integration.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.png": {
+    "mtime": 1710242064.0,
+    "hash": "8923730b6bd3ff16abb6677f341df4a9"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/SQLLite.Integration.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.jpg": {
+    "mtime": 1710242064.0,
+    "hash": "77f057e95127e1d20d10664beb3140e3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/SQLLite.Integration.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.jpeg": {
+    "mtime": 1710242064.0,
+    "hash": "77f057e95127e1d20d10664beb3140e3"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/SQLLite.Integration.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.gif": {
+    "mtime": 1710242064.0,
+    "hash": "982264fb9362ff966cc1ce02d968fa66"
+  },
+  "/Users/ericziko/-\ud83c\udfe6gitHub/ericziko/ez-crib-notes/dapper-etl/SQLLite.Integration.Tests/bin/Debug/net8.0/EmptyFiles/image/empty.webp": {
+    "mtime": 1710242064.0,
+    "hash": "a8b6fd8f17f41a01b65a6ce319fe1c33"
+  }
+}

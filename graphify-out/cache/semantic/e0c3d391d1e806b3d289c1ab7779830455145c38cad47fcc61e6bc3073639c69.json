@@ -1,0 +1,1 @@
+{"nodes": [{"id": "recording_logger", "label": "RecordingLogger", "file_type": "code", "source_file": "dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/Infrastructure/RecordingLogger.cs", "source_location": "L5", "source_url": null, "captured_at": null, "author": null, "contributor": null}], "edges": [], "hyperedges": []}

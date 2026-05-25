@@ -1,0 +1,1 @@
+{"nodes": [{"id": "empty_gif_stub", "label": "EmptyFiles stub: empty.gif (Verify.Xunit test placeholder)", "file_type": "image", "source_file": "dapper-etl/tests/Dapper.ETL.Orchestrator.Tests/bin/Debug/net9.0/EmptyFiles/image/empty.gif", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null}], "edges": [], "hyperedges": []}
