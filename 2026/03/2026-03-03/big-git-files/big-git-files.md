@@ -10,7 +10,7 @@
 - Please write me a markdown file / tutorial on how to figure this out with PowerShell
 
 %% Begin Waypoint %%
-- [finding-large-git-files](<finding-large-git-files.md>)
+null
 
 %% End Waypoint %%
 
