@@ -1,0 +1,15 @@
+
+set main-view = \
+    id:yes,width=8 \
+    date:custom,format="%Y-%m-%d %H:%M",width=0 \
+    author \
+    commit-title:graph=v1,refs \
+
+
+bind main 1 >git -c pager.diff=diffnav diff %(commit)^ %(commit)
+bind main 2 >git -c pager.diff=diffnav diff %(commit)
+
+
+
+
+

@@ -1,3 +1,6 @@
+---
+uid: 458f59f9-ca49-46da-8eb2-0866a9584e2c
+---
 # Keyed SQL Server Connection Strings
 
 This document describes how `SqlConnectionExtensions` works and how to register, configure, and consume keyed SQL Server connection strings in the DI container.
