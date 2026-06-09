@@ -1,0 +1,68 @@
+
+
+
+# 🤖💡Troubleshooting SSH Access to GitHub Repos
+Why would some of my GitHub repositories be working over SSH and some of them aren't? They both go to repos under my GitHub account that I own.
+
+This is a common issue. Here are the most likely causes:
+
+---
+
+### 1. **Remote URL Mismatch**
+Some repos may be using HTTPS instead of SSH.
+
+Check the remote URL:
+```bash
+git remote -v
+```
+
+**HTTPS (won't use SSH key):**
+```
+origin  https://github.com/username/repo.git
+```
+
+**SSH (will use SSH key):**
+```
+origin  git@github.com:username/repo.git
+```
+
+Fix it:
+```bash
+git remote set-url origin git@github.com:username/repo.git
+```
+
+---
+
+### 2. **Deploy Keys Conflict**
+If a repo has a **deploy key** attached to it, GitHub may reject your personal SSH key for that repo specifically.
+
+Check: `GitHub Repo → Settings → Deploy Keys`
+
+---
+
+### 3. **SSH Key Not Added to Agent**
+```bash
+ssh-add -l          # List loaded keys
+ssh-add ~/.ssh/id_rsa   # Add your key if missing
+```
+
+---
+
+### 4. **Wrong SSH Key Being Used**
+If you have multiple SSH keys, the wrong one might be selected. Check `~/.ssh/config`:
+```
+Host github.com
+  IdentityFile ~/.ssh/your_github_key
+```
+
+---
+
+### 5. **Debug the Connection**
+```bash
+ssh -vT git@github.com
+```
+This shows exactly which key is being offered and what GitHub responds with.
+
+---
+
+**Most likely culprit:** The failing repos are using **HTTPS remotes** rather than SSH. Check `git remote -v` first.
