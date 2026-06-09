@@ -1,3 +1,6 @@
+---
+uid: 03f5587f-4c02-4906-b58d-583200e33b92
+---
 # 🤖❓ Prompt
 
 We were pointing our client application, which was running inside a POD in OpenShift pointing directly at a Primary SQL server through a DNS host name

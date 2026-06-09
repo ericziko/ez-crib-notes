@@ -1,3 +1,6 @@
+---
+uid: 857021d5-e471-4e33-aec9-1c40bf3cd8f7
+---
 # powershell-wrapper-for-dotnet-run-configuraitons.md
 
 ### How do I ergonomically `dotnet run` a particular *.exe 4 levels deep from where I am at.

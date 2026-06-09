@@ -8,6 +8,7 @@ tags:
   - rebase
   - merge
   - workflow
+uid: ac43c652-e4e0-494e-b169-efd18483a50e
 ---
 
 # 🤖❓ Git Config — Pull, Rebase & Merge Options Explained

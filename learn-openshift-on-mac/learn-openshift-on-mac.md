@@ -1,3 +1,6 @@
+---
+uid: 4e053075-0f7b-4579-a852-13c13de47c58
+---
 
 
 # learn-openshift-on-mac

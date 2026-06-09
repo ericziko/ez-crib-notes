@@ -1,3 +1,6 @@
+---
+uid: 7a4f9e98-abed-45f6-a74f-041cc09b2e36
+---
 # 🤖❓git log graph tips 
 
 I need to better understand how to visualize my Git branches from the command line and how to query them.

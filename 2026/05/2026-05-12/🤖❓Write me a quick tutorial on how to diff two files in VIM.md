@@ -1,3 +1,6 @@
+---
+uid: 88fcb2e7-7cbe-469e-8258-956deac0a64b
+---
 
 # 🤖❓Write me a quick tutorial on how to diff two files in VIM 
 - I am talking about classic VIM - not neovim

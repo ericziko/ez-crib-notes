@@ -1,3 +1,6 @@
+---
+uid: 8821e672-b18f-4275-8f72-f0426eb1633e
+---
 # Plan: 100% Command Class Coverage
 
 **Date:** 2026-04-17  

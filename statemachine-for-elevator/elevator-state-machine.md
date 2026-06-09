@@ -7,6 +7,7 @@ tags:
   - architecture
   - diagrams
   - mermaid
+uid: 12a21ab3-84ce-45b5-8348-86f10bddd3e7
 ---
 
 # 🛗 Elevator State Machine — Office Building

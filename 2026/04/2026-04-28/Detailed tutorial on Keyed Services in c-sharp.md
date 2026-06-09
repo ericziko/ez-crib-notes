@@ -1,3 +1,6 @@
+---
+uid: 99fdd558-be21-4796-aaa1-103b67606f75
+---
 
 # Detailed tutorial on Keyed Services in c-sharp
 

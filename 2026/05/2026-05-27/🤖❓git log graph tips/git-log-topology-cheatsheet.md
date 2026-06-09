@@ -9,6 +9,7 @@ tags:
   - vim
   - fugitive
   - cheatsheet
+uid: d897e683-7a89-4ba8-b86d-791bde6e7788
 ---
 
 # 🤖💡 Git Log & Topology Cheatsheet

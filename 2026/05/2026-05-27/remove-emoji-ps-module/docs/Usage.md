@@ -1,3 +1,6 @@
+---
+uid: 7a585018-d508-4c07-ab07-15d217c0cd57
+---
 # Usage recipes
 
 All examples assume the module is imported:

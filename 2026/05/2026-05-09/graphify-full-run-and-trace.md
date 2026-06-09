@@ -1,7 +1,7 @@
 ---
 title: graphify full-pipeline run + options/logger trace
-created: '2026-05-09T16:30:00+00:00'
-modified: '2026-05-09T16:30:00+00:00'
+created: 2026-05-09T16:30:00+00:00
+modified: 2026-05-09T16:30:00+00:00
 tags:
   - graphify
   - knowledge-graph
@@ -9,6 +9,7 @@ tags:
   - dapper-etl
   - runbook
   - trace
+uid: 5a8ead3b-ac87-49a4-88c1-8ae88f435113
 ---
 
 # graphify full-pipeline run + options/logger trace

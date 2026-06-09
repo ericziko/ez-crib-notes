@@ -1,3 +1,6 @@
+---
+uid: 21894b68-4316-4ae7-a02f-ad6f0ea6add6
+---
 
 # obsidian-performance-issues
 

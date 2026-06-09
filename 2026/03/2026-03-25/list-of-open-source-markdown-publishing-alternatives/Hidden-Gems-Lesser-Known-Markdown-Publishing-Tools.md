@@ -8,6 +8,7 @@ tags:
   - static-site-generators
   - knowledge-base
   - open-source
+uid: c40b283a-4f05-4524-a8ef-4a7addace214
 ---
 
 # Hidden Gems: Lesser-Known Markdown Publishing Tools

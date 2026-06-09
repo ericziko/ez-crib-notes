@@ -1,3 +1,6 @@
+---
+uid: 6b3f5c77-d732-4cfb-ba98-06a2efb1e40c
+---
 # Architecture
 
 The module is small (four public functions, six private helpers) but the

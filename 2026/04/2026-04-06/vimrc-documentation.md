@@ -7,6 +7,7 @@ tags:
   - configuration
   - editor
   - reference
+uid: 36568cc5-b7ea-4878-a6e5-ca175a462906
 ---
 
 # 📝 Vim Configuration Documentation

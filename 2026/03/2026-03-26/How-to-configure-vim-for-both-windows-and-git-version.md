@@ -1,3 +1,6 @@
+---
+uid: f33fb535-aa49-451a-ae74-a1a93f3b4d39
+---
 
 
 # How-to-configure-vim-for-both-windows-and-git-version

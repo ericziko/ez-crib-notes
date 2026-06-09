@@ -1,3 +1,6 @@
+---
+uid: 93e2d4b7-296a-445f-bd6c-a6db1470bb51
+---
 # Directory.Build.props Migration Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.

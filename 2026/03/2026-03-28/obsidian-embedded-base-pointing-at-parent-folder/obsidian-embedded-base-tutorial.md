@@ -1,5 +1,5 @@
 ---
-title: "🤖❓ Obsidian Embedded Base Pointing at Parent Folder"
+title: 🤖❓ Obsidian Embedded Base Pointing at Parent Folder
 created: 2026-03-28T00:00:00
 modified: 2026-03-28T00:00:00
 tags:
@@ -7,6 +7,7 @@ tags:
   - bases
   - templates
   - workflow
+uid: 28b2cdd8-fa86-43f1-a17c-85eff0e83923
 ---
 
 # 🤖❓ Obsidian: Embedded Base That Dynamically Filters by Parent Folder

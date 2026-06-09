@@ -1,3 +1,6 @@
+---
+uid: 20b4a1a2-8628-4641-96e2-0659f404775a
+---
 
 # vim-preview-to-pandoc
 

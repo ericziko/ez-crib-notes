@@ -7,6 +7,7 @@ tags:
   - lazygit
   - tools
   - troubleshooting
+uid: 6ecfd232-c5df-420e-970d-445587a81a8f
 ---
 
 # Resolving Multiple LazyGit Versions on macOS

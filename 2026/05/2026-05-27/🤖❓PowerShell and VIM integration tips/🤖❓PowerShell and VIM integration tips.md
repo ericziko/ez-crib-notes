@@ -1,3 +1,6 @@
+---
+uid: b3adea6e-7bb6-485b-95ce-57b960917931
+---
 
 # 🤖❓PowerShell and VIM integration tips
 

@@ -1,3 +1,6 @@
+---
+uid: ac859cf3-c98d-45d7-a6cf-eff2cbff686a
+---
 Stuff to tell seth
 - [ ] I automate everything
 - [ ] Eli has cock blocked me on squashing requests

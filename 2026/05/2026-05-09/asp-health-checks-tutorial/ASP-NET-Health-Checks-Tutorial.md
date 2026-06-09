@@ -9,6 +9,7 @@ tags:
   - openshift
   - observability
   - kubernetes
+uid: f7c9226b-c829-495d-a4dd-0bbf7ab7db4e
 ---
 
 # ASP.NET Health Checks Tutorial: Aspire & OpenShift Setup

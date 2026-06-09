@@ -1,3 +1,6 @@
+---
+uid: c6777c5b-46b8-4f76-9af9-0c257cd8adc5
+---
 # 🤖❓PowerShell-performance-profiling-tips
 
 ## 🤖❓Prompt

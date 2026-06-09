@@ -1,3 +1,6 @@
+---
+uid: ec04c6e5-ab48-4a57-92bb-1e93115b5ab2
+---
 # Claude CLI Cheatsheet
 
 Quick reference guide for using Claude Code via the command line.

@@ -2,7 +2,8 @@
 title: UnicodeFileNameTools — Design Spec
 date: 2026-05-27
 status: approved
-related: "🤖❓remove-emoji-ps-module.md"
+related: 🤖❓remove-emoji-ps-module.md
+uid: 0b52d32f-21f1-4d6e-b2ac-0a08c6cbb235
 ---
 
 # UnicodeFileNameTools — Design Spec

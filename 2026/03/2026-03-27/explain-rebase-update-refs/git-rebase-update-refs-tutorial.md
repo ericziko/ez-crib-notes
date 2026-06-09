@@ -1,5 +1,5 @@
 ---
-title: "🤖❓ Git Rebase updateRefs — The Complete Guide"
+title: 🤖❓ Git Rebase updateRefs — The Complete Guide
 created: 2026-03-27T00:00:00
 modified: 2026-03-27T00:00:00
 tags:
@@ -7,6 +7,7 @@ tags:
   - rebase
   - workflow
   - stacked-branches
+uid: a1672206-ce25-40cc-aed6-972d6bae0293
 ---
 
 # 🤖❓ Git `[rebase] updateRefs = true` — The Complete Guide

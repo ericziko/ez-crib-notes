@@ -1,17 +1,18 @@
 ---
 title: NET 10 HttpClient The Default That Quietly Breaks Production
-source: "https://medium.com/codetodeploy/net-10-httpclient-the-default-that-quietly-breaks-production-9da38e11ea96"
+source: https://medium.com/codetodeploy/net-10-httpclient-the-default-that-quietly-breaks-production-9da38e11ea96
 author:
   - "[[Abe Jaber]]"
 published: 2026-01-17
 created: 2026-01-20T00:00:00
 description: "Stop “random” p99 spikes with a safe-by-default .NET 10 HttpClient setup: real timeouts + CancellationToken propagation, DNS-safe pooled connections, and resilience without retry storms."
 tags:
-  - "clippings"
+  - clippings
   - 1
   - 2
   - 3
 modified: 2026-01-20T22:34:38
+uid: b699fc3d-4d70-47ca-89cd-7ce0f1d2ea29
 ---
 
 # NET 10 HttpClient The Default That Quietly Breaks Production

@@ -1,3 +1,6 @@
+---
+uid: f0701608-092f-466a-b7d4-68a3ed8c7b86
+---
 # open-shift-orleans-etl-architecture-questions
 
 

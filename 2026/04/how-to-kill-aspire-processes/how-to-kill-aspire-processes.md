@@ -1,3 +1,6 @@
+---
+uid: 6c2252b1-594a-4668-b0ac-55441baf74e3
+---
 # how-to-kill-aspire-processes
 
 I'm using .NET Aspire, and when I start the app host, I'd like to write some sort of a PowerShell script or something to kill that particular .NET process. 

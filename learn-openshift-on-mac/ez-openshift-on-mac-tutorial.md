@@ -11,6 +11,7 @@ tags:
   - orbstack
   - tutorial
   - s2i
+uid: 2ada40ea-c14d-40bf-af27-97ea415e4790
 ---
 
 # 🛳️ OpenShift on Mac — Bootstrap & Deploy a .NET App to Local CRC

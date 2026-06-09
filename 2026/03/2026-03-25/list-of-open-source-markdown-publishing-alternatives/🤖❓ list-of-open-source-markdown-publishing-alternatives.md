@@ -1,3 +1,6 @@
+---
+uid: 9a915a75-36b0-4107-95ba-2657b449a684
+---
 
 # 🤖❓ list-of-open-source-markdown-publishing-alternatives
 

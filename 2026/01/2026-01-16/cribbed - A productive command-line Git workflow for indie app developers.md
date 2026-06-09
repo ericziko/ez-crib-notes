@@ -3,6 +3,7 @@ title: cribbed - A productive command-line Git workflow for indie app developers
 description: A productive command-line Git workflow for indie app developers Hi, it’s Takuya. Git is an essential tool for managing your codebase and change history, even if you are developing an app alone …
 updated: 2026-01-16T10:45
 created: 2026-01-16T10:37
+uid: 48a8ee3d-350b-43e0-ac03-3980fc7f4815
 ---
 
 # cribbed - A productive command-line Git workflow for indie app developers

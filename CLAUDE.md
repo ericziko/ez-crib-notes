@@ -1,3 +1,6 @@
+---
+uid: d1b663fb-2718-4d86-b2c4-dee99d210f45
+---
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.

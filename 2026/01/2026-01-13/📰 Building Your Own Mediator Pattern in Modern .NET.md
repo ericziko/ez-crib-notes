@@ -9,6 +9,7 @@ description: “” is published by Jordan Rowles.
 tags:
   - clippings
 updated: 2026-01-07T22:48
+uid: edbcd1b2-a05f-485a-a894-66ae36c19936
 ---
 
 # 📰 Building Your Own Mediator Pattern in Modern .NET

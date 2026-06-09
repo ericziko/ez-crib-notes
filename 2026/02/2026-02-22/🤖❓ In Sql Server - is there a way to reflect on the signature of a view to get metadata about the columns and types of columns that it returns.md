@@ -1,3 +1,6 @@
+---
+uid: 75cf0f7e-9d66-4de8-a294-76d0f5a05f30
+---
 # 🤖❓ In Sql Server - is there a way to reflect on the signature of a view to get metadata about the columns and types of columns that it returns
 
 ## Links

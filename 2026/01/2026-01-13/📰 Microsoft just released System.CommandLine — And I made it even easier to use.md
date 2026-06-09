@@ -9,6 +9,7 @@ description: Microsoft just released System.CommandLine — And I made it even e
 tags:
   - clippings
 updated: 2026-01-07T22:50
+uid: 99275679-c817-4a61-8cb2-e3ccc0ea7618
 ---
 
 # 📰 Microsoft just released System.CommandLine — And I made it even easier to use

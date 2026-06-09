@@ -1,3 +1,6 @@
+---
+uid: d9bd46a0-8d4e-4a01-bcaa-c47497c6a388
+---
 # UnicodeFileNameTools
 
 A PowerShell 7+ module for detecting and cleaning emoji & other Unicode

@@ -10,6 +10,7 @@ tags:
   - pester
   - dbatools
   - team
+uid: e75bf711-358d-4795-996e-ec0e4612d0d4
 ---
 
 # 🤖❓ How to Air-Gap PowerShell Modules in Source Control

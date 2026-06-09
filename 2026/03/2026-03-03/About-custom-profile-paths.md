@@ -1,3 +1,6 @@
+---
+uid: 6e8e6e21-add2-49bc-a146-ce8d3e3bd318
+---
 
 # About PowerShell-Custom-Module-Paths
 

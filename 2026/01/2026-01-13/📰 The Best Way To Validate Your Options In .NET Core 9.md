@@ -9,6 +9,7 @@ description: The Best Way To Validate Your Options In .NET Core 9 Part 1 — Fou
 tags:
   - clippings
 updated: 2026-01-07T23:22
+uid: d755c5ac-c6b8-4a80-bf19-9154ac15284b
 ---
 
 # 📰 The Best Way To Validate Your Options In .NET Core 9

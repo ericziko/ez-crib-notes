@@ -1,6 +1,7 @@
 ---
-created: '2026-05-08T21:05:00+21:05'
-modified: '2026-05-08T21:05:17+21:05'
+created: 2026-05-08T21:05:00+21:05
+modified: 2026-05-08T21:05:17+21:05
+uid: 65835158-e261-4046-a57f-7f25587612bd
 ---
 # 🤖❓Tutorial on interrogating OpenShift with oc utility
 - I am a `c#` developer who is just coming up to speed with OpenShift

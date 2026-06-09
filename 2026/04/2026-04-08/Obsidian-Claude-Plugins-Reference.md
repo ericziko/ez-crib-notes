@@ -8,6 +8,7 @@ tags:
   - plugins
   - ai-integration
   - knowledge-management
+uid: 99549572-fabf-437f-8b5f-a54235a9179b
 ---
 
 # Obsidian Claude AI Plugins - Complete Reference

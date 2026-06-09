@@ -1,3 +1,6 @@
+---
+uid: da83f984-380e-4353-a562-08d9a02beb1d
+---
 # 🤖❓ PowerShell OAuth Smoke Testing with Auth0 Client Credentials
 
 ---

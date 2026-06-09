@@ -9,6 +9,7 @@ tags:
   - kubernetes
   - dns
   - networking
+uid: 6cc6d9eb-46aa-41b2-8e12-f7909e44cb71
 ---
 
 # 🤖❓ SQL Server HA Failover DNS Redirection — What Can Go Wrong in OpenShift
