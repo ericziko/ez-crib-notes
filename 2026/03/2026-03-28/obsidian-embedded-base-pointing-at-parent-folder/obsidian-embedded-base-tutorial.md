@@ -116,7 +116,7 @@ If you use the **Templater** community plugin you can trigger the template autom
 // Folder: (any)   Template: folder-index
 ```
 
-Templater also gives you richer date/time tokens (`<% tp.date.now("YYYY-MM-DDTHH:mm:ss") %>`), but the base filter expression itself is identical.
+Templater also gives you richer date/time tokens (`2026-06-16T07:39:43`), but the base filter expression itself is identical.
 
 ---
 

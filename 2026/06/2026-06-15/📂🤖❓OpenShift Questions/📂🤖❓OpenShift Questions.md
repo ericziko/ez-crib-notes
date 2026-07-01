@@ -8,9 +8,7 @@ title: "📂🤖❓OpenShift Questions "
 # 📂🤖❓OpenShift Questions 
 
 %% Begin Waypoint %%
-- [🤖❓How do I delete a service in OpenShift](</src/para/resources/📂🤖❓OpenShift Questions/🤖❓How do I delete a service in OpenShift.md>)
-- [🤖❓How to query pods in OpenShift](</src/para/resources/📂🤖❓OpenShift Questions/🤖❓How to query pods in OpenShift.md>)
-- [🤖❓Please give me a high level overview of Open Shift](</src/para/resources/📂🤖❓OpenShift Questions/🤖❓Please give me a high level overview of Open Shift.md>)
+null
 
 %% End Waypoint %%
 
