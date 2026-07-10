@@ -1,5 +1,5 @@
 ---
-title: "🤖❓ Obsidian Embedded Base Pointing at Parent Folder"
+title: 🤖❓ Obsidian Embedded Base Pointing at Parent Folder
 created: 2026-03-28T00:00:00
 modified: 2026-03-28T00:00:00
 tags:
@@ -7,6 +7,7 @@ tags:
   - bases
   - templates
   - workflow
+uid: 28b2cdd8-fa86-43f1-a17c-85eff0e83923
 ---
 
 # 🤖❓ Obsidian: Embedded Base That Dynamically Filters by Parent Folder
@@ -115,7 +116,7 @@ If you use the **Templater** community plugin you can trigger the template autom
 // Folder: (any)   Template: folder-index
 ```
 
-Templater also gives you richer date/time tokens (`<% tp.date.now("YYYY-MM-DDTHH:mm:ss") %>`), but the base filter expression itself is identical.
+Templater also gives you richer date/time tokens (`2026-06-16T07:39:43`), but the base filter expression itself is identical.
 
 ---
 

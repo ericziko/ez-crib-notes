@@ -1,3 +1,6 @@
+---
+uid: ab65c3df-1d69-4c24-9051-cfdbea95e9d8
+---
 # powershell-unit-test-script-using-oauth-credentials
 
 

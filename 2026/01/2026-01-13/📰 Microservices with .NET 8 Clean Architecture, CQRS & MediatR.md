@@ -9,6 +9,7 @@ description: "Microservices with .NET 8 Clean Architecture, CQRS & MediatR Archi
 tags:
   - clippings
 updated: 2026-01-07T22:41
+uid: 7125af00-bac3-4e2a-9e17-200a4351d4a5
 ---
 
 # 📰 Microservices with .NET 8 Clean Architecture, CQRS & MediatR

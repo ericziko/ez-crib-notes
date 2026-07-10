@@ -9,6 +9,7 @@ tags:
   - ci-cd
   - batch-jobs
   - etl
+uid: 297713a6-8bf7-4543-acdc-02accba9c900
 ---
 
 # Harness Deployment Without Health Checks: Kubernetes Jobs Tutorial

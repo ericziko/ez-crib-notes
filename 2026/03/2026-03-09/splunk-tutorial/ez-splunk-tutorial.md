@@ -11,6 +11,7 @@ tags:
   - openshift
   - memory-leak
   - observability
+uid: f95ff368-94f9-4d95-9fd5-3a64b31bec6f
 ---
 
 # 🔍 Splunk Tutorial — C# Memory Leaks & OpenShift / Kubernetes Errors

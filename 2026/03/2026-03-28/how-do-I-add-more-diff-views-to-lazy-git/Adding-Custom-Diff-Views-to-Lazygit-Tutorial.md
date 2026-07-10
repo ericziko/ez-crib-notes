@@ -8,6 +8,7 @@ tags:
   - diff
   - configuration
   - tutorial
+uid: ab66765a-a17b-4a32-b925-f22c96c6bcad
 ---
 
 # Adding Custom Diff Views to Lazygit: A Comprehensive Guide

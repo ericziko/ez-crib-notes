@@ -9,6 +9,7 @@ description: "Serilog Tips and Tricks: Structured Console Logging with Formattin
 tags:
   - clippings
 updated: 2026-01-07T22:54
+uid: 282e7dc9-d035-43a5-92ac-813244a17028
 ---
 
 # 📰 Serilog Tips and Tricks Structured Console Logging with Formatting

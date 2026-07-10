@@ -7,6 +7,7 @@ tags:
   - troubleshooting
   - windows
   - performance
+uid: 6682fc85-e68b-4b9b-a7da-753015e95c4f
 ---
 
 # 🔍 Obsidian Windows Freeze Troubleshooting Guide

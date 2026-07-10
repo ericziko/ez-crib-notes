@@ -7,6 +7,7 @@ tags:
   - fixup
   - commits
   - rebase
+uid: faec0177-c551-4a2e-a380-de17db82e726
 ---
 
 # Git Fixup Commits: A Complete Tutorial

@@ -8,6 +8,7 @@ tags:
   - luajit
   - windows
   - vim-flog
+uid: f8328585-2ef0-40c6-8637-f8fdcb8c9774
 ---
 
 # 🛠️ vim-flog with LuaJIT on Windows — Setup & Configuration Guide

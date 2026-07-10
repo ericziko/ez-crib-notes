@@ -12,6 +12,7 @@ updated: 2026-01-08T00:16
 aliases:
   - CQRS Doesn't Have To Be Complicated  Clean Architecture with .NET 10
 linter-yaml-title-alias: CQRS Doesn't Have To Be Complicated  Clean Architecture with .NET 10
+uid: b894c519-a368-438a-a706-67d5fa885430
 ---
 
 # CQRS Doesn't Have To Be Complicated  Clean Architecture with .NET 10

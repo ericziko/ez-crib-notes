@@ -1,3 +1,6 @@
+---
+uid: a0ebbd00-3810-41cf-bc80-1f62fc3113bd
+---
 
 # vim-flog-instructions
 

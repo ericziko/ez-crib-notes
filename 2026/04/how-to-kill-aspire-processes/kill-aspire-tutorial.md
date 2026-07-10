@@ -7,6 +7,7 @@ tags:
   - aspire
   - powershell
   - devops
+uid: 1e702420-0009-4d9e-801a-6fc1223e6819
 ---
 
 # 🤖❓ How to Kill .NET Aspire App Host Processes

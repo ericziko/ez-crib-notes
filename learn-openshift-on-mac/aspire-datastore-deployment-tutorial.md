@@ -1,5 +1,5 @@
 ---
-title: ".NET Aspire + Data Tier on OpenShift — Full Stack Deployment (CRC & MicroShift)"
+title: .NET Aspire + Data Tier on OpenShift — Full Stack Deployment (CRC & MicroShift)
 created: 2026-04-19
 modified: 2026-04-19
 tags:
@@ -14,6 +14,7 @@ tags:
   - macos
   - apple-silicon
   - tutorial
+uid: 015e6090-4473-4568-8d2d-27189045b868
 ---
 
 # 🚀 .NET Aspire + Data Tier on OpenShift — CRC & MicroShift Full-Stack Deployment

@@ -1,3 +1,6 @@
+---
+uid: 8bbf1cd8-8042-4fd7-bd7e-193243349457
+---
 # What kind of charts should I reverse engineer for Kubernetes documentation 🤖❓ 
 
 I am trying to reverse engineer and document a bunch of Helm charts in Kubernetes. What are the most appropriate diagrams to reverse engineer and document these in?

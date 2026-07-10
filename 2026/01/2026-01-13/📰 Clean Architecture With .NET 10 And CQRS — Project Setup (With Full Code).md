@@ -9,6 +9,7 @@ description: Clean Architecture With .NET 10 And CQRS — Project Setup (With Fu
 tags:
   - clippings
 updated: 2026-01-07T23:04
+uid: b790aec9-37dd-4f14-afa2-77596666ac9f
 ---
 
 # 📰 Clean Architecture With .NET 10 And CQRS — Project Setup (With Full Code)

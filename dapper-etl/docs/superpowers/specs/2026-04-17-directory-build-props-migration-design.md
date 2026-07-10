@@ -6,6 +6,7 @@ tags:
   - msbuild
   - build-infrastructure
   - dapper-etl
+uid: 987aa721-456c-48ac-883c-f7ecd2054d3a
 ---
 
 # Directory.Build.props Migration — Design

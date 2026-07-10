@@ -1,3 +1,6 @@
+---
+uid: e492a251-b491-469f-be65-6a39a8c49121
+---
 # 🤖❓Strategies-for-multiple-application.json-config-files
 
 Please write me a separate detailed markdown document giving me various strategies 

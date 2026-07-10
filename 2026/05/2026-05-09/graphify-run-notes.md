@@ -1,13 +1,14 @@
 ---
 title: graphify run notes — full-repo knowledge graph
-created: '2026-05-09T00:00:00+00:00'
-modified: '2026-05-09T00:00:00+00:00'
+created: 2026-05-09T00:00:00+00:00
+modified: 2026-05-09T00:00:00+00:00
 tags:
   - graphify
   - knowledge-graph
   - claude-code
   - tooling
   - runbook
+uid: 91c349f4-9730-44b3-8634-e8559147d441
 ---
 
 # graphify run notes — full-repo knowledge graph

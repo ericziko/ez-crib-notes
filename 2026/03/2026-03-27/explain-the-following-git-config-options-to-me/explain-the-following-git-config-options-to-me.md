@@ -1,3 +1,6 @@
+---
+uid: 188c39e4-23a9-43ef-9553-76e89e1fecee
+---
 # explain-the-following-git-config-options-to-me
 
 ## 🤖❓ Prompt

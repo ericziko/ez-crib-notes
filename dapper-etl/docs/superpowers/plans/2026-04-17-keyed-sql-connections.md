@@ -1,3 +1,6 @@
+---
+uid: c08e0878-bdcb-4b45-a0a6-664140b94d65
+---
 # Keyed SQL Server Connection Strings Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.

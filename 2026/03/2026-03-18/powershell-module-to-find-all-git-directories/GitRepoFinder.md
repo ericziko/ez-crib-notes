@@ -7,6 +7,7 @@ tags:
   - git
   - tools
   - fd
+uid: 143b753f-7066-4e7a-8921-d163cd3c6656
 ---
 
 # 🤖💡 GitRepoFinder PowerShell Module

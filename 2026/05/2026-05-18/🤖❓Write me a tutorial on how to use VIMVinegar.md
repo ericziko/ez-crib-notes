@@ -1,3 +1,6 @@
+---
+uid: 084ce584-a99d-4a5a-8442-92ac08bb8773
+---
 # 🤖❓Write me a tutorial on how to use VIMVinegar
 
 ## 🤖💡Robot Reply

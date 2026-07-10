@@ -1,3 +1,6 @@
+---
+uid: f4324791-31bc-4004-9ecf-c247e9e2fa12
+---
 # SCHEMA_INSPECTOR_GUIDE
 
 ## Overview

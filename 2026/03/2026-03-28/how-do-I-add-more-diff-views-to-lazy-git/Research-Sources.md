@@ -2,6 +2,7 @@
 title: Research Sources for Lazygit Custom Diff Views
 created: 2026-03-28T00:00:00Z
 modified: 2026-03-28T00:00:00Z
+uid: bc69f46c-3ed6-47bd-88f1-ec7ea38815da
 ---
 
 # Research Sources: Adding Custom Diff Views to Lazygit

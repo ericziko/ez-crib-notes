@@ -8,6 +8,7 @@ tags:
   - appsettings
   - feature-flags
   - local-dev
+uid: 5aca82c7-0619-4b7c-8749-93148b9f420f
 ---
 
 # 🤖💡 Strategies for Combining `appsettings.json` Configuration Files

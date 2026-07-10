@@ -2,6 +2,7 @@
 title: 🤖❓Xunit2 Parallelism
 created: 2026-01-30T17:27:25
 modified: 2026-01-30T17:33:39
+uid: e14ebdf9-913f-454e-989a-186aab5b846f
 ---
 
 # 🤖❓Xunit2 Parallelism

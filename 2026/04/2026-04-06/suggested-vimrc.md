@@ -1,3 +1,6 @@
+---
+uid: 15324e54-689f-4c66-aa93-c9f27f748192
+---
 # suggested-vimrc
 
 ## Suggested VIM

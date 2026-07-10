@@ -1,3 +1,6 @@
+---
+uid: c77ee7ec-4433-49fb-a071-ad19d6d95402
+---
 # 🤖❓Chat-GPT-Strategies-for-multiple-application.json-config-files
 
 

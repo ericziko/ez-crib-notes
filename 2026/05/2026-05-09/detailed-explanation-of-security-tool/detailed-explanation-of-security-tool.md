@@ -1,3 +1,6 @@
+---
+uid: 80e324cf-e2a2-439b-849f-ca21cc641777
+---
 # 🤖❓Detailed explanation of  mac `security` commands 
 
 Below is a list of the Mac cli `security` commands - obtained from running `man security` on my Mac 

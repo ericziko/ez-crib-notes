@@ -1,3 +1,6 @@
+---
+uid: 37509b20-613b-478f-95d8-5a2cbeb52398
+---
 # 🤖❓ Ergonomic `dotnet run` for Multi-Project Solutions
 
 > **Problem:** You have several console apps 4+ levels deep in a solution and want to make running them discoverable and ergonomic for the whole team — from the solution root.
